@@ -1,0 +1,48 @@
+
+
+<form action = "{{url}}" method = "post">{% csrf_token %}
+
+{% for field in form %}
+    <div class ="fieldWrapper">
+        {{field.errors}}
+        {% if field.label == 'cost' %}
+            <label>How much is this purchase going to cost (in USD)?</label>
+        {% endif %}
+        
+        {% if field.label == 'time' %}
+            <label>How many days will this purchase take?</label>
+        {% endif %}  
+        
+        {% if field.label == 'hours' %}
+            <label>How many hours of planning will be needed before or even after this purchase?</label>
+        {% endif %} 
+        
+        {{field}}
+        
+        {% if field.label == 'cost' %}
+            <h5>Make sure to account for all cost of the purchase, not just the purchase itself.            
+            </h5>
+        {% endif %}
+        
+        {% if field.label == 'time' %}
+            <h5>If the purchase takes a few days make sure to account for that here.
+            <br/>
+            For example: If your goal was 'To Build Your Dream Home' it may take you a few full days to get moved in, paint the house, etc.  These would be days that you have to take off from your job or usual schedule and should be entered here.
+            </h5>
+        {% endif %}
+        
+        {% if field.label == 'hours' %}
+            <h5>Hours of planning or other things surrounding this goal.  In our previous example of 'Build Your Dream Home' this would include the hours of planning every week when designing the home and picking out parts.  These hours would be the kind you would spend in evenings, weekends, and during your normal schedule.  
+            <br/>
+            For example: If you spent five hours every week for fourteen weeks planning details surrounding your home you would put 70 in this field. 
+            </h5>
+        {% endif %}
+        
+        <br/>
+
+        
+    </div>
+{% endfor %}
+
+<input type = "submit" name = "submit" value = "Create Bucket List Item">
+</form>

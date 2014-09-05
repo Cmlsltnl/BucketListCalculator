@@ -1,0 +1,30 @@
+{% if user %}
+    <br/>
+    <h1>{{user}}'s Bucket List</h1>
+    {% if personal_list %}
+        <ol>
+        {% for item in personal_list %}
+            {% if item.crossed_off == True %}
+                <li><a href = '/bucketlist/mylist/view/{{item.id}}/'  style="text-decoration: line-through;">{{ item.text }}</a></li>
+            {% else %}
+                <li><a href = '/bucketlist/mylist/view/{{item.id}}/'>{{ item.text }}</a></li>
+            {% endif %}
+        {% endfor %}
+        </ol>
+    {% else %}
+        <p>You don't have any Bucket List items yet!  Better get on that.</p>
+    {% endif %}
+    <br/>
+    <hr>
+    <br/>
+    <h5>Create a Bucket List Item:</h5>
+    <button><a href="/bucketlist/create/">Create</a></button>
+    <br/>
+    <h5>Your Bucket List Statistics:</h5>
+    <button><a href="/bucketlist/mylist/stats/">Stats</a></button>
+    <br/>
+    <h5>Your Profile Page:</h5>
+    <button><a href="/bucketlist/userstats/{{user}}">Profile</a></button>
+{% else %}
+    <p>Sorry, it doesn't seem like you are logged in!</p>
+{% endif %}

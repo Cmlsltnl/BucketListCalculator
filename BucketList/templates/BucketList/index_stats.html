@@ -1,0 +1,18 @@
+    <br/>
+    <h1>Community Bucket List Statistics</h1>
+    {% if list_of_all %}
+        <br/>
+        <h4>Number of Users: </h4><p>{{number_of_users}}</p>
+        <h4>Number of Bucket List Items </h4></p>{{list_of_all}}</p>
+        <h4>Total Cost: </h4><p>{{ total_cost }}</p>
+        <h4>Total Time (In Days): </h4><p>{{ total_time }}</p>
+        <h4>Total Goals Accomplished: </h4><p>{{ total_crossed_off}}</p>
+        <h4>Average Cost Per User: </h4><p>{{cost_per_user}}</p>
+        <h4>Average Time Per User: </h4><p>{{time_per_user}}</p>
+        <h4>Average List Items Per User: </h4><p>{{items_per_user}}</p>
+        <h4>Average Crossed Off Items Per User: </h4><p>{{crossed_off_per_user}}</p>
+        
+    {% else %}
+        <p>There are no Bucket List items yet!  Better start making some.</p>
+    {% endif %}
+    

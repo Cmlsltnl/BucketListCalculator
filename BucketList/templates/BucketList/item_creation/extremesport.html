@@ -1,0 +1,48 @@
+
+
+<form action = "{{url}}" method = "post">{% csrf_token %}
+
+{% for field in form %}
+    <div class ="fieldWrapper">
+        {{field.errors}}
+        {% if field.label == 'cost' %}
+            <label>How much is this going to cost you (in USD)?</label>
+        {% endif %}
+        
+        {% if field.label == 'time' %}
+            <label>Days will this take you?</label>
+        {% endif %}  
+        
+        {% if field.label == 'hours' %}
+            <label>How many extra hours will this goal need to be accomplished?</label>
+        {% endif %} 
+        
+        {{field}}
+        
+        {% if field.label == 'cost' %}
+            <h5>All costs, including travel, to accomplish this goal.  Keep in mind that if your goal was 'Go Skydiving in Hawaii' and you already have 'Visit Hawaii' on your bucket list you do not need to accounts for the costs in getting to Hawaii when entering the cost since you can do both goals during the same trip.    
+            </h5>
+        {% endif %}
+        
+        {% if field.label == 'time' %}
+            <h5>How many full days will this take to accomplish.  
+            <br/>
+            For example: 'Skydiving' typically takes at least a full day so you would enter a 1 here.  A goal like 'Climb Mount McKinley' would take signifigantly more.
+            </h5>
+        {% endif %}
+        
+        {% if field.label == 'hours' %}
+            <h5>How many hours of planning or preperation would you need to accomplish before or even after the goal?
+            <br/>
+            In the previous example 'Climb Mount McKinley' you would need a signifigant amount of preperation time, planning, and training before taking on the challenge.  If you decided it would take about five hours of planning for five weeks prior and ten hours per week of physical training and practice for four months you would type 185 here.
+            </h5>
+        {% endif %}
+        
+        <br/>
+
+        
+    </div>
+{% endfor %}
+
+<input type = "submit" name = "submit" value = "Create Bucket List Item">
+</form>

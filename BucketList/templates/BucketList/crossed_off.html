@@ -1,0 +1,10 @@
+{% if item and User %}
+    <h1 style="text-decoration: line-through;">{{item}}</h1>
+    <h4>You crossed it off!!</h4>
+    <p>Congratulations on accomplishing your goal!  This is exeptional news to us and we are glad we could help you on your way.</p>
+    <br>
+    <h5>Go back to your Bucket List</h5>
+    <button><a href="/bucketlist/mylist/">Go Back</a></button>
+{% else %}
+    <p>Something went wrong.. We are sorry.  You may want to make sure that you are logged in.</p>
+{% endif %}

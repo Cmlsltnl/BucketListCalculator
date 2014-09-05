@@ -1,0 +1,23 @@
+{% if item %}
+    
+<h1>{{item}}'s Stats Page</h1>
+    <p>Email: {{item.email}}</p>
+    <p>Age: {{item_profile.age}}
+    <h4>{{item}}'s Bucket List</h4>
+    <ol>
+    {% for list_item in list_of_all %}
+        {% if list_item.crossed_off == True %}
+            <li style="text-decoration: line-through;">{{list_item}}</li>
+        {% else %}
+            <li>{{list_item}}</li>
+        {% endif %}    
+    {% endfor %}
+    </ol>
+    <br/>
+    <hr>
+    <br/>
+    <h5>Back to Community Bucket List</h5>
+    <button><a href="/bucketlist/">Go Back</a></button>
+{% else %}
+    <p>This page didn't load properly...</p>
+{% endif %}

@@ -1,0 +1,14 @@
+{% if item %}
+    {% if item.crossed_off %}
+        <h1 style="text-decoration: line-through;">{{item}}</h1>
+    {% else %}
+        <h1>{{item}}</h1>
+    {% endif %}
+        <p>Cost (in dollars):   {{item.cost}}</p>
+        <p>Days:   {{item.time}}</p>
+        <p>Hours: {{item.hours}}</p>
+        <p>Added By:   <a href='/bucketlist/userstats/{{item.pub_by}}/'>{{item.pub_by}}</a></p>
+        <p>Date Added:   {{item.pub_date}}</p>
+{% else %}
+    <p>There seems to have been an error.</p>
+{% endif %}

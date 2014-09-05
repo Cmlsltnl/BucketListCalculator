@@ -1,0 +1,44 @@
+
+
+<form action = "{{url}}" method = "post">{% csrf_token %}
+
+{% for field in form %}
+    <div class ="fieldWrapper">
+        {{field.errors}}
+        {% if field.label == 'cost' %}
+            <label>Will this goal cost you any money (in USD)?</label>
+        {% endif %}
+        
+        {% if field.label == 'time' %}
+            <label>How many full days of work will this take?</label>
+        {% endif %}  
+        
+        {% if field.label == 'hours' %}
+            <label>How many extra hours will this goal need to be accomplished?</label>
+        {% endif %} 
+        
+        {{field}}
+        
+        {% if field.label == 'cost' %}
+            <h5>If there is any monetary costs for this goal. Place an estimate of the amount here.          
+            </h5>
+        {% endif %}
+        
+        {% if field.label == 'time' %}
+            <h5>How many full days will this take to accomplish. If your goal was to 'Build a House for a Family in Need' how many full days of work would this goal take to accomplish?  You would write this number in the blank.  
+            </h5>
+        {% endif %}
+        
+        {% if field.label == 'hours' %}
+            <h5>How many hours are required for you to meet this goal? If you planned on volunteering at your local public library how many hours per week and for how long a period of time would you like to do this for?  If you worked four hours a week for a full year you would type 208 here.
+            </h5>
+        {% endif %}
+        
+        <br/>
+
+        
+    </div>
+{% endfor %}
+
+<input type = "submit" name = "submit" value = "Create Bucket List Item">
+</form>
