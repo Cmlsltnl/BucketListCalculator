@@ -86,6 +86,35 @@ def my_list(request):
     
     
 @login_required
+def recommendation(request):
+    """This view takes the users list items and turns it into a convenient display of the stats in a user friendly form, basically this view is the main reason everything else in this web app exists. """
+    user = UserProfile.objects.get(pk = request.user.id)
+    mylist = BucketListItem.objects.all().filter(pub_by = user)
+    total_cost = mylist.aggregate(Sum('cost'))
+    total_hours = mylist.aggregate(Sum('hours'))
+    total_time = mylist.aggregate(Sum('time'))
+    total_number_of_items = int(len(mylist))
+    age = user.age
+
+    need_to_accomplish_per_year_70 = total_number_of_items/(70 - int(user.age))
+    
+    if need_to_accomplish_per_year_70 < 1:
+        need_to_accomplish_per_year_70 = 1
+
+    context = {'user': user,
+                     'mylist': mylist,
+                     'total_cost': total_cost['cost__sum'],
+                     'total_hours': total_hours['hours__sum'],
+                     'total_time': total_time['time__sum'],
+                     'total_number_of_items': total_number_of_items,
+                     'need_to_accomplish_per_year_70': need_to_accomplish_per_year_70,
+                    }
+                    
+    return render(request, 'BucketList/recommendation.html', context)
+    
+    
+    
+@login_required
 def my_list_stats(request):
     """General statistics about the current users Bucket List"""
     personal_list = BucketListItem.objects.all().filter(pub_by = request.user.id)
