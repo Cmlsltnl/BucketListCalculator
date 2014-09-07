@@ -2,6 +2,7 @@
     {% if item.crossed_off == True %}
         <h1 style="text-decoration: line-through;">{{item}}</h1>
         <h4>Congratulations on crossing off this list item!</h4>
+        <button><a href="/bucketlist/mylist/uncross/{{item.id}}/">Uncross this item</a></button>
     {% else %}
         <h1>{{item}}</h1>
         <button><a href= "/bucketlist/mylist/crossoff/{{item.id}}/">Cross off this item!</a></button>
@@ -16,13 +17,12 @@
     <p>Time: {{item.time}}</p>
     <p>Published: {{item.pub_date}}</p>
     <p>Crossed Off: {{item.crossed_off}}</p>
+    <br/>
     <p>Click <a href="/bucketlist/mylist/edit/{{item.id}}/">here</a> to edit this bucket list item.</p>
+    <br/>
+    <p>Click <a href="/bucketlist/mylist/deleteitem/{{item.id}}/">here</a> to permanently delete this item from your bucket list.</p>
 {% else %}
     <p>It looks like you are not logged in!  Better get on that.</p>
 {% endif %}
 
 
-
-
-
-<p>Still needs edit functionality and an uncross option</p>

@@ -1,0 +1,10 @@
+{% if item and User %}
+    <h1>{{item}}</h1>
+    <h4>This item is no longer crossed off.</h4>
+    <p>We're sorry that this goal is no longer crossed off.  Looks like you have a little bit more work ahead of you!</p>
+    <br/>
+    <h5>Go back to your Bucket List</h5>
+    <button><a href="/bucketlist/mylist/">Go Back</a></button>
+{% else %}
+    <p>Something went wrong.. We are sorry.  You may want to make sure that you are logged in.</p>
+{% endif %}

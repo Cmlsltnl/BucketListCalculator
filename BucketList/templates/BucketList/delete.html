@@ -1,0 +1,7 @@
+{% if title and User %}
+    <h4>You permanently deleted {{title}}</h4>
+
+    <button><a href="/bucketlist/mylist/">Go Back</a></button>
+{% else %}
+    <p>Something went wrong.. We are sorry.  You may want to make sure that you are logged in.</p>
+{% endif %}
