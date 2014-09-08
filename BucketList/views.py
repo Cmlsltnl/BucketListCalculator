@@ -88,26 +88,107 @@ def my_list(request):
 @login_required
 def recommendation(request):
     """This view takes the users list items and turns it into a convenient display of the stats in a user friendly form, basically this view is the main reason everything else in this web app exists. """
-    user = UserProfile.objects.get(pk = request.user.id)
-    mylist = BucketListItem.objects.all().filter(pub_by = user)
-    total_cost = mylist.aggregate(Sum('cost'))
-    total_hours = mylist.aggregate(Sum('hours'))
-    total_time = mylist.aggregate(Sum('time'))
-    total_number_of_items = int(len(mylist))
-    age = user.age
-
-    need_to_accomplish_per_year_70 = total_number_of_items/(70 - int(user.age))
     
-    if need_to_accomplish_per_year_70 < 1:
-        need_to_accomplish_per_year_70 = 1
-
+    
+    def BucketListItemListSum(list, field_to_sum):
+        """Finds the total sum of cost, time, or hours"""
+        sum = 0
+        if field_to_sum == 'cost':
+            for f in list:
+                sum += float(f.cost)
+        elif field_to_sum == 'time':
+            for f in list:
+                sum += float(f.time)     
+        elif field_to_sum == 'hours':
+            for f in list:
+                sum += float(f.hours)   
+        return sum
+        
+        
+    def GoalDifficulty(item, wage):
+        """Determines how difficult the goal is by returning the total amount of hours the goal will take.  Returns cost in hours by utilizing users hourly wage.  Returns 17 hours per day goal takes (not 24 because of time accounted for sleep and other free time"""
+        sum = 0
+        wage = float(wage)
+        cost = float(item.cost)
+        hours = float(item.hours)
+        days = float(item.time)
+        sum += days*17
+        sum += (cost/wage)
+        sum += hours
+        return {item.text: sum}
+        
+      
+    user = UserProfile.objects.get(pk = request.user.id)
+    mylist = BucketListItem.objects.all().filter(pub_by = user, crossed_off = False)
+    total_cost = BucketListItemListSum(mylist, 'cost')
+    total_hours = BucketListItemListSum(mylist, 'hours')
+    total_time = BucketListItemListSum(mylist, 'time')
+    total_number_of_items = float(len(mylist))
+    age = float(user.age)
+    life_expectancy = float(user.life_expectancy)
+    years_left = float(life_expectancy - age)
+    yearly_earnings = float(user.yearly_earnings)
+    hourly_wage = float(user.hourly_wage)
+    work_hours_per_week = (yearly_earnings/hourly_wage)/52
+    
+    
+    accomplish_per_year = total_number_of_items/years_left
+    cost_per_year = total_cost/years_left
+    days_per_year = total_time/years_left
+    hours_per_year = total_hours/years_left
+    hours_per_month = hours_per_year/12
+    hours_per_week = hours_per_year/52
+    
+    
+    """Create List Of Bucket List Items from Most to Least Difficult, using GoalDifficulty function"""
+    dict_with_difficulty = {}
+    
+    for goal in mylist:
+        dict_with_difficulty.update(GoalDifficulty(goal, hourly_wage))
+        
+    list_with_difficulty = []
+    
+    while len(dict_with_difficulty) > 0:
+        item = max(dict_with_difficulty, key=dict_with_difficulty.get)
+        list_with_difficulty.append(item)
+        del dict_with_difficulty[item]
+    
+    """Sorts list_with_difficulty from above into two lists, one of the top five most difficult BucketListItems and another with the five easiest goals"""
+    top_five_most_difficult = []
+    bottom_five_least_difficult = []
+    
+    for item in list_with_difficulty[:5]:
+        top_five_most_difficult.append(item)
+        
+    list_with_difficulty.reverse()
+    
+    for item in list_with_difficulty[:5]:
+        bottom_five_least_difficult.append(item)
+    
+    
     context = {'user': user,
                      'mylist': mylist,
-                     'total_cost': total_cost['cost__sum'],
-                     'total_hours': total_hours['hours__sum'],
-                     'total_time': total_time['time__sum'],
+                     'total_cost': total_cost,
+                     'total_hours': total_hours,
+                     'total_time': total_time,
                      'total_number_of_items': total_number_of_items,
-                     'need_to_accomplish_per_year_70': need_to_accomplish_per_year_70,
+                     'age': age,
+                     'life_expectancy': life_expectancy,
+                     'years_left': years_left,
+                     'yearly_earnings': yearly_earnings,
+                     'hourly_wage': hourly_wage,
+                     'work_hours_per_week': work_hours_per_week,
+                     
+                     
+                     'accomplish_per_year': accomplish_per_year,
+                     'cost_per_year': cost_per_year,
+                     'days_per_year': days_per_year,
+                     'hours_per_year': hours_per_year,
+                     'hours_per_month': hours_per_month,
+                     'hours_per_week': hours_per_week,
+                     'list_with_difficulty': list_with_difficulty,
+                     'top_five_most_difficult': top_five_most_difficult,
+                     'bottom_five_least_difficult': bottom_five_least_difficult,
                     }
                     
     return render(request, 'BucketList/recommendation.html', context)
@@ -157,6 +238,7 @@ def cross_off_my_list_item(request, id):
     context = {'item': item,
                       'User': User,
                     }
+                    
     return render(request, 'BucketList/crossed_off.html', context)
     
     
@@ -186,6 +268,7 @@ def delete_my_list_item(request, id):
     context = {'title': title,
                       'User': User,
                     }
+                    
     return render(request, 'BucketList/delete.html', context)
     
     
@@ -605,12 +688,16 @@ def edit_profile(request):
         if form.is_valid():
             new_age = form.cleaned_data['new_age']
             new_life_expectancy = form.cleaned_data['new_life_expectancy']
+            new_yearly_earnings = form.cleaned_data['new_yearly_earnings']
+            new_hourly_wage = form.cleaned_data['new_hourly_wage']
+            current_user.yearly_earnings = new_yearly_earnings
+            current_user.hourly_wage = new_hourly_wage
             current_user.life_expectancy = new_life_expectancy
             current_user.age = new_age   
             current_user.save()
             return HttpResponseRedirect('/bucketlist/mylist/')
     else:
-        form = UserProfileEditForm({'new_age': current_user.age, 'new_life_expectancy': current_user.life_expectancy})
+        form = UserProfileEditForm({'new_age': current_user.age, 'new_life_expectancy': current_user.life_expectancy, 'new_yearly_earnings': current_user.yearly_earnings, 'new_hourly_wage': current_user.hourly_wage})
         
     return render(request, 'BucketList/edit_user_profile.html', {'form': form})
     

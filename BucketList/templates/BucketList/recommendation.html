@@ -8,7 +8,50 @@
 <p>Total Cost: {{total_cost}}</p>
 <p>Total Hours: {{total_hours}}</p>
 <p>Total Days: {{total_time}}</p>
-<p>Total Number of Items on List: {{total_number_of_items}}</p>
-<br/>
-
-<p>If you live to age 70 then you need to accomplish  about {{need_to_accomplish_per_year_70}} item per year for the rest of your life.</p>
+<p>Total Number of Items Left on List: {{total_number_of_items}}</p>
+<p>Your age: {{age}}</p>
+<p>Your Life Expectancy: {{life_expectancy}}</p>
+<p>Your Yearly Earnings: {{yearly_earnings}}</p>
+<p>Your Hourly Wage: {{hourly_wage}}</p>
+<p>Your Average Hours Per Week: {{work_hours_per_week}}</p>
+<br>
+<hr>
+<br>
+<p>If you live to age {{life_expectancy}} then you need to accomplish  about {{accomplish_per_year}} goals each year for the rest of your life. 
+<br>
+<br>
+ In order to accomplish everything that you want you will need to dedicate about ${{cost_per_year}} per year.   
+ <br>
+ <br>
+ If you do live for {{years_left}} more years then you need to spend about {{days_per_year}} full days every year doing things that will help you cross off Bucket List Goals. 
+ <br>
+ <br>
+ Now along with those full days spend you also should allocate about {{hours_per_month}} hours every month to accomplishing these goals.  Or roughly {{hours_per_week}} hours every single week.
+ </p>
+ <br>
+ <hr>
+ <br>
+ <h2>Top Five Most Difficult</h2>
+ <ol>
+ {% for item in top_five_most_difficult %}
+    <li>{{item}}</li>
+ {% endfor %}
+ </ol>
+ <br>
+  <br>
+ <h2>Top Five Least Difficult</h2>
+ <ol>
+ {% for item in bottom_five_least_difficult %}
+    <li>{{item}}</li>
+ {% endfor %}
+ </ol>
+ <br>
+ <br>
+ <hr>
+ <br>
+ 
+ 
+ 
+ 
+ 
+ 

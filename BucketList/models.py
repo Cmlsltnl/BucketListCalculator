@@ -55,7 +55,9 @@ class UserProfile(models.Model):
     """Model that defines the User Profile"""
     user = models.OneToOneField(User, editable = False)
     age = models.CharField(max_length = 3, default = 0)
-    life_expectancy = models.CharField(max_length = 3, default = 0)  
+    life_expectancy = models.CharField(max_length = 3, default = 0)
+    yearly_earnings = models.CharField(max_length = 8, default = 0)
+    hourly_wage = models.CharField(max_length = 3, default = 0)
 
     def __unicode__(self):
         return self.user
