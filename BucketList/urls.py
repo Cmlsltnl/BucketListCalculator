@@ -16,7 +16,6 @@ urlpatterns = patterns('',
     url(r'^mylist/crossoff/(?P<id>\w+)/', views.cross_off_my_list_item, name = 'cross off'),
     url(r'^mylist/deleteitem/(?P<id>\w+)/', views.delete_my_list_item, name = 'delete list item'),
     url(r'^mylist/recommendation/$', views.recommendation, name = 'recommendation'),
-    url(r'^profile/create/$', views.create_profile, name = 'create user profile'),
     url(r'^profile/edit/$', views.edit_profile, name = 'edit profile'),
 )
 

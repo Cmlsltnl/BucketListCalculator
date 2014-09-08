@@ -594,26 +594,6 @@ def create_specific_item(request, id):
         
         return render_to_response('BucketList/item_creation/other.html', args)    
     
-    
-@login_required   
-def create_profile(request):
-    """A profile creation page that the user is directed to once they have created an account, asks for age and life expectancy"""
-    if request.POST:
-        form = UserProfileForm(request.POST)
-        if form.is_valid():
-            current_user = User.objects.get(id = request.user.id)
-            my_model = form.save(commit = False)
-            my_model.user = current_user
-            my_model.save()
-            return HttpResponseRedirect('/bucketlist/mylist')
-    else:
-        form = UserProfileForm()
-        
-    args = {}
-    args.update(csrf(request))
-    args['form'] = form
-    
-    return render_to_response('BucketList/create_profile.html', args)
                 
                 
 @login_required
@@ -624,6 +604,8 @@ def edit_profile(request):
         form = UserProfileEditForm(request.POST)
         if form.is_valid():
             new_age = form.cleaned_data['new_age']
+            new_life_expectancy = form.cleaned_data['new_life_expectancy']
+            current_user.life_expectancy = new_life_expectancy
             current_user.age = new_age   
             current_user.save()
             return HttpResponseRedirect('/bucketlist/mylist/')

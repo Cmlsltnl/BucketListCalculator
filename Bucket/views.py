@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.contrib import auth
 from django.core.context_processors import csrf
 from Bucket.forms import MyRegistrationForm
+from BucketList.forms import UserProfileForm
 
 def login(request):
     """The user login page"""
@@ -42,11 +43,13 @@ def register_user(request):
         form = MyRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/accounts/register_success')   
+            return HttpResponseRedirect('/accounts/register_success')
+        
     args = {}
     args.update(csrf(request))
     args['form'] = MyRegistrationForm()
     return render_to_response('register.html', args)
+    
     
 def register_success(request):
     """Screen returned if registration was a success"""

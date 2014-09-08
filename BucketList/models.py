@@ -2,6 +2,11 @@ from django.db import models
 from django.utils import timezone
 import datetime
 from django.contrib.auth.models import User
+from django.core.signals import request_finished
+from django.db.models.signals import post_save, pre_save
+from django.dispatch import receiver
+from Bucket.forms import MyRegistrationForm, UserCreationForm
+
 
 CHOICES = (
     ('Travel','Travel'),
@@ -44,15 +49,24 @@ class BucketListItem(models.Model):
             self.pub_date = timezone.now()
         super(BucketListItem, self).save()
         
+        
+        
 class UserProfile(models.Model):    
     """Model that defines the User Profile"""
     user = models.OneToOneField(User, editable = False)
-    age = models.CharField(max_length = 3)
-    life_expectancy = models.CharField(max_length = 3)  
+    age = models.CharField(max_length = 3, default = 0)
+    life_expectancy = models.CharField(max_length = 3, default = 0)  
 
     def __unicode__(self):
         return self.user
-        
+      
+      
+@receiver(post_save, sender = User)
+def my_callback(sender, instance, created, **kwargs):
+    """Watches for User Creation then automatically creates a UserProfile for the User Created"""
+    if created:
+        UserProfile.objects.create(user = instance)
+
         
         
         
