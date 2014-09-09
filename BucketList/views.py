@@ -117,7 +117,7 @@ def recommendation(request):
         sum += hours
         return {item.text: sum}
         
-      
+    """General Information Passed Through to Template"""
     user = UserProfile.objects.get(pk = request.user.id)
     mylist = BucketListItem.objects.all().filter(pub_by = user, crossed_off = False)
     total_cost = BucketListItemListSum(mylist, 'cost')
@@ -131,7 +131,7 @@ def recommendation(request):
     hourly_wage = float(user.hourly_wage)
     work_hours_per_week = (yearly_earnings/hourly_wage)/52
     
-    
+    """Calculated Information Passed Through to Template"""
     accomplish_per_year = total_number_of_items/years_left
     cost_per_year = total_cost/years_left
     days_per_year = total_time/years_left
@@ -140,7 +140,7 @@ def recommendation(request):
     hours_per_week = hours_per_year/52
     
     
-    """Create List Of Bucket List Items from Most to Least Difficult, using GoalDifficulty function"""
+    """Create List Of Bucket List Items from Most to Least Difficult, using GoalDifficulty Function"""
     dict_with_difficulty = {}
     
     for goal in mylist:
@@ -165,6 +165,72 @@ def recommendation(request):
     for item in list_with_difficulty[:5]:
         bottom_five_least_difficult.append(item)
     
+    """Different Goal Types by Percentage"""
+    def GoalTypePercentages(list):
+        travel = 0
+        purchase = 0
+        career = 0
+        extreme = 0
+        family = 0
+        relationship = 0
+        health = 0
+        skill = 0
+        hobby = 0
+        building = 0
+        education = 0
+        volunteering = 0
+        other = 0
+        sum_of_all = 0
+        for goal in list:
+            sum_of_all += 1
+            if goal.goal_type == 'Travel':
+                travel += 1
+            elif goal.goal_type == 'Purchase':
+                purchase += 1
+            elif goal.goal_type == 'Career':
+                career += 1
+            elif goal.goal_type == 'Extreme Sport':
+                extreme += 1
+            elif goal.goal_type == 'Family/Social':
+                family += 1
+            elif goal.goal_type == 'Relationship':
+                relationship += 1
+            elif goal.goal_type == 'Exercise/Health':
+                health += 1
+            elif goal.goal_type == 'Improving a Skill':
+                skill += 1
+            elif goal.goal_type == 'Hobby':
+                hobby += 1
+            elif goal.goal_type == 'Building/Creating Somthing':
+                building += 1
+            elif goal.goal_type == 'Education/Self Improvement':
+                education += 1
+            elif goal.goal_type == 'Volunteering':
+                volunteering += 1
+            elif goal.goal_type == 'Other':
+                other +=1
+            else:
+                print "Houston we've got a problem"
+        totals ={}
+        totals['Travel'] = float(travel)/float(sum_of_all)*100
+        totals['Purchases'] = float(purchase)/float(sum_of_all)*100
+        totals['Career'] = float(career)/float(sum_of_all)*100
+        totals['Extreme Sports'] = float(extreme)/float(sum_of_all)*100
+        totals['Family/Social'] = float(family)/float(sum_of_all)*100
+        totals['Relationships'] = float(relationship)/float(sum_of_all)*100
+        totals['Exercise/Health'] = float(health)/float(sum_of_all)*100
+        totals['Improving Skills'] = float(skill)/float(sum_of_all)*100
+        totals['Hobbys'] = float(hobby)/float(sum_of_all)*100
+        totals['Building/Creating Somthing'] = float(building)/float(sum_of_all)*100
+        totals['Education/Self Improvement'] = float(education)/float(sum_of_all)*100
+        totals['Volunteering'] = float(volunteering)/float(sum_of_all)*100
+        totals['Other'] = float(other)/float(sum_of_all)*100
+        return totals
+        
+        
+    goal_type_percentages = GoalTypePercentages(mylist)
+            
+        
     
     context = {'user': user,
                      'mylist': mylist,
@@ -189,6 +255,7 @@ def recommendation(request):
                      'list_with_difficulty': list_with_difficulty,
                      'top_five_most_difficult': top_five_most_difficult,
                      'bottom_five_least_difficult': bottom_five_least_difficult,
+                     'goal_type_percentages': goal_type_percentages,
                     }
                     
     return render(request, 'BucketList/recommendation.html', context)
