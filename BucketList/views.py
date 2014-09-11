@@ -89,6 +89,7 @@ def my_list(request):
 def recommendation(request):
     """This view takes the users list items and turns it into a convenient display of the stats in a user friendly form, basically this view is the main reason everything else in this web app exists. """
     
+    """---------------Important Recommendation Functions-------------"""  
     
     def BucketListItemListSum(list, field_to_sum):
         """Finds the total sum of cost, time, or hours"""
@@ -117,56 +118,9 @@ def recommendation(request):
         sum += hours
         return {item.text: sum}
         
-    """General Information Passed Through to Template"""
-    user = UserProfile.objects.get(pk = request.user.id)
-    mylist = BucketListItem.objects.all().filter(pub_by = user, crossed_off = False)
-    total_cost = BucketListItemListSum(mylist, 'cost')
-    total_hours = BucketListItemListSum(mylist, 'hours')
-    total_time = BucketListItemListSum(mylist, 'time')
-    total_number_of_items = float(len(mylist))
-    age = float(user.age)
-    life_expectancy = float(user.life_expectancy)
-    years_left = float(life_expectancy - age)
-    yearly_earnings = float(user.yearly_earnings)
-    hourly_wage = float(user.hourly_wage)
-    work_hours_per_week = (yearly_earnings/hourly_wage)/52
-    
-    """Calculated Information Passed Through to Template"""
-    accomplish_per_year = total_number_of_items/years_left
-    cost_per_year = total_cost/years_left
-    days_per_year = total_time/years_left
-    hours_per_year = total_hours/years_left
-    hours_per_month = hours_per_year/12
-    hours_per_week = hours_per_year/52
-    
-    
-    """Create List Of Bucket List Items from Most to Least Difficult, using GoalDifficulty Function"""
-    dict_with_difficulty = {}
-    
-    for goal in mylist:
-        dict_with_difficulty.update(GoalDifficulty(goal, hourly_wage))
         
-    list_with_difficulty = []
-    
-    while len(dict_with_difficulty) > 0:
-        item = max(dict_with_difficulty, key=dict_with_difficulty.get)
-        list_with_difficulty.append(item)
-        del dict_with_difficulty[item]
-    
-    """Sorts list_with_difficulty from above into two lists, one of the top five most difficult BucketListItems and another with the five easiest goals"""
-    top_five_most_difficult = []
-    bottom_five_least_difficult = []
-    
-    for item in list_with_difficulty[:5]:
-        top_five_most_difficult.append(item)
-        
-    list_with_difficulty.reverse()
-    
-    for item in list_with_difficulty[:5]:
-        bottom_five_least_difficult.append(item)
-    
-    """Different Goal Types by Percentage"""
     def GoalTypePercentages(list):
+        """Figures out the distribution of different goal types and returns the percentage amount of each goal category"""
         travel = 0
         purchase = 0
         career = 0
@@ -225,12 +179,75 @@ def recommendation(request):
         totals['Education/Self Improvement'] = float(education)/float(sum_of_all)*100
         totals['Volunteering'] = float(volunteering)/float(sum_of_all)*100
         totals['Other'] = float(other)/float(sum_of_all)*100
-        return totals
+        return totals        
         
-        
-    goal_type_percentages = GoalTypePercentages(mylist)
+
             
         
+    """-----------------Passed Through to Template (simple)---------------"""
+    
+    """General Information Passed Through to Template"""
+    user = UserProfile.objects.get(pk = request.user.id)
+    mylist = BucketListItem.objects.all().filter(pub_by = user, crossed_off = False)
+    total_cost = BucketListItemListSum(mylist, 'cost')
+    total_hours = BucketListItemListSum(mylist, 'hours')
+    total_time = BucketListItemListSum(mylist, 'time')
+    total_number_of_items = float(len(mylist))
+    age = float(user.age)
+    life_expectancy = float(user.life_expectancy)
+    years_left = float(life_expectancy - age)
+    days_left = float(years_left*365)
+    yearly_earnings = float(user.yearly_earnings)
+    hourly_wage = float(user.hourly_wage)
+    work_hours_per_week = (yearly_earnings/hourly_wage)/52
+    
+    """Calculated Information Passed Through to Template"""
+    accomplish_per_year = total_number_of_items/years_left
+    days_per_goal = days_left/total_number_of_items
+    cost_per_year = total_cost/years_left
+    days_per_year = total_time/years_left
+    hours_per_year = total_hours/years_left
+    hours_per_month = hours_per_year/12
+    hours_per_week = hours_per_year/52
+    cost_of_average_goal = float(total_cost/total_number_of_items)
+    percent_of_yearly_wage = (cost_per_year/yearly_earnings)*100
+
+    """----------------Passed Through to Template (unique)--------------"""  
+     
+    """Create List Of Bucket List Items from Most to Least Difficult, using GoalDifficulty Function"""
+    dict_with_difficulty = {}
+    
+    for goal in mylist:
+        dict_with_difficulty.update(GoalDifficulty(goal, hourly_wage))
+        
+    list_with_difficulty = []
+    
+    while len(dict_with_difficulty) > 0:
+        item = max(dict_with_difficulty, key=dict_with_difficulty.get)
+        list_with_difficulty.append(item)
+        del dict_with_difficulty[item]
+    
+    
+    """Sorts list_with_difficulty from above into two lists, one of the top five most difficult BucketListItems and another with the five easiest goals"""
+    top_five_most_difficult = []
+    bottom_five_least_difficult = []
+    
+    for item in list_with_difficulty[:5]:
+        top_five_most_difficult.append(item)
+        
+    list_with_difficulty.reverse()
+    
+    for item in list_with_difficulty[:5]:
+        bottom_five_least_difficult.append(item)
+    
+    
+    """Different Goal Types by Percentage"""
+    goal_type_percentages = GoalTypePercentages(mylist)
+            
+    
+
+
+    """--------------------Passed To Template-----------------------"""               
     
     context = {'user': user,
                      'mylist': mylist,
@@ -247,15 +264,21 @@ def recommendation(request):
                      
                      
                      'accomplish_per_year': accomplish_per_year,
+                     'days_per_goal': days_per_goal,
                      'cost_per_year': cost_per_year,
                      'days_per_year': days_per_year,
                      'hours_per_year': hours_per_year,
                      'hours_per_month': hours_per_month,
                      'hours_per_week': hours_per_week,
+                     'cost_of_average_goal': cost_of_average_goal,
+                     'percent_of_yearly_wage': percent_of_yearly_wage,
+                     
+                     
                      'list_with_difficulty': list_with_difficulty,
                      'top_five_most_difficult': top_five_most_difficult,
                      'bottom_five_least_difficult': bottom_five_least_difficult,
                      'goal_type_percentages': goal_type_percentages,
+                     
                     }
                     
     return render(request, 'BucketList/recommendation.html', context)
