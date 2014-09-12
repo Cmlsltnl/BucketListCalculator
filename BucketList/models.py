@@ -58,7 +58,6 @@ class UserProfile(models.Model):
     life_expectancy = models.CharField(max_length = 3, default = 0)
     yearly_earnings = models.CharField(max_length = 8, default = 0)
     hourly_wage = models.CharField(max_length = 3, default = 0)
-    savings = models.CharField(max_length = 3, default = 0)
 
     def __unicode__(self):
         return self.user
@@ -72,13 +71,6 @@ def my_callback(sender, instance, created, **kwargs):
 
         
 
-class TestingSouth(models.Model):
-    name = models.CharField(max_length = 100)
-    of_the_round_table = models.BooleanField()
-    dances_whenever_able = models.BooleanField()
-    shrubberies = models.IntegerField(null = False)
-    
-    
     
         
         
