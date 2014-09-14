@@ -1,5 +1,5 @@
 from django.contrib import admin
-from BucketList.models import BucketListItem, UserProfile
+from BucketList.models import BucketListItem, UserProfile, Comment
 
 
 class BucketListItemAdmin(admin.ModelAdmin):
@@ -16,6 +16,7 @@ class BucketListItemAdmin(admin.ModelAdmin):
     
 admin.site.register(BucketListItem, BucketListItemAdmin)
 
+
 class UserProfileAdmin(admin.ModelAdmin):
     fieldsets = [ 
         ('User',            {'fields': ['user']}),
@@ -28,4 +29,10 @@ class UserProfileAdmin(admin.ModelAdmin):
     
     
 admin.site.register(UserProfile, UserProfileAdmin)
+
+
+class CommentAdmin(admin.ModelAdmin):
+    display_fields = ['item', 'author', 'created']
+    
+admin.site.register(Comment, CommentAdmin)
 

@@ -9,6 +9,18 @@
         <p>Hours: {{item.hours}}</p>
         <p>Added By:   <a href='/bucketlist/userstats/{{item.pub_by}}/'>{{item.pub_by}}</a></p>
         <p>Date Added:   {{item.pub_date}}</p>
+        <br>
+        <br>
+        <h5>Leave a Comment Here</h5>
+        <form action="/bucketlist/item/{{id}}/comment/" method = "post">
+            {% csrf_token %}
+            {% for field in form %}
+                {{ field.label }}
+                {{ field }}
+                <br>
+            {% endfor %}
+            <input type = "submit" value = "Submit">
+        </form>
 {% else %}
     <p>There seems to have been an error.</p>
 {% endif %}

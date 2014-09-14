@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from BucketList.models import BucketListItem, UserProfile
+from BucketList.models import BucketListItem, UserProfile, Comment
 from django.contrib import auth
-from forms import BucketListItemForm, UserProfileForm, UserProfileEditForm, BucketListItemEditForm, CustomItemEditForm
+from forms import BucketListItemForm, UserProfileForm, UserProfileEditForm, BucketListItemEditForm, CustomItemEditForm, CommentForm
 from django.http import HttpResponseRedirect
 from django.core.context_processors import csrf
 from django.shortcuts import render_to_response
@@ -26,10 +26,34 @@ def index(request):
 def index_items(request, id):
     """When a user clicks on a Bucket List Item on the index page it will take them here with a brief overview of that items information"""
     item = BucketListItem.objects.all().filter(pk = id)
+    comments = Comment.objects.filter(pk = id)
+    form = CommentForm()
     context = {'item': item[0],
                       'id': id,
+                      'comments': comments,
+                      'form': form,
                     }
+    context.update(csrf(request))
     return render(request, 'BucketList/index_items.html', context)
+    
+    
+@login_required
+def add_item_comment(request, id):
+    """Add a comment to any Users BucketListItem"""
+    current_user = UserProfile.objects.get(pk = request.user.id)
+    form = CommentForm(request.POST)
+    if form.is_valid():
+        body = form.cleaned_data['body']
+        my_model = form.save(commit = False)
+        my_model.created = timezone.now()
+        my_model.author = current_user.username
+        my_model.item = BucketListItem.objects.get(pk = id)
+        my_model.body = body
+        my_model.save()
+        print "Worked!"
+    print "Something... Anything?"
+    return HttpResponse('Something')
+        
     
     
 @login_required

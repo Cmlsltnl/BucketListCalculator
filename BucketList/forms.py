@@ -1,5 +1,5 @@
 from django import forms
-from models import BucketListItem, UserProfile
+from models import BucketListItem, UserProfile, Comment
 from django.contrib.auth.models import User
 
 CHOICES = (
@@ -30,6 +30,12 @@ class UserProfileForm(forms.ModelForm):
     """The main form to create a User Profile"""
     class Meta:
         model = UserProfile
+        
+class CommentForm(forms.ModelForm):
+    """Form to create a comment"""
+    class Meta:
+        model = Comment
+        exclude = ['post', 'author', 'item']
         
         
 class UserProfileEditForm(forms.Form):

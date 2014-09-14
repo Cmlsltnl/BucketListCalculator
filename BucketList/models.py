@@ -70,6 +70,16 @@ def my_callback(sender, instance, created, **kwargs):
         UserProfile.objects.create(user = instance)
 
         
+class Comment(models.Model):
+    created = models.DateTimeField(editable =False)
+    author = models.CharField(max_length = 100, editable = False)
+    body = models.TextField()
+    item = models.ForeignKey(BucketListItem)
+    
+    def __unicode__(self):
+        return unicode("%s: %s" % (self.item, self.body[:60]))
+        
+   
 
     
         
