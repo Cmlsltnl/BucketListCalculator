@@ -29,7 +29,6 @@ admin.site.register(UserProfile, UserProfileAdmin)
 
 
 class CommentAdmin(admin.ModelAdmin):
-    display_fields = ['body', 'item', 'author', 'created']
     list_display = ['body', 'item', 'author', 'created']
     
 admin.site.register(Comment, CommentAdmin)

@@ -1,5 +1,5 @@
 
-<form action = "{{url}}" method = "post">{% csrf_token %}
+<form action = "/bucketlist/create/" method = "post">{% csrf_token %}
 
 {% for field in form %}
     <div class ="fieldWrapper">

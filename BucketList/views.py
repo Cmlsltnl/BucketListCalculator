@@ -5,7 +5,6 @@ from django.contrib import auth
 from forms import BucketListItemForm, UserProfileForm, UserProfileEditForm, BucketListItemEditForm, CustomItemEditForm, CommentForm
 from django.http import HttpResponseRedirect
 from django.core.context_processors import csrf
-from django.shortcuts import render_to_response
 from django.contrib.auth.models import User
 from django.db.models import Sum
 from django.contrib.auth.forms import UserCreationForm
@@ -25,18 +24,18 @@ def index(request):
     
 def index_items(request, id):
     """When a user clicks on a Bucket List Item on the index page it will take them here with a brief overview of that items information"""
-    item = BucketListItem.objects.all().filter(pk = id)
+    item = BucketListItem.objects.filter(pk = id)
     form = CommentForm()
-    comments = Comment.objects.all().filter(item = item)
+    comments = Comment.objects.filter(item = item)
     
     context = {'item': item[0],
                       'id': id,
                       'comments': comments,
                       'form': form,
                       }
+    context.update(csrf(request))
     return render(request, 'BucketList/index_items.html', context)
     
-
 @login_required
 def add_item_comment(request, id):
     #Add a comment to any Users BucketListItem
@@ -52,7 +51,6 @@ def add_item_comment(request, id):
         my_model.body = body
         my_model.save()
     return HttpResponseRedirect("/bucketlist/item/%s/" % id)
-
     
     
 @login_required
@@ -300,8 +298,7 @@ def recommendation(request):
                      'list_with_difficulty': list_with_difficulty,
                      'top_five_most_difficult': top_five_most_difficult,
                      'bottom_five_least_difficult': bottom_five_least_difficult,
-                     'goal_type_percentages': goal_type_percentages,
-                     
+                     'goal_type_percentages': goal_type_percentages, 
                     }
                     
     return render(request, 'BucketList/recommendation.html', context)
@@ -330,6 +327,7 @@ def my_list_stats(request):
     return render(request, 'BucketList/my_list_stats.html', context)
     
     
+    
 @login_required
 def view_my_list_item(request, id):
     """View of a current users Bucket List Item with options to cross off or edit the Bucket List Item"""
@@ -339,6 +337,8 @@ def view_my_list_item(request, id):
                       'item': item[0],
                     }
     return render(request, 'BucketList/view_my_list_item.html', context)
+    
+    
     
 @login_required
 def cross_off_my_list_item(request, id):
@@ -394,13 +394,16 @@ def create(request):
         if form.is_valid():
             user = User.objects.get(id=request.user.id)
             my_model = form.save(commit = False)
+            new_cost = form.cleaned_data['cost']
+            new_time = form.cleaned_data['time']
+            new_hours = form.cleaned_data['hours']
             my_model.pub_by = user
             my_model.crossed_off = False
-            my_model.time = 0
-            my_model.hours = 0
-            my_model.cost = 0
+            my_model.time = new_time
+            my_model.hours = new_hours
+            my_model.cost = new_cost
             my_model.save()
-            return HttpResponseRedirect('/bucketlist/create/%s' % my_model.id)
+            return HttpResponseRedirect('/bucketlist/mylist/')
     else:
         form = BucketListItemForm()
             
@@ -408,390 +411,39 @@ def create(request):
     args.update(csrf(request))
     args['form'] = form
         
-    return render_to_response('BucketList/create_item.html', args)
-    
-
+    return render(request, 'BucketList/create_item.html', args)
+        
+                
 @login_required
-def create_specific_item(request, id):
-    """Taken here immediately after creating the bucket list item, takes user to a specific view based upon what goal type they input and then gives them another form to give more detail about the goal"""
-    item1 = BucketListItem.objects.all().filter(pk = id)
-    item2 = item1[0]
-    goal_type = item2.goal_type
+def edit_bucket_list_item(request, id):
+    """This view lets the user edit their Bucket List Item and directs them to other forms necessary to make the changes needed"""
+    item = BucketListItem.objects.get(pk = id)
+    if request.method == "POST":
+        form = BucketListItemEditForm(request.POST)
+        if form.is_valid():
+            text = form.cleaned_data['text']
+            goal_type = form.cleaned_data['goal_type']
+            cost = form.cleaned_data['cost']
+            time = form.cleaned_data['time']
+            hours = form.cleaned_data['hours']
+            item.text = text
+            item.cost = cost
+            item.time = time
+            item.hours = hours
+            item.goal_type = goal_type
+            item.pub_date = timezone.now()
+            item.save()
+            return HttpResponseRedirect('/bucketlist/mylist/')
+    else:
+        form = BucketListItemEditForm({'text': item.text, 'goal_type': item.goal_type, 'cost': item.cost, 'time': item.time, 'hours': item.hours})
+        context = {'form': form,
+                           'id': item.id,
+                          }
+        context.update(csrf(request))
+        
+    return render(request, 'BucketList/edit_bucket_list_item.html', context)
+
     
-    if goal_type == 'Travel':
-        if request.POST:
-            form = CustomItemEditForm(request.POST)
-            if form.is_valid():
-                new_time = form.cleaned_data['new_time']
-                new_cost = form.cleaned_data['new_cost']
-                new_hours = form.cleaned_data['new_hours']
-                item = BucketListItem.objects.filter(pk = id)
-                item = item[0]
-                item.time = new_time
-                item.hours = new_hours
-                item.cost = new_cost
-                item.save()
-            return HttpResponseRedirect('/bucketlist/mylist/')
-            
-        else:
-            form = CustomItemEditForm({'new_hours': item2.hours, 'new_cost': item2.cost, 'new_time': item2.time})    
-            
-        url = ('bucketlist/create/%s' % id)            
-        args = {}
-        args.update(csrf(request))
-        args['form'] = form
-        args['id'] = id
-        args['url'] = url
-
-        
-        return render_to_response('BucketList/item_creation/travel.html', args)
-    
-        
-    elif goal_type == 'Purchase':
-        if request.POST:
-            form = CustomItemEditForm(request.POST)
-            if form.is_valid():
-                new_cost = form.cleaned_data['new_cost']
-                new_time = form.cleaned_data['new_time']
-                new_hours = form.cleaned_data['new_hours']
-                item = BucketListItem.objects.filter(pk = id)
-                item = item[0]
-                item.time = new_time
-                item.hours = new_hours
-                item.cost = new_cost
-                item.save()
-            return HttpResponseRedirect('/bucketlist/mylist/')
-            
-        else:
-            form = CustomItemEditForm({'new_hours': item2.hours, 'new_cost': item2.cost, 'new_time': item2.time})     
-            
-        url = ('bucketlist/create/%s' % id)            
-        args = {}
-        args.update(csrf(request))
-        args['form'] = form
-        args['id'] = id
-        args['url'] = url
-
-        
-        return render_to_response('BucketList/item_creation/purchase.html', args)
-
-        
-    elif goal_type == 'Career':
-        if request.POST:
-            form = CustomItemEditForm(request.POST)
-            if form.is_valid():
-                new_cost = form.cleaned_data['new_cost']
-                new_time = form.cleaned_data['new_time']
-                new_hours = form.cleaned_data['new_hours']
-                item = BucketListItem.objects.filter(pk = id)
-                item = item[0]
-                item.time = new_time
-                item.hours = new_hours
-                item.cost = new_cost
-                item.save()
-            return HttpResponseRedirect('/bucketlist/mylist/')
-            
-        else:
-            form = CustomItemEditForm({'new_hours': item2.hours, 'new_cost': item2.cost, 'new_time': item2.time})     
-            
-        url = ('bucketlist/create/%s' % id)            
-        args = {}
-        args.update(csrf(request))
-        args['form'] = form
-        args['id'] = id
-        args['url'] = url
-
-        
-        return render_to_response('BucketList/item_creation/career.html', args)
-        
-        
-    elif goal_type == 'Extreme Sport':
-        if request.POST:
-            form = CustomItemEditForm(request.POST)
-            if form.is_valid():
-                new_cost = form.cleaned_data['new_cost']
-                new_time = form.cleaned_data['new_time']
-                new_hours = form.cleaned_data['new_hours']
-                item = BucketListItem.objects.filter(pk = id)
-                item = item[0]
-                item.time = new_time
-                item.hours = new_hours
-                item.cost = new_cost
-                item.save()
-            return HttpResponseRedirect('/bucketlist/mylist/')
-            
-        else:
-            form = CustomItemEditForm({'new_hours': item2.hours, 'new_cost': item2.cost, 'new_time': item2.time})     
-            
-        url = ('bucketlist/create/%s' % id)            
-        args = {}
-        args.update(csrf(request))
-        args['form'] = form
-        args['id'] = id
-        args['url'] = url
-
-        
-        return render_to_response('BucketList/item_creation/extremesport.html', args)
-        
-        
-    elif goal_type == 'Family/Social':
-        if request.POST:
-            form = CustomItemEditForm(request.POST)
-            if form.is_valid():
-                new_cost = form.cleaned_data['new_cost']
-                new_time = form.cleaned_data['new_time']
-                new_hours = form.cleaned_data['new_hours']
-                item = BucketListItem.objects.filter(pk = id)
-                item = item[0]
-                item.time = new_time
-                item.hours = new_hours
-                item.cost = new_cost
-                item.save()
-            return HttpResponseRedirect('/bucketlist/mylist/')
-            
-        else:
-            form = CustomItemEditForm({'new_hours': item2.hours, 'new_cost': item2.cost, 'new_time': item2.time})     
-            
-        url = ('bucketlist/create/%s' % id)            
-        args = {}
-        args.update(csrf(request))
-        args['form'] = form
-        args['id'] = id
-        args['url'] = url
-
-        
-        return render_to_response('BucketList/item_creation/familysocial.html', args)
-        
-        
-    elif goal_type == 'Relationship':
-        if request.POST:
-            form = CustomItemEditForm(request.POST)
-            if form.is_valid():
-                new_cost = form.cleaned_data['new_cost']
-                new_time = form.cleaned_data['new_time']
-                new_hours = form.cleaned_data['new_hours']
-                item = BucketListItem.objects.filter(pk = id)
-                item = item[0]
-                item.time = new_time
-                item.hours = new_hours
-                item.cost = new_cost
-                item.save()
-            return HttpResponseRedirect('/bucketlist/mylist/')
-            
-        else:
-            form = CustomItemEditForm({'new_hours': item2.hours, 'new_cost': item2.cost, 'new_time': item2.time})     
-            
-        url = ('bucketlist/create/%s' % id)            
-        args = {}
-        args.update(csrf(request))
-        args['form'] = form
-        args['id'] = id
-        args['url'] = url
-
-        
-        return render_to_response('BucketList/item_creation/relationship.html', args)
-        
-        
-    elif goal_type == 'Exercise/Health':
-        if request.POST:
-            form = CustomItemEditForm(request.POST)
-            if form.is_valid():
-                new_cost = form.cleaned_data['new_cost']
-                new_time = form.cleaned_data['new_time']
-                new_hours = form.cleaned_data['new_hours']
-                item = BucketListItem.objects.filter(pk = id)
-                item = item[0]
-                item.time = new_time
-                item.hours = new_hours
-                item.cost = new_cost
-                item.save()
-            return HttpResponseRedirect('/bucketlist/mylist/')
-            
-        else:
-            form = CustomItemEditForm({'new_hours': item2.hours, 'new_cost': item2.cost, 'new_time': item2.time})     
-            
-        url = ('bucketlist/create/%s' % id)            
-        args = {}
-        args.update(csrf(request))
-        args['form'] = form
-        args['id'] = id
-        args['url'] = url
-
-        
-        return render_to_response('BucketList/item_creation/exercisehealth.html', args)
-        
-    elif goal_type == 'Improving a Skill':
-        if request.POST:
-            form = CustomItemEditForm(request.POST)
-            if form.is_valid():
-                new_cost = form.cleaned_data['new_cost']
-                new_time = form.cleaned_data['new_time']
-                new_hours = form.cleaned_data['new_hours']
-                item = BucketListItem.objects.filter(pk = id)
-                item = item[0]
-                item.time = new_time
-                item.hours = new_hours
-                item.cost = new_cost
-                item.save()
-            return HttpResponseRedirect('/bucketlist/mylist/')
-            
-        else:
-            form = CustomItemEditForm({'new_hours': item2.hours, 'new_cost': item2.cost, 'new_time': item2.time})     
-            
-        url = ('bucketlist/create/%s' % id)            
-        args = {}
-        args.update(csrf(request))
-        args['form'] = form
-        args['id'] = id
-        args['url'] = url
-
-        
-        return render_to_response('BucketList/item_creation/improveskill.html', args)
-        
-    elif goal_type == 'Hobby':
-        if request.POST:
-            form = CustomItemEditForm(request.POST)
-            if form.is_valid():
-                new_cost = form.cleaned_data['new_cost']
-                new_time = form.cleaned_data['new_time']
-                new_hours = form.cleaned_data['new_hours']
-                item = BucketListItem.objects.filter(pk = id)
-                item = item[0]
-                item.time = new_time
-                item.hours = new_hours
-                item.cost = new_cost
-                item.save()
-            return HttpResponseRedirect('/bucketlist/mylist/')
-            
-        else:
-            form = CustomItemEditForm({'new_hours': item2.hours, 'new_cost': item2.cost, 'new_time': item2.time})     
-            
-        url = ('bucketlist/create/%s' % id)            
-        args = {}
-        args.update(csrf(request))
-        args['form'] = form
-        args['id'] = id
-        args['url'] = url
-
-        
-        return render_to_response('BucketList/item_creation/hobby.html', args)
-        
-    elif goal_type == 'Building/Creating Somthing':
-        if request.POST:
-            form = CustomItemEditForm(request.POST)
-            if form.is_valid():
-                new_cost = form.cleaned_data['new_cost']
-                new_time = form.cleaned_data['new_time']
-                new_hours = form.cleaned_data['new_hours']
-                item = BucketListItem.objects.filter(pk = id)
-                item = item[0]
-                item.time = new_time
-                item.hours = new_hours
-                item.cost = new_cost
-                item.save()
-            return HttpResponseRedirect('/bucketlist/mylist/')
-            
-        else:
-            form = CustomItemEditForm({'new_hours': item2.hours, 'new_cost': item2.cost, 'new_time': item2.time})     
-            
-        url = ('bucketlist/create/%s' % id)            
-        args = {}
-        args.update(csrf(request))
-        args['form'] = form
-        args['id'] = id
-        args['url'] = url
-
-        
-        return render_to_response('BucketList/item_creation/buildcreate.html', args)
-        
-        
-    elif goal_type == 'Education/Self Improvement':
-        if request.POST:
-            form = CustomItemEditForm(request.POST)
-            if form.is_valid():
-                new_cost = form.cleaned_data['new_cost']
-                new_time = form.cleaned_data['new_time']
-                new_hours = form.cleaned_data['new_hours']
-                item = BucketListItem.objects.filter(pk = id)
-                item = item[0]
-                item.time = new_time
-                item.hours = new_hours
-                item.cost = new_cost
-                item.save()
-            return HttpResponseRedirect('/bucketlist/mylist/')
-            
-        else:
-            form = CustomItemEditForm({'new_hours': item2.hours, 'new_cost': item2.cost, 'new_time': item2.time})     
-            
-        url = ('bucketlist/create/%s' % id)            
-        args = {}
-        args.update(csrf(request))
-        args['form'] = form
-        args['id'] = id
-        args['url'] = url
-
-        
-        return render_to_response('BucketList/item_creation/education.html', args)
-        
-        
-    elif goal_type == 'Volunteering':
-        if request.POST:
-            form = CustomItemEditForm(request.POST)
-            if form.is_valid():
-                new_cost = form.cleaned_data['new_cost']
-                new_time = form.cleaned_data['new_time']
-                new_hours = form.cleaned_data['new_hours']
-                item = BucketListItem.objects.filter(pk = id)
-                item = item[0]
-                item.time = new_time
-                item.hours = new_hours
-                item.cost = new_cost
-                item.save()
-            return HttpResponseRedirect('/bucketlist/mylist/')
-            
-        else:
-            form = CustomItemEditForm({'new_hours': item2.hours, 'new_cost': item2.cost, 'new_time': item2.time})     
-            
-        url = ('bucketlist/create/%s' % id)            
-        args = {}
-        args.update(csrf(request))
-        args['form'] = form
-        args['id'] = id
-        args['url'] = url
-
-        
-        return render_to_response('BucketList/item_creation/volunteering.html', args)    
-        
-    elif goal_type == 'Other':
-        if request.POST:
-            form = CustomItemEditForm(request.POST)
-            if form.is_valid():
-                new_cost = form.cleaned_data['new_cost']
-                new_time = form.cleaned_data['new_time']
-                new_hours = form.cleaned_data['new_hours']
-                item = BucketListItem.objects.filter(pk = id)
-                item = item[0]
-                item.time = new_time
-                item.hours = new_hours
-                item.cost = new_cost
-                item.save()
-            return HttpResponseRedirect('/bucketlist/mylist/')
-            
-        else:
-            form = CustomItemEditForm({'new_hours': item2.hours, 'new_cost': item2.cost, 'new_time': item2.time})     
-            
-        url = ('bucketlist/create/%s' % id)            
-        args = {}
-        args.update(csrf(request))
-        args['form'] = form
-        args['id'] = id
-        args['url'] = url
-
-        
-        return render_to_response('BucketList/item_creation/other.html', args)    
-    
-                
-                
 @login_required
 def edit_profile(request):
     """A view that allows the user to edit their current profile information"""
@@ -811,28 +463,13 @@ def edit_profile(request):
             return HttpResponseRedirect('/bucketlist/mylist/')
     else:
         form = UserProfileEditForm({'new_age': current_user.age, 'new_life_expectancy': current_user.life_expectancy, 'new_yearly_earnings': current_user.yearly_earnings, 'new_hourly_wage': current_user.hourly_wage})
-        
-    return render(request, 'BucketList/edit_user_profile.html', {'form': form})
+        context = {'form': form,
+                        }
+        context.update(csrf(request))
+    return render(request, 'BucketList/edit_user_profile.html', form)
     
     
-@login_required
-def edit_bucket_list_item(request, id):
-    """This view lets the user edit their Bucket List Item and directs them to other forms necessary to make the changes needed"""
-    item = BucketListItem.objects.get(pk = id)
-    if request.method == "POST":
-        form = BucketListItemEditForm(request.POST)
-        if form.is_valid():
-            text = form.cleaned_data['text']
-            goal_type = form.cleaned_data['goal_type']
-            item.text = text
-            item.goal_type = goal_type
-            item.pub_date = timezone.now()
-            item.save()
-            return HttpResponseRedirect('/bucketlist/create/%s' % item.id)
-    else:
-        form = BucketListItemEditForm({'text': item.text, 'goal_type': item.goal_type})
-        
-    return render(request, 'BucketList/edit_bucket_list_item.html', {'form': form, 'id': item.id})
+
     
     
         

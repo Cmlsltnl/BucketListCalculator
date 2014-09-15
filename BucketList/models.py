@@ -30,11 +30,12 @@ class BucketListItem(models.Model):
     text = models.CharField(max_length = 200)
     pub_by = models.ForeignKey(User,editable = False)
     pub_date = models.DateTimeField(editable=False)
-    cost = models.CharField(max_length = 20, editable = False)
-    time = models.CharField(max_length = 20, editable = False)
-    hours = models.CharField(max_length = 20, editable = False)
-    crossed_off = models.BooleanField(editable = False)
     goal_type = models.CharField(choices = CHOICES, max_length = 200)
+    cost = models.CharField(max_length = 20)
+    time = models.CharField(max_length = 20)
+    hours = models.CharField(max_length = 20)
+    crossed_off = models.BooleanField(editable = False)
+
         
     def __unicode__(self):
         return self.text
@@ -62,14 +63,6 @@ class UserProfile(models.Model):
     def __unicode__(self):
         return self.user
       
-      
-@receiver(post_save, sender = User)
-def my_callback(sender, instance, created, **kwargs):
-    """Watches for User Creation then automatically creates a UserProfile for the User Created"""
-    if created:
-        UserProfile.objects.create(user = instance)
-
-
 class Comment(models.Model):
     created = models.DateTimeField(editable =False)
     author = models.CharField(max_length = 100, editable = False)
@@ -78,6 +71,16 @@ class Comment(models.Model):
     
     def __unicode__(self):
         return self.body
+        
+        
+@receiver(post_save, sender = User)
+def my_callback(sender, instance, created, **kwargs):
+    """Watches for User Creation then automatically creates a UserProfile for the User Created"""
+    if created:
+        UserProfile.objects.create(user = instance)
+
+
+
        
    
 
