@@ -10,7 +10,23 @@
         <p>Added By:   <a href='/bucketlist/userstats/{{item.pub_by}}/'>{{item.pub_by}}</a></p>
         <p>Date Added:   {{item.pub_date}}</p>
         <br>
+        <hr>
+        <hr>
         <br>
+        <h2>Comments:</h2>
+        <br>
+        {% if comments %}
+            {% for comment in comments %}
+                <div>
+                    <h3>{{comment.author}}</h3>
+                    <h5>{{comment.created}}</h3>
+                    <p>{{comment.body}}</h3>
+                </div>
+                <hr>
+            {% endfor %}
+        {% else %}
+            <p>There are no comments yet.  Be the first to add one!</p>
+        {% endif %}
         <h5>Leave a Comment Here</h5>
         <form action="/bucketlist/item/{{id}}/comment/" method = "post">
             {% csrf_token %}

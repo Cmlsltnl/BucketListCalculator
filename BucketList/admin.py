@@ -12,8 +12,7 @@ class BucketListItemAdmin(admin.ModelAdmin):
     list_display = ['text', 'pub_date', 'pub_by', 'cost', 'time', 'hours', 'recently_added', 'crossed_off', 'goal_type']
     list_filter = ['pub_date', 'pub_by', 'cost', 'time']
     search_fields = ['text', 'pub_by']
-
-    
+  
 admin.site.register(BucketListItem, BucketListItemAdmin)
 
 
@@ -25,14 +24,13 @@ class UserProfileAdmin(admin.ModelAdmin):
     ]
     readonly_fields = ('user', 'age', 'life_expectancy', 'yearly_earnings', 'hourly_wage')
     list_display = ['user', 'age', 'life_expectancy', 'yearly_earnings', 'hourly_wage']
-
-    
     
 admin.site.register(UserProfile, UserProfileAdmin)
 
 
 class CommentAdmin(admin.ModelAdmin):
-    display_fields = ['item', 'author', 'created']
+    display_fields = ['body', 'item', 'author', 'created']
+    list_display = ['body', 'item', 'author', 'created']
     
 admin.site.register(Comment, CommentAdmin)
 

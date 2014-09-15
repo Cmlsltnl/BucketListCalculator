@@ -77,7 +77,7 @@ class Comment(models.Model):
     item = models.ForeignKey(BucketListItem)
     
     def __unicode__(self):
-        return unicode("%s: %s" % (self.item, self.body[:60]))
+        return self.body
        
    
 

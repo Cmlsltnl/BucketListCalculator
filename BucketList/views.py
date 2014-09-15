@@ -26,34 +26,33 @@ def index(request):
 def index_items(request, id):
     """When a user clicks on a Bucket List Item on the index page it will take them here with a brief overview of that items information"""
     item = BucketListItem.objects.all().filter(pk = id)
-    comments = Comment.objects.filter(pk = id)
     form = CommentForm()
+    comments = Comment.objects.all().filter(item = item)
+    
     context = {'item': item[0],
                       'id': id,
                       'comments': comments,
                       'form': form,
-                    }
-    context.update(csrf(request))
+                      }
     return render(request, 'BucketList/index_items.html', context)
     
-"""  
+
 @login_required
 def add_item_comment(request, id):
     #Add a comment to any Users BucketListItem
     current_user = UserProfile.objects.get(pk = request.user.id)
+    current_item = BucketListItem.objects.get(pk = id)
     form = CommentForm(request.POST)
     if form.is_valid():
         body = form.cleaned_data['body']
         my_model = form.save(commit = False)
         my_model.created = timezone.now()
-        my_model.author = current_user.username
-        my_model.item = BucketListItem.objects.get(pk = id)
+        my_model.author = current_user.user
+        my_model.item = current_item
         my_model.body = body
         my_model.save()
-        print "Worked!"
-    print "Something... Anything?"
-    return HttpResponse('Something')
-"""     
+    return HttpResponseRedirect("/bucketlist/item/%s/" % id)
+
     
     
 @login_required
