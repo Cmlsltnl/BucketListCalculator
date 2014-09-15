@@ -36,10 +36,10 @@ def index_items(request, id):
     context.update(csrf(request))
     return render(request, 'BucketList/index_items.html', context)
     
-    
+"""  
 @login_required
 def add_item_comment(request, id):
-    """Add a comment to any Users BucketListItem"""
+    #Add a comment to any Users BucketListItem
     current_user = UserProfile.objects.get(pk = request.user.id)
     form = CommentForm(request.POST)
     if form.is_valid():
@@ -53,7 +53,7 @@ def add_item_comment(request, id):
         print "Worked!"
     print "Something... Anything?"
     return HttpResponse('Something')
-        
+"""     
     
     
 @login_required

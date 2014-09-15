@@ -69,7 +69,7 @@ def my_callback(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user = instance)
 
-        
+
 class Comment(models.Model):
     created = models.DateTimeField(editable =False)
     author = models.CharField(max_length = 100, editable = False)
@@ -78,7 +78,7 @@ class Comment(models.Model):
     
     def __unicode__(self):
         return unicode("%s: %s" % (self.item, self.body[:60]))
-        
+       
    
 
     
