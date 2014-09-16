@@ -1,10 +1,50 @@
 
 <form action = "/bucketlist/create/" method = "post">{% csrf_token %}
-<ul>
-{{form.as_ul}}
-</ul>
 
-<input type = "submit" name = "submit" value = "Create BucketListItem">
+{% for field in form %}
+    <div class = "fieldWrapper">
+        {{field.errors}}
+        
+        {% if field.label == 'Text' %}
+            <label>What is your goal?</label>
+        {% endif %}
+        
+        {% if field.label == 'Goal type' %}
+            <label>Pick a what category your goal is: </label>
+        {% endif %}
+        
+        {% if field.label == 'Cost' %}
+            <label>Will this goal cost you any money (in USD)?</label>
+        {% endif %}
+        
+        {% if field.label == 'Time' %}
+            <label>How many full days will this take you?</label>
+        {% endif %}
+        
+        {% if field.label == 'Hours' %}
+            <label>How many hours will this goal take you?</label>
+        {% endif %}
+        
+        {{field}}
+        
+        {% if field.label == 'Cost' %}
+            <h5>If there is any monetary costs for this goal. Place an estimate of the amount here.          
+            </h5>
+        {% endif %}
+        
+        {% if field.label == 'Time' %}
+            <h5>How many full days will this take to accomplish.  These are full days that you will dedicate only to reaching this goal.  Travel is a great example of a goal that requires full days to complete.
+            </h5>
+        {% endif %}
+        
+        {% if field.label == 'Hours' %}
+            <h5>How many hours are required for you to meet this goal?  In this field you will only include hours that you can do in between other things.  In the previous example of travel entire days needed to be dedicated to reaching the goal.  In the example of 'Learn to Speak Italian' you would require more than a days worth of practice but it would be spread out over a larger period of time.  If your goal falls into this category then determine how many hours total this goal will take and place that amount here.
+            </h5>
+        {% endif %}
+    </div>
+{% endfor %}
+
+<input type = "submit" name = "submit" value = "Create Bucket List Item">
 </form>
 
 

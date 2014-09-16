@@ -26,7 +26,7 @@ CHOICES = (
     )
 
 class BucketListItem(models.Model):
-    """The Model that defines each Bucket List Item"""
+    #The Model that defines each Bucket List Item
     text = models.CharField(max_length = 200)
     pub_by = models.ForeignKey(User,editable = False)
     pub_date = models.DateTimeField(editable=False)
@@ -53,7 +53,7 @@ class BucketListItem(models.Model):
         
         
 class UserProfile(models.Model):    
-    """Model that defines the User Profile"""
+    #Model that defines the User Profile
     user = models.OneToOneField(User, editable = False)
     age = models.CharField(max_length = 3, default = 0)
     life_expectancy = models.CharField(max_length = 3, default = 0)
@@ -64,6 +64,7 @@ class UserProfile(models.Model):
         return self.user
       
 class Comment(models.Model):
+    #Model that defines the Commenting system
     created = models.DateTimeField(editable =False)
     author = models.CharField(max_length = 100, editable = False)
     body = models.TextField()
@@ -75,7 +76,7 @@ class Comment(models.Model):
         
 @receiver(post_save, sender = User)
 def my_callback(sender, instance, created, **kwargs):
-    """Watches for User Creation then automatically creates a UserProfile for the User Created"""
+    #Watches for User Creation then automatically creates a UserProfile for the User Created
     if created:
         UserProfile.objects.create(user = instance)
 

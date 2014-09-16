@@ -21,25 +21,25 @@ CHOICES = (
     
     
 class BucketListItemForm(forms.ModelForm):
-    """The main form to create a Bucket List Item"""
+    #The main form to create a Bucket List Item
     class Meta:
         model = BucketListItem
 
 
 class UserProfileForm(forms.ModelForm):
-    """The main form to create a User Profile"""
+    #The main form to create a User Profile
     class Meta:
         model = UserProfile
         
 class CommentForm(forms.ModelForm):
-    """Form to create a comment"""
+    #Form to create a comment
     class Meta:
         model = Comment
         exclude = ['post', 'author', 'item']
         
         
 class UserProfileEditForm(forms.Form):
-    """Form used to edit the User Profile"""
+    #Form used to edit the User Profile
     new_age = forms.CharField(label='New Age', max_length = 200)
     new_life_expectancy = forms.CharField(label = 'Age You Want to Be Done', max_length = 3)
     new_yearly_earnings = forms.CharField(label = 'Yearly Earnings', max_length = 8)
@@ -47,13 +47,13 @@ class UserProfileEditForm(forms.Form):
         
 
 class BucketListItemEditForm(forms.ModelForm):
-    """Form used to edit a Bucket List Item"""
+    #Form used to edit a Bucket List Item
     class Meta:
         model = BucketListItem
     
     
 class CustomItemEditForm(forms.Form):
-    """The form used to create the Bucket List Item once the goal type is already decided upon"""
+    #The form used to create the Bucket List Item once the goal type is already decided upon
     new_cost = forms.FloatField(label = 'cost')
     new_time = forms.FloatField(label = 'time')
     new_hours = forms.FloatField(label = 'hours')

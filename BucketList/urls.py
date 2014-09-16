@@ -2,9 +2,9 @@ from django.conf.urls import patterns, url
 from BucketList import views
 
 urlpatterns = patterns('',
+
     url(r'^$', views.index, name='index'),
     url(r'^stats/$', views.index_stats, name='index stats'),
-    url(r'^item/(?P<id>\w+)/comment/', views.add_item_comment, name = 'add item comments'),
     url(r'^item/(?P<id>\w+)/', views.index_items, name = 'index items'),
     url(r'^userstats/(?P<id>\w+)/', views.user_stats, name='user profile'),
     url(r'^create/$', views.create, name='create'),

@@ -14,48 +14,47 @@ from django.contrib.auth.decorators import login_required
 
 
 def index(request):
-    """The main Bucket List Page View, sorted by pubdate so the most recent are at the top"""
+    #The main Bucket List Page View, sorted by pubdate so the most recent are at the top
     all_list_items = BucketListItem.objects.all().order_by('-pub_date')
     
     context = {'all_list_items': all_list_items}
     
     return render(request, 'BucketList/index.html', context)
     
-    
+@login_required  
 def index_items(request, id):
-    """When a user clicks on a Bucket List Item on the index page it will take them here with a brief overview of that items information"""
-    item = BucketListItem.objects.filter(pk = id)
-    form = CommentForm()
+    #When a user clicks on a Bucket List Item on the index page it will take them here with a brief overview of that items information
+    item = BucketListItem.objects.get(pk = id)
+    current_user = UserProfile.objects.get(pk = request.user.id)
     comments = Comment.objects.filter(item = item)
-    
-    context = {'item': item[0],
+    if request.POST:
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            body = form.cleaned_data['body']
+            my_model = form.save(commit = False)
+            my_model.created = timezone.now()
+            my_model.author = current_user.user
+            my_model.item = item
+            my_model.body = body
+            my_model.save()
+            form = CommentForm()
+    else:
+        form = CommentForm()
+            
+    context = {'item': item,
                       'id': id,
                       'comments': comments,
                       'form': form,
                       }
+                      
     context.update(csrf(request))
-    return render(request, 'BucketList/index_items.html', context)
     
-@login_required
-def add_item_comment(request, id):
-    #Add a comment to any Users BucketListItem
-    current_user = UserProfile.objects.get(pk = request.user.id)
-    current_item = BucketListItem.objects.get(pk = id)
-    form = CommentForm(request.POST)
-    if form.is_valid():
-        body = form.cleaned_data['body']
-        my_model = form.save(commit = False)
-        my_model.created = timezone.now()
-        my_model.author = current_user.user
-        my_model.item = current_item
-        my_model.body = body
-        my_model.save()
-    return HttpResponseRedirect("/bucketlist/item/%s/" % id)
+    return render(request, 'BucketList/index_items.html', context)
     
     
 @login_required
 def user_stats(request, id):
-    """A public stats/profile page that displays their basic profile information as well as their bucket list"""
+    #A public stats/profile page that displays their basic profile information as well as their bucket list
     item = User.objects.all().filter(username = id)
     item_profile = item[0].userprofile
     list_of_all = BucketListItem.objects.all().filter(pub_by = item)
@@ -69,7 +68,7 @@ def user_stats(request, id):
 
 @login_required
 def index_stats(request):
-    """This page compiles interesting statistics about all of the Bucket List Items on the main index page and displays that information"""
+    #This page compiles interesting statistics about all of the Bucket List Items on the main index page and displays that information
     list_of_all = BucketListItem.objects.all().count()
     total_cost = BucketListItem.objects.all().aggregate(Sum('cost'))
     total_time = BucketListItem.objects.all().aggregate(Sum('time'))
@@ -96,7 +95,7 @@ def index_stats(request):
     
 @login_required
 def my_list(request):
-    """The current users personal Bucket List view with links to create more list items or learn statistics about their list"""
+    #The current users personal Bucket List view with links to create more list items or learn statistics about their list
     personal_list = BucketListItem.objects.all().filter(pub_by = request.user.id)
     
     context = {'personal_list': personal_list,
@@ -108,9 +107,9 @@ def my_list(request):
     
 @login_required
 def recommendation(request):
-    """This view takes the users list items and turns it into a convenient display of the stats in a user friendly form, basically this view is the main reason everything else in this web app exists. """
+    #This view takes the users list items and turns it into a convenient display of the stats in a user friendly form, basically this view is the main reason everything else in this web app exists. 
     
-    """---------------Important Recommendation Functions-------------"""  
+    #---------------Important Recommendation Functions------------- 
     
     def BucketListItemListSum(list, field_to_sum):
         """Finds the total sum of cost, time, or hours"""
@@ -128,7 +127,7 @@ def recommendation(request):
         
         
     def GoalDifficulty(item, wage):
-        """Determines how difficult the goal is by returning the total amount of hours the goal will take.  Returns cost in hours by utilizing users hourly wage.  Returns 17 hours per day goal takes (not 24 because of time accounted for sleep and other free time"""
+        #Determines how difficult the goal is by returning the total amount of hours the goal will take.  Returns cost in hours by utilizing users hourly wage.  Returns 17 hours per day goal takes (not 24 because of time accounted for sleep and other free time
         sum = 0
         wage = float(wage)
         cost = float(item.cost)
@@ -141,7 +140,7 @@ def recommendation(request):
         
         
     def GoalTypePercentages(list):
-        """Figures out the distribution of different goal types and returns the percentage amount of each goal category"""
+        #Figures out the distribution of different goal types and returns the percentage amount of each goal category
         travel = 0
         purchase = 0
         career = 0
@@ -205,9 +204,9 @@ def recommendation(request):
 
             
         
-    """-----------------Passed Through to Template (simple)---------------"""
+    #-----------------Passed Through to Template (simple)---------------
     
-    """General Information Passed Through to Template"""
+    #General Information Passed Through to Template
     user = UserProfile.objects.get(pk = request.user.id)
     mylist = BucketListItem.objects.all().filter(pub_by = user, crossed_off = False)
     total_cost = BucketListItemListSum(mylist, 'cost')
@@ -222,7 +221,7 @@ def recommendation(request):
     hourly_wage = float(user.hourly_wage)
     work_hours_per_week = (yearly_earnings/hourly_wage)/52
     
-    """Calculated Information Passed Through to Template"""
+    #Calculated Information Passed Through to Template
     accomplish_per_year = total_number_of_items/years_left
     days_per_goal = days_left/total_number_of_items
     cost_per_year = total_cost/years_left
@@ -233,9 +232,9 @@ def recommendation(request):
     cost_of_average_goal = float(total_cost/total_number_of_items)
     percent_of_yearly_wage = (cost_per_year/yearly_earnings)*100
 
-    """----------------Passed Through to Template (unique)--------------"""  
+    #----------------Passed Through to Template (unique)--------------
      
-    """Create List Of Bucket List Items from Most to Least Difficult, using GoalDifficulty Function"""
+    #Create List Of Bucket List Items from Most to Least Difficult, using GoalDifficulty Function
     dict_with_difficulty = {}
     
     for goal in mylist:
@@ -249,7 +248,7 @@ def recommendation(request):
         del dict_with_difficulty[item]
     
     
-    """Sorts list_with_difficulty from above into two lists, one of the top five most difficult BucketListItems and another with the five easiest goals"""
+    #Sorts list_with_difficulty from above into two lists, one of the top five most difficult BucketListItems and another with the five easiest goals
     top_five_most_difficult = []
     bottom_five_least_difficult = []
     
@@ -262,13 +261,13 @@ def recommendation(request):
         bottom_five_least_difficult.append(item)
     
     
-    """Different Goal Types by Percentage"""
+    #Different Goal Types by Percentage
     goal_type_percentages = GoalTypePercentages(mylist)
             
     
 
 
-    """--------------------Passed To Template-----------------------"""               
+    #--------------------Passed To Template-----------------------              
     
     context = {'user': user,
                      'mylist': mylist,
@@ -307,7 +306,7 @@ def recommendation(request):
     
 @login_required
 def my_list_stats(request):
-    """General statistics about the current users Bucket List"""
+    #General statistics about the current users Bucket List
     personal_list = BucketListItem.objects.all().filter(pub_by = request.user.id)
     total_cost = BucketListItem.objects.all().filter(pub_by = request.user.id).aggregate(Sum('cost'))
     total_time = BucketListItem.objects.all().filter(pub_by = request.user.id).aggregate(Sum('time'))
@@ -330,7 +329,7 @@ def my_list_stats(request):
     
 @login_required
 def view_my_list_item(request, id):
-    """View of a current users Bucket List Item with options to cross off or edit the Bucket List Item"""
+    #View of a current users Bucket List Item with options to cross off or edit the Bucket List Item
     logged_in = request.user.id
     item = BucketListItem.objects.filter(pk = id)
     context = {'logged_in': logged_in,
@@ -342,7 +341,7 @@ def view_my_list_item(request, id):
     
 @login_required
 def cross_off_my_list_item(request, id):
-    """The view that crosses off the Bucket List Item"""
+    #The view that crosses off the Bucket List Item
     item = BucketListItem.objects.get(pk = id)
     item.crossed_off = True
     item.pub_date = timezone.now()
@@ -358,7 +357,7 @@ def cross_off_my_list_item(request, id):
     
 @login_required
 def uncross_my_list_item(request, id):
-    """The view that uncrosses off the Bucket List Item"""
+    #The view that uncrosses off the Bucket List Item
     item = BucketListItem.objects.get(pk = id)
     item.crossed_off = False
     item.pub_date = timezone.now()
@@ -373,7 +372,7 @@ def uncross_my_list_item(request, id):
  
 @login_required
 def delete_my_list_item(request, id):
-    """The view that uncrosses off the Bucket List Item"""
+    #The view that uncrosses off the Bucket List Item
     item = BucketListItem.objects.get(pk = id)
     title = item.text
     item.delete()
@@ -388,7 +387,7 @@ def delete_my_list_item(request, id):
     
 @login_required
 def create(request):
-    """Creates a Bucket List Item, the user only fills out the Name and Type of the item while the rest of the fields are auto-filled: publication date, published by, crossed off, time, hours, and cost """
+    #Creates a Bucket List Item, the user only fills out the Name and Type of the item while the rest of the fields are auto-filled: publication date, published by, crossed off, time, hours, and cost 
     if request.POST:
         form = BucketListItemForm(request.POST)
         if form.is_valid():
@@ -416,7 +415,7 @@ def create(request):
                 
 @login_required
 def edit_bucket_list_item(request, id):
-    """This view lets the user edit their Bucket List Item and directs them to other forms necessary to make the changes needed"""
+    #This view lets the user edit their Bucket List Item and directs them to other forms necessary to make the changes needed
     item = BucketListItem.objects.get(pk = id)
     if request.method == "POST":
         form = BucketListItemEditForm(request.POST)
@@ -446,7 +445,7 @@ def edit_bucket_list_item(request, id):
     
 @login_required
 def edit_profile(request):
-    """A view that allows the user to edit their current profile information"""
+    #A view that allows the user to edit their current profile information
     current_user = UserProfile.objects.get(pk = request.user.id)
     if request.method == "POST":
         form = UserProfileEditForm(request.POST)
