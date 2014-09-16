@@ -4,7 +4,6 @@ from BucketList.models import BucketListItem, UserProfile, Comment
 from django.contrib import auth
 from forms import BucketListItemForm, UserProfileForm, UserProfileEditForm, BucketListItemEditForm, CustomItemEditForm, CommentForm
 from django.http import HttpResponseRedirect
-from django.core.context_processors import csrf
 from django.contrib.auth.models import User
 from django.db.models import Sum
 from django.contrib.auth.forms import UserCreationForm
@@ -47,7 +46,7 @@ def index_items(request, id):
                       'form': form,
                       }
                       
-    context.update(csrf(request))
+
     
     return render(request, 'BucketList/index_items.html', context)
     
@@ -407,7 +406,7 @@ def create(request):
         form = BucketListItemForm()
             
     args = {}
-    args.update(csrf(request))
+
     args['form'] = form
         
     return render(request, 'BucketList/create_item.html', args)
@@ -438,7 +437,7 @@ def edit_bucket_list_item(request, id):
         context = {'form': form,
                            'id': item.id,
                           }
-        context.update(csrf(request))
+
         
     return render(request, 'BucketList/edit_bucket_list_item.html', context)
 
@@ -462,10 +461,11 @@ def edit_profile(request):
             return HttpResponseRedirect('/bucketlist/mylist/')
     else:
         form = UserProfileEditForm({'new_age': current_user.age, 'new_life_expectancy': current_user.life_expectancy, 'new_yearly_earnings': current_user.yearly_earnings, 'new_hourly_wage': current_user.hourly_wage})
+        
         context = {'form': form,
                         }
-        context.update(csrf(request))
-    return render(request, 'BucketList/edit_user_profile.html', form)
+
+    return render(request, 'BucketList/edit_user_profile.html', context)
     
     
 
