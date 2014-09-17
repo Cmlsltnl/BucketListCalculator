@@ -31,13 +31,22 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         
+        
 class CommentForm(forms.ModelForm):
     #Form to create a comment
     class Meta:
         model = Comment
         exclude = ['post', 'author', 'item']
         
-        
+"""       
+class MessageForm(forms.ModelForm):
+    #Form for messaging other users
+    class Meta:
+        model = Message
+        exclude = ['user_recieving', 'user_sending', 'created']
+    
+"""
+    
 class UserProfileEditForm(forms.Form):
     #Form used to edit the User Profile
     new_age = forms.CharField(label='New Age', max_length = 200)

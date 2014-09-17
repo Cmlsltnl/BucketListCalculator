@@ -3,7 +3,8 @@
 <h1>{{item}}'s Stats Page</h1>
 {% avatar item %}
     <p>Email: {{item.email}}</p>
-    <p>Age: {{item_profile.age}}
+    <p>Age: {{item_profile.age}}</p>
+    <button><a href="/bucketlist/message/{{item}}/">Message {{item}}</a></button>
     <h4>{{item}}'s Bucket List</h4>
     <ol>
     {% for list_item in list_of_all %}

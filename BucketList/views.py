@@ -467,8 +467,12 @@ def edit_profile(request):
 
     return render(request, 'BucketList/edit_user_profile.html', context)
     
-    
-
-    
+"""    
+def message_user(request, id):
+    #View that displays the form for users to message one another
+    user_to_recieve = User.objects.get(username = id)
+    user_to_send = User.objects.get(request.user.id)
+    return HttpResponse(user_to_recieve)
+"""    
     
         
