@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from django.conf import settings
 
 admin.autodiscover()
 
@@ -13,4 +14,12 @@ urlpatterns = patterns('',
     url(r'^accounts/invalid/$', 'Bucket.views.invalid_login'),
     url(r'^accounts/register/$', 'Bucket.views.register_user'),
     url(r'^accounts/register_success/$', 'Bucket.views.register_success'),
+    url(r'^avatar/', include('avatar.urls')),
 )
+
+if settings.DEBUG:
+    #static files (images, cs, javascript, etc.)
+    urlpatterns += patterns('',
+        (r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+        'document_root': settings.MEDIA_ROOT})
+    )

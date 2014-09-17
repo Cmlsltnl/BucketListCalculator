@@ -1,6 +1,7 @@
 {% if item %}
-    
+{% load avatar_tags %}
 <h1>{{item}}'s Stats Page</h1>
+{% avatar item %}
     <p>Email: {{item.email}}</p>
     <p>Age: {{item_profile.age}}
     <h4>{{item}}'s Bucket List</h4>
