@@ -74,16 +74,6 @@ class Comment(models.Model):
         return self.body
         
     
-class Messages(models.Model):
-    #Model that lets users message each other
-    user_receiving = models.ForeignKey(UserProfile)
-    user_sending = models.ForeignKey(User)
-    created = models.DateTimeField(editable = False)
-    text = models.TextField()
-    
-    def __unicode__(self):
-        return self.text
-    
     
 @receiver(post_save, sender = User)
 def my_callback(sender, instance, created, **kwargs):

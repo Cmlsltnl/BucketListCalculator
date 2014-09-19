@@ -468,11 +468,5 @@ def edit_profile(request):
     return render(request, 'BucketList/edit_user_profile.html', context)
     
 
-def message_user(request, id):
-    #View that displays the form for users to message one another
-    reciever = User.objects.all().filter(pk = id)
-    user_to_recieve = UserProfile.objects.get(pk = reciever)
-    return HttpResponse(user_to_recieve)
- 
     
         

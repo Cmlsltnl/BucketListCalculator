@@ -3,6 +3,7 @@
     <h1>{{user}}'s Bucket List</h1>
     {% load avatar_tags %}
     {% avatar user %}
+    {% load inbox %}
     {% if personal_list %}
         <ol>
         {% for item in personal_list %}

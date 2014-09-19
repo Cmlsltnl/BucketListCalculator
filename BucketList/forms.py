@@ -1,5 +1,5 @@
 from django import forms
-from models import BucketListItem, UserProfile, Comment, Messages
+from models import BucketListItem, UserProfile, Comment
 from django.contrib.auth.models import User
 
 CHOICES = (
@@ -38,12 +38,6 @@ class CommentForm(forms.ModelForm):
         model = Comment
         exclude = ['post', 'author', 'item']
         
-
-class MessageForm(forms.ModelForm):
-    #Form for messaging other users
-    class Meta:
-        model = Messages
-        exclude = ['user_recieving', 'user_sending', 'created']
     
 
     

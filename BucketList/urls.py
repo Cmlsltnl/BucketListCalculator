@@ -17,7 +17,5 @@ urlpatterns = patterns('',
     url(r'^mylist/deleteitem/(?P<id>\w+)/', views.delete_my_list_item, name = 'delete list item'),
     url(r'^mylist/recommendation/$', views.recommendation, name = 'recommendation'),
     url(r'^profile/edit/$', views.edit_profile, name = 'edit profile'),
-    url(r'^message/(?P<id>\w+)/', views.message_user, name = 'message user'),
-   
 )
 
