@@ -1,3 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Your List Item{% endblock title %}
+
+{% block content %}
+
 {% if logged_in %}
     {% if item.crossed_off == True %}
         <h1 style="text-decoration: line-through;">{{item}}</h1>
@@ -25,4 +31,4 @@
     <p>It looks like you are not logged in!  Better get on that.</p>
 {% endif %}
 
-
+{% endblock content %}

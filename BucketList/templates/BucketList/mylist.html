@@ -1,3 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Bucket List{% endblock title %}
+
+{% block content %}
+
 {% if user %}
     <br/>
     <h1>{{user}}'s Bucket List</h1>
@@ -38,3 +44,5 @@
 {% else %}
     <p>Sorry, it doesn't seem like you are logged in!</p>
 {% endif %}
+
+{% endblock content %}

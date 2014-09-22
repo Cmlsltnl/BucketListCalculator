@@ -1,3 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+
 {% if title and User %}
     <h4>You permanently deleted {{title}}</h4>
 
@@ -5,3 +11,4 @@
 {% else %}
     <p>Something went wrong.. We are sorry.  You may want to make sure that you are logged in.</p>
 {% endif %}
+{% endblock content %}

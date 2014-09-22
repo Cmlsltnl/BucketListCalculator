@@ -1,3 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Your List Statistics{% endblock title %}
+
+{% block content %}
+
 {% if user %}
     <br/>
     <h1>{{user}}'s Bucket List Statistics</h1>
@@ -16,3 +22,5 @@
 {% else %}
     <p>Sorry, it doesn't seem like you are logged in!</p>
 {% endif %}
+
+{% endblock content %}

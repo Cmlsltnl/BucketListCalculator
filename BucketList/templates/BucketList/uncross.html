@@ -1,3 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Uncross List Item{% endblock title %}
+
+{% block content %}
+
 {% if item and User %}
     <h1>{{item}}</h1>
     <h4>This item is no longer crossed off.</h4>
@@ -8,3 +14,5 @@
 {% else %}
     <p>Something went wrong.. We are sorry.  You may want to make sure that you are logged in.</p>
 {% endif %}
+
+{% endblock content %}

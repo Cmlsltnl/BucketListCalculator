@@ -1,3 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}{{item}}'s Profile{% endblock title %}
+
+{% block content %}
+
 {% if item %}
 {% load avatar_tags %}
 <h1>{{item}}'s Stats Page</h1>
@@ -22,3 +28,5 @@
 {% else %}
     <p>This page didn't load properly...</p>
 {% endif %}
+
+{% endblock content %}

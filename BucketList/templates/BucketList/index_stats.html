@@ -1,3 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Community List Statistics{% endblock title %}
+
+{% block content %}
+
     <br/>
     <h1>Community Bucket List Statistics</h1>
     {% if list_of_all %}
@@ -15,4 +21,5 @@
     {% else %}
         <p>There are no Bucket List items yet!  Better start making some.</p>
     {% endif %}
-    
+
+{% endblock content %}

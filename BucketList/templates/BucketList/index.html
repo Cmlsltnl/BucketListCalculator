@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
+{% block title %}Home{% endblock title %}
+
 {% block content %}
+
 <h1>Community Bucket List</h1>
 
 {% if all_list_items %}
@@ -29,4 +32,4 @@
 {% else %}
     <p>There are no Bucket List items here!  Better go add one.</p>
 {% endif %}
-{% endblock %}
+{% endblock content%}
