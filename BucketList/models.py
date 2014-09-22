@@ -31,9 +31,9 @@ class BucketListItem(models.Model):
     pub_by = models.ForeignKey(User,editable = False)
     pub_date = models.DateTimeField(editable=False)
     goal_type = models.CharField(choices = CHOICES, max_length = 200)
-    cost = models.CharField(max_length = 20)
-    time = models.CharField(max_length = 20)
-    hours = models.CharField(max_length = 20)
+    cost = models.IntegerField(max_length = 20)
+    time = models.IntegerField(max_length = 20)
+    hours = models.IntegerField(max_length = 20)
     crossed_off = models.BooleanField(editable = False)
 
         

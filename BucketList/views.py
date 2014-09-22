@@ -198,7 +198,9 @@ def recommendation(request):
         totals['Education/Self Improvement'] = float(education)/float(sum_of_all)*100
         totals['Volunteering'] = float(volunteering)/float(sum_of_all)*100
         totals['Other'] = float(other)/float(sum_of_all)*100
-        return totals        
+        return totals    
+    
+        
         
 
             
@@ -207,6 +209,7 @@ def recommendation(request):
     
     #General Information Passed Through to Template
     user = UserProfile.objects.get(pk = request.user.id)
+    all_goals = BucketListItem.objects.all().filter(crossed_off = False)
     mylist = BucketListItem.objects.all().filter(pub_by = user, crossed_off = False)
     total_cost = BucketListItemListSum(mylist, 'cost')
     total_hours = BucketListItemListSum(mylist, 'hours')
@@ -239,8 +242,77 @@ def recommendation(request):
     for goal in mylist:
         dict_with_difficulty.update(GoalDifficulty(goal, hourly_wage))
         
+    #Total Difficulty of all list items    
+    total_difficulty = sum(dict_with_difficulty.values())
+    average_goal_difficulty = total_difficulty/total_number_of_items
+    
+    #Most Difficult Goal, That Goals Difficulty, Percentage of Total Difficulty, and Number of Times Harder Than The Average Goal
+    most_difficult_goal = max(dict_with_difficulty, key=dict_with_difficulty.get)
+    most_difficult_goal_difficulty = dict_with_difficulty[most_difficult_goal]
+    most_difficult_goal_percentage = (most_difficult_goal_difficulty/total_difficulty)*100
+    most_difficult_percentage_harder = (most_difficult_goal_difficulty/average_goal_difficulty)
+    
+    #Convert Most Difficult Goal Back Into BucketListItem
+    most_difficult_bucket_list_item = BucketListItem.objects.filter(text = most_difficult_goal)
+    most_difficult_bucket_list_item = most_difficult_bucket_list_item[0]
+    
+    #Finds Number of All Goals, Cost of all Goals, Hours of all Goals, and Time of all Goals
+    total_cost_of_all_goals = 0
+    total_hours_of_all_goals = 0
+    total_time_of_all_goals = 0
+    total_number_of_all_goals = -1
+    most_difficult_more_cost_than = 0
+    most_difficult_more_hours_than = 0
+    most_difficult_more_days_than = 0
+    for goals in all_goals:
+        total_cost_of_all_goals += goals.cost
+        total_hours_of_all_goals += goals.hours
+        total_time_of_all_goals += goals.time
+        total_number_of_all_goals += 1
+        #Finds How Many Bucket List Items are less difficult than this one
+        if goals.cost < most_difficult_bucket_list_item.cost:
+            most_difficult_more_cost_than += 1
+        if goals.hours < most_difficult_bucket_list_item.hours:
+            most_difficult_more_hours_than += 1
+        if goals.time < most_difficult_bucket_list_item.time:
+            most_difficult_more_days_than += 1
+    #Output Percentage of Goals the Hardest Goal is more difficult than   
+    most_difficult_more_cost_than = float(most_difficult_more_cost_than)/float(total_number_of_all_goals)*100
+    most_difficult_more_hours_than = float(most_difficult_more_hours_than)/float(total_number_of_all_goals)*100
+    most_difficult_more_days_than = float(most_difficult_more_days_than)/float(total_number_of_all_goals)*100  
+    
+    #Set total_number_of_all_goals Back to Normal
+    total_number_of_all_goals += 1
+    
+    #Finding Averages of All Goals
+    average_cost_of_all_goals = total_cost_of_all_goals/total_number_of_all_goals
+    
+    average_hours_of_all_goals = total_hours_of_all_goals/total_number_of_all_goals
+    
+    average_time_of_all_goals = total_time_of_all_goals/total_number_of_all_goals
+    
+    
+    #Percentage of cost compared to the average goal
+    most_difficult_percentage_of_average_cost = float(most_difficult_bucket_list_item.cost)/float(average_cost_of_all_goals)
+    
+    
+    #Percentage of hours compared to the average goal, average hours of all goals
+    most_difficult_percentage_of_average_hours = float(most_difficult_bucket_list_item.hours)/float(average_hours_of_all_goals)
+    
+    average_goal_average_hours_per_year = float(average_hours_of_all_goals)/52
+    
+    most_difficult_average_hours_per_year = float(most_difficult_bucket_list_item.hours)/52
+    
+    
+    #Percentage of time compared to the average goal
+    most_difficult_percentage_of_average_time = float(most_difficult_bucket_list_item.time)/float(average_time_of_all_goals)
+    
+    
+    
+    #Creates List Ordered From Easiest to Most Difficult
     list_with_difficulty = []
     
+    #Sort Dict with Difficulty white deleting items from the list
     while len(dict_with_difficulty) > 0:
         item = max(dict_with_difficulty, key=dict_with_difficulty.get)
         list_with_difficulty.append(item)
@@ -259,16 +331,17 @@ def recommendation(request):
     for item in list_with_difficulty[:5]:
         bottom_five_least_difficult.append(item)
     
-    
     #Different Goal Types by Percentage
     goal_type_percentages = GoalTypePercentages(mylist)
-            
+    
     
 
 
     #--------------------Passed To Template-----------------------              
     
-    context = {'user': user,
+    context = {
+                     #-------Top Stats & Basic Overview------
+                     'user': user,
                      'mylist': mylist,
                      'total_cost': total_cost,
                      'total_hours': total_hours,
@@ -281,7 +354,6 @@ def recommendation(request):
                      'hourly_wage': hourly_wage,
                      'work_hours_per_week': work_hours_per_week,
                      
-                     
                      'accomplish_per_year': accomplish_per_year,
                      'days_per_goal': days_per_goal,
                      'cost_per_year': cost_per_year,
@@ -292,11 +364,39 @@ def recommendation(request):
                      'cost_of_average_goal': cost_of_average_goal,
                      'percent_of_yearly_wage': percent_of_yearly_wage,
                      
+                     #--------------Most Difficult Goal--------------
+                     'total_difficulty': total_difficulty,
+                     'most_difficult_goal': most_difficult_goal,
+                     'most_difficult_bucket_list_item': most_difficult_bucket_list_item,
+                     'most_difficult_goal_percentage': most_difficult_goal_percentage,
+                     'most_difficult_percentage_harder': most_difficult_percentage_harder,
+                     'total_number_of_all_goals': total_number_of_all_goals,
+                     'most_difficult_more_cost_than': most_difficult_more_cost_than,
+                     'most_difficult_more_hours_than':
+                     most_difficult_more_hours_than,
+                     'most_difficult_more_days_than': most_difficult_more_days_than,
+                     'average_cost_of_all_goals': average_cost_of_all_goals,
+                     'average_time_of_all_goals': average_time_of_all_goals,
+                     'average_hours_of_all_goals': average_hours_of_all_goals,
+                     'most_difficult_percentage_of_average_cost': most_difficult_percentage_of_average_cost,
+                     'most_difficult_percentage_of_average_hours':
+                     most_difficult_percentage_of_average_hours,
+                     'most_difficult_percentage_of_average_time':
+                     most_difficult_percentage_of_average_time,
+                     'average_goal_average_hours_per_year':
+                     average_goal_average_hours_per_year,
+                     'most_difficult_average_hours_per_year':
+                     most_difficult_average_hours_per_year,
                      
+                     
+                     #---------------Top 5 Top & Bottom-------------
                      'list_with_difficulty': list_with_difficulty,
-                     'top_five_most_difficult': top_five_most_difficult,
+                     'top_five_most_difficult': top_five_most_difficult,                    
                      'bottom_five_least_difficult': bottom_five_least_difficult,
+                     
+                     #--------------Distribution of Goals----------
                      'goal_type_percentages': goal_type_percentages, 
+                     
                     }
                     
     return render(request, 'BucketList/recommendation.html', context)

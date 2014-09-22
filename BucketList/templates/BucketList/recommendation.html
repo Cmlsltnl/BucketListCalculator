@@ -7,8 +7,9 @@
 <h1>{{user.user}}'s Recommendations</h1>
 
 <p>Great job on making your Bucket List!  Now it's time for the real fun: Statistics and Recommendations!  Yay.  Let's get down to business.</p>
+<hr>
 <br/>
-
+<!-----------Displayed Statistics------------->
 <p>Total Cost: {{total_cost}}</p>
 <p>Total Hours: {{total_hours}}</p>
 <p>Total Days: {{total_time}}</p>
@@ -20,24 +21,65 @@
 <p>Your Average Hours Per Week: {{work_hours_per_week}}</p>
 <br>
 <hr>
+<!-------------Basic Overview-------------->
 <br>
-<p>If you live to age {{life_expectancy}} then you need to accomplish  about {{accomplish_per_year}} goals each year for the rest of your life.  In other words you need to accomplish a goal about every {{days_per_goal}} days.
+<h2>Basic Overview</h2>
+<br>
+<p>In order to finish all of items left on your list by the age of {{life_expectancy}} then you need to accomplish  about {{accomplish_per_year}} goals each year until you are {{life_expectancy}} years old.  In other words you need to accomplish a goal about every {{days_per_goal}} days.
 <br>
 <br>
- In order to accomplish everything that you want you will need to dedicate about ${{cost_per_year}} per year.  This is the equivalent of {{percent_of_yearly_wage}}% of your yearly income.  
+ In order to accomplish everything that you want you will need to dedicate about ${{cost_per_year}} per year.  This is the equivalent of {{percent_of_yearly_wage}}% of your current yearly income.  
  <br>
  <br>
  The cost of the average goal on your bucket list is {{cost_of_average_goal}}.
  <br>
  <br>
- If you do live for {{years_left}} more years then you need to spend about {{days_per_year}} full days every year doing things that will help you cross off Bucket List Goals. 
+ You have {{years_left}} more years to accomplish all of your goals.  Which means you need to dedicate about {{days_per_year}} full days every year doing things that will help you cross off Bucket List Goals. 
  <br>
  <br>
- Now along with those full days spend you also should allocate about {{hours_per_month}} hours every month to accomplishing these goals.  Or roughly {{hours_per_week}} hours every single week.
+ Now along with those full days you also should allocate about {{hours_per_month}} hours every month to accomplishing these goals.  Or roughly {{hours_per_week}} hours every single week.
+ <br>
+ <br>
+ But this is just general stuff.  Lets get more specific!
  </p>
  <br>
  <hr>
+  <!------------Most Difficult Goal-------------->
  <br>
+ <h2>Your Most Difficult Goal</h2>
+ <br>
+  <p>Not all goals take the same amount of effort.  For example according to the data you entered <i>{{most_difficult_goal}}</i> is your most difficult goal.  This goal is  {{most_difficult_percentage_harder}} times more difficult than your average goal! That could be a rough one.  But we believe in you.
+  <br>
+  <br>
+  Not only is this goal {{most_difficult_percentage_harder}} times harder than your average goal but it makes up {{most_difficult_goal_percentage}}% of all of the time, money, and resources you need to put into accomplishing everything on your entire Bucket List.
+  <br>
+  <br>
+  Now lets see how <i>{{most_difficult_goal}}</i> stacks up against everyone else's goals:
+  <br>
+  <ul>
+      <li>
+      Your goal is more expensive than {{most_difficult_more_cost_than}}% of all the in progress goals on Bucket List Calculator. {{most_difficult_percentage_of_average_cost}}({{average_cost_of_all_goals}})
+      </li>
+      <br>
+      <li>
+      <i>{{most_difficult_goal}}</i> will take more hours to accomplish than {{most_difficult_more_hours_than}}% of all the Bucket List  Goals on this website. 
+      
+      {% if most_difficult_percentage_of_average_hours > 1 %}
+      
+            You have projected that <i>{{most_difficult_goal}}</i> will take {{most_difficult_bucket_list_item.hours}}  hours to accomplish.  This is {{most_difficult_percentage_of_average_hours}} times more hours than the average users goal.  To put that into perspective a little bit better average goal on this site would take about {{average_goal_average_hours_per_year}} hours a week for an entire year to accomplish.  In your case it would take {{most_difficult_average_hours_per_year}} every week.
+            
+      {% endif %}
+      </li>
+      <br>
+      <li>
+      Your goal will take more full days than {{most_difficult_more_days_than}}% of all the in progress goals on this website.{{most_difficult_percentage_of_average_time}}({{average_time_of_all_goals}})
+      </li>
+  </ul>
+  </p>
+  <br> 
+  <hr>
+  <!---------List of Most and Least Difficult----->
+  <br>
  <h2>Top Five Most Difficult</h2>
  <ol>
  {% for item in top_five_most_difficult %}
@@ -55,6 +97,7 @@
  <br>
  <br>
  <hr>
+ <!------------Your Goal Distribution--------------->
  <br>
  <h2>Distribution of Your Goals</h2>
  <ul>
