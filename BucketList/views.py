@@ -310,6 +310,8 @@ def recommendation(request):
     
     most_difficult_percent_of_yearly = (most_difficult_bucket_list_item.cost/yearly_earnings)*100
     
+    
+    
     #Creates List Ordered From Easiest to Most Difficult
     list_with_difficulty = []
     
@@ -331,6 +333,10 @@ def recommendation(request):
     
     for item in list_with_difficulty[:5]:
         bottom_five_least_difficult.append(item)
+    
+    
+    #Finds Annual Salary Left After Bucket List Goals
+    annual_salary_left = yearly_earnings - ((yearly_earnings*percent_of_yearly_wage)/100)
     
     #Different Goal Types by Percentage
     goal_type_percentages = GoalTypePercentages(mylist)
@@ -399,7 +405,7 @@ def recommendation(request):
                      'bottom_five_least_difficult': bottom_five_least_difficult,
                      
                      #---------Analysing Your Yearly Income---------
-                     
+                     'annual_salary_left': annual_salary_left,
                      
                      #----------------Distribution of Goals-------------
                      'goal_type_percentages': goal_type_percentages, 
