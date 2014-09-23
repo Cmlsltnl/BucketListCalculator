@@ -51,28 +51,77 @@
   <p>Not all goals take the same amount of effort.  For example according to the data you entered <i>{{most_difficult_goal}}</i> is your most difficult goal.  This goal is  {{most_difficult_percentage_harder}} times more difficult than your average goal! That could be a rough one.  But we believe in you.
   <br>
   <br>
-  Not only is this goal {{most_difficult_percentage_harder}} times harder than your average goal but it makes up {{most_difficult_goal_percentage}}% of all of the time, money, and resources you need to put into accomplishing everything on your entire Bucket List.
+  Not only is this goal {{most_difficult_percentage_harder}} times harder than your average goal but it makes up {{most_difficult_goal_percentage}}% of all of the time, money, and resources you need to put into accomplishing everything on your entire Bucket List.  If you want to finish your goals in exact {{years_left}} years, by the age of {{life_expectancy}} more years you could take {{years_needed_for_most_difficult}} years to accomplish only this goal and still be on pace to accomplish everything!
   <br>
   <br>
   Now lets see how <i>{{most_difficult_goal}}</i> stacks up against everyone else's goals:
   <br>
   <ul>
       <li>
-      Your goal is more expensive than {{most_difficult_more_cost_than}}% of all the in progress goals on Bucket List Calculator. {{most_difficult_percentage_of_average_cost}}({{average_cost_of_all_goals}})
+      {% if most_difficult_percentage_of_average_cost > 10 %}
+        
+            Now that's an expensive goal!  At ${{most_difficult_bucket_list_item.cost}} <i>{{most_difficult_goal}}</i> is more expensive than {{most_difficult_more_cost_than}}% of the goals on Bucket List Calculator.  Its even  {{most_difficult_percentage_of_average_cost}} times more expensive than the average goal.
+            
+      {% elif most_difficult_percentage_of_average_cost > 3 %}
+            
+            This one sure going to cost you!  At {{most_difficult_percentage_of_average_cost}} times larger than the average users goal, this is even more costly than {{most_difficult_more_cost_than}}% of all goals on all of Bucket List Calculator.
+            
+      {% elif most_difficult_percentage_of_average_cost > 0.6 %}
+                        
+             This is going to be quite the costly goal.  It's even larger than {{most_difficult_more_cost_than}}% of all the goals on Bucket List Calculator.  
+                          
+      {% else %}
+      
+            Your goal is more expensive than {{most_difficult_more_cost_than}}% of all the in progress goals on Bucket List Calculator.    
+            
+      
+      {% endif %}
+
+      
       </li>
       <br>
       <li>
-      <i>{{most_difficult_goal}}</i> will take more hours to accomplish than {{most_difficult_more_hours_than}}% of all the Bucket List  Goals on this website. 
+      This will take more hours to accomplish than {{most_difficult_more_hours_than}}% of all the Bucket List  Goals on this website. 
       
-      {% if most_difficult_percentage_of_average_hours > 1 %}
+      {% if most_difficult_percentage_of_average_hours > 2 %}
       
-            You have projected that <i>{{most_difficult_goal}}</i> will take {{most_difficult_bucket_list_item.hours}}  hours to accomplish.  This is {{most_difficult_percentage_of_average_hours}} times more hours than the average users goal.  To put that into perspective a little bit better average goal on this site would take about {{average_goal_average_hours_per_year}} hours a week for an entire year to accomplish.  In your case it would take {{most_difficult_average_hours_per_year}} every week.
+            You have projected that <i>{{most_difficult_goal}}</i>  will take {{most_difficult_bucket_list_item.hours}}  hours to accomplish,  or {{most_difficult_percentage_of_average_hours}} times more hours than the average users goal.  
+            
+            {% if most_difficult_percentage_of_average_hours > 4 %}
+            
+                In order to put that into perspective a little bit better the average goal on this site would take about {{average_goal_average_hours_per_year}} hours a week for an entire year to accomplish.  In your case it would take {{most_difficult_average_hours_per_year}} every week.
+                
+                
+                {% if most_difficult_percentage_of_average_hours > 6 %}
+                
+                That's quite the goal!  Sounds like it will be a ton of work.  We bet it will be worth it though.
+                
+                {% endif %}
+                
+            {% endif %}
             
       {% endif %}
       </li>
       <br>
       <li>
-      Your goal will take more full days than {{most_difficult_more_days_than}}% of all the in progress goals on this website.{{most_difficult_percentage_of_average_time}}({{average_time_of_all_goals}})
+      Your goal will take more full days dedicated to it than {{most_difficult_more_days_than}}% of all the goals on this website.
+      
+      {% if most_difficult_percentage_of_average_time > 2 %}
+      
+            Most users goals take around {{average_time_of_all_goals}} full days.  Coming it at {{most_difficult_bucket_list_item.time}} full days 
+            
+                {% if most_difficult_percentage_of_average_time > 4 %}
+                    
+                        ({{most_difficult_percentage_of_average_time}} times more days than the average goal) this goal is going to require some serious time set aside to accomplish!  Good luck.
+                        
+                {% else %}
+
+                        this goal is going to take a while!
+                
+                {% endif %}
+      
+      {% endif %}
+      
       </li>
   </ul>
   </p>

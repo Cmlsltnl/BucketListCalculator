@@ -251,6 +251,7 @@ def recommendation(request):
     most_difficult_goal_difficulty = dict_with_difficulty[most_difficult_goal]
     most_difficult_goal_percentage = (most_difficult_goal_difficulty/total_difficulty)*100
     most_difficult_percentage_harder = (most_difficult_goal_difficulty/average_goal_difficulty)
+    years_needed_for_most_difficult = (most_difficult_goal_percentage*years_left)/100
     
     #Convert Most Difficult Goal Back Into BucketListItem
     most_difficult_bucket_list_item = BucketListItem.objects.filter(text = most_difficult_goal)
@@ -366,6 +367,7 @@ def recommendation(request):
                      
                      #--------------Most Difficult Goal--------------
                      'total_difficulty': total_difficulty,
+                     'years_needed_for_most_difficult': years_needed_for_most_difficult,
                      'most_difficult_goal': most_difficult_goal,
                      'most_difficult_bucket_list_item': most_difficult_bucket_list_item,
                      'most_difficult_goal_percentage': most_difficult_goal_percentage,
