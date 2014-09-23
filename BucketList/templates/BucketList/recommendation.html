@@ -51,7 +51,7 @@
   <p>Not all goals take the same amount of effort.  For example according to the data you entered <i>{{most_difficult_goal}}</i> is your most difficult goal.  This goal is  {{most_difficult_percentage_harder}} times more difficult than your average goal! That could be a rough one.  But we believe in you.
   <br>
   <br>
-  Not only is this goal {{most_difficult_percentage_harder}} times harder than your average goal but it makes up {{most_difficult_goal_percentage}}% of all of the time, money, and resources you need to put into accomplishing everything on your entire Bucket List.  If you want to finish your goals in exact {{years_left}} years, by the age of {{life_expectancy}} more years you could take {{years_needed_for_most_difficult}} years to accomplish only this goal and still be on pace to accomplish everything!
+  Not only is this goal {{most_difficult_percentage_harder}} times harder than your average goal but it makes up {{most_difficult_goal_percentage}}% of all of the time, money, and resources you need to put into accomplishing everything on your entire Bucket List.  If you want to finish your goals in exact {{years_left}} years, by the age of {{life_expectancy}} more years you could take {{years_needed_for_most_difficult}} years to accomplish only this goal and still be on pace to accomplish everything else!
   <br>
   <br>
   Now lets see how <i>{{most_difficult_goal}}</i> stacks up against everyone else's goals:
@@ -83,16 +83,16 @@
       <li>
       This will take more hours to accomplish than {{most_difficult_more_hours_than}}% of all the Bucket List  Goals on this website. 
       
-      {% if most_difficult_percentage_of_average_hours > 2 %}
+      {% if most_difficult_percentage_of_average_hours > 1 %}
       
             You have projected that <i>{{most_difficult_goal}}</i>  will take {{most_difficult_bucket_list_item.hours}}  hours to accomplish,  or {{most_difficult_percentage_of_average_hours}} times more hours than the average users goal.  
             
-            {% if most_difficult_percentage_of_average_hours > 4 %}
+            {% if most_difficult_percentage_of_average_hours > 3 %}
             
                 In order to put that into perspective a little bit better the average goal on this site would take about {{average_goal_average_hours_per_year}} hours a week for an entire year to accomplish.  In your case it would take {{most_difficult_average_hours_per_year}} every week.
                 
                 
-                {% if most_difficult_percentage_of_average_hours > 6 %}
+                {% if most_difficult_percentage_of_average_hours > 5 %}
                 
                 That's quite the goal!  Sounds like it will be a ton of work.  We bet it will be worth it though.
                 
@@ -144,6 +144,51 @@
  {% endfor %}
  </ol>
  <br>
+ <br>
+ <hr>
+ <!---------Annual Income and Wage Increase------>
+ <br>
+ <h2>Analysing Your Yearly Income</h2>
+ <br>
+ <p>Unfortunately for most of us when it comes to our Bucket List goals money is the bottleneck.  We want to do it all!  But doing it all can cost quite a bit.  But that is where Bucket List Calculator comes in.  We can give you a better outline to accomplish using all of the information you have so graciously provided:
+ <br>
+ <br>
+ <ul>
+    <li>
+        According to your projections your goals will cost you an average of ${{cost_per_year}} per year.  This is the equivalent of {{percent_of_yearly_wage}}% of your current yearly income.
+        
+        {% if 10 > percent_of_yearly_wage %}
+        
+            This is excellent!  At this percent of your yearly income everything on your Bucket List should be a breeze to pay for.  You could even go check out some of our other awesome users goals and find some things to add. 
+            
+        {% elif 25 > percent_of_yearly_wage %}
+        
+            This range of income is totally doable.  You may have to do some financial planning but as long as you are focused you should have no issues whatsoever.  It will work out just great for you, don't you worry!
+            
+        {% elif 50 > percent_of_yearly_wage %}
+        
+            This is a fairly large percentage of your yearly income.  In order to cross off everything on your Bucket List you will need some dedication to financial planning and be able to live well within your means to help save money for your goals.  With that said, congrats!  You have some mighty big dreams and that's pretty neat.
+            <br>
+            <br>
+            This might be a little bit intimidating for you after all ${{cost_per_year}} per year is a lot of money.  But it is important for you to see these numbers so you can make a better plan to accomplish everything.  But we urge you not to remove any items from your list.  Instead of removing items first look for other ways to improve your financial situation.  If you increase the age you hope to be done with all the items on your bucket list of that {{percent_of_yearly_wage}}% of your annual wage will drop significantly.  You can do this by editing your user profile.  Along with that if your annual wage increases, even by a small amount, it can drastically change what percentage of your income you need to dedicate to accomplishing your goals. 
+            
+        {% elif 75 > percent_of_yearly_wage %}
+        
+            Now those are some spendy goals!  That's a huge chunk of your income.  You are going to have to be extremely dedicated if you want to make your hopes and dreams happen.  You are using Bucket List Calculator after all so obviously you are a pretty intelligent person so we have faith that you will be able to accomplish everything.  
+            <br>
+            <br>
+            This might be a little bit intimidating for you after all ${{cost_per_year}} per year is a lot of money.  But it is important for you to see these numbers so you can make a better plan to accomplish everything.  But we urge you not to remove any items from your list.  Instead of removing items first look for other ways to improve your financial situation.  If you increase the age you hope to be done with all the items on your bucket list of that {{percent_of_yearly_wage}}% of your annual wage will drop significantly.  You can do this by editing your user profile.  Along with that if your annual wage increases, even by a small amount, it can drastically change what percentage of your income you need to dedicate to accomplishing your goals.
+            
+        {% elif 100 > percent_of_yearly_wage %}
+        
+            Someone sure is determined to a a lot with their life, and that's what we at Bucket List Calculator are all about!  This is getting into the range that is incredibly difficult to continue for long periods of time.  It is going to take some inspired financial planning to make all of these goals a reality.  With that said you were smart enough to use Bucket List Calculator so we wouldn't be surprised if got everything on this list done with a few million to spare! 
+            <br>
+            <br>
+            This might be a little bit intimidating for you after all ${{cost_per_year}} per year is a lot of money.  But it is important for you to see these numbers so you can make a better plan to accomplish everything.  But we urge you not to remove any items from your list.  Instead of removing items first look for other ways to improve your financial situation.  If you increase the age you hope to be done with all the items on your bucket list of that {{percent_of_yearly_wage}}% of your annual wage will drop significantly.  You can do this by editing your user profile.  Along with that if your annual wage increases, even by a small amount, it can drastically change what percentage of your income you need to dedicate to accomplishing your goals.
+            
+        {% endif %}
+    </li>
+  </ul>
  <br>
  <hr>
  <!------------Your Goal Distribution--------------->

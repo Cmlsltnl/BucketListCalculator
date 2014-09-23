@@ -398,7 +398,10 @@ def recommendation(request):
                      'top_five_most_difficult': top_five_most_difficult,                    
                      'bottom_five_least_difficult': bottom_five_least_difficult,
                      
-                     #--------------Distribution of Goals----------
+                     #---------Analysing Your Yearly Income---------
+                     
+                     
+                     #----------------Distribution of Goals-------------
                      'goal_type_percentages': goal_type_percentages, 
                      
                     }
