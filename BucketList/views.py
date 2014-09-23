@@ -308,7 +308,7 @@ def recommendation(request):
     #Percentage of time compared to the average goal
     most_difficult_percentage_of_average_time = float(most_difficult_bucket_list_item.time)/float(average_time_of_all_goals)
     
-    
+    most_difficult_percent_of_yearly = (most_difficult_bucket_list_item.cost/yearly_earnings)*100
     
     #Creates List Ordered From Easiest to Most Difficult
     list_with_difficulty = []
@@ -389,6 +389,8 @@ def recommendation(request):
                      average_goal_average_hours_per_year,
                      'most_difficult_average_hours_per_year':
                      most_difficult_average_hours_per_year,
+                     'most_difficult_percent_of_yearly':
+                     most_difficult_percent_of_yearly,
                      
                      
                      #---------------Top 5 Top & Bottom-------------

@@ -60,19 +60,19 @@
       <li>
       {% if most_difficult_percentage_of_average_cost > 10 %}
         
-            Now that's an expensive goal!  At ${{most_difficult_bucket_list_item.cost}} <i>{{most_difficult_goal}}</i> is more expensive than {{most_difficult_more_cost_than}}% of the goals on Bucket List Calculator.  Its even  {{most_difficult_percentage_of_average_cost}} times more expensive than the average goal.
+            Now that's an expensive goal!  It's {{most_difficult_percent_of_yearly}}% of your annual income.  At ${{most_difficult_bucket_list_item.cost}} <i>{{most_difficult_goal}}</i> is more expensive than {{most_difficult_more_cost_than}}% of the goals on Bucket List Calculator.  Its even  {{most_difficult_percentage_of_average_cost}} times more expensive than the average goal 
             
       {% elif most_difficult_percentage_of_average_cost > 3 %}
             
-            This one sure going to cost you!  At {{most_difficult_percentage_of_average_cost}} times larger than the average users goal, this is even more costly than {{most_difficult_more_cost_than}}% of all goals on all of Bucket List Calculator.
+            This one sure going to cost you!  At {{most_difficult_percentage_of_average_cost}} times larger than the average users goal, and {{most_difficult_percent_of_yearly}}% of your annual income this is even more costly than {{most_difficult_more_cost_than}}% of all goals on all of Bucket List Calculator.
             
       {% elif most_difficult_percentage_of_average_cost > 0.6 %}
                         
-             This is going to be quite the costly goal.  It's even larger than {{most_difficult_more_cost_than}}% of all the goals on Bucket List Calculator.  
+             This is going to be quite the costly goal.  It's larger than {{most_difficult_more_cost_than}}% of all the goals on Bucket List Calculator.  It also equates to {{most_difficult_percentage_of_average_cost}}% of your annual income. 
                           
       {% else %}
       
-            Your goal is more expensive than {{most_difficult_more_cost_than}}% of all the in progress goals on Bucket List Calculator.    
+            Your goal is more expensive than {{most_difficult_more_cost_than}}% of all the in progress goals on Bucket List Calculator.  It costs {{most_difficult_percentage_of_average_cost}}% of your annual income.    
             
       
       {% endif %}
