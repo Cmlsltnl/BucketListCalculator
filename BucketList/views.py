@@ -201,7 +201,16 @@ def recommendation(request):
         return totals    
     
         
-        
+    def total_amount_after_compounded(rate, yearly_earnings, years_left):
+        #Enter the rate (as a decimal), yearly earnings, and yearly_left and it will output the total salary earned over that users lifetime and the salary of their final year
+        total_amount_after_compounded = yearly_earnings
+        annual_salary = yearly_earnings
+        for f in range(0, int(years_left)):
+            f = annual_salary*(1 + rate)
+            annual_salary = f
+            total_amount_after_compounded += f       
+      
+        return total_amount_after_compounded, annual_salary       
 
             
         
@@ -265,6 +274,7 @@ def recommendation(request):
     most_difficult_more_cost_than = 0
     most_difficult_more_hours_than = 0
     most_difficult_more_days_than = 0
+    
     for goals in all_goals:
         total_cost_of_all_goals += goals.cost
         total_hours_of_all_goals += goals.hours
@@ -338,9 +348,55 @@ def recommendation(request):
     #Finds Annual Salary Left After Bucket List Goals
     annual_salary_left = yearly_earnings - ((yearly_earnings*percent_of_yearly_wage)/100)
     
-    #Different Goal Types by Percentage
-    goal_type_percentages = GoalTypePercentages(mylist)
+
+
     
+
+    
+    
+    #Salary and Total Earnings if Annual Salary Increases by 1% every year
+    salary_after_compounded_1 = total_amount_after_compounded(0.01, yearly_earnings, years_left)[1]
+    
+    total_earnings_after_compounded_1 = total_amount_after_compounded(0.01, yearly_earnings, years_left)[0]
+    
+    annual_percent_after_compounded_1 = (total_cost/total_earnings_after_compounded_1)*100
+    
+    
+    #Salary and Total Earnings if Annual Salary Increases by 2% every year
+    salary_after_compounded_2 = total_amount_after_compounded(0.02, yearly_earnings, years_left)[1]
+    
+    total_earnings_after_compounded_2 = total_amount_after_compounded(0.02, yearly_earnings, years_left)[0]
+    
+    annual_percent_after_compounded_2 = (total_cost/total_earnings_after_compounded_2)*100
+    
+    
+    #Salary and Total Earnings if Annual Salary Increases by 3% every year
+    salary_after_compounded_3 = total_amount_after_compounded(0.03, yearly_earnings, years_left)[1]
+    
+    total_earnings_after_compounded_3 = total_amount_after_compounded(0.03, yearly_earnings, years_left)[0]
+    
+    annual_percent_after_compounded_3 = (total_cost/total_earnings_after_compounded_3)*100
+    
+    
+    #Salary and Total Earnings if Annual Salary Increases by 4% every year
+    salary_after_compounded_4 = total_amount_after_compounded(0.04, yearly_earnings, years_left)[1]
+    
+    total_earnings_after_compounded_4 = total_amount_after_compounded(0.04, yearly_earnings, years_left)[0]
+    
+    annual_percent_after_compounded_4 = (total_cost/total_earnings_after_compounded_4)*100
+    
+    
+    #Salary and Total Earnings if Annual Salary Increases by 5% every year
+    salary_after_compounded_5 = total_amount_after_compounded(0.05, yearly_earnings, years_left)[1]
+    
+    total_earnings_after_compounded_5 = total_amount_after_compounded(0.05, yearly_earnings, years_left)[0]
+    
+    annual_percent_after_compounded_5 = (total_cost/total_earnings_after_compounded_5)*100
+        
+        
+        
+    #Different Goal Types by Percentage    
+    goal_type_percentages = GoalTypePercentages(mylist)
     
 
 
@@ -406,7 +462,17 @@ def recommendation(request):
                      
                      #---------Analysing Your Yearly Income---------
                      'annual_salary_left': annual_salary_left,
-                     
+                     'salary_after_compounded_1': salary_after_compounded_1,
+                     'annual_percent_after_compounded_1':
+                     annual_percent_after_compounded_1,
+                     'salary_after_compounded_2':  salary_after_compounded_2,
+                     'annual_percent_after_compounded_2': annual_percent_after_compounded_2,
+                     'salary_after_compounded_3': salary_after_compounded_3,
+                     'annual_percent_after_compounded_3': annual_percent_after_compounded_3,
+                     'salary_after_compounded_4': salary_after_compounded_4,
+                     'annual_percent_after_compounded_4': annual_percent_after_compounded_4,
+                     'salary_after_compounded_5': salary_after_compounded_5,
+                     'annual_percent_after_compounded_5': annual_percent_after_compounded_5,
                      #----------------Distribution of Goals-------------
                      'goal_type_percentages': goal_type_percentages, 
                      
