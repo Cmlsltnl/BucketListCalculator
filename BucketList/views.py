@@ -198,7 +198,16 @@ def recommendation(request):
         totals['Education/Self Improvement'] = float(education)/float(sum_of_all)*100
         totals['Volunteering'] = float(volunteering)/float(sum_of_all)*100
         totals['Other'] = float(other)/float(sum_of_all)*100
-        return totals    
+        highest = 0
+        highest_total = 0
+        for f in totals:
+            print totals[f]
+            if totals[f] > highest_total:
+                highest = f
+                highest_total = totals[f] 
+                
+        highest = (highest, highest_total)   
+        return totals, highest    
     
         
     def total_amount_after_compounded(rate, yearly_earnings, years_left):
@@ -395,9 +404,13 @@ def recommendation(request):
         
         
         
-    #Different Goal Types by Percentage    
+    #Different Goal Types by Percentage and Most Common Goal Type    
     goal_type_percentages = GoalTypePercentages(mylist)
+    most_common_goal = goal_type_percentages[1]
+    goal_type_percentages = goal_type_percentages[0]
     
+    most_common_goal_percent = most_common_goal[1]
+    most_common_goal = most_common_goal[0]
 
 
     #--------------------Passed To Template-----------------------              
@@ -474,7 +487,11 @@ def recommendation(request):
                      'salary_after_compounded_5': salary_after_compounded_5,
                      'annual_percent_after_compounded_5': annual_percent_after_compounded_5,
                      #----------------Distribution of Goals-------------
-                     'goal_type_percentages': goal_type_percentages, 
+                     'goal_type_percentages': goal_type_percentages,
+                     'most_common_goal': most_common_goal,
+                     'most_common_goal_percent': most_common_goal_percent,
+                        
+                        
                      
                     }
                     
