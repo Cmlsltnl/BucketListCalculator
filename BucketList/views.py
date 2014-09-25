@@ -201,7 +201,6 @@ def recommendation(request):
         highest = 0
         highest_total = 0
         for f in totals:
-            print totals[f]
             if totals[f] > highest_total:
                 highest = f
                 highest_total = totals[f] 
@@ -221,7 +220,215 @@ def recommendation(request):
       
         return total_amount_after_compounded, annual_salary       
 
+        
+        
+    def MoreGoalTypePercentages(list, type):
+        #Figures out what percentage of cost, hours, or time each goal makes up out of the total cost, hours, or time for users list.  Enter 1 for cost, 2 for hours, or 3 for time.         
+        
             
+        travel = 0
+        purchase = 0
+        career = 0
+        extreme = 0
+        family = 0
+        relationship = 0
+        health = 0
+        skill = 0
+        hobby = 0
+        building = 0
+        education = 0
+        volunteering = 0
+        other = 0
+        sum_of_all = 0
+        
+        for goal in list:
+            if type == 1:
+                goal_value = goal.cost
+            elif type == 2:
+                goal_value = goal.hours
+            elif type == 3:
+                goal_value = goal.time
+            else:
+                print "You fucked up... Woops!"
+                
+            sum_of_all += goal_value
+            
+            if goal.goal_type == 'Travel':
+                if type == 1:
+                    goal_value = goal.cost
+                elif type == 2:
+                    goal_value = goal.hours
+                elif type == 3:
+                    goal_value = goal.time
+                else:
+                    print "You fucked up... Woops!"
+                    
+                travel += goal_value
+                
+            elif goal.goal_type == 'Purchase':
+                if type == 1:
+                    goal_value = goal.cost
+                elif type == 2:
+                    goal_value = goal.hours
+                elif type == 3:
+                    goal_value = goal.time
+                else:
+                    print "You fucked up... Woops!"
+                    
+                purchase += goal_value
+                
+            elif goal.goal_type == 'Career':
+                if type == 1:
+                    goal_value = goal.cost
+                elif type == 2:
+                    goal_value = goal.hours
+                elif type == 3:
+                    goal_value = goal.time
+                else:
+                    print "You fucked up... Woops!"
+                    
+                career += goal_value
+                
+            elif goal.goal_type == 'Extreme Sport':
+                if type == 1:
+                    goal_value = goal.cost
+                elif type == 2:
+                    goal_value = goal.hours
+                elif type == 3:
+                    goal_value = goal.time
+                else:
+                    print "You fucked up... Woops!"
+                    
+                extreme += goal_value
+                
+            elif goal.goal_type == 'Family/Social':
+                if type == 1:
+                    goal_value = goal.cost
+                elif type == 2:
+                    goal_value = goal.hours
+                elif type == 3:
+                    goal_value = goal.time
+                else:
+                    print "You fucked up... Woops!"
+                    
+                family += goal_value
+                
+            elif goal.goal_type == 'Relationship':
+                if type == 1:
+                    goal_value = goal.cost
+                elif type == 2:
+                    goal_value = goal.hours
+                elif type == 3:
+                    goal_value = goal.time
+                else:
+                    print "You fucked up... Woops!"
+                    
+                relationship += goal_value
+                
+            elif goal.goal_type == 'Exercise/Health':
+                if type == 1:
+                    goal_value = goal.cost
+                elif type == 2:
+                    goal_value = goal.hours
+                elif type == 3:
+                    goal_value = goal.time
+                else:
+                    print "You fucked up... Woops!"
+                    
+                health += goal_value
+                
+            elif goal.goal_type == 'Improving a Skill':
+                if type == 1:
+                    goal_value = goal.cost
+                elif type == 2:
+                    goal_value = goal.hours
+                elif type == 3:
+                    goal_value = goal.time
+                else:
+                    print "You fucked up... Woops!"
+                    
+                skill += goal_value
+                
+            elif goal.goal_type == 'Hobby':
+                if type == 1:
+                    goal_value = goal.cost
+                elif type == 2:
+                    goal_value = goal.hours
+                elif type == 3:
+                    goal_value = goal.time
+                else:
+                    print "You fucked up... Woops!"
+                    
+                hobby += goal_value
+                
+            elif goal.goal_type == 'Building/Creating Somthing':
+                if type == 1:
+                    goal_value = goal.cost
+                elif type == 2:
+                    goal_value = goal.hours
+                elif type == 3:
+                    goal_value = goal.time
+                else:
+                    print "You fucked up... Woops!"
+                    
+                building += goal_value
+                
+            elif goal.goal_type == 'Education/Self Improvement':
+                if type == 1:
+                    goal_value = goal.cost
+                elif type == 2:
+                    goal_value = goal.hours
+                elif type == 3:
+                    goal_value = goal.time
+                else:
+                    print "You fucked up... Woops!"
+                    
+                education += goal_value
+                
+            elif goal.goal_type == 'Volunteering':
+                if type == 1:
+                    goal_value = goal.cost
+                elif type == 2:
+                    goal_value = goal.hours
+                elif type == 3:
+                    goal_value = goal.time
+                else:
+                    print "You fucked up... Woops!"
+                    
+                volunteering += goal_value
+                
+            elif goal.goal_type == 'Other':
+                if type == 1:
+                    goal_value = goal.cost
+                elif type == 2:
+                    goal_value = goal.hours
+                elif type == 3:
+                    goal_value = goal.time
+                else:
+                    print "You fucked up... Woops!"
+                    
+                other +=goal_value
+                
+            else:
+                print "Houston we've got a problem"
+                
+                
+        totals ={}
+        totals['Travel'] = float(travel)/float(sum_of_all)*100
+        totals['Purchases'] = float(purchase)/float(sum_of_all)*100
+        totals['Career'] = float(career)/float(sum_of_all)*100
+        totals['Extreme Sports'] = float(extreme)/float(sum_of_all)*100
+        totals['Family/Social'] = float(family)/float(sum_of_all)*100
+        totals['Relationships'] = float(relationship)/float(sum_of_all)*100
+        totals['Exercise/Health'] = float(health)/float(sum_of_all)*100
+        totals['Improving Skills'] = float(skill)/float(sum_of_all)*100
+        totals['Hobbys'] = float(hobby)/float(sum_of_all)*100
+        totals['Building/Creating Somthing'] = float(building)/float(sum_of_all)*100
+        totals['Education/Self Improvement'] = float(education)/float(sum_of_all)*100
+        totals['Volunteering'] = float(volunteering)/float(sum_of_all)*100
+        totals['Other'] = float(other)/float(sum_of_all)*100
+  
+        return totals
         
     #-----------------Passed Through to Template (simple)---------------
     
@@ -404,14 +611,21 @@ def recommendation(request):
         
         
         
-    #Different Goal Types by Percentage and Most Common Goal Type    
+    #Distribution of  Goal Types by Percentage    
     goal_type_percentages = GoalTypePercentages(mylist)
+    print MoreGoalTypePercentages(mylist, 1)
+    print MoreGoalTypePercentages(mylist, 2)
+    print MoreGoalTypePercentages(mylist, 3)
+    
+    
+    #Most Common Goal Type
     most_common_goal = goal_type_percentages[1]
     goal_type_percentages = goal_type_percentages[0]
     
     most_common_goal_percent = most_common_goal[1]
     most_common_goal = most_common_goal[0]
 
+    
 
     #--------------------Passed To Template-----------------------              
     
@@ -488,6 +702,8 @@ def recommendation(request):
                      'annual_percent_after_compounded_5': annual_percent_after_compounded_5,
                      #----------------Distribution of Goals-------------
                      'goal_type_percentages': goal_type_percentages,
+                     
+                     #----------------Most Popular Category----------
                      'most_common_goal': most_common_goal,
                      'most_common_goal_percent': most_common_goal_percent,
                         
