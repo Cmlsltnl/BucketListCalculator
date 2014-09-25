@@ -613,9 +613,9 @@ def recommendation(request):
         
     #Distribution of  Goal Types by Percentage    
     goal_type_percentages = GoalTypePercentages(mylist)
-    print MoreGoalTypePercentages(mylist, 1)
-    print MoreGoalTypePercentages(mylist, 2)
-    print MoreGoalTypePercentages(mylist, 3)
+    goal_type_percentages_cost = MoreGoalTypePercentages(mylist, 1)
+    goal_type_percentages_hours = MoreGoalTypePercentages(mylist, 2)
+    goal_type_percentages_time =MoreGoalTypePercentages(mylist, 3)
     
     
     #Most Common Goal Type
@@ -702,6 +702,9 @@ def recommendation(request):
                      'annual_percent_after_compounded_5': annual_percent_after_compounded_5,
                      #----------------Distribution of Goals-------------
                      'goal_type_percentages': goal_type_percentages,
+                     'goal_type_percentages_cost': goal_type_percentages_cost,
+                     'goal_type_percentages_hours': goal_type_percentages_hours,
+                     'goal_type_percentages_time': goal_type_percentages_time,
                      
                      #----------------Most Popular Category----------
                      'most_common_goal': most_common_goal,
