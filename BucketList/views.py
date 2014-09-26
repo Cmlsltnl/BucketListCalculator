@@ -611,7 +611,7 @@ def recommendation(request):
         
         
         
-    #Distribution of  Goal Types by Percentage    
+    #Distribution of Users Goal Types by Percentage    
     goal_type_percentages = GoalTypePercentages(mylist)
     goal_type_percentages_cost = MoreGoalTypePercentages(mylist, 1)
     goal_type_percentages_hours = MoreGoalTypePercentages(mylist, 2)
@@ -624,6 +624,14 @@ def recommendation(request):
     
     most_common_goal_percent = most_common_goal[1]
     most_common_goal = most_common_goal[0]
+    
+    
+    #Distribution of All Users Goal Types by Percentage (cost, hours, and time)
+    all_goal_type_percentages_cost = MoreGoalTypePercentages(all_goals, 1)
+    
+    all_goal_type_percentages_hours = MoreGoalTypePercentages(all_goals, 2)
+    
+    all_goal_type_percentages_time = MoreGoalTypePercentages(all_goals, 3)
 
     
 
@@ -705,10 +713,14 @@ def recommendation(request):
                      'goal_type_percentages_cost': goal_type_percentages_cost,
                      'goal_type_percentages_hours': goal_type_percentages_hours,
                      'goal_type_percentages_time': goal_type_percentages_time,
+                     'all_goal_type_percentages_cost': all_goal_type_percentages_cost,
+                     'all_goal_type_percentages_hours': all_goal_type_percentages_hours,
+                     'all_goal_type_percentages_time': all_goal_type_percentages_time,
                      
                      #----------------Most Popular Category----------
                      'most_common_goal': most_common_goal,
                      'most_common_goal_percent': most_common_goal_percent,
+                     
                         
                         
                      

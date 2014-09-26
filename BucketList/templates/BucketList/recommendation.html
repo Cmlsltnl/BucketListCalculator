@@ -238,6 +238,7 @@
  <h2>Distribution of Your Goals</h2>
  <br>
  <h4>By Percentage of Whole:</h4>
+ <br>
  <ul>
  {% for key, value in goal_type_percentages.items %}
     {% if value > 0 %}
@@ -247,6 +248,8 @@
  </ul>
  <br>
  <h4>By Percentage of Total Cost:</h4>
+ <br>
+  <h5>Your Goals Average Cost by Goal Type</h5>
   <ul>
  {% for key, value in goal_type_percentages_cost.items %}
     {% if value > 0 %}
@@ -255,7 +258,18 @@
  {% endfor %}
  </ul>
  <br>
+  <h5>Website Average</h5>
+  <ul>
+ {% for key, value in all_goal_type_percentages_cost.items %}
+    {% if value > 0 %}
+    <li>{{value}}% - {{key}}</li>
+    {% endif %}
+ {% endfor %}
+ </ul>
+ <br>
   <h4>By Percentage of Total Hours:</h4>
+  <br>
+  <h5>Your Average Hours per Goal Type</h5>
   <ul>
  {% for key, value in goal_type_percentages_hours.items %}
     {% if value > 0 %}
@@ -264,9 +278,29 @@
  {% endfor %}
  </ul>
  <br>
+  <h5>Website Average</h5>
+  <ul>
+ {% for key, value in all_goal_type_percentages_hours.items %}
+    {% if value > 0 %}
+    <li>{{value}}% - {{key}}</li>
+    {% endif %}
+ {% endfor %}
+ </ul>
+ <br>
   <h4>By Percentage of Total Time:</h4>
+  <br>
+  <h5>Your Average Time per Goal Type</h5>
   <ul>
  {% for key, value in goal_type_percentages_time.items %}
+    {% if value > 0 %}
+    <li>{{value}}% - {{key}}</li>
+    {% endif %}
+ {% endfor %}
+ </ul>
+ <br>
+   <h5>Website Average</h5>
+  <ul>
+ {% for key, value in all_goal_type_percentages_time.items %}
     {% if value > 0 %}
     <li>{{value}}% - {{key}}</li>
     {% endif %}
