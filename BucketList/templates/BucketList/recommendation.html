@@ -239,8 +239,18 @@
  <br>
  <h4>By Percentage of Whole:</h4>
  <br>
+ <h5>Your Goals</h5>
  <ul>
  {% for key, value in goal_type_percentages.items %}
+    {% if value > 0 %}
+    <li>{{value}}% - {{key}}</li>
+    {% endif %}
+ {% endfor %}
+ </ul>
+ <br>
+  <h5>Average Users Goals</h5>
+ <ul>
+ {% for key, value in all_goal_type_percentages.items %}
     {% if value > 0 %}
     <li>{{value}}% - {{key}}</li>
     {% endif %}

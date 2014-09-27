@@ -627,6 +627,8 @@ def recommendation(request):
     
     
     #Distribution of All Users Goal Types by Percentage (cost, hours, and time)
+    all_goal_type_percentages = GoalTypePercentages(all_goals)
+    all_goal_type_percentages = all_goal_type_percentages[0]
     all_goal_type_percentages_cost = MoreGoalTypePercentages(all_goals, 1)
     
     all_goal_type_percentages_hours = MoreGoalTypePercentages(all_goals, 2)
@@ -713,6 +715,7 @@ def recommendation(request):
                      'goal_type_percentages_cost': goal_type_percentages_cost,
                      'goal_type_percentages_hours': goal_type_percentages_hours,
                      'goal_type_percentages_time': goal_type_percentages_time,
+                     'all_goal_type_percentages': all_goal_type_percentages,
                      'all_goal_type_percentages_cost': all_goal_type_percentages_cost,
                      'all_goal_type_percentages_hours': all_goal_type_percentages_hours,
                      'all_goal_type_percentages_time': all_goal_type_percentages_time,
