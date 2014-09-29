@@ -1,5 +1,5 @@
 from django.contrib import admin
-from BucketList.models import BucketListItem, UserProfile, Comment
+from BucketList.models import BucketListItem, UserProfile, Comment, GoalDistributionChart
 
 
 class BucketListItemAdmin(admin.ModelAdmin):
@@ -33,3 +33,8 @@ class CommentAdmin(admin.ModelAdmin):
     
 admin.site.register(Comment, CommentAdmin)
 
+
+class GoalDistributionChartAdmin(admin.ModelAdmin):
+    list_display = ['goal_type', 'percentage']
+    
+admin.site.register(GoalDistributionChart, GoalDistributionChartAdmin)

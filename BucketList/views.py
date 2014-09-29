@@ -467,7 +467,7 @@ def recommendation(request):
   
         return totals
       
-                
+
          
         
     #-----------------Passed Through to Template (simple)---------------
@@ -677,16 +677,21 @@ def recommendation(request):
     
     all_goal_type_percentages_time = MoreGoalTypePercentages(all_goals, 3)
     
-    a = GoalDistributionChart()
-    a.goal_type = "Career"
-    a.percentage = 50
     
-    b = GoalDistributionChart()
-    b.goal_type = "Travel"
-    b.percentage = 50
+    #Turning Data into Correct Format for Charts for Users Goal Distribution
+
+    for goal in goal_type_percentages:
+        a = GoalDistributionChart()
+        a.goal_type = goal
+        a.percentage = goal_type_percentages[goal]
+        a.save()
+      
     
     
     
+    
+    
+    #Passing Data to Chartit for Users Goal Distribution
     ds = DataPool(
         series = 
             [{'options': {
@@ -696,7 +701,7 @@ def recommendation(request):
                     'percentage']}
             ])
             
-    cht = Chart(
+    UsersGoalDistributionChart = Chart(
                 datasource = ds,
                 series_options = 
                     [{'options':{
@@ -797,7 +802,7 @@ def recommendation(request):
                      'all_goal_type_percentages_cost': all_goal_type_percentages_cost,
                      'all_goal_type_percentages_hours': all_goal_type_percentages_hours,
                      'all_goal_type_percentages_time': all_goal_type_percentages_time,
-                     'cht': cht,
+                     'UsersGoalDistributionChart': UsersGoalDistributionChart,
                      
                      #----------------Most Popular Category----------
                      'most_common_goal': most_common_goal,
@@ -805,6 +810,10 @@ def recommendation(request):
                      
                     }
                     
+    old_objects = GoalDistributionChart.objects.all()
+    for object in old_objects:
+        object.delete()
+                        
     return render(request, 'BucketList/recommendation.html', context)
     
     
