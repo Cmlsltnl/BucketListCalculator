@@ -41,7 +41,9 @@ def MostSimilarGoals(item, dict):
                 break
     return list_of_goals, highest_accuracy
     
-        
+   
+            
+    
 #----------------End Functions Used Throughout Views-------------
 
 
@@ -485,7 +487,7 @@ def recommendation(request):
     hourly_wage = float(user.hourly_wage)
     work_hours_per_week = (yearly_earnings/hourly_wage)/52
     
-    
+
     #Calculated Information Passed Through to Template
     accomplish_per_year = total_number_of_items/years_left
     days_per_goal = days_left/total_number_of_items
@@ -872,7 +874,7 @@ def create(request):
             my_model.hours = new_hours
             my_model.cost = new_cost
             my_model.save()
-            return HttpResponseRedirect('/bucketlist/mylist/')
+            return HttpResponseRedirect('/bucketlist/mylist/compare/%s' % my_model.id)
     else:
         form = BucketListItemForm()
             
@@ -955,6 +957,27 @@ def edit_profile(request):
 
     return render(request, 'BucketList/edit_user_profile.html', context)
     
-
+    
+@login_required
+def compare_my_list_item(request, id):
+    #View received after new item creation, shows user other similar goals to their own.  Gives user option to redirect to edit form. 
+    user = UserProfile.objects.get(pk = request.user.id)
+    all_goals_not_users = BucketListItem.objects.all().exclude(pub_by = user)
+    item = BucketListItem.objects.get(pk = id)
+    
+    exact_same = ExactSameGoal(item.text, all_goals_not_users)
+    most_similar = MostSimilarGoals(item.text, all_goals_not_users)
+    most_similar_accuracy = most_similar[1]
+    most_similar = most_similar[0]
+    exact_same_list = exact_same[0]
+    exact_same_num = exact_same[1]
+    
+    context = {'item': item,
+                      'most_similar': most_similar,
+                      'most_similar_accuracy': most_similar_accuracy,
+                      'exact_same_list': exact_same_list,
+                      'exact_same_num': exact_same_num,
+    }
+    return render(request, 'BucketList/my_list_compare.html', context)
     
         
