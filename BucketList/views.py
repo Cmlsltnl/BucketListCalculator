@@ -9,7 +9,40 @@ from django.db.models import Sum
 from django.contrib.auth.forms import UserCreationForm
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
+from fuzzywuzzy import fuzz, process
 
+
+#-------------Functions Used Throughout Views--------------
+
+def ExactSameGoal(item, dict):
+        #Takes a specific BucketListItem and a Dictionary of BucketListItems and finds any exact matches on the list using FuzzyWuzzy
+        list_of_goals = []
+        number_of_exact = 0
+        for goal in dict:
+            similarity = fuzz.token_set_ratio(item, goal.text)
+            if similarity == 100:
+                number_of_exact += 1
+                list_of_goals.append(goal)
+        return list_of_goals, number_of_exact 
+
+        
+def MostSimilarGoals(item, dict):
+    #Takes a specific BucketListItem and a Dictionary of BucketListItems and returns the three most similar items on the list using FuzzyWuzzy it also outputs the highest accuracy % out of of the three goals
+    list_of_goals = [('item', 0), ('item', 0), ('item', 0)]
+    highest_accuracy = 0
+    for goal in dict:
+        similarity = fuzz.token_set_ratio(item, goal.text)
+        for list_item in list_of_goals:
+            if similarity > list_item[1]:
+                if similarity > highest_accuracy:
+                    highest_accuracy = similarity
+                list_of_goals.remove(list_item)
+                list_of_goals.append((goal, similarity))
+                break
+    return list_of_goals, highest_accuracy
+    
+        
+#----------------End Functions Used Throughout Views-------------
 
 
 def index(request):
@@ -17,6 +50,7 @@ def index(request):
     all_list_items = BucketListItem.objects.all().order_by('-pub_date')
     
     context = {'all_list_items': all_list_items}
+    
     
     return render(request, 'BucketList/index.html', context)
     
@@ -429,6 +463,9 @@ def recommendation(request):
         totals['Other'] = float(other)/float(sum_of_all)*100
   
         return totals
+      
+                
+         
         
     #-----------------Passed Through to Template (simple)---------------
     
@@ -448,6 +485,7 @@ def recommendation(request):
     hourly_wage = float(user.hourly_wage)
     work_hours_per_week = (yearly_earnings/hourly_wage)/52
     
+    
     #Calculated Information Passed Through to Template
     accomplish_per_year = total_number_of_items/years_left
     days_per_goal = days_left/total_number_of_items
@@ -461,6 +499,7 @@ def recommendation(request):
 
     #----------------Passed Through to Template (unique)--------------
      
+    
     #Create List Of Bucket List Items from Most to Least Difficult, using GoalDifficulty Function
     dict_with_difficulty = {}
     
@@ -635,6 +674,8 @@ def recommendation(request):
     
     all_goal_type_percentages_time = MoreGoalTypePercentages(all_goals, 3)
 
+    
+    
     
 
     #--------------------Passed To Template-----------------------              
@@ -844,8 +885,14 @@ def create(request):
                 
 @login_required
 def edit_bucket_list_item(request, id):
-    #This view lets the user edit their Bucket List Item and directs them to other forms necessary to make the changes needed
+    #This view lets the user edit their Bucket List Item and directs them to other forms necessary to make the changes needed  
+    
+   
+    user = UserProfile.objects.get(pk = request.user.id)
+    all_goals_not_users = BucketListItem.objects.all().exclude(pub_by = user)    
+    
     item = BucketListItem.objects.get(pk = id)
+     
     if request.method == "POST":
         form = BucketListItemEditForm(request.POST)
         if form.is_valid():
@@ -864,8 +911,19 @@ def edit_bucket_list_item(request, id):
             return HttpResponseRedirect('/bucketlist/mylist/')
     else:
         form = BucketListItemEditForm({'text': item.text, 'goal_type': item.goal_type, 'cost': item.cost, 'time': item.time, 'hours': item.hours})
+        exact_same = ExactSameGoal(item.text, all_goals_not_users)
+        most_similar = MostSimilarGoals(item.text, all_goals_not_users)
+        most_similar_accuracy = most_similar[1]
+        most_similar = most_similar[0]
+        exact_same_list = exact_same[0]
+        exact_same_num = exact_same[1]
+        
         context = {'form': form,
                            'id': item.id,
+                           'exact_same_list': exact_same_list,
+                           'exact_same_num': exact_same_num,
+                           'most_similar': most_similar,
+                           'most_similar_accuracy': most_similar_accuracy,
                           }
 
         

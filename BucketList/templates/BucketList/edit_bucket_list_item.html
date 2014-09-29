@@ -14,4 +14,73 @@
     {% endfor %}
     <input type = "submit" value = "Submit">
 </form>
+<br>
+<br>
+<hr>
+<br>
+
+{% if exact_same_num > 1 %}
+
+       <p>It turns out that {{exact_same_num}} users already have this exact same goal!  Here is how difficult these thought this goal would be:
+            {% for item in exact_same_list %}
+                
+                <p><a href= "/bucketlist/userstats/{{item.pub_by}}/">{{item.pub_by}}</a> thinks that <i>{{item.text}}</i>:</p>
+                    <ul>
+                        <li>Falls under the category of <i>{{item.goal_type}}</i></li>
+                        <li>Will take him ${{item.cost}} to accomplish</li>
+                        <li>Over {{item.hours}} hours to complete</li>
+                        <li>And {{item.time}} full days</li> 
+                    </ul>
+            {% endfor %}
+
+            
+{% elif exact_same_num > 0 %}
+
+        {% for item in exact_same_list %}
+        
+            <p>It turns out that you are not alone in this goal.  <a href= "/bucketlist/userstats/{{item.pub_by}}/">{{item.pub_by}}</a> has this on their Bucket List as well.</p>
+            <p><a href= "/bucketlist/userstats/{{item.pub_by}}/">{{item.pub_by}}</a> thinks that <i>{{item.text}}</i>:</p>
+                <ul>
+                    <li>Falls under the category of <i>{{item.goal_type}}</i></li>
+                    <li>Will take him ${{item.cost}} to accomplish</li>
+                    <li>Over {{item.hours}} hours to complete</li>
+                    <li>And {{item.time}} full days</li> 
+                </ul>
+            
+            
+        {% endfor %}
+        
+{% else %}
+
+    {% if 65 > most_similar_accuracy %}
+        
+        <p>Normally this is the place that we show you some other users goals that are really similar to yours.  But it doesn't seem like there is much out there.  This one must be awfully unique.  Yay for being an original! 
+        <br>
+        <br>
+        P.S.  Check back later. As more users add their goals to this site their is a larger database to search through and a higher likelihood that we will find a good similar to yours. 
+        </p> 
+        
+    {% else %}
+    <p>This is a pretty darn unique goal! Not one user on this website has the exact same one.  
+    </p>
+    <p>Here are the most similar goals we found and the users who posted them: </p>
+            {% for item, number in most_similar %}
+                
+                <p><a href= "/bucketlist/userstats/{{item.pub_by}}/">{{item.pub_by}}</a> thinks that <i>{{item.text}}</i>:</p>
+                    <ul>
+                        <li>Falls under the category of <i>{{item.goal_type}}</i></li>
+                        <li>Will take him ${{item.cost}} to accomplish</li>
+                        <li>Over {{item.hours}} hours to complete</li>
+                        <li>And {{item.time}} full days</li>                        
+                    </ul>
+                    
+            {% endfor %}
+    {% endif %}
+       
+{% endif %}
+<br>
+{% if most_similar_accuracy >= 65 %}
+    <p>You could use these numbers to better estimate how difficult this goal will be for you to accomplish and how other users perceive the difficulty of the goal.</p>
+{% endif %}
+
 {% endblock content %}
