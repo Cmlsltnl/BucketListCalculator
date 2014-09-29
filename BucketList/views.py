@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from BucketList.models import BucketListItem, UserProfile, Comment
+from BucketList.models import BucketListItem, UserProfile, Comment, GoalDistributionChart
 from django.contrib import auth
 from forms import BucketListItemForm, UserProfileForm, UserProfileEditForm, BucketListItemEditForm, CustomItemEditForm, CommentForm
 from django.http import HttpResponseRedirect
@@ -10,6 +10,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from fuzzywuzzy import fuzz, process
+from chartit import DataPool, Chart
 
 
 #-------------Functions Used Throughout Views--------------
@@ -675,7 +676,40 @@ def recommendation(request):
     all_goal_type_percentages_hours = MoreGoalTypePercentages(all_goals, 2)
     
     all_goal_type_percentages_time = MoreGoalTypePercentages(all_goals, 3)
-
+    
+    a = GoalDistributionChart()
+    a.goal_type = "Career"
+    a.percentage = 50
+    
+    b = GoalDistributionChart()
+    b.goal_type = "Travel"
+    b.percentage = 50
+    
+    
+    
+    ds = DataPool(
+        series = 
+            [{'options': {
+                    'source': GoalDistributionChart.objects.all()},
+                'terms': [
+                    'goal_type',
+                    'percentage']}
+            ])
+            
+    cht = Chart(
+                datasource = ds,
+                series_options = 
+                    [{'options':{
+                            'type': 'pie',
+                            'stacking': False},
+                        'terms': {
+                            'goal_type': [
+                                'percentage']
+                            }}],
+                chart_options = 
+                    {'title': {
+                        'text': 'Your Goal Distribution'}},)
+               
     
     
     
@@ -753,6 +787,7 @@ def recommendation(request):
                      'annual_percent_after_compounded_4': annual_percent_after_compounded_4,
                      'salary_after_compounded_5': salary_after_compounded_5,
                      'annual_percent_after_compounded_5': annual_percent_after_compounded_5,
+                     
                      #----------------Distribution of Goals-------------
                      'goal_type_percentages': goal_type_percentages,
                      'goal_type_percentages_cost': goal_type_percentages_cost,
@@ -762,13 +797,11 @@ def recommendation(request):
                      'all_goal_type_percentages_cost': all_goal_type_percentages_cost,
                      'all_goal_type_percentages_hours': all_goal_type_percentages_hours,
                      'all_goal_type_percentages_time': all_goal_type_percentages_time,
+                     'cht': cht,
                      
                      #----------------Most Popular Category----------
                      'most_common_goal': most_common_goal,
-                     'most_common_goal_percent': most_common_goal_percent,
-                     
-                        
-                        
+                     'most_common_goal_percent': most_common_goal_percent,            
                      
                     }
                     

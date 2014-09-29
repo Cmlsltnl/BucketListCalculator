@@ -8,6 +8,7 @@ from django.dispatch import receiver
 from Bucket.forms import MyRegistrationForm, UserCreationForm
 
 
+
 CHOICES = (
     ('Travel','Travel'),
     ('Purchase', 'Purchase'), 
@@ -82,8 +83,10 @@ def my_callback(sender, instance, created, **kwargs):
         UserProfile.objects.create(user = instance)
 
 
-
-       
+class GoalDistributionChart(models.Model):
+    #Model Used to Create Distribution Charts in Recommendation View
+   goal_type = models.CharField(max_length = 50)
+   percentage = models.DecimalField(max_digits= 4, decimal_places = 1)
    
 
     

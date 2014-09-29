@@ -6,4 +6,6 @@ Requirements for this project to work:
         -Django-Bootstrap3
         -FuzzyWuzzy
         -DiffLib
+        -Django-Chartit
+        -simplejson
         

@@ -4,6 +4,11 @@
 
 {% block content %}
 
+<script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+
+{% load chartit %}
+{{ cht|load_charts:"container" }}
+
 <h1>{{user.user}}'s Recommendations</h1>
 
 <p>Great job on making your Bucket List!  Now it's time for the real fun: Statistics and Recommendations!  Yay.  Let's get down to business.</p>
@@ -325,6 +330,7 @@
 <p>Your most popular goal category is <i>{{most_common_goal}}</i> it makes up a total of {{most_common_goal_percent}}% of all your goals.
 </p>
 <br>
+<div id ="container"></div>
 {% endblock content %}
  
  
