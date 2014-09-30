@@ -11,6 +11,7 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from fuzzywuzzy import fuzz, process
 from chartit import DataPool, Chart
+import json
 
 
 #-------------Functions Used Throughout Views--------------
@@ -678,16 +679,23 @@ def recommendation(request):
     all_goal_type_percentages_time = MoreGoalTypePercentages(all_goals, 3)
     
     
-    #Turning Data into Correct Format for Charts for Users Goal Distribution
-
+    #Turning Data into Correct Model Format for Charts for Users Goal Distribution
+    chart = GoalDistributionChart.objects.filter(user = request.user)
     for goal in goal_type_percentages:
+        for chart_item in chart:
+            if chart_item.goal_type == goal.goal_type:
+                goal.percentage == chart_item.percentage
         a = GoalDistributionChart()
         a.goal_type = goal
         a.percentage = goal_type_percentages[goal]
+        print a.percentage
+        a.user = request.user
+        print a.user
+        
         a.save()
       
-    
-    
+
+
     
     
     
