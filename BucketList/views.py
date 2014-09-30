@@ -469,6 +469,24 @@ def recommendation(request):
         return totals
       
 
+    def DataToPieChartModel(dict, model):
+        #Takes a Dictionary of goal_types with percentages and a Pie Chart model filtered by current user and creates instances of that model for Chartit to turn into a Pie Chart, or updates previous instances if instances already exist
+        
+        chart = GoalDistributionChart.objects.filter(user = request.user)
+
+        if len(model) == 0:
+            for goal in dict:
+                a = GoalDistributionChart()
+                a.goal_type = goal
+                a.percentage = dict[goal]
+                a.user = request.user
+                a.save()
+        else: 
+            for goal in dict:
+                for chart_item in model:
+                    if chart_item.goal_type == goal:
+                        chart_item.percentage = dict[goal]
+                        chart_item.save()
          
         
     #-----------------Passed Through to Template (simple)---------------
@@ -679,31 +697,18 @@ def recommendation(request):
     all_goal_type_percentages_time = MoreGoalTypePercentages(all_goals, 3)
     
     
-    #Turning Data into Correct Model Format for Charts for Users Goal Distribution
-    chart = GoalDistributionChart.objects.filter(user = request.user)
-    for goal in goal_type_percentages:
-        for chart_item in chart:
-            if chart_item.goal_type == goal.goal_type:
-                goal.percentage == chart_item.percentage
-        a = GoalDistributionChart()
-        a.goal_type = goal
-        a.percentage = goal_type_percentages[goal]
-        print a.percentage
-        a.user = request.user
-        print a.user
-        
-        a.save()
-      
-
-
+    #Turning Data into Correct Model Format for Chartit using the Users Goal Distribution and DataToPieChartModel() function
     
+    chart = GoalDistributionChart.objects.filter(user = request.user)
+        
+    DataToPieChartModel(goal_type_percentages, chart)
     
     
     #Passing Data to Chartit for Users Goal Distribution
     ds = DataPool(
         series = 
             [{'options': {
-                    'source': GoalDistributionChart.objects.all()},
+                    'source': chart},
                 'terms': [
                     'goal_type',
                     'percentage']}
@@ -817,11 +822,7 @@ def recommendation(request):
                      'most_common_goal_percent': most_common_goal_percent,            
                      
                     }
-                    
-    old_objects = GoalDistributionChart.objects.all()
-    for object in old_objects:
-        object.delete()
-                        
+
     return render(request, 'BucketList/recommendation.html', context)
     
     

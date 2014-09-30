@@ -89,7 +89,6 @@ class GoalDistributionChart(models.Model):
    percentage = models.DecimalField(max_digits= 4, decimal_places = 1)
    user = models.ForeignKey(User,editable = False)
    
-   
 
     
         
