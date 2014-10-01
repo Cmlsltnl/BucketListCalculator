@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from BucketList.models import BucketListItem, UserProfile, Comment, GoalDistributionChart
+from BucketList.models import BucketListItem, UserProfile, Comment, GoalDistributionChart, AverageUserGoalDistributionChart
 from django.contrib import auth
 from forms import BucketListItemForm, UserProfileForm, UserProfileEditForm, BucketListItemEditForm, CustomItemEditForm, CommentForm
 from django.http import HttpResponseRedirect
@@ -471,8 +471,6 @@ def recommendation(request):
 
     def DataToPieChartModel(dict, model):
         #Takes a Dictionary of goal_types with percentages and a Pie Chart model filtered by current user and creates instances of that model for Chartit to turn into a Pie Chart, or updates previous instances if instances already exist
-        
-        chart = GoalDistributionChart.objects.filter(user = request.user)
 
         if len(model) == 0:
             for goal in dict:
@@ -489,6 +487,22 @@ def recommendation(request):
                         chart_item.save()
          
         
+    def AverageUserDataToPieChartModel(dict, model):
+        #Takes a Dictionary of goal_types with percentages and a Pie Chart model not filtered and creates instances of that model for Chartit to turn into a Pie Chart, or updates previous instances if instances already exist
+        
+        if len(model) == 0:
+            for goal in dict:
+                a = AverageUserGoalDistributionChart()
+                a.goal_type = goal
+                a.percentage = dict[goal]
+                a.save()
+        else: 
+            for goal in dict:
+                for chart_item in model:
+                    if chart_item.goal_type == goal:
+                        chart_item.percentage = dict[goal]
+                        chart_item.save()
+                        
     #-----------------Passed Through to Template (simple)---------------
     
     #General Information Passed Through to Template
@@ -699,10 +713,11 @@ def recommendation(request):
     
     #Turning Data into Correct Model Format for Chartit using the Users Goal Distribution and DataToPieChartModel() function
     
-    chart = GoalDistributionChart.objects.filter(user = request.user)
-        
+    chart = GoalDistributionChart.objects.filter(user = request.user)        
     DataToPieChartModel(goal_type_percentages, chart)
     
+    average_chart = AverageUserGoalDistributionChart.objects.all()
+    AverageUserDataToPieChartModel(all_goal_type_percentages, average_chart)
     
     #Passing Data to Chartit for Users Goal Distribution
     ds = DataPool(
@@ -728,7 +743,30 @@ def recommendation(request):
                     {'title': {
                         'text': 'Your Goal Distribution'}},)
                
+    #Passing Data to Chartit for the Average Users Goal Distribution
     
+    ds1 = DataPool(
+        series = 
+            [{'options': {
+                    'source': average_chart},
+                'terms': [
+                    'goal_type',
+                    'percentage']}
+            ])
+            
+    AverageUsersGoalDistributionChart = Chart(
+                datasource = ds1,
+                series_options = 
+                    [{'options':{
+                            'type': 'pie',
+                            'stacking': False},
+                        'terms': {
+                            'goal_type': [
+                                'percentage']
+                            }}],
+                chart_options = 
+                    {'title': {
+                        'text': 'Average Users Goal Distribution'}},)    
     
     
 
@@ -815,7 +853,7 @@ def recommendation(request):
                      'all_goal_type_percentages_cost': all_goal_type_percentages_cost,
                      'all_goal_type_percentages_hours': all_goal_type_percentages_hours,
                      'all_goal_type_percentages_time': all_goal_type_percentages_time,
-                     'UsersGoalDistributionChart': UsersGoalDistributionChart,
+                     'charts': [UsersGoalDistributionChart, AverageUsersGoalDistributionChart],
                      
                      #----------------Most Popular Category----------
                      'most_common_goal': most_common_goal,

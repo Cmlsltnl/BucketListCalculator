@@ -7,7 +7,8 @@
 <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
 
 {% load chartit %}
-{{ UsersGoalDistributionChart|load_charts:"container" }}
+{{ charts|load_charts:"UsersGoalDistributionChart, AverageUsersGoalDistributionChart" }}
+
 
 <h1>{{user.user}}'s Recommendations</h1>
 
@@ -244,14 +245,7 @@
  <br>
  <h4>By Percentage of Whole:</h4>
  <br>
- <h5>Your Goals</h5>
- <ul>
- {% for key, value in goal_type_percentages.items %}
-    {% if value > 0 %}
-    <li>{{value}}% - {{key}}</li>
-    {% endif %}
- {% endfor %}
- </ul>
+ <div id ="UsersGoalDistributionChart"></div>
  <br>
   <h5>Average Users Goals</h5>
  <ul>
@@ -261,6 +255,7 @@
     {% endif %}
  {% endfor %}
  </ul>
+  <div id ="AverageUsersGoalDistributionChart"></div>
  <br>
  <h4>By Percentage of Total Cost:</h4>
  <br>
@@ -330,7 +325,6 @@
 <p>Your most popular goal category is <i>{{most_common_goal}}</i> it makes up a total of {{most_common_goal_percent}}% of all your goals.
 </p>
 <br>
-<div id ="container"></div>
 {% endblock content %}
  
  
