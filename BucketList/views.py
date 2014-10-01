@@ -11,7 +11,8 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from fuzzywuzzy import fuzz, process
 from chartit import DataPool, Chart
-import json
+
+
 
 
 #-------------Functions Used Throughout Views--------------
@@ -469,12 +470,12 @@ def recommendation(request):
         return totals
       
 
-    def DataToPieChartModel(dict, model):
+    def DataToPieChartModel(dict, model, model_type):
         #Takes a Dictionary of goal_types with percentages and a Pie Chart model filtered by current user and creates instances of that model for Chartit to turn into a Pie Chart, or updates previous instances if instances already exist
 
         if len(model) == 0:
             for goal in dict:
-                a = GoalDistributionChart()
+                a = model_type()
                 a.goal_type = goal
                 a.percentage = dict[goal]
                 a.user = request.user
@@ -487,12 +488,12 @@ def recommendation(request):
                         chart_item.save()
          
         
-    def AverageUserDataToPieChartModel(dict, model):
+    def AverageUserDataToPieChartModel(dict, model, model_type):
         #Takes a Dictionary of goal_types with percentages and a Pie Chart model not filtered and creates instances of that model for Chartit to turn into a Pie Chart, or updates previous instances if instances already exist
         
         if len(model) == 0:
             for goal in dict:
-                a = AverageUserGoalDistributionChart()
+                a = model_type()
                 a.goal_type = goal
                 a.percentage = dict[goal]
                 a.save()
@@ -714,10 +715,10 @@ def recommendation(request):
     #Turning Data into Correct Model Format for Chartit using the Users Goal Distribution and DataToPieChartModel() function
     
     chart = GoalDistributionChart.objects.filter(user = request.user)        
-    DataToPieChartModel(goal_type_percentages, chart)
+    DataToPieChartModel(goal_type_percentages, chart, GoalDistributionChart)
     
     average_chart = AverageUserGoalDistributionChart.objects.all()
-    AverageUserDataToPieChartModel(all_goal_type_percentages, average_chart)
+    AverageUserDataToPieChartModel(all_goal_type_percentages, average_chart, AverageUserGoalDistributionChart)
     
     #Passing Data to Chartit for Users Goal Distribution
     ds = DataPool(
