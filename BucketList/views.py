@@ -712,7 +712,7 @@ def recommendation(request):
     all_goal_type_percentages_time = MoreGoalTypePercentages(all_goals, 3)
     
     
-    #Turning Data into Correct Model Format for Chartit using the Users Goal Distribution and DataToPieChartModel() function
+    #Turning Data into Correct Model Format for Chartit using goal_type_percentages and all_goal_type_percentages with DataToPieChartModel() and AverageUserDataToPieChartModel() functions
     
     chart = GoalDistributionChart.objects.filter(user = request.user)        
     DataToPieChartModel(goal_type_percentages, chart, GoalDistributionChart)
@@ -720,7 +720,9 @@ def recommendation(request):
     average_chart = AverageUserGoalDistributionChart.objects.all()
     AverageUserDataToPieChartModel(all_goal_type_percentages, average_chart, AverageUserGoalDistributionChart)
     
-    #Passing Data to Chartit for Users Goal Distribution
+    
+    
+    #Passing Data to Chartit for All Charts
     ds = DataPool(
         series = 
             [{'options': {

@@ -83,6 +83,8 @@ def my_callback(sender, instance, created, **kwargs):
         UserProfile.objects.create(user = instance)
 
 
+#-------------------------Models for Charts-------------------------#       
+        
 class GoalDistributionChart(models.Model):
     #Model Used to Create Your Distribution Charts in Recommendation View
    goal_type = models.CharField(max_length = 50)

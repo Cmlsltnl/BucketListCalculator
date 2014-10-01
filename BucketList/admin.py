@@ -35,7 +35,7 @@ admin.site.register(Comment, CommentAdmin)
 
 
 class GoalDistributionChartAdmin(admin.ModelAdmin):
-    list_display = ['goal_type', 'percentage']
+    list_display = ['user', 'goal_type', 'percentage']
     
 admin.site.register(GoalDistributionChart, GoalDistributionChartAdmin)
 
@@ -44,3 +44,8 @@ class AverageUserGoalDistributionChartAdmin(admin.ModelAdmin):
     list_display = ['goal_type', 'percentage']
     
 admin.site.register(AverageUserGoalDistributionChart, AverageUserGoalDistributionChartAdmin)
+
+
+    
+    
+    
