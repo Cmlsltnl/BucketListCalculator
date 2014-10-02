@@ -52,9 +52,13 @@ def MostSimilarGoals(item, dict):
 
 def index(request):
     #The main Bucket List Page View, sorted by pubdate so the most recent are at the top
-    all_list_items = BucketListItem.objects.all().order_by('-pub_date')
     
-    context = {'all_list_items': all_list_items}
+    all_list_items = BucketListItem.objects.filter(crossed_off = False).order_by('-pub_date')
+    recently_crossed_off = BucketListItem.objects.filter(crossed_off = True).order_by('-pub_date')
+    
+    context = {'all_list_items': all_list_items,
+                      'recently_crossed_off': recently_crossed_off,
+    }
     
     
     return render(request, 'BucketList/index.html', context)

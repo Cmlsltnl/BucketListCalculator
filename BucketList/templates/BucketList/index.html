@@ -6,30 +6,18 @@
 
 <h1>Community Bucket List</h1>
 
-{% if all_list_items %}
     <ol>
     {% for item in all_list_items %}
-        {% if item.crossed_off == True %}
-            <li><a href="/bucketlist/item/{{item.id}}/" style="text-decoration: line-through;">{{ item.text }}</a></li>
-        {% else %}
             <li><a href="/bucketlist/item/{{item.id}}/">{{ item.text }}</a></li>
-        {% endif %}
     {% endfor %}
-    <br/>
-    <hr>
-    <br/>
-    <h5>Click here for Community Bucket List Statistics</h5>
-    <button><a href="/bucketlist/stats/">Community Stats</a></button>
-    <br>
-    <br>
-    <h5>Click here to go to your personal bucket list:
-    <br>
-    <br>
-    <button><a href = "/bucketlist/mylist/">My List</a></button>
-    <br/>
-    <h5
     </ol>
-{% else %}
-    <p>There are no Bucket List items here!  Better go add one.</p>
-{% endif %}
+    <br/>
+
+<h1>Recently Crossed Off</h1>
+
+    <ol>
+    {% for item in recently_crossed_off %}
+        <li><a href="/bucketlist/item/{{item.id}}/" style="text-decoration: line-through;">{{ item.text }}</a></li>
+    {% endfor %}
+    </ol>
 {% endblock content%}
