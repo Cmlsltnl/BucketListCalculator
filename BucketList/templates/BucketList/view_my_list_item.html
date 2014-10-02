@@ -4,7 +4,7 @@
 
 {% block content %}
 
-{% if logged_in %}
+
     {% if item.crossed_off == True %}
         <h1 style="text-decoration: line-through;">{{item}}</h1>
         <h4>Congratulations on crossing off this list item!</h4>
@@ -29,8 +29,6 @@
     <p>Click <a href="/bucketlist/mylist/edit/{{item.id}}/">here</a> to edit this bucket list item.</p>
     <br/>
     <p>Click <a href="/bucketlist/mylist/deleteitem/{{item.id}}/">here</a> to permanently delete this item from your bucket list.</p>
-{% else %}
-    <p>It looks like you are not logged in!  Better get on that.</p>
-{% endif %}
+
 
 {% endblock content %}

@@ -898,11 +898,15 @@ def my_list_stats(request):
 @login_required
 def view_my_list_item(request, id):
     #View of a current users Bucket List Item with options to cross off or edit the Bucket List Item
-    logged_in = request.user.id
-    item = BucketListItem.objects.filter(pk = id)
-    context = {'logged_in': logged_in,
-                      'item': item[0],
+
+    item = BucketListItem.objects.get(pk = id)
+
+    if item.pub_by != request.user:
+        return HttpResponseRedirect('/accounts/login/')
+        
+    context = {'item': item,
                     }
+                    
     return render(request, 'BucketList/view_my_list_item.html', context)
     
     
@@ -911,6 +915,10 @@ def view_my_list_item(request, id):
 def cross_off_my_list_item(request, id):
     #The view that crosses off the Bucket List Item
     item = BucketListItem.objects.get(pk = id)
+    
+    if item.pub_by != request.user:
+        return HttpResponseRedirect('/accounts/login/')
+        
     item.crossed_off = True
     item.pub_date = timezone.now()
     item.save()
@@ -927,6 +935,10 @@ def cross_off_my_list_item(request, id):
 def uncross_my_list_item(request, id):
     #The view that uncrosses off the Bucket List Item
     item = BucketListItem.objects.get(pk = id)
+    
+    if item.pub_by != request.user:
+        return HttpResponseRedirect('/accounts/login/')
+        
     item.crossed_off = False
     item.pub_date = timezone.now()
     item.save()
@@ -942,6 +954,10 @@ def uncross_my_list_item(request, id):
 def delete_my_list_item(request, id):
     #The view that uncrosses off the Bucket List Item
     item = BucketListItem.objects.get(pk = id)
+    
+    if item.pub_by != request.user:
+        return HttpResponseRedirect('/accounts/login/')
+        
     title = item.text
     item.delete()
     
@@ -990,6 +1006,9 @@ def edit_bucket_list_item(request, id):
     all_goals_not_users = BucketListItem.objects.all().exclude(pub_by = user)    
     
     item = BucketListItem.objects.get(pk = id)
+    
+    if item.pub_by != request.user:
+        return HttpResponseRedirect('/accounts/login/')
      
     if request.method == "POST":
         form = BucketListItemEditForm(request.POST)
