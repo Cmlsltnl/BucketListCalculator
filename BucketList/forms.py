@@ -43,10 +43,10 @@ class CommentForm(forms.ModelForm):
     
 class UserProfileEditForm(forms.Form):
     #Form used to edit the User Profile
-    new_age = forms.CharField(label='New Age', max_length = 200)
-    new_life_expectancy = forms.CharField(label = 'Age You Want to Be Done', max_length = 3)
+    new_age = forms.CharField(label='Age', max_length = 200)
+    new_life_expectancy = forms.CharField(label = 'Age You Will Be Done', max_length = 3)
     new_yearly_earnings = forms.CharField(label = 'Yearly Earnings', max_length = 8)
-    new_hourly_wage = forms.CharField(label = 'Your Hourly Wage', max_length = 3)
+    new_hourly_wage = forms.CharField(label = 'Hourly Wage', max_length = 3)
         
 
 class BucketListItemEditForm(forms.ModelForm):
