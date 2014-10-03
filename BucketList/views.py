@@ -45,7 +45,21 @@ def MostSimilarGoals(item, dict):
     return list_of_goals, highest_accuracy
     
    
-            
+def UsersActivity(User):
+    #Takes a user argument. Assigns the user a score score based upon their activity throughout the site.  Different site actions carry separate weight and the output is a single number.
+    score = 0
+    
+    all_list_items = BucketListItem.objects.filter(pub_by = User)
+    crossed_off = BucketListItem.objects.filter(pub_by = User, crossed_off = True)
+    users_comments = Comment.objects.filter(author = User)
+    
+    score += len(all_list_items) * 5
+    score += len(crossed_off) * 5
+    score += len(users_comments) * 10
+    print len(users_comments)
+    
+    
+    return score 
     
 #----------------End Functions Used Throughout Views-------------
 
@@ -55,6 +69,8 @@ def index(request):
     
     all_list_items = BucketListItem.objects.filter(crossed_off = False).order_by('-pub_date')
     recently_crossed_off = BucketListItem.objects.filter(crossed_off = True).order_by('-pub_date')
+    
+    print UsersActivity(request.user)
     
     context = {'all_list_items': all_list_items,
                       'recently_crossed_off': recently_crossed_off,
