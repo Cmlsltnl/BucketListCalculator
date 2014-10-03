@@ -1,6 +1,10 @@
+{% extends 'base.html' %}
 
+{% block title %}You Are Logged In{% endblock title %}
 
+{% block content %}
+    
     <h2>Hi {{full_name}}.  You are now logged in!</h2>
     <p>Click <a href="/accounts/logout/">here</a> to logout.</p>
     
-
+{% endblock content %}

@@ -4,6 +4,7 @@ from django.contrib import auth
 from django.core.context_processors import csrf
 from Bucket.forms import MyRegistrationForm
 from BucketList.forms import UserProfileForm
+from BucketList.models import UserProfile
 
 def login(request):
     #The user login page
@@ -25,6 +26,14 @@ def auth_view(request):
         
 def loggedin(request):
     #Screen displayed if user is logged in correctly
+    user_profile = UserProfile.objects.get(user = request.user)  
+    
+    if user_profile.age == 0 or user_profile.life_expectancy == 0 or user_profile.yearly_earnings == 0 or user_profile.hourly_wage == 0:
+        return HttpResponseRedirect('/bucketlist/profile/edit/')
+        
+    args = {}
+    args['full_name'] = request.user.username
+
     return render_to_response('loggedin.html',
                                               {'full_name': request.user.username})
                                               
