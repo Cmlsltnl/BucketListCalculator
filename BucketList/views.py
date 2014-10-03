@@ -53,11 +53,9 @@ def UsersActivity(User):
     crossed_off = BucketListItem.objects.filter(pub_by = User, crossed_off = True)
     users_comments = Comment.objects.filter(author = User)
     
-    score += len(all_list_items) * 5
-    score += len(crossed_off) * 5
-    score += len(users_comments) * 10
-    print len(users_comments)
-    
+    score += len(all_list_items) * 1
+    score += len(crossed_off) * 1
+    score += len(users_comments) * 2
     
     return score 
     
@@ -69,8 +67,8 @@ def index(request):
     
     all_list_items = BucketListItem.objects.filter(crossed_off = False).order_by('-pub_date')
     recently_crossed_off = BucketListItem.objects.filter(crossed_off = True).order_by('-pub_date')
+    all_users = User.objects.all()
     
-    print UsersActivity(request.user)
     
     context = {'all_list_items': all_list_items,
                       'recently_crossed_off': recently_crossed_off,
@@ -124,31 +122,6 @@ def user_stats(request, id):
     return render(request, 'BucketList/user_stats.html', context)
     
 
-@login_required
-def index_stats(request):
-    #This page compiles interesting statistics about all of the Bucket List Items on the main index page and displays that information
-    list_of_all = BucketListItem.objects.all().count()
-    total_cost = BucketListItem.objects.all().aggregate(Sum('cost'))
-    total_time = BucketListItem.objects.all().aggregate(Sum('time'))
-    total_crossed_off = BucketListItem.objects.all().aggregate(Sum('crossed_off'))
-    number_of_users = User.objects.all().count()
-    cost_per_user = total_cost['cost__sum']/number_of_users
-    time_per_user = total_time['time__sum']/number_of_users
-    items_per_user = list_of_all/number_of_users
-    crossed_off_per_user = total_crossed_off['crossed_off__sum']/number_of_users
-    
-    context = {'list_of_all': list_of_all,
-                      'total_cost': total_cost['cost__sum'],
-                      'total_time': total_time['time__sum'],
-                      'total_crossed_off': total_crossed_off['crossed_off__sum'],
-                      'crossed_off_per_user': crossed_off_per_user,
-                      'number_of_users': number_of_users,
-                      'cost_per_user': cost_per_user,
-                      'time_per_user': time_per_user,
-                      'items_per_user': items_per_user,
-                      }
-                      
-    return render(request, 'BucketList/index_stats.html', context)
     
     
 @login_required
@@ -889,26 +862,7 @@ def recommendation(request):
     
     
 @login_required
-def my_list_stats(request):
-    #General statistics about the current users Bucket List
-    personal_list = BucketListItem.objects.all().filter(pub_by = request.user.id)
-    total_cost = BucketListItem.objects.all().filter(pub_by = request.user.id).aggregate(Sum('cost'))
-    total_time = BucketListItem.objects.all().filter(pub_by = request.user.id).aggregate(Sum('time'))
-    total_crossed_off = BucketListItem.objects.all().filter(pub_by = request.user.id).aggregate(Sum('crossed_off'))
-    cost_per_list_item = total_cost['cost__sum']/personal_list.count()
-    time_per_list_item = total_time['time__sum']/personal_list.count()
-    
-    context = {'personal_list': personal_list,
-                      'user': request.user.username,
-                      'total_cost': total_cost['cost__sum'],
-                      'total_time': total_time['time__sum'],
-                      'total_crossed_off': total_crossed_off['crossed_off__sum'],
-                      'cost_per_list_item': cost_per_list_item,
-                      'time_per_list_item': time_per_list_item,
-                      }
-                      
-    return render(request, 'BucketList/my_list_stats.html', context)
-    
+   
     
     
 @login_required
