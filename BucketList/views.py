@@ -776,6 +776,7 @@ def recommendation(request):
                     {'title': {
                         'text': 'Average Users Goal Distribution'}},)    
     
+    dollar_bills_in_a_row_miles = total_cost/10320
     
 
     #--------------------Passed To Template-----------------------              
@@ -865,7 +866,10 @@ def recommendation(request):
                      
                      #----------------Most Popular Category----------
                      'most_common_goal': most_common_goal,
-                     'most_common_goal_percent': most_common_goal_percent,            
+                     'most_common_goal_percent': most_common_goal_percent,    
+
+                      #----------------What Else Could You Do?----------
+                      'dollar_bills_in_a_row_miles': dollar_bills_in_a_row_miles,
                      
                     }
 

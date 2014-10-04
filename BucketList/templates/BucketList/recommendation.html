@@ -321,11 +321,25 @@
 <hr>
 <br>
 <br>
-<h2>Most Popular Category</h2>
+<h2>What Else Could You Do?</h2>
 <br>
-<p>Your most popular goal category is <i>{{most_common_goal}}</i> it makes up a total of {{most_common_goal_percent}}% of all your goals.
-</p>
+{% if total_cost > 50001 %}
+<p>Now ${{total_cost}} is a pretty ridiculous amount of money.  But accomplishing all of your goals is totally worth it!  Lets look at some other things that you could potentially do with that money: </p>
+<ul>
+{% if total_cost > 10000000 %}
+    <li>Stuff</li>
+{% elif total_cost > 100000 %}
+    <li>Stuff</li>
+{% elif total_cost > 50000 %}
+    <li>You would have enough to split it all up into singles, fill up a bath tub and go full on Scrooge McDuck. </li>
+    <li>If you were really determined, or just really bored you could take all of those one dollar bills and line them up in a row and it would stretch {{dollar_bills_in_a_row_miles}} miles. </li>
+    <li>Or an Albino Ball Python, one of the rarest pets in the world!</li>
+    <li>You could easily afford a huge in-ground pool along with custom made water slides.</li>
+
+{% endif %}
+</ul>
 <br>
+{% endif %}
 {% endblock content %}
  
  
