@@ -775,8 +775,11 @@ def recommendation(request):
                 chart_options = 
                     {'title': {
                         'text': 'Average Users Goal Distribution'}},)    
+    #Numbers for What Else Could You Do
     
     dollar_bills_in_a_row_miles = total_cost/10320
+    years_in_cheap_motel = (total_cost/110)/365
+    roses_every_week = (total_cost/50)/52
     
 
     #--------------------Passed To Template-----------------------              
@@ -870,14 +873,13 @@ def recommendation(request):
 
                       #----------------What Else Could You Do?----------
                       'dollar_bills_in_a_row_miles': dollar_bills_in_a_row_miles,
+                      'years_in_cheap_motel': years_in_cheap_motel,
+                      'roses_every_week': roses_every_week,
                      
                     }
 
     return render(request, 'BucketList/recommendation.html', context)
     
-    
-    
-@login_required
    
     
     
