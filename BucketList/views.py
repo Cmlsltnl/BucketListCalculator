@@ -141,7 +141,7 @@ def recommendation(request):
     #This view takes the users list items and turns it into a convenient display of the stats in a user friendly form, basically this view is the main reason everything else in this web app exists. 
     
     #---------------Important Recommendation Functions------------- 
-    
+        
     def BucketListItemListSum(list, field_to_sum):
         """Finds the total sum of cost, time, or hours"""
         sum = 0
@@ -501,8 +501,20 @@ def recommendation(request):
     
     #General Information Passed Through to Template
     user = UserProfile.objects.get(pk = request.user.id)
+    
+    #If profile is not filled out redirect to Profile Edit Form
+    if user.age == 0 or user.life_expectancy == 0 or user.yearly_earnings == 0 or user.hourly_wage == 0:
+        return HttpResponseRedirect('/bucketlist/profile/edit/')
+        
+
+        
     all_goals = BucketListItem.objects.all().filter(crossed_off = False)
     mylist = BucketListItem.objects.all().filter(pub_by = user, crossed_off = False)
+    
+    #If not enough Bucket List Items redirect to Create Bucket List Item Form
+    if len(mylist) == 0:
+        return HttpResponseRedirect('/bucketlist/create/')
+        
     total_cost = BucketListItemListSum(mylist, 'cost')
     total_hours = BucketListItemListSum(mylist, 'hours')
     total_time = BucketListItemListSum(mylist, 'time')
