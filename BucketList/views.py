@@ -778,8 +778,11 @@ def recommendation(request):
     #Numbers for What Else Could You Do
     
     dollar_bills_in_a_row_miles = total_cost/10320
-    years_in_cheap_motel = (total_cost/110)/365
+    years_in_hotel = (total_cost/110)/365
     roses_every_week = (total_cost/50)/52
+    dollar_bills_in_a_row_miles_after_tub = (total_cost - 60000)/10320
+    how_many_trampolines = (total_cost-90000)/300
+    number_of_friends_on_cruise = total_cost/800
     
 
     #--------------------Passed To Template-----------------------              
@@ -873,8 +876,11 @@ def recommendation(request):
 
                       #----------------What Else Could You Do?----------
                       'dollar_bills_in_a_row_miles': dollar_bills_in_a_row_miles,
-                      'years_in_cheap_motel': years_in_cheap_motel,
+                      'years_in_hotel': years_in_hotel,
                       'roses_every_week': roses_every_week,
+                      'dollar_bills_in_a_row_miles_after_tub': dollar_bills_in_a_row_miles_after_tub,
+                      'how_many_trampolines': how_many_trampolines,
+                      'number_of_friends_on_cruise': number_of_friends_on_cruise,
                      
                     }
 
