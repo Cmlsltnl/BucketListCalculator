@@ -36,6 +36,8 @@ class BucketListItem(models.Model):
     time = models.IntegerField(max_length = 20)
     hours = models.IntegerField(max_length = 20)
     crossed_off = models.BooleanField(editable = False)
+    
+    
 
         
     def __unicode__(self):

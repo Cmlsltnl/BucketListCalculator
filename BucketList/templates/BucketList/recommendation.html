@@ -6,8 +6,9 @@
 
 <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
 
+
 {% load chartit %}
-{{ charts|load_charts:"UsersGoalDistributionChart, AverageUsersGoalDistributionChart" }}
+{{ charts|load_charts:"UsersGoalDistributionChart, UsersGoalCostDistributionChart" }}
 
 
 <h1>{{user.user}}'s Recommendations</h1>
@@ -256,7 +257,7 @@
  <br>
 <br>
  </ul>
-  <div id ="AverageUsersGoalDistributionChart"></div>
+  <div id ="UsersGoalCostDistributionChart"></div>
  <br>
  <h4>By Percentage of Total Cost:</h4>
  <br>
@@ -329,8 +330,8 @@
 
 <p>Now ${{total_cost}} is a pretty ridiculous amount of money.  But accomplishing all of your goals is totally worth it!  Lets look at some other things that you could potentially do with that money: </p>
 <ul>
-{% if total_cost > 10000000 %}
-{% elif total_cost > 2000000 %}
+
+{% if total_cost > 2000000 %}
 
     <li>You could afford {{gold_bars}} 400 ounce gold bars!</li>
     <li>You would have enough to fill up a bathtub and go full on Scrooge McDuck!  Then if you for some reason felt like it you could take the rest in quarters stack them all on top of each other and your stack would reach {{height_of_quarters_stacked}} miles high!</li>  

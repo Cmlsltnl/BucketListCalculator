@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from BucketList.models import BucketListItem, UserProfile, Comment, GoalDistributionChart, AverageUserGoalDistributionChart
+from BucketList.models import BucketListItem, UserProfile, Comment, GoalDistributionChart, AverageUserGoalDistributionChart, CHOICES
 from django.contrib import auth
 from forms import BucketListItemForm, UserProfileForm, UserProfileEditForm, BucketListItemEditForm, CustomItemEditForm, CommentForm
 from django.http import HttpResponseRedirect
@@ -463,39 +463,8 @@ def recommendation(request):
         return totals
       
 
-    def DataToPieChartModel(dict, model, model_type):
-        #Takes a Dictionary of goal_types with percentages and a Pie Chart model filtered by current user and creates instances of that model for Chartit to turn into a Pie Chart, or updates previous instances if instances already exist
 
-        if len(model) == 0:
-            for goal in dict:
-                a = model_type()
-                a.goal_type = goal
-                a.percentage = dict[goal]
-                a.user = request.user
-                a.save()
-        else: 
-            for goal in dict:
-                for chart_item in model:
-                    if chart_item.goal_type == goal:
-                        chart_item.percentage = dict[goal]
-                        chart_item.save()
-         
-        
-    def AverageUserDataToPieChartModel(dict, model, model_type):
-        #Takes a Dictionary of goal_types with percentages and a Pie Chart model not filtered and creates instances of that model for Chartit to turn into a Pie Chart, or updates previous instances if instances already exist
-        
-        if len(model) == 0:
-            for goal in dict:
-                a = model_type()
-                a.goal_type = goal
-                a.percentage = dict[goal]
-                a.save()
-        else: 
-            for goal in dict:
-                for chart_item in model:
-                    if chart_item.goal_type == goal:
-                        chart_item.percentage = dict[goal]
-                        chart_item.save()
+
                         
     #-----------------Passed Through to Template (simple)---------------
     
@@ -718,23 +687,58 @@ def recommendation(request):
     
     
     #Turning Data into Correct Model Format for Chartit using goal_type_percentages and all_goal_type_percentages with DataToPieChartModel() and AverageUserDataToPieChartModel() functions
-    
+
+    def DataToPieChartModel(dict, model, model_type):
+        #Takes a Dictionary of goal_types with percentages and a Pie Chart model filtered by current user and creates instances of that model for Chartit to turn into a Pie Chart, or updates previous instances if instances already exist
+
+        if len(model) == 0:
+            for goal in dict:
+                a = model_type()
+                a.goal_type = goal
+                a.percentage = dict[goal]
+                a.user = request.user
+                a.save()
+        else: 
+            for goal in dict:
+                for chart_item in model:
+                    if chart_item.goal_type == goal:
+                        chart_item.percentage = dict[goal]
+                        chart_item.save()
+         
+        
+    def AverageUserDataToPieChartModel(dict, model, model_type):
+        #Takes a Dictionary of goal_types with percentages and a Pie Chart model not filtered and creates instances of that model for Chartit to turn into a Pie Chart, or updates previous instances if instances already exist
+        
+        if len(model) == 0:
+            for goal in dict:
+                a = model_type()
+                a.goal_type = goal
+                a.percentage = dict[goal]
+                a.save()
+        else: 
+            for goal in dict:
+                for chart_item in model:
+                    if chart_item.goal_type == goal:
+                        chart_item.percentage = dict[goal]
+                        chart_item.save()
+                        
     chart = GoalDistributionChart.objects.filter(user = request.user)        
     DataToPieChartModel(goal_type_percentages, chart, GoalDistributionChart)
     
     average_chart = AverageUserGoalDistributionChart.objects.all()
     AverageUserDataToPieChartModel(all_goal_type_percentages, average_chart, AverageUserGoalDistributionChart)
     
-    
-    
+   
+            
     #Passing Data to Chartit for All Charts
     ds = DataPool(
         series = 
             [{'options': {
-                    'source': chart},
+                    'source': chart,
+                    },
                 'terms': [
                     'goal_type',
-                    'percentage']}
+                    'percentage']},
             ])
             
     UsersGoalDistributionChart = Chart(
@@ -751,18 +755,20 @@ def recommendation(request):
                     {'title': {
                         'text': 'Your Goal Distribution'}},)
                
-    #Passing Data to Chartit for the Average Users Goal Distribution
+    #Passing Data to Chartit for the Users Cost Distribution 
     
     ds1 = DataPool(
         series = 
             [{'options': {
-                    'source': average_chart},
+                    'source': BucketListItem.objects.filter(pub_by = request.user).values('goal_type').annotate(cost=Sum('cost')),
+                    },
                 'terms': [
                     'goal_type',
-                    'percentage']}
+                    'cost',
+                    ]}
             ])
-            
-    AverageUsersGoalDistributionChart = Chart(
+        
+    UsersGoalCostDistributionChart = Chart(
                 datasource = ds1,
                 series_options = 
                     [{'options':{
@@ -770,12 +776,13 @@ def recommendation(request):
                             'stacking': False},
                         'terms': {
                             'goal_type': [
-                                'percentage']
+                                'cost']
                             }}],
                 chart_options = 
                     {'title': {
-                        'text': 'Average Users Goal Distribution'}},)    
-                        
+                        'text': 'Cost Distribution By Goal Type'}},)
+
+                     
     #Numbers for What Else Could You Do
     
     dollar_bills_in_a_row_miles = total_cost/10320
@@ -877,7 +884,8 @@ def recommendation(request):
                      'all_goal_type_percentages_cost': all_goal_type_percentages_cost,
                      'all_goal_type_percentages_hours': all_goal_type_percentages_hours,
                      'all_goal_type_percentages_time': all_goal_type_percentages_time,
-                     'charts': [UsersGoalDistributionChart, AverageUsersGoalDistributionChart],
+                     'charts': [UsersGoalDistributionChart, UsersGoalCostDistributionChart],
+                     
                      
                      #----------------Most Popular Category----------
                      'most_common_goal': most_common_goal,
