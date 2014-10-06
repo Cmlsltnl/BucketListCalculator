@@ -170,76 +170,6 @@ def recommendation(request):
         return {item.text: sum}
         
         
-    def GoalTypePercentages(list):
-        #Figures out the distribution of different goal types and returns the percentage amount of each goal category
-        travel = 0
-        purchase = 0
-        career = 0
-        extreme = 0
-        family = 0
-        relationship = 0
-        health = 0
-        skill = 0
-        hobby = 0
-        building = 0
-        education = 0
-        volunteering = 0
-        other = 0
-        sum_of_all = 0
-        for goal in list:
-            sum_of_all += 1
-            if goal.goal_type == 'Travel':
-                travel += 1
-            elif goal.goal_type == 'Purchase':
-                purchase += 1
-            elif goal.goal_type == 'Career':
-                career += 1
-            elif goal.goal_type == 'Extreme Sport':
-                extreme += 1
-            elif goal.goal_type == 'Family/Social':
-                family += 1
-            elif goal.goal_type == 'Relationship':
-                relationship += 1
-            elif goal.goal_type == 'Exercise/Health':
-                health += 1
-            elif goal.goal_type == 'Improving a Skill':
-                skill += 1
-            elif goal.goal_type == 'Hobby':
-                hobby += 1
-            elif goal.goal_type == 'Building/Creating Somthing':
-                building += 1
-            elif goal.goal_type == 'Education/Self Improvement':
-                education += 1
-            elif goal.goal_type == 'Volunteering':
-                volunteering += 1
-            elif goal.goal_type == 'Other':
-                other +=1
-            else:
-                print "Houston we've got a problem"
-        totals ={}
-        totals['Travel'] = float(travel)/float(sum_of_all)*100
-        totals['Purchases'] = float(purchase)/float(sum_of_all)*100
-        totals['Career'] = float(career)/float(sum_of_all)*100
-        totals['Extreme Sports'] = float(extreme)/float(sum_of_all)*100
-        totals['Family/Social'] = float(family)/float(sum_of_all)*100
-        totals['Relationships'] = float(relationship)/float(sum_of_all)*100
-        totals['Exercise/Health'] = float(health)/float(sum_of_all)*100
-        totals['Improving Skills'] = float(skill)/float(sum_of_all)*100
-        totals['Hobbys'] = float(hobby)/float(sum_of_all)*100
-        totals['Building/Creating Somthing'] = float(building)/float(sum_of_all)*100
-        totals['Education/Self Improvement'] = float(education)/float(sum_of_all)*100
-        totals['Volunteering'] = float(volunteering)/float(sum_of_all)*100
-        totals['Other'] = float(other)/float(sum_of_all)*100
-        highest = 0
-        highest_total = 0
-        for f in totals:
-            if totals[f] > highest_total:
-                highest = f
-                highest_total = totals[f] 
-                
-        highest = (highest, highest_total)   
-        return totals, highest    
-    
         
     def total_amount_after_compounded(rate, yearly_earnings, years_left):
         #Enter the rate (as a decimal), yearly earnings, and yearly_left and it will output the total salary earned over that users lifetime and the salary of their final year
@@ -251,218 +181,6 @@ def recommendation(request):
             total_amount_after_compounded += f       
       
         return total_amount_after_compounded, annual_salary       
-
-        
-        
-    def MoreGoalTypePercentages(list, type):
-        #Figures out what percentage of cost, hours, or time each goal makes up out of the total cost, hours, or time for users list.  Enter 1 for cost, 2 for hours, or 3 for time.         
-        
-            
-        travel = 0
-        purchase = 0
-        career = 0
-        extreme = 0
-        family = 0
-        relationship = 0
-        health = 0
-        skill = 0
-        hobby = 0
-        building = 0
-        education = 0
-        volunteering = 0
-        other = 0
-        sum_of_all = 0
-        
-        for goal in list:
-            if type == 1:
-                goal_value = goal.cost
-            elif type == 2:
-                goal_value = goal.hours
-            elif type == 3:
-                goal_value = goal.time
-            else:
-                print "You fucked up... Woops!"
-                
-            sum_of_all += goal_value
-            
-            if goal.goal_type == 'Travel':
-                if type == 1:
-                    goal_value = goal.cost
-                elif type == 2:
-                    goal_value = goal.hours
-                elif type == 3:
-                    goal_value = goal.time
-                else:
-                    print "You fucked up... Woops!"
-                    
-                travel += goal_value
-                
-            elif goal.goal_type == 'Purchase':
-                if type == 1:
-                    goal_value = goal.cost
-                elif type == 2:
-                    goal_value = goal.hours
-                elif type == 3:
-                    goal_value = goal.time
-                else:
-                    print "You fucked up... Woops!"
-                    
-                purchase += goal_value
-                
-            elif goal.goal_type == 'Career':
-                if type == 1:
-                    goal_value = goal.cost
-                elif type == 2:
-                    goal_value = goal.hours
-                elif type == 3:
-                    goal_value = goal.time
-                else:
-                    print "You fucked up... Woops!"
-                    
-                career += goal_value
-                
-            elif goal.goal_type == 'Extreme Sport':
-                if type == 1:
-                    goal_value = goal.cost
-                elif type == 2:
-                    goal_value = goal.hours
-                elif type == 3:
-                    goal_value = goal.time
-                else:
-                    print "You fucked up... Woops!"
-                    
-                extreme += goal_value
-                
-            elif goal.goal_type == 'Family/Social':
-                if type == 1:
-                    goal_value = goal.cost
-                elif type == 2:
-                    goal_value = goal.hours
-                elif type == 3:
-                    goal_value = goal.time
-                else:
-                    print "You fucked up... Woops!"
-                    
-                family += goal_value
-                
-            elif goal.goal_type == 'Relationship':
-                if type == 1:
-                    goal_value = goal.cost
-                elif type == 2:
-                    goal_value = goal.hours
-                elif type == 3:
-                    goal_value = goal.time
-                else:
-                    print "You fucked up... Woops!"
-                    
-                relationship += goal_value
-                
-            elif goal.goal_type == 'Exercise/Health':
-                if type == 1:
-                    goal_value = goal.cost
-                elif type == 2:
-                    goal_value = goal.hours
-                elif type == 3:
-                    goal_value = goal.time
-                else:
-                    print "You fucked up... Woops!"
-                    
-                health += goal_value
-                
-            elif goal.goal_type == 'Improving a Skill':
-                if type == 1:
-                    goal_value = goal.cost
-                elif type == 2:
-                    goal_value = goal.hours
-                elif type == 3:
-                    goal_value = goal.time
-                else:
-                    print "You fucked up... Woops!"
-                    
-                skill += goal_value
-                
-            elif goal.goal_type == 'Hobby':
-                if type == 1:
-                    goal_value = goal.cost
-                elif type == 2:
-                    goal_value = goal.hours
-                elif type == 3:
-                    goal_value = goal.time
-                else:
-                    print "You fucked up... Woops!"
-                    
-                hobby += goal_value
-                
-            elif goal.goal_type == 'Building/Creating Somthing':
-                if type == 1:
-                    goal_value = goal.cost
-                elif type == 2:
-                    goal_value = goal.hours
-                elif type == 3:
-                    goal_value = goal.time
-                else:
-                    print "You fucked up... Woops!"
-                    
-                building += goal_value
-                
-            elif goal.goal_type == 'Education/Self Improvement':
-                if type == 1:
-                    goal_value = goal.cost
-                elif type == 2:
-                    goal_value = goal.hours
-                elif type == 3:
-                    goal_value = goal.time
-                else:
-                    print "You fucked up... Woops!"
-                    
-                education += goal_value
-                
-            elif goal.goal_type == 'Volunteering':
-                if type == 1:
-                    goal_value = goal.cost
-                elif type == 2:
-                    goal_value = goal.hours
-                elif type == 3:
-                    goal_value = goal.time
-                else:
-                    print "You fucked up... Woops!"
-                    
-                volunteering += goal_value
-                
-            elif goal.goal_type == 'Other':
-                if type == 1:
-                    goal_value = goal.cost
-                elif type == 2:
-                    goal_value = goal.hours
-                elif type == 3:
-                    goal_value = goal.time
-                else:
-                    print "You fucked up... Woops!"
-                    
-                other +=goal_value
-                
-            else:
-                print "Houston we've got a problem"
-                
-                
-        totals ={}
-        totals['Travel'] = float(travel)/float(sum_of_all)*100
-        totals['Purchases'] = float(purchase)/float(sum_of_all)*100
-        totals['Career'] = float(career)/float(sum_of_all)*100
-        totals['Extreme Sports'] = float(extreme)/float(sum_of_all)*100
-        totals['Family/Social'] = float(family)/float(sum_of_all)*100
-        totals['Relationships'] = float(relationship)/float(sum_of_all)*100
-        totals['Exercise/Health'] = float(health)/float(sum_of_all)*100
-        totals['Improving Skills'] = float(skill)/float(sum_of_all)*100
-        totals['Hobbys'] = float(hobby)/float(sum_of_all)*100
-        totals['Building/Creating Somthing'] = float(building)/float(sum_of_all)*100
-        totals['Education/Self Improvement'] = float(education)/float(sum_of_all)*100
-        totals['Volunteering'] = float(volunteering)/float(sum_of_all)*100
-        totals['Other'] = float(other)/float(sum_of_all)*100
-  
-        return totals
-      
-
 
 
                         
@@ -660,30 +378,7 @@ def recommendation(request):
     annual_percent_after_compounded_5 = (total_cost/total_earnings_after_compounded_5)*100
         
         
-        
-    #Distribution of Users Goal Types by Percentage    
-    goal_type_percentages = GoalTypePercentages(mylist)
-    goal_type_percentages_cost = MoreGoalTypePercentages(mylist, 1)
-    goal_type_percentages_hours = MoreGoalTypePercentages(mylist, 2)
-    goal_type_percentages_time =MoreGoalTypePercentages(mylist, 3)
-    
-    
-    #Most Common Goal Type
-    most_common_goal = goal_type_percentages[1]
-    goal_type_percentages = goal_type_percentages[0]
-    
-    most_common_goal_percent = most_common_goal[1]
-    most_common_goal = most_common_goal[0]
-    
-    
-    #Distribution of All Users Goal Types by Percentage (cost, hours, and time)
-    all_goal_type_percentages = GoalTypePercentages(all_goals)
-    all_goal_type_percentages = all_goal_type_percentages[0]
-    all_goal_type_percentages_cost = MoreGoalTypePercentages(all_goals, 1)
-    
-    all_goal_type_percentages_hours = MoreGoalTypePercentages(all_goals, 2)
-    
-    all_goal_type_percentages_time = MoreGoalTypePercentages(all_goals, 3)
+       
     
     
     #Turning Data into Correct Model Format for Chartit
@@ -714,9 +409,35 @@ def recommendation(request):
                     {'title': {
                         'text': 'Your Goal Distribution'}},)
                
+               
+    #Passing Data to Chartit for All Users Goal Distribution 
+    ds1 = DataPool(
+        series = 
+            [{'options': {
+                    'source': BucketListItem.objects.values('goal_type').annotate(how_many_items=Sum('how_many_items')),
+                    },
+                'terms': [
+                    'goal_type',
+                    'how_many_items']},
+            ])
+            
+    AllUsersGoalDistributionChart = Chart(
+                datasource = ds1,
+                series_options = 
+                    [{'options':{
+                            'type': 'pie',
+                            'stacking': False},
+                        'terms': {
+                            'goal_type': [
+                                'how_many_items']
+                            }}],
+                chart_options = 
+                    {'title': {
+                        'text': 'All Users Goal Distribution'}},)
+                        
     #Passing Data to Chartit for the Users Cost Distribution 
     
-    ds1 = DataPool(
+    ds2 = DataPool(
         series = 
             [{'options': {
                     'source': BucketListItem.objects.filter(pub_by = request.user).values('goal_type').annotate(cost=Sum('cost')),
@@ -728,33 +449,6 @@ def recommendation(request):
             ])
         
     UsersGoalCostDistributionChart = Chart(
-                datasource = ds1,
-                series_options = 
-                    [{'options':{
-                            'type': 'pie',
-                            'stacking': False},
-                        'terms': {
-                            'goal_type': [
-                                'cost']
-                            }}],
-                chart_options = 
-                    {'title': {
-                        'text': 'Cost Distribution By Goal Type'}},)
-
-    #Passing Data to Chartit for the Average Users Cost Distribution 
-    
-    ds2 = DataPool(
-        series = 
-            [{'options': {
-                    'source': BucketListItem.objects.values('goal_type').annotate(cost=Sum('cost')),
-                    },
-                'terms': [
-                    'goal_type',
-                    'cost',
-                    ]}
-            ])
-        
-    AllUsersGoalCostDistributionChart = Chart(
                 datasource = ds2,
                 series_options = 
                     [{'options':{
@@ -766,8 +460,146 @@ def recommendation(request):
                             }}],
                 chart_options = 
                     {'title': {
+                        'text': 'Your Cost Distribution By Goal Type'}},)
+
+    #Passing Data to Chartit for the All Users Cost Distribution 
+    
+    ds3 = DataPool(
+        series = 
+            [{'options': {
+                    'source': BucketListItem.objects.values('goal_type').annotate(cost=Sum('cost')),
+                    },
+                'terms': [
+                    'goal_type',
+                    'cost',
+                    ]}
+            ])
+        
+    AllUsersGoalCostDistributionChart = Chart(
+                datasource = ds3,
+                series_options = 
+                    [{'options':{
+                            'type': 'pie',
+                            'stacking': False},
+                        'terms': {
+                            'goal_type': [
+                                'cost']
+                            }}],
+                chart_options = 
+                    {'title': {
                         'text': 'All Users Cost Distribution By Goal Type'}},)
-                     
+                        
+                       
+    #Passing Data to Chartit for the Users Hours Distribution 
+    
+    ds4 = DataPool(
+        series = 
+            [{'options': {
+                    'source': BucketListItem.objects.filter(pub_by = request.user).values('goal_type').annotate(hours=Sum('hours')),
+                    },
+                'terms': [
+                    'goal_type',
+                    'hours',
+                    ]}
+            ])
+        
+    UsersGoalHoursDistributionChart = Chart(
+                datasource = ds4,
+                series_options = 
+                    [{'options':{
+                            'type': 'pie',
+                            'stacking': False},
+                        'terms': {
+                            'goal_type': [
+                                'hours']
+                            }}],
+                chart_options = 
+                    {'title': {
+                        'text': 'Your Hours Distribution By Goal Type'}},)
+              
+
+    #Passing Data to Chartit for all Users Hours Distribution 
+    
+    ds5 = DataPool(
+        series = 
+            [{'options': {
+                    'source': BucketListItem.objects.values('goal_type').annotate(hours=Sum('hours')),
+                    },
+                'terms': [
+                    'goal_type',
+                    'hours',
+                    ]}
+            ])
+        
+    AllUsersGoalHoursDistributionChart = Chart(
+                datasource = ds5,
+                series_options = 
+                    [{'options':{
+                            'type': 'pie',
+                            'stacking': False},
+                        'terms': {
+                            'goal_type': [
+                                'hours']
+                            }}],
+                chart_options = 
+                    {'title': {
+                        'text': 'All Users Hours Distribution By Goal Type'}},)              
+        
+    #Passing Data to Chartit for all Users Hours Distribution 
+    
+    ds6 = DataPool(
+        series = 
+            [{'options': {
+                    'source': BucketListItem.objects.filter(pub_by = request.user).values('goal_type').annotate(time=Sum('time')),
+                    },
+                'terms': [
+                    'goal_type',
+                    'time',
+                    ]}
+            ])
+        
+    UsersGoalDaysDistributionChart = Chart(
+                datasource = ds6,
+                series_options = 
+                    [{'options':{
+                            'type': 'pie',
+                            'stacking': False},
+                        'terms': {
+                            'goal_type': [
+                                'time']
+                            }}],
+                chart_options = 
+                    {'title': {
+                        'text': 'Your Days Distribution By Goal Type'}},)
+
+                        
+    #Passing Data to Chartit for all Users Hours Distribution 
+    
+    ds7 = DataPool(
+        series = 
+            [{'options': {
+                    'source': BucketListItem.objects.values('goal_type').annotate(time=Sum('time')),
+                    },
+                'terms': [
+                    'goal_type',
+                    'time',
+                    ]}
+            ])
+        
+    AllUsersGoalDaysDistributionChart = Chart(
+                datasource = ds7,
+                series_options = 
+                    [{'options':{
+                            'type': 'pie',
+                            'stacking': False},
+                        'terms': {
+                            'goal_type': [
+                                'time']
+                            }}],
+                chart_options = 
+                    {'title': {
+                        'text': 'All Users Days Distribution By Goal Type'}},)
+                        
     #Numbers for What Else Could You Do
     
     dollar_bills_in_a_row_miles = total_cost/10320
@@ -861,20 +693,10 @@ def recommendation(request):
                      'annual_percent_after_compounded_5': annual_percent_after_compounded_5,
                      
                      #----------------Distribution of Goals-------------
-                     'goal_type_percentages': goal_type_percentages,
-                     'goal_type_percentages_cost': goal_type_percentages_cost,
-                     'goal_type_percentages_hours': goal_type_percentages_hours,
-                     'goal_type_percentages_time': goal_type_percentages_time,
-                     'all_goal_type_percentages': all_goal_type_percentages,
-                     'all_goal_type_percentages_cost': all_goal_type_percentages_cost,
-                     'all_goal_type_percentages_hours': all_goal_type_percentages_hours,
-                     'all_goal_type_percentages_time': all_goal_type_percentages_time,
-                     'charts': [UsersGoalDistributionChart, UsersGoalCostDistributionChart, AllUsersGoalCostDistributionChart],
+
+                     'charts': [UsersGoalDistributionChart, AllUsersGoalDistributionChart, UsersGoalCostDistributionChart, AllUsersGoalCostDistributionChart, UsersGoalHoursDistributionChart, AllUsersGoalHoursDistributionChart, UsersGoalDaysDistributionChart, AllUsersGoalDaysDistributionChart],
+                        
                      
-                     
-                     #----------------Most Popular Category----------
-                     'most_common_goal': most_common_goal,
-                     'most_common_goal_percent': most_common_goal_percent,    
 
                       #----------------What Else Could You Do?----------
                       'dollar_bills_in_a_row_miles': dollar_bills_in_a_row_miles,

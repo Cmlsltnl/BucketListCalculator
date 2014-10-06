@@ -8,7 +8,7 @@
 
 
 {% load chartit %}
-{{ charts|load_charts:"UsersGoalDistributionChart, UsersGoalCostDistributionChart, AllUsersGoalCostDistributionChart" }}
+{{ charts|load_charts:"UsersGoalDistributionChart, AllUsersGoalDistributionChart, UsersGoalCostDistributionChart, AllUsersGoalCostDistributionChart, UsersGoalHoursDistributionChart, AllUsersGoalHoursDistributionChart, UsersGoalDaysDistributionChart, AllUsersGoalDaysDistributionChart" }}
 
 
 <h1>{{user.user}}'s Recommendations</h1>
@@ -256,72 +256,27 @@
  <div id ="UsersGoalDistributionChart"></div>
  <br>
 <br>
- </ul>
+<div id ="AllUsersGoalDistributionChart"></div>
+<br>
+<br>
   <div id ="UsersGoalCostDistributionChart"></div>
  <br>
  <br>
  <div id = "AllUsersGoalCostDistributionChart"></div>
- <h4>By Percentage of Total Cost:</h4>
  <br>
-  <h5>Your Goals Average Cost by Goal Type</h5>
-  <ul>
- {% for key, value in goal_type_percentages_cost.items %}
-    {% if value > 0 %}
-    <li>{{value}}% - {{key}}</li>
-    {% endif %}
- {% endfor %}
- </ul>
  <br>
-  <h5>Website Average</h5>
-  <ul>
- {% for key, value in all_goal_type_percentages_cost.items %}
-    {% if value > 0 %}
-    <li>{{value}}% - {{key}}</li>
-    {% endif %}
- {% endfor %}
- </ul>
+ <div id = "UsersGoalHoursDistributionChart"></div>
  <br>
-  <h4>By Percentage of Total Hours:</h4>
-  <br>
-  <h5>Your Average Hours per Goal Type</h5>
-  <ul>
- {% for key, value in goal_type_percentages_hours.items %}
-    {% if value > 0 %}
-    <li>{{value}}% - {{key}}</li>
-    {% endif %}
- {% endfor %}
- </ul>
  <br>
-  <h5>Website Average</h5>
-  <ul>
- {% for key, value in all_goal_type_percentages_hours.items %}
-    {% if value > 0 %}
-    <li>{{value}}% - {{key}}</li>
-    {% endif %}
- {% endfor %}
- </ul>
+ <div id = "AllUsersGoalHoursDistributionChart"></div>
  <br>
-  <h4>By Percentage of Total Time:</h4>
-  <br>
-  <h5>Your Average Time per Goal Type</h5>
-  <ul>
- {% for key, value in goal_type_percentages_time.items %}
-    {% if value > 0 %}
-    <li>{{value}}% - {{key}}</li>
-    {% endif %}
- {% endfor %}
- </ul>
  <br>
-   <h5>Website Average</h5>
-  <ul>
- {% for key, value in all_goal_type_percentages_time.items %}
-    {% if value > 0 %}
-    <li>{{value}}% - {{key}}</li>
-    {% endif %}
- {% endfor %}
- </ul>
+ <div id = "UsersGoalDaysDistributionChart"></div>
  <br>
-<hr>
+ <br>
+ <div id = "AllUsersGoalDaysDistributionChart"></div>
+ <br>
+ <br>
 <br>
 
 {% if total_cost > 50001 %}
