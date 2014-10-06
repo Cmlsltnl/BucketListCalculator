@@ -19,7 +19,7 @@ CHOICES = (
     ('Exercise/Health', 'Exercise/Health'), 
     ('Improving a Skill', 'Improving a Skill'), 
     ('Hobby', 'Hobby'),
-    ('Building/Creating Somthing', 'Building/Creating Somthing'),
+    ('Building/Creating Something', 'Building/Creating Something'),
     ('Education/Self Improvement', 'Education/Self Improvement'),
     ('Volunteering', 'Volunteering'),
     ('Other', 'Other'),

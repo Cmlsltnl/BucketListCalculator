@@ -4,13 +4,18 @@
 
 {% block content %}
 
-{% if user %}
-    <br/>
+    <br>
     <h1>{{user}}'s Bucket List</h1>
     {% load avatar_tags %}
     {% avatar user %}
     {% load inbox %}
     {% if personal_list %}
+    <br>
+    <br>
+    {% if repeat != 0 %}
+        <h3>If looks like you have more than one instance of <i>{{repeat}}</i> on your Bucket List.  Better remove it!</h3>
+        <br>
+    {% endif %}
         <ol>
         {% for item in personal_list %}
             {% if item.crossed_off == True %}
@@ -41,8 +46,6 @@
     <h5>Change Your Avatar:</h5>
     <button><a href="{% url 'avatar_change' %}">Change Avatar</a></button>
     <br/>
-{% else %}
-    <p>Sorry, it doesn't seem like you are logged in!</p>
-{% endif %}
+
 
 {% endblock content %}

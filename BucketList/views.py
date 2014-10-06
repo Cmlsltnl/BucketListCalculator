@@ -17,12 +17,13 @@ from chartit import DataPool, Chart
 
 #-------------Functions Used Throughout Views--------------
 
+    
 def ExactSameGoal(item, dict):
         #Takes a specific BucketListItem and a Dictionary of BucketListItems and finds any exact matches on the list using FuzzyWuzzy
         list_of_goals = []
         number_of_exact = 0
         for goal in dict:
-            similarity = fuzz.token_set_ratio(item, goal.text)
+            similarity = fuzz.ratio(item, goal.text)
             if similarity == 100:
                 number_of_exact += 1
                 list_of_goals.append(goal)
@@ -44,6 +45,20 @@ def MostSimilarGoals(item, dict):
                 break
     return list_of_goals, highest_accuracy
     
+    
+def RepeatGoalInList(dict):
+    #Takes a Dictionary of Goals and outputs a list of any goals that are repeats
+    matching_goals = []
+    for item in dict:
+        same_goal = ExactSameGoal(item, dict)
+        if same_goal[1] > 1:
+            match = same_goal[0]
+            matching_goals.append(match[0])
+    if len(matching_goals) > 0:
+        return matching_goals[0]
+    else: 
+        return 0
+   
    
 def UsersActivity(User):
     #Takes a user argument. Assigns the user a score score based upon their activity throughout the site.  Different site actions carry separate weight and the output is a single number.
@@ -69,7 +84,9 @@ def index(request):
     recently_crossed_off = BucketListItem.objects.filter(crossed_off = True).order_by('-pub_date')
     all_users = User.objects.all()
     
-    
+    all = BucketListItem.objects.all()
+
+            
     context = {'all_list_items': all_list_items,
                       'recently_crossed_off': recently_crossed_off,
     }
@@ -96,6 +113,8 @@ def index_items(request, id):
             form = CommentForm()
     else:
         form = CommentForm()
+        
+      
             
     context = {'item': item,
                       'id': id,
@@ -128,9 +147,12 @@ def user_stats(request, id):
 def my_list(request):
     #The current users personal Bucket List view with links to create more list items or learn statistics about their list
     personal_list = BucketListItem.objects.all().filter(pub_by = request.user.id)
+    repeat = RepeatGoalInList(personal_list)
     
-    context = {'personal_list': personal_list,
-                      'user': request.user.username
+    
+    context = {'user': request.user.username,
+                      'personal_list': personal_list,
+                      'repeat': repeat,
                     }
                       
     return render(request, 'BucketList/mylist.html', context)
