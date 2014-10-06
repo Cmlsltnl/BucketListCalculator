@@ -775,15 +775,24 @@ def recommendation(request):
                 chart_options = 
                     {'title': {
                         'text': 'Average Users Goal Distribution'}},)    
+                        
     #Numbers for What Else Could You Do
     
     dollar_bills_in_a_row_miles = total_cost/10320
     years_in_hotel = (total_cost/110)/365
-    roses_every_week = (total_cost/50)/52
+    roses_every_week = (total_cost/75)/52
     dollar_bills_in_a_row_miles_after_tub = (total_cost - 60000)/10320
     how_many_trampolines = (total_cost-90000)/300
     number_of_friends_on_cruise = total_cost/800
-    
+    height_of_quarters_stacked = (total_cost-60000)*4*0.069/12/5280
+    all_inclusive_resort = total_cost/4000
+    roses_every_day = (total_cost/50)/365
+    all_inclusive_resort_two_weeks = total_cost/7000
+    gold_bars = total_cost/500000
+    gallardos = total_cost/200000
+    five_star_hotel = (total_cost/550)/365
+    orcas = total_cost/1000000
+    bouquet = (total_cost/220)/365
 
     #--------------------Passed To Template-----------------------              
     
@@ -881,6 +890,15 @@ def recommendation(request):
                       'dollar_bills_in_a_row_miles_after_tub': dollar_bills_in_a_row_miles_after_tub,
                       'how_many_trampolines': how_many_trampolines,
                       'number_of_friends_on_cruise': number_of_friends_on_cruise,
+                      'height_of_quarters_stacked': height_of_quarters_stacked,
+                      'all_inclusive_resort': all_inclusive_resort,
+                      'roses_every_day': roses_every_day,
+                      'all_inclusive_resort_two_weeks': all_inclusive_resort_two_weeks,
+                      'gold_bars': gold_bars,
+                      'gallardos': gallardos,
+                      'five_star_hotel': five_star_hotel,
+                      'orcas': orcas,
+                      'bouquet': bouquet,
                      
                     }
 
