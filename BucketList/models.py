@@ -36,9 +36,8 @@ class BucketListItem(models.Model):
     time = models.IntegerField(max_length = 20)
     hours = models.IntegerField(max_length = 20)
     crossed_off = models.BooleanField(editable = False)
+    how_many_items = models.IntegerField(editable = False, default = 1)
     
-    
-
         
     def __unicode__(self):
         return self.text
@@ -85,18 +84,5 @@ def my_callback(sender, instance, created, **kwargs):
         UserProfile.objects.create(user = instance)
 
 
-#-------------------------Models for Charts-------------------------#       
-        
-class GoalDistributionChart(models.Model):
-    #Model Used to Create Your Distribution Charts in Recommendation View
-   goal_type = models.CharField(max_length = 50)
-   percentage = models.DecimalField(max_digits= 4, decimal_places = 1)
-   user = models.ForeignKey(User,editable = False)
-   
-
-class AverageUserGoalDistributionChart(models.Model):
-    #Model Used to Create the Average Users Distribution Charts in Recommendation View
-   goal_type = models.CharField(max_length = 50)
-   percentage = models.DecimalField(max_digits= 4, decimal_places = 1)
         
         

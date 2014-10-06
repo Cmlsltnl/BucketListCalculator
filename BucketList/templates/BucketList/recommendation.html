@@ -8,7 +8,7 @@
 
 
 {% load chartit %}
-{{ charts|load_charts:"UsersGoalDistributionChart, UsersGoalCostDistributionChart" }}
+{{ charts|load_charts:"UsersGoalDistributionChart, UsersGoalCostDistributionChart, AllUsersGoalCostDistributionChart" }}
 
 
 <h1>{{user.user}}'s Recommendations</h1>
@@ -259,6 +259,8 @@
  </ul>
   <div id ="UsersGoalCostDistributionChart"></div>
  <br>
+ <br>
+ <div id = "AllUsersGoalCostDistributionChart"></div>
  <h4>By Percentage of Total Cost:</h4>
  <br>
   <h5>Your Goals Average Cost by Goal Type</h5>
