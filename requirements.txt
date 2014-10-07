@@ -8,4 +8,5 @@ Requirements for this project to work:
         -DiffLib
         -Django-Chartit
         -simplejson
+        -django-password-reset (Development)
         
