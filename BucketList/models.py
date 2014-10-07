@@ -35,7 +35,7 @@ class BucketListItem(models.Model):
     cost = models.IntegerField(max_length = 20)
     time = models.IntegerField(max_length = 20)
     hours = models.IntegerField(max_length = 20)
-    crossed_off = models.BooleanField(editable = False)
+    crossed_off = models.BooleanField(editable = False, default = False)
     how_many_items = models.IntegerField(editable = False, default = 1)
     
         

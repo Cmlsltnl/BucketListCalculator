@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     url(r'^accounts/register_success/$', 'Bucket.views.register_success'),
     url(r'^avatar/', include('avatar.urls')),
     url(r'^messages/', include('django_messages.urls')),
+    url(r'^password/',include('password_reset.urls')),
 )
 
 if settings.DEBUG:
