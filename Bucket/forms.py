@@ -18,5 +18,13 @@ class MyRegistrationForm(UserCreationForm):
             
         return user
         
+        
+class EditRegistrationForm(forms.Form):
+    password = forms.CharField(widget = forms.PasswordInput, required = False, label = 'Password')
+    email = forms.EmailField(required = False, label = 'Current Email Address')
+    new_email = forms.EmailField(required = False, label = 'New Email Address')
+    new_password1 = forms.CharField(widget = forms.PasswordInput, required = False, label = 'New Password')
+    new_password2 = forms.CharField(widget = forms.PasswordInput, required = False, label = 'Confirm New Password')
+        
 
         

@@ -34,9 +34,6 @@
     <h5>Create a Bucket List Item:</h5>
     <button><a href="/bucketlist/create/">Create</a></button>
     <br/>
-    <h5>Your Bucket List Statistics:</h5>
-    <button><a href="/bucketlist/mylist/stats/">Stats</a></button>
-    <br/>
     <h5>Your Profile Page:</h5>
     <button><a href="/bucketlist/userstats/{{user}}">Profile</a></button>
     <br/>
@@ -46,6 +43,10 @@
     <h5>Change Your Avatar:</h5>
     <button><a href="{% url 'avatar_change' %}">Change Avatar</a></button>
     <br/>
-
-
+    <h5>Edit Your Account Settings:</h5>
+    <button><a href="/accounts/edit/">Edit Account</a></button>
+    <br/>
+    <h5>Edit Your Profile:</h5>
+    <button><a href="/bucketlist/profile/edit/">Edit Profile</a></button>
+    <br/>
 {% endblock content %}

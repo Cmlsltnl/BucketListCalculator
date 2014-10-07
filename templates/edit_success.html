@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Success{% endblock title %}
+
+{% block content %}
+
+<h2>You have successfully edited your account settings!</h2>
+<br>
+
+{% if change_password and change_email %}
+    <p>Both your email and password were both successfully changed.</p>
+{% elif change_password %}
+    <p>You have successfully changed your password.</p>
+{% elif change_email %}
+    <p>You have successfully changed your email address.</p>
+{% endif %}
+<br>
+<p>Click <a href="/bucketlist/">here</a> to return back to your home page.</p>
+
+{% endblock content %}
