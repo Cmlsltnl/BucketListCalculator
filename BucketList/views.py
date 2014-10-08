@@ -895,7 +895,7 @@ def edit_bucket_list_item(request, id):
         
     return render(request, 'BucketList/edit_bucket_list_item.html', context)
 
-    
+  
 @login_required
 def edit_profile(request):
     #A view that allows the user to edit their current profile information
@@ -942,6 +942,7 @@ def compare_my_list_item(request, id):
                       'exact_same_list': exact_same_list,
                       'exact_same_num': exact_same_num,
     }
+    
     return render(request, 'BucketList/my_list_compare.html', context)
     
         

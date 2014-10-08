@@ -86,7 +86,10 @@ def edit(request):
             change_email = False
             change_password = False
             
-            if pass_match != None:    
+            if User.objects.get(email = new_email):
+                print "Email already exists"
+                
+            if pass_match != None:
                 if email_match and len(new_email) > 0:  
                     user.email = new_email
                     user.save() 
