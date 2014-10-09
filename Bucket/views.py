@@ -85,16 +85,25 @@ def edit(request):
             pass_match = auth.authenticate(username = username, password = password)
             change_email = False
             change_password = False
-            
-            if User.objects.get(email = new_email):
-                print "Email already exists"
+            args = {}
+
                 
             if pass_match != None:
-                if email_match and len(new_email) > 0:  
-                    user.email = new_email
-                    user.save() 
-                    change_email = True
-
+                args['pass_match'] = pass_match
+                
+                if len(new_email) > 0:
+                    if email_match:
+                        try:
+                            exists = User.objects.get(email = new_email)
+                            args['email_not_unique'] = True
+                            return render_to_response('edit_success.html', args)
+                        except:
+                            user.email = new_email
+                            user.save() 
+                            change_email = True
+                    else:
+                        args['no_email_match'] = True
+                        return render_to_response('edit_success.html', args)
             
                 if new_password1 and new_password1 == new_password2:
                     user.set_password(new_password1)
@@ -102,10 +111,13 @@ def edit(request):
                     change_password = True                                
                  
                 if change_email or change_password:
-                    args = {}
+                    
                     args['change_email'] = change_email
                     args['change_password'] = change_password
                     return render_to_response('edit_success.html', args)
+            else:
+                args['pass_match'] = pass_match
+                return render_to_response('edit_success.html', args)
                     
     args = {}
     args.update(csrf(request))
