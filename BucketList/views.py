@@ -74,6 +74,14 @@ def UsersActivity(User):
     
     return score 
     
+def RoundFloats(f, n):
+    '''Truncates or pads a float f to n decimal places without rounding'''
+    answer = ('%.*f' % (n + 1, f))[:-1]
+    backwards = answer[-1]
+    if answer[-1] == '.':
+        answer = answer[:-1]       
+    return answer
+    
 #----------------End Functions Used Throughout Views-------------
 
 
@@ -639,6 +647,8 @@ def recommendation(request):
     five_star_hotel = (total_cost/550)/365
     orcas = total_cost/1000000
     bouquet = (total_cost/220)/365
+    
+
 
     #--------------------Passed To Template-----------------------              
     
@@ -651,29 +661,29 @@ def recommendation(request):
                      'total_time': total_time,
                      'total_number_of_items': total_number_of_items,
                      'age': age,
-                     'life_expectancy': life_expectancy,
-                     'years_left': years_left,
+                     'life_expectancy': RoundFloats(life_expectancy, 0),
+                     'years_left': RoundFloats(years_left, 0),
                      'yearly_earnings': yearly_earnings,
                      'hourly_wage': hourly_wage,
                      'work_hours_per_week': work_hours_per_week,
                      
-                     'accomplish_per_year': accomplish_per_year,
-                     'days_per_goal': days_per_goal,
-                     'cost_per_year': cost_per_year,
-                     'days_per_year': days_per_year,
+                     'accomplish_per_year': RoundFloats(accomplish_per_year, 1),
+                     'days_per_goal': RoundFloats(days_per_goal, 0),
+                     'cost_per_year': RoundFloats(cost_per_year, 2),
+                     'days_per_year': RoundFloats(days_per_year, 1),
                      'hours_per_year': hours_per_year,
-                     'hours_per_month': hours_per_month,
-                     'hours_per_week': hours_per_week,
-                     'cost_of_average_goal': cost_of_average_goal,
-                     'percent_of_yearly_wage': percent_of_yearly_wage,
+                     'hours_per_month': RoundFloats(hours_per_month, 1),
+                     'hours_per_week': RoundFloats(hours_per_week, 1),
+                     'cost_of_average_goal': RoundFloats(cost_of_average_goal, 2),
+                     'percent_of_yearly_wage': RoundFloats(percent_of_yearly_wage, 1),
                      
                      #--------------Most Difficult Goal--------------
                      'total_difficulty': total_difficulty,
-                     'years_needed_for_most_difficult': years_needed_for_most_difficult,
+                     'years_needed_for_most_difficult': RoundFloats(years_needed_for_most_difficult, 0),
                      'most_difficult_goal': most_difficult_goal,
                      'most_difficult_bucket_list_item': most_difficult_bucket_list_item,
-                     'most_difficult_goal_percentage': most_difficult_goal_percentage,
-                     'most_difficult_percentage_harder': most_difficult_percentage_harder,
+                     'most_difficult_goal_percentage': RoundFloats(most_difficult_goal_percentage, 0),
+                     'most_difficult_percentage_harder': RoundFloats(most_difficult_percentage_harder, 1),
                      'total_number_of_all_goals': total_number_of_all_goals,
                      'most_difficult_more_cost_than': most_difficult_more_cost_than,
                      'most_difficult_more_hours_than':
