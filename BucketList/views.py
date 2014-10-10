@@ -685,9 +685,9 @@ def recommendation(request):
                      'most_difficult_goal_percentage': RoundFloats(most_difficult_goal_percentage, 0),
                      'most_difficult_percentage_harder': RoundFloats(most_difficult_percentage_harder, 1),
                      'total_number_of_all_goals': total_number_of_all_goals,
-                     'most_difficult_more_cost_than': most_difficult_more_cost_than,
+                     'most_difficult_more_cost_than': RoundFloats(most_difficult_more_cost_than, 0),
                      'most_difficult_more_hours_than':
-                     most_difficult_more_hours_than,
+                     RoundFloats(most_difficult_more_hours_than, 1),
                      'most_difficult_more_days_than': most_difficult_more_days_than,
                      'average_cost_of_all_goals': average_cost_of_all_goals,
                      'average_time_of_all_goals': average_time_of_all_goals,
