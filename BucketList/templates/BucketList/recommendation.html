@@ -290,29 +290,29 @@
 
 {% if total_cost > 2000000 %}
 
-    <li>You could afford {{gold_bars}} 400 ounce gold bars!</li>
-    <li>You would have enough to fill up a bathtub and go full on Scrooge McDuck!  Then if you for some reason felt like it you could take the rest in quarters stack them all on top of each other and your stack would reach {{height_of_quarters_stacked}} miles high!</li>  
-    <li>If you wanted to you could spend {{five_star_hotel}} years living in a super fancy five star hotel room.</li>
-    <li>Or you could purchase {{gallardos}} Lamborghini Gallardos!</li>
-    <li>You could buy your own {{orcas}} Orca whales.</li>
-    <li>You could send someone you love a huge bouquet of roses every single day for {{bouquet}} years.</li>
+    <li>You could afford {{gold_bars|floatformat:"0"}} of those 400 ounce gold bars!</li>
+    <li>You would have enough to fill up a bathtub and go full on Scrooge McDuck!  Then if you for some reason felt like it you could take the rest in quarters stack them all on top of each other and your stack would reach {{height_of_quarters_stacked|floatformat:"1"}} miles high!</li>  
+    <li>If you wanted to you could spend {{five_star_hotel|floatformat:"0"}} years living in a super fancy five star hotel room.</li>
+    <li>Or you could purchase {{gallardos|floatformat:"0"}} Lamborghini Gallardos!</li>
+    <li>You could buy your own {{orcas|floatformat:"0"}} Orca whales.</li>
+    <li>You could send someone you love a huge bouquet of roses every single day for {{bouquet|floatformat:"0"}} years.</li>
 
     
 {% elif total_cost > 1000000 %}
 
-    <li>You could afford {{gold_bars}} 400 ounce gold bars!</li>
-    <li>You would have enough to fill up a bathtub and go full on Scrooge McDuck!  Then if you for some reason felt like it you could take the rest in quarters stack them all on top of each other and your stack would reach {{height_of_quarters_stacked}} miles high!</li> 
-    <li>If you wanted to you could spend {{years_in_hotel}} years living in a hotel room.</li>
-    <li>You could send someone you love two dozen roses every single day for {{roses_every_day}} years.</li>
-    <li>Or you could purchase {{gallardos}} Lamborghini Gallardos!</li>
+    <li>You could afford {{gold_bars|floatformat:"0"}} of those 400 ounce gold bars!</li>
+    <li>You would have enough to fill up a bathtub and go full on Scrooge McDuck!  Then if you for some reason felt like it you could take the rest in quarters stack them all on top of each other and your stack would reach {{height_of_quarters_stacked|floatformat:"1"}} miles high!</li> 
+    <li>If you wanted to you could spend {{years_in_hotel|floatformat:"0"}} years living in a hotel room.</li>
+    <li>You could send someone you love two dozen roses every single day for {{roses_every_day|floatformat:"0"}} years.</li>
+    <li>Or you could purchase {{gallardos|floatformat:"0"}} Lamborghini Gallardos!</li>
     <li>You could buy your own Orca Whale!</li>
     <li>Or one of those sweet magnetic beds that float</li>
     
 {% elif total_cost > 500000 %}
 
     <li>You could afford one whole 400 troy ounce gold bar!</li>
-    <li>You would have enough to fill up a bathtub and go full on Scrooge McDuck!  Then if you for some reason felt like it you could take the rest in quarters stack them all on top of each other and your stack would reach {{height_of_quarters_stacked}} miles high!</li>    
-    <li>If you wanted to you could spend {{years_in_hotel}} years living in a hotel room.</li>
+    <li>You would have enough to fill up a bathtub and go full on Scrooge McDuck!  Then if you for some reason felt like it you could take the rest in quarters stack them all on top of each other and your stack would reach {{height_of_quarters_stacked|floatformat:"1"}} miles high!</li>    
+    <li>If you wanted to you could spend {{years_in_hotel|floatformat:"0"}} years living in a hotel room.</li>
     {% if total_cost > 750000 %}
     <li>You would have enough money to buy your own private island!</li>
     <li>You could even go to outer space.. three times!</li>
@@ -320,45 +320,45 @@
     <li>You would have enough money to buy your own private island!</li>
     <li>You could even go to outer space.. twice!</li>
     {% endif %}
-    <li>You could send someone you love two dozen roses every single day for {{roses_every_day}} years.</li>
-    <li>You could even take your {{all_inclusive_resort_two_weeks}} closest friends to an all inclusive resort for a full two weeks.</li>
+    <li>You could send someone you love two dozen roses every single day for {{roses_every_day|floatformat:"0"}} years.</li>
+    <li>You could even take your {{all_inclusive_resort_two_weeks|floatformat:"0"}} closest friends to an all inclusive resort for a full two weeks.</li>
     
 {% elif total_cost > 300000 %}
 
-    <li>You would have enough to fill up a bathtub and go full on Scrooge McDuck!  Then if you for some reason felt like it you could take the rest in quarters stack them all on top of each other and your stack would reach {{height_of_quarters_stacked}} miles high!</li>
-    <li>If you wanted to you could spend {{years_in_hotel}} years living in a hotel room.</li>
-    <li>You could even take your {{all_inclusive_resort}} closest friends to an all inclusive resort for a week.</li>
-    <li>You could send someone you love two dozen roses every single day for {{roses_every_day}} years.</li>
+    <li>You would have enough to fill up a bathtub and go full on Scrooge McDuck!  Then if you for some reason felt like it you could take the rest in quarters stack them all on top of each other and your stack would reach {{height_of_quarters_stacked|floatformat:"1"}} miles high!</li>
+    <li>If you wanted to you could spend {{years_in_hotel|floatformat:"0"}} years living in a hotel room.</li>
+    <li>You could even take your {{all_inclusive_resort|floatformat:"0"}} closest friends to an all inclusive resort for a week.</li>
+    <li>You could send someone you love two dozen roses every single day for {{roses_every_day|floatformat:"0"}} years.</li>
     <li>You could even pay for a trip to outer space!  Now that would be pretty awesome.</li>
     
 {% elif total_cost > 200000 %}
     
     <li>You could easily afford a Lamborghini Gallardo!</li>
-    <li>You would have enough to split some of up into singles, fill up a bath tub and go full on Scrooge McDuck. Then, with the money left over you could still take all of those one dollar bills and line them up in a row and it would stretch {{dollar_bills_in_a_row_miles_after_tub}} miles. </li>
-    <li>If you wanted to you could spend {{years_in_hotel}} years living in a hotel room.</li>
-    <li>You and {{number_of_friends_on_cruise}} of your closest friends could even go on a four day Disney Cruise.</li>
-    <li>You could send someone you love two dozen roses once a week for {{roses_every_week}} years.</li>
+    <li>You would have enough to split some of up into singles, fill up a bath tub and go full on Scrooge McDuck. Then, with the money left over you could still take all of those one dollar bills and line them up in a row and it would stretch {{dollar_bills_in_a_row_miles_after_tub|floatformat:"1"}} miles. </li>
+    <li>If you wanted to you could spend {{years_in_hotel|floatformat:"0"}} years living in a hotel room.</li>
+    <li>You and {{number_of_friends_on_cruise|floatformat:"0"}} of your closest friends could even go on a four day Disney Cruise.</li>
+    <li>You could send someone you love two dozen roses once a week for {{roses_every_week|floatformat:"0"}} years.</li>
     
 {% elif total_cost > 100000 %}
 
-    <li>You would have enough to split some of it into singles, fill up a bath tub and go full on Scrooge McDuck. Then, with the money left over you could still take all of those one dollar bills and line them up in a row and it would stretch {{dollar_bills_in_a_row_miles_after_tub}} miles. </li>
+    <li>You would have enough to split some of it into singles, fill up a bath tub and go full on Scrooge McDuck. Then, with the money left over you could still take all of those one dollar bills and line them up in a row and it would stretch {{dollar_bills_in_a_row_miles_after_tub|floatformat:"1"}} miles. </li>
     <li>Or you could buy two Albino Ball Pythons, one of the rarest pets in the world!</li>
-    <li>You could easily afford a huge in-ground pool along with custom made water slides, two of those cool levitating hover scooters, and still be able to afford {{how_many_trampolines}} trampolines.  Because who doesn't want {{how_many_trampolines}} trampolines? </li>
-    <li>If you wanted to you could spend {{years_in_hotel}} years living in a hotel room.</li>
+    <li>You could easily afford a huge in-ground pool along with custom made water slides, two of those cool levitating hover scooters, and still be able to afford {{how_many_trampolines|floatformat:"0"}} trampolines.  Because who doesn't want {{how_many_trampolines}} trampolines? </li>
+    <li>If you wanted to you could spend {{years_in_hotel|floatformat:"0"}} years living in a hotel room.</li>
     <li>Or three nights in the Ty Warner Penthouse Suite in the Four Seasons New York.</li>
-    <li>You could send someone you love two dozen roses once a week for {{roses_every_week}} years.</li>
-    <li>You and {{number_of_friends_on_cruise}} of your closest friends could even go on a four day Disney Cruise.</li>
+    <li>You could send someone you love two dozen roses once a week for {{roses_every_week|floatformat:"0"}} years.</li>
+    <li>You and {{number_of_friends_on_cruise|floatformat:"0"}} of your closest friends could even go on a four day Disney Cruise.</li>
     
 {% elif total_cost > 50000 %}
 
     <li>You would have enough to split it all up into singles, fill up a bath tub and go full on Scrooge McDuck. </li>
-    <li>If you were really determined, or just really bored you could take all of those one dollar bills and line them up in a row and it would stretch {{dollar_bills_in_a_row_miles}} miles. </li>
+    <li>If you were really determined, or just really bored you could take all of those one dollar bills and line them up in a row and it would stretch {{dollar_bills_in_a_row_miles|floatformat:"1"}} miles. </li>
     <li>Or you could buy an Albino Ball Python, one of the rarest pets in the world!</li>
     <li>You could easily afford a huge in-ground pool along with custom made water slides.</li>
     <li>Or two Hippos and a miniature Zoo environment for them.</li>
-    <li>If you wanted to you could spend {{years_in_cheap_motel}} years living in a hotel room.</li>
+    <li>If you wanted to you could spend {{years_in_hotel|floatformat:"1"}} years living in a hotel room.</li>
     <li>Or a single night in the Ty Warner Penthouse Suite in the Four Seasons New York.</li>
-    <li>You could send someone you love two dozen roses once a week for {{roses_every_week}} years.</li>
+    <li>You could send someone you love two dozen roses once a week for {{roses_every_week|floatformat:"0"}} years.</li>
 
 {% endif %}
 </ul>
