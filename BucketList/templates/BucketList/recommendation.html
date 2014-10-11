@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}Your Recommendations{% endblock title %}
+{% load humanize %}
 
 {% block content %}
 
@@ -220,19 +221,19 @@
         Now some of our more astute users will be saying "Hey, my income changes over time.  I wonder what the effects of that would be on these statistics?"  Well we thought of that too!  Your welcome.
         <br>
         <br>
-        Currently your Bucket List will cost about {{percent_of_yearly_wage}}% of your annual wage every year in order to accomplish by the time you are {{life_expectancy}} years old.  Now lets see how improving your annual income will improve the percent you have to spend every year to accomplish your goals.  
+        Currently your Bucket List will cost about {{percent_of_yearly_wage|floatformat:"1"}}% of your annual wage every year in order to accomplish by the time you are {{life_expectancy|floatformat:"0"}} years old.  Now lets see how improving your annual income will improve the percent you have to spend every year to accomplish your goals.  
         <br>
         <br>
         For this example we will exclude inflation and increases in price to the current market basket (sorry for all of the econ terms).  These costs often cancel each other out over the long term and for the sake of readability we will not go into much more detail on those topics here.  Just assume no inflation exists when reading the following numbers.
         <br>
         <br>
-        You currently make ${{yearly_earnings}} per year if your average annual income goes up by just one percent every year you will have an income of about ${{salary_after_compounded_1}} per year when you are {{life_expectancy}} years old (remember, this ignores inflation so think of how much money that is in today's dollars, not future dollars).  On average over these years instead of spending {{percent_of_yearly_wage}}% of your annual income on your Bucket List every year you would only need to spend {{annual_percent_after_compounded_1}}% of your annual income every year to meet your goals.
+        You currently make ${{yearly_earnings|floatformat:"2"|intcomma}} per year if your average annual income goes up by just one percent every year you will have an income of about ${{salary_after_compounded_1|floatformat:"2"|intcomma}} per year when you are {{life_expectancy|floatformat:"0"}} years old (remember, this ignores inflation so think of how much money that is in today's dollars, not future dollars).  On average over these years instead of spending {{percent_of_yearly_wage|floatformat:"1"}}% of your annual income on your Bucket List every year you would only need to spend {{annual_percent_after_compounded_1|floatformat:"1"}}% of your annual income every year to meet your goals.
         <br>
         <br>
-        Do you think you will do even better than that?  Well if your annual income increases by two percent every year then you would be making ${{salary_after_compounded_2}} annually by the age of {{life_expectancy}}.  This would mean that your Bucket List goals would only need to take up to {{annual_percent_after_compounded_2}}% of your annual income during that time frame!
+        Do you think you will do even better than that?  Well if your annual income increases by two percent every year then you would be making ${{salary_after_compounded_2|floatformat:"2"|intcomma}} annually by the age of {{life_expectancy|floatformat:"0"}}.  This would mean that your Bucket List goals would only need to take up to {{annual_percent_after_compounded_2|floatformat:"1"}}% of your annual income during that time frame!
         <br>
         <br>
-        Are you REALLY confident about your future? Me too!  Lets be optimistic and see how a three percent, four percent, or even a five percent increase in annual income every year would benefit our annual salary and our Bucket List goals.  At the age of {{life_expectancy}} with a three percent increase in annual income every year would equate to making ${{salary_after_compounded_3}} every year.  At four percent you would make ${{salary_after_compounded_4}} and at five percent ${{salary_after_compounded_5}}.  This would decrease our income dedicated to Bucket List goal to {{annual_percent_after_compounded_3}}%, {{annual_percent_after_compounded_4}}%, and {{annual_percent_after_compounded_5}}% respectively. 
+        Are you REALLY confident about your future? Me too!  Lets be optimistic and see how a three percent, four percent, or even a five percent increase in annual income every year would benefit our annual salary and our Bucket List goals.  At the age of {{life_expectancy|floatformat:"0"}} with a three percent increase in annual income every year would equate to making ${{salary_after_compounded_3|floatformat:"2"|intcomma}} every year.  At four percent you would make ${{salary_after_compounded_4|floatformat:"2"|intcomma}} and at five percent ${{salary_after_compounded_5|floatformat:"2"|intcomma}}.  This would decrease our income dedicated to Bucket List goal to {{annual_percent_after_compounded_3|floatformat:"1"}}%, {{annual_percent_after_compounded_4|floatformat:"1"}}%, and {{annual_percent_after_compounded_5|floatformat:"1"}}% respectively. 
         
         
         
@@ -285,7 +286,7 @@
 <h2>What Else Could You Do?</h2>
 <br>
 
-<p>Now ${{total_cost}} is a pretty ridiculous amount of money.  But accomplishing all of your goals is totally worth it!  Lets look at some other things that you could potentially do with that money: </p>
+<p>Now ${{total_cost|floatformat:"2"|intcomma}} is a pretty ridiculous amount of money.  But accomplishing all of your goals is totally worth it!  Lets look at some other things that you could potentially do with that money: </p>
 <ul>
 
 {% if total_cost > 2000000 %}

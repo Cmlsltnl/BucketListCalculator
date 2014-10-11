@@ -74,13 +74,6 @@ def UsersActivity(User):
     
     return score 
     
-def RoundFloats(f, n):
-    '''Truncates or pads a float f to n decimal places without rounding'''
-    answer = ('%.*f' % (n + 1, f))[:-1]
-    backwards = answer[-1]
-    if answer[-1] == '.':
-        answer = answer[:-1]       
-    return answer
     
 #----------------End Functions Used Throughout Views-------------
 
@@ -675,7 +668,7 @@ def recommendation(request):
                      'hours_per_month': hours_per_month,
                      'hours_per_week': hours_per_week,
                      'cost_of_average_goal': cost_of_average_goal,
-                     'percent_of_yearly_wage': RoundFloats(percent_of_yearly_wage, 1),
+                     'percent_of_yearly_wage': percent_of_yearly_wage,
                      
                      #--------------Most Difficult Goal--------------
                      'total_difficulty': total_difficulty,
