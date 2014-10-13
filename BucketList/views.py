@@ -205,11 +205,18 @@ def recommendation(request):
       
         return total_amount_after_compounded, annual_salary       
 
-    def AverageForGoalType(type, category):
-        #Searches through all goals using the goal type given and outputs the average cost/hours/time of that goal type takes type and category argument both a strings
-        goals = BucketListItem.objects.filter(goal_type = type)
+    def AverageForGoalType(type, category, all_or_user):
+        #Searches through all goal using the goal type given and outputs the average cost/hours/time of that goal type takes type and category argument both as a string. For the third argument enter 1 for all users or 2 for the current user
+        if all_or_user == 1:
+            goals = BucketListItem.objects.filter(goal_type = type)
+        elif all_or_user == 2:
+            goals = BucketListItem.objects.filter(goal_type = type, pub_by = request.user)
+        else:
+            print "Something went wrong"
+            
         sum = 0
         number_of_goals = 0
+        
         if category == "cost":
             for goal in goals:
                 sum += goal.cost
@@ -224,9 +231,11 @@ def recommendation(request):
                 number_of_goals +=1
         else:
             print "Something went wrong"
-            
-        return sum/number_of_goals
         
+        if sum == 0 or number_of_goals == 0:
+            return 0
+        else:
+            return sum/number_of_goals
         
         
 
