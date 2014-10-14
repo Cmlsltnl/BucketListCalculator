@@ -367,6 +367,7 @@
 <br>
 {% endif %}
 <br>
+<!---------------------Comparing Goal Types-------------------------->
 <hr>
 <br>
 <h2>Comparing Goal Types</h2>
@@ -378,6 +379,38 @@
             <h4>Career</h4>
             <ul>
                 <li>The average users Career Goal Cost is ${{all_users_career_cost|floatformat:"2"|intcomma}} yours is ${{current_users_career_cost|floatformat:"2"|intcomma}}.
+                </li>
+                <li>The average users Career Goal takes {{all_users_career_time|floatformat:"0"}} full days yours takes {{current_users_career_cost|floatformat:"0"}}.
+                </li>
+              <li>The average users Career Goal  takes {{all_users_career_hours|floatformat:"0"}} hours yours takes {{current_users_career_hours|floatformat:"0"}}.
+                </li>
+            </ul>
+        </li>
+        
+    {% endif %}
+    {% if user_has_goal_type_purchase %}
+        <li>
+            <h4>Purchase</h4>
+            <ul>
+                <li>The average users Purchase Goal Cost is ${{all_users_purchase_cost|floatformat:"2"|intcomma}} yours is ${{current_users_purchase_cost|floatformat:"2"|intcomma}}.
+                </li>
+                <li>The average users Purchase Goal takes {{all_users_purchase_time|floatformat:"0"}} full days yours takes {{current_users_purchase_cost|floatformat:"0"}}.
+                </li>
+              <li>The average users Purchase Goal takes {{all_users_purchase_hours|floatformat:"0"}} hours yours takes {{current_users_purchase_hours|floatformat:"0"}}.
+                </li>
+            </ul>
+        </li>
+        
+    {% endif %}
+    {% if user_has_goal_type_travel %}
+        <li>
+            <h4>Travel</h4>
+            <ul>
+                <li>The average users Travel Goal Cost is ${{all_users_travel_cost|floatformat:"2"|intcomma}} yours is ${{current_users_travel_cost|floatformat:"2"|intcomma}}.
+                </li>
+                <li>The average users Travel Goal takes {{all_users_travel_time|floatformat:"0"}} full days yours takes {{current_users_travel_cost|floatformat:"0"}}.
+                </li>
+              <li>The average users Travel Goal takes {{all_users_travel_hours|floatformat:"0"}} hours yours takes {{current_users_travel_hours|floatformat:"0"}}.
                 </li>
             </ul>
         </li>

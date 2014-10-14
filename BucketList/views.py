@@ -686,9 +686,27 @@ def recommendation(request):
     user_has_goal_type_career = UserHasGoalType("Career")
     all_users_career_cost = AverageForGoalType("Career", "cost", 1)
     current_users_career_cost = AverageForGoalType("Career", "cost", 2)
+    all_users_career_time = AverageForGoalType("Career", "time", 1)
+    current_users_career_time = AverageForGoalType("Career", "time", 2)
+    all_users_career_hours = AverageForGoalType("Career", "hours", 1)
+    current_users_career_hours = AverageForGoalType("Career", "hours", 2)
     
+    user_has_goal_type_purchase = UserHasGoalType("Purchase")
+    all_users_purchase_cost = AverageForGoalType("Purchase", "cost", 1)
+    current_users_purchase_cost = AverageForGoalType("Purchase", "cost", 2)
+    all_users_purchase_time = AverageForGoalType("Purchase", "time", 1)
+    current_users_purchase_time = AverageForGoalType("Purchase", "time", 2)
+    all_users_purchase_hours = AverageForGoalType("Purchase", "hours", 1)
+    current_users_purchase_hours = AverageForGoalType("Purchase", "hours", 2)
     
-
+    user_has_goal_type_travel = UserHasGoalType("Travel")
+    all_users_travel_cost = AverageForGoalType("Travel", "cost", 1)
+    current_users_travel_cost = AverageForGoalType("Travel", "cost", 2)
+    all_users_travel_time = AverageForGoalType("Travel", "time", 1)
+    current_users_travel_time = AverageForGoalType("Travel", "time", 2)
+    all_users_travel_hours = AverageForGoalType("Travel", "hours", 1)
+    current_users_travel_hours = AverageForGoalType("Travel", "hours", 2)
+    
     #--------------------Passed To Template-----------------------              
     
     context = {
@@ -791,7 +809,27 @@ def recommendation(request):
                       'user_has_goal_type_career': user_has_goal_type_career,
                       'all_users_career_cost': all_users_career_cost,
                       'current_users_career_cost': current_users_career_cost,
-                      
+                      'all_users_career_time': all_users_career_time,
+                      'current_users_career_time': current_users_career_time,
+                      'all_users_career_hours': all_users_career_hours,
+                      'current_users_career_hours': current_users_career_hours,
+                     
+                     'user_has_goal_type_purchase': user_has_goal_type_purchase,
+                     'all_users_purchase_cost': all_users_purchase_cost,
+                     'current_users_purchase_cost': current_users_purchase_cost,
+                     'all_users_purchase_time': all_users_purchase_time,
+                     'current_users_purchase_time': current_users_purchase_time,
+                     'all_users_purchase_hours': all_users_purchase_hours,
+                     'current_users_purchase_hours': current_users_purchase_hours,
+                     
+                     'user_has_goal_type_travel': user_has_goal_type_travel,
+                     'all_users_travel_cost': all_users_travel_cost,
+                     'current_users_travel_cost': current_users_travel_cost,
+                     'all_users_travel_time': all_users_travel_time,
+                     'current_users_travel_time': current_users_travel_time,
+                     'all_users_travel_hours': all_users_travel_hours,
+                     'current_users_travel_hours': current_users_travel_hours,
+                     
                      
                     }
 
