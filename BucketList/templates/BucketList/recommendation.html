@@ -371,6 +371,21 @@
 <br>
 <h2>Comparing Goal Types</h2>
 <br>
+<p>Now lets compare how the values for your goal types stack up against other users values.</p>
+<ul>
+    {% if user_has_goal_type_career %}
+        <li>
+            <h4>Career</h4>
+            <ul>
+                <li>The average users Career Goal Cost is ${{all_users_career_cost|floatformat:"2"|intcomma}} yours is ${{current_users_career_cost|floatformat:"2"|intcomma}}.
+                </li>
+            </ul>
+        </li>
+        
+    {% endif %}
+</ul>
+<br>
+<hr>
 {% endblock content %}
  
  

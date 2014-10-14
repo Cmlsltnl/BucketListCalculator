@@ -237,7 +237,14 @@ def recommendation(request):
         else:
             return sum/number_of_goals
         
+    def UserHasGoalType(type):
+        #Takes a goal type argument, if current user has goal with that goal type function returns True is the current user does not have a goal with that goal type the function returns False
+        goals = BucketListItem.objects.filter(pub_by = request.user, goal_type = type)
         
+        if len(goals) == 0:
+            return False
+        else:
+            return True
 
                         
     #-----------------Passed Through to Template (simple)---------------
@@ -674,7 +681,13 @@ def recommendation(request):
     orcas = total_cost/1000000
     bouquet = (total_cost/220)/365
     
-
+    
+    #Comparing Goal Types
+    user_has_goal_type_career = UserHasGoalType("Career")
+    all_users_career_cost = AverageForGoalType("Career", "cost", 1)
+    current_users_career_cost = AverageForGoalType("Career", "cost", 2)
+    
+    
 
     #--------------------Passed To Template-----------------------              
     
@@ -772,6 +785,13 @@ def recommendation(request):
                       'five_star_hotel': five_star_hotel,
                       'orcas': orcas,
                       'bouquet': bouquet,
+                      
+                      
+                      #--------------Comparing Goal Types--------------
+                      'user_has_goal_type_career': user_has_goal_type_career,
+                      'all_users_career_cost': all_users_career_cost,
+                      'current_users_career_cost': current_users_career_cost,
+                      
                      
                     }
 
