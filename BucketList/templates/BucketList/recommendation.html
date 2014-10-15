@@ -380,7 +380,7 @@
             <ul>
                 <li>The average users Career Goal Cost is ${{all_users_career_cost|floatformat:"2"|intcomma}} yours is ${{current_users_career_cost|floatformat:"2"|intcomma}}.
                 </li>
-                <li>The average users Career Goal takes {{all_users_career_time|floatformat:"0"}} full days yours takes {{current_users_career_cost|floatformat:"0"}}.
+                <li>The average users Career Goal takes {{all_users_career_time|floatformat:"0"}} full days yours takes {{current_users_career_time|floatformat:"0"}}.
                 </li>
               <li>The average users Career Goal  takes {{all_users_career_hours|floatformat:"0"}} hours yours takes {{current_users_career_hours|floatformat:"0"}}.
                 </li>
@@ -394,7 +394,7 @@
             <ul>
                 <li>The average users Purchase Goal Cost is ${{all_users_purchase_cost|floatformat:"2"|intcomma}} yours is ${{current_users_purchase_cost|floatformat:"2"|intcomma}}.
                 </li>
-                <li>The average users Purchase Goal takes {{all_users_purchase_time|floatformat:"0"}} full days yours takes {{current_users_purchase_cost|floatformat:"0"}}.
+                <li>The average users Purchase Goal takes {{all_users_purchase_time|floatformat:"0"}} full days yours takes {{current_users_purchase_time|floatformat:"0"}}.
                 </li>
               <li>The average users Purchase Goal takes {{all_users_purchase_hours|floatformat:"0"}} hours yours takes {{current_users_purchase_hours|floatformat:"0"}}.
                 </li>
@@ -408,9 +408,37 @@
             <ul>
                 <li>The average users Travel Goal Cost is ${{all_users_travel_cost|floatformat:"2"|intcomma}} yours is ${{current_users_travel_cost|floatformat:"2"|intcomma}}.
                 </li>
-                <li>The average users Travel Goal takes {{all_users_travel_time|floatformat:"0"}} full days yours takes {{current_users_travel_cost|floatformat:"0"}}.
+                <li>The average users Travel Goal takes {{all_users_travel_time|floatformat:"0"}} full days yours takes {{current_users_travel_time|floatformat:"0"}}.
                 </li>
               <li>The average users Travel Goal takes {{all_users_travel_hours|floatformat:"0"}} hours yours takes {{current_users_travel_hours|floatformat:"0"}}.
+                </li>
+            </ul>
+        </li>
+        
+    {% endif %}
+    {% if user_has_goal_type_extreme %}
+        <li>
+            <h4>Extreme Sport</h4>
+            <ul>
+                <li>The average users Extreme Sport Goal Cost is ${{all_users_extreme_cost|floatformat:"2"|intcomma}} yours is ${{current_users_extreme_cost|floatformat:"2"|intcomma}}.
+                </li>
+                <li>The average users Extreme Sport Goal takes {{all_users_extreme_time|floatformat:"0"}} full days yours takes {{current_users_extreme_time|floatformat:"0"}}.
+                </li>
+              <li>The average users Extreme Sport Goal takes {{all_users_extreme_hours|floatformat:"0"}} hours yours takes {{current_users_extreme_hours|floatformat:"0"}}.
+                </li>
+            </ul>
+        </li>
+        
+    {% endif %}
+    {% if user_has_goal_type_family %}
+        <li>
+            <h4>Family/Social</h4>
+            <ul>
+                <li>The average users Family/Social Goal Cost is ${{all_users_family_cost|floatformat:"2"|intcomma}} yours is ${{current_users_family_cost|floatformat:"2"|intcomma}}.
+                </li>
+                <li>The average users Family/Social Goal takes {{all_users_family_time|floatformat:"0"}} full days yours takes {{current_users_family_time|floatformat:"0"}}.
+                </li>
+              <li>The average users Family/Social Goal takes {{all_users_family_hours|floatformat:"0"}} hours yours takes {{current_users_family_hours|floatformat:"0"}}.
                 </li>
             </ul>
         </li>

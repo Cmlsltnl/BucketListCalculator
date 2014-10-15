@@ -682,7 +682,9 @@ def recommendation(request):
     bouquet = (total_cost/220)/365
     
     
-    #Comparing Goal Types
+    #*******Comparing Goal Types******
+    
+    #Career
     user_has_goal_type_career = UserHasGoalType("Career")
     all_users_career_cost = AverageForGoalType("Career", "cost", 1)
     current_users_career_cost = AverageForGoalType("Career", "cost", 2)
@@ -691,6 +693,7 @@ def recommendation(request):
     all_users_career_hours = AverageForGoalType("Career", "hours", 1)
     current_users_career_hours = AverageForGoalType("Career", "hours", 2)
     
+    #Purchase
     user_has_goal_type_purchase = UserHasGoalType("Purchase")
     all_users_purchase_cost = AverageForGoalType("Purchase", "cost", 1)
     current_users_purchase_cost = AverageForGoalType("Purchase", "cost", 2)
@@ -699,6 +702,7 @@ def recommendation(request):
     all_users_purchase_hours = AverageForGoalType("Purchase", "hours", 1)
     current_users_purchase_hours = AverageForGoalType("Purchase", "hours", 2)
     
+    #Travel
     user_has_goal_type_travel = UserHasGoalType("Travel")
     all_users_travel_cost = AverageForGoalType("Travel", "cost", 1)
     current_users_travel_cost = AverageForGoalType("Travel", "cost", 2)
@@ -706,6 +710,25 @@ def recommendation(request):
     current_users_travel_time = AverageForGoalType("Travel", "time", 2)
     all_users_travel_hours = AverageForGoalType("Travel", "hours", 1)
     current_users_travel_hours = AverageForGoalType("Travel", "hours", 2)
+    
+    #Extreme Sport
+    user_has_goal_type_extreme = UserHasGoalType("Extreme Sport")
+    all_users_extreme_cost = AverageForGoalType("Extreme Sport", "cost", 1)
+    current_users_extreme_cost = AverageForGoalType("Extreme Sport", "cost", 2)
+    all_users_extreme_time = AverageForGoalType("Extreme Sport", "time", 1)
+    current_users_extreme_time = AverageForGoalType("Extreme Sport", "time", 2)
+    all_users_extreme_hours = AverageForGoalType("Extreme Sport", "hours", 1)
+    current_users_extreme_hours = AverageForGoalType("Extreme Sport", "hours", 2)    
+    
+    #Family/Social
+    user_has_goal_type_family = UserHasGoalType("Family/Social")
+    all_users_family_cost = AverageForGoalType("Family/Social", "cost", 1)
+    current_users_family_cost = AverageForGoalType("Family/Social", "cost", 2)
+    all_users_family_time = AverageForGoalType("Family/Social", "time", 1)
+    current_users_family_time = AverageForGoalType("Family/Social", "time", 2)
+    all_users_family_hours = AverageForGoalType("Family/Social", "hours", 1)
+    current_users_family_hours = AverageForGoalType("Family/Social", "hours", 2)    
+    
     
     #--------------------Passed To Template-----------------------              
     
@@ -830,7 +853,21 @@ def recommendation(request):
                      'all_users_travel_hours': all_users_travel_hours,
                      'current_users_travel_hours': current_users_travel_hours,
                      
+                     'user_has_goal_type_extreme': user_has_goal_type_extreme,
+                     'all_users_extreme_cost': all_users_extreme_cost,
+                     'current_users_extreme_cost': current_users_extreme_cost,
+                     'all_users_extreme_time': all_users_extreme_time,
+                     'current_users_extreme_time': current_users_extreme_time,
+                     'all_users_extreme_hours': all_users_extreme_hours,
+                     'current_users_extreme_hours': current_users_extreme_hours,
                      
+                     'user_has_goal_type_family': user_has_goal_type_family,
+                     'all_users_family_cost': all_users_family_cost,
+                     'current_users_family_cost': current_users_family_cost,
+                     'all_users_family_time': all_users_family_time,
+                     'current_users_family_time': current_users_family_time,
+                     'all_users_family_hours': all_users_family_hours,
+                     'current_users_family_hours': current_users_family_hours,
                     }
 
     return render(request, 'BucketList/recommendation.html', context)
