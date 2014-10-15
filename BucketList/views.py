@@ -1167,6 +1167,10 @@ def edit_profile(request):
             current_user.age = new_age   
             current_user.save()
             return HttpResponseRedirect('/bucketlist/mylist/')
+        else:
+            form = UserProfileEditForm({'new_age': current_user.age, 'new_life_expectancy': current_user.life_expectancy, 'new_yearly_earnings': current_user.yearly_earnings, 'new_hourly_wage': current_user.hourly_wage})
+            
+            context = {'form': form,}
     else:
         form = UserProfileEditForm({'new_age': current_user.age, 'new_life_expectancy': current_user.life_expectancy, 'new_yearly_earnings': current_user.yearly_earnings, 'new_hourly_wage': current_user.hourly_wage})
         
