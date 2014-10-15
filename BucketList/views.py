@@ -729,6 +729,71 @@ def recommendation(request):
     all_users_family_hours = AverageForGoalType("Family/Social", "hours", 1)
     current_users_family_hours = AverageForGoalType("Family/Social", "hours", 2)    
     
+    #Relationship
+    user_has_goal_type_relationship = UserHasGoalType("Relationship")
+    all_users_relationship_cost = AverageForGoalType("Relationship", "cost", 1)
+    current_users_relationship_cost = AverageForGoalType("Relationship", "cost", 2)
+    all_users_relationship_time = AverageForGoalType("Relationship", "time", 1)
+    current_users_relationship_time = AverageForGoalType("Relationship", "time", 2)
+    all_users_relationship_hours = AverageForGoalType("Relationship", "hours", 1)
+    current_users_relationship_hours = AverageForGoalType("Relationship", "hours", 2)     
+    
+    #Exercise/Health
+    user_has_goal_type_exercise = UserHasGoalType("Exercise/Health")
+    all_users_exercise_cost = AverageForGoalType("Exercise/Health", "cost", 1)
+    current_users_exercise_cost = AverageForGoalType("Exercise/Health", "cost", 2)
+    all_users_exercise_time = AverageForGoalType("Exercise/Health", "time", 1)
+    current_users_exercise_time = AverageForGoalType("Exercise/Health", "time", 2)
+    all_users_exercise_hours = AverageForGoalType("Exercise/Health", "hours", 1)
+    current_users_exercise_hours = AverageForGoalType("Exercise/Health", "hours", 2)
+    
+    #Improving a Skill
+    user_has_goal_type_skill = UserHasGoalType("Improving a Skill")
+    all_users_skill_cost = AverageForGoalType("Improving a Skill", "cost", 1)
+    current_users_skill_cost = AverageForGoalType("Improving a Skill", "cost", 2)
+    all_users_skill_time = AverageForGoalType("Improving a Skill", "time", 1)
+    current_users_skill_time = AverageForGoalType("Improving a Skill", "time", 2)
+    all_users_skill_hours = AverageForGoalType("Improving a Skill", "hours", 1)
+    current_users_skill_hours = AverageForGoalType("Improving a Skill", "hours", 2)
+    
+    #Hobby
+    user_has_goal_type_hobby = UserHasGoalType("Hobby")
+    all_users_hobby_cost = AverageForGoalType("Hobby", "cost", 1)
+    current_users_hobby_cost = AverageForGoalType("Hobby", "cost", 2)
+    all_users_hobby_time = AverageForGoalType("Hobby", "time", 1)
+    current_users_hobby_time = AverageForGoalType("Hobby", "time", 2)
+    all_users_hobby_hours = AverageForGoalType("Hobby", "hours", 1)
+    current_users_hobby_hours = AverageForGoalType("Hobby", "hours", 2)
+    
+    #Building/Creating Something
+    user_has_goal_type_building = UserHasGoalType("Building/Creating Something")
+    all_users_building_cost = AverageForGoalType("Building/Creating Something", "cost", 1)
+    current_users_building_cost = AverageForGoalType("Building/Creating Something", "cost", 2)
+    all_users_building_time = AverageForGoalType("Building/Creating Something", "time", 1)
+    current_users_building_time = AverageForGoalType("Building/Creating Something", "time", 2)
+    all_users_building_hours = AverageForGoalType("Building/Creating Something", "hours", 1)
+    current_users_building_hours = AverageForGoalType("Building/Creating Something", "hours", 2)  
+    
+    #Education/Self Improvement
+    user_has_goal_type_education = UserHasGoalType("Education/Self Improvement")
+    all_users_education_cost = AverageForGoalType("Education/Self Improvement", "cost", 1)
+    current_users_education_cost = AverageForGoalType("Education/Self Improvement", "cost", 2)
+    all_users_education_time = AverageForGoalType("Education/Self Improvement", "time", 1)
+    current_users_education_time = AverageForGoalType("Education/Self Improvement", "time", 2)
+    all_users_education_hours = AverageForGoalType("Education/Self Improvement", "hours", 1)
+    current_users_education_hours = AverageForGoalType("Education/Self Improvement", "hours", 2)
+    
+    #Volunteering
+    user_has_goal_type_volunteering = UserHasGoalType("Volunteering")
+    all_users_volunteering_cost = AverageForGoalType("Volunteering", "cost", 1)
+    current_users_volunteering_cost = AverageForGoalType("Volunteering", "cost", 2)
+    all_users_volunteering_time = AverageForGoalType("Volunteering", "time", 1)
+    current_users_volunteering_time = AverageForGoalType("Volunteering", "time", 2)
+    all_users_volunteering_hours = AverageForGoalType("Volunteering", "hours", 1)
+    current_users_volunteering_hours = AverageForGoalType("Volunteering", "hours", 2)
+    
+    
+    
     
     #--------------------Passed To Template-----------------------              
     
@@ -868,7 +933,65 @@ def recommendation(request):
                      'current_users_family_time': current_users_family_time,
                      'all_users_family_hours': all_users_family_hours,
                      'current_users_family_hours': current_users_family_hours,
-                    }
+                     
+                     'user_has_goal_type_relationship': user_has_goal_type_relationship,
+                     'all_users_relationship_cost': all_users_relationship_cost,
+                     'current_users_relationship_cost': current_users_relationship_cost,
+                     'all_users_relationship_time': all_users_relationship_time,
+                     'current_users_relationship_time': current_users_relationship_time,
+                     'all_users_relationship_hours': all_users_relationship_hours,
+                     'current_users_relationship_hours': current_users_relationship_hours,
+                     
+                     'user_has_goal_type_exercise': user_has_goal_type_exercise,
+                     'all_users_exercise_cost': all_users_exercise_cost,
+                     'current_users_exercise_cost': current_users_exercise_cost,
+                     'all_users_exercise_time': all_users_exercise_time,
+                     'current_users_exercise_time': current_users_exercise_time,
+                     'all_users_exercise_hours': all_users_exercise_hours,
+                     'current_users_exercise_hours': current_users_exercise_hours,
+                     
+                     'user_has_goal_type_skill': user_has_goal_type_skill,
+                     'all_users_skill_cost': all_users_skill_cost,
+                     'current_users_skill_cost': current_users_skill_cost,
+                     'all_users_skill_time': all_users_skill_time,
+                     'current_users_skill_time': current_users_skill_time,
+                     'all_users_skill_hours': all_users_skill_hours,
+                     'current_users_skill_hours': current_users_skill_hours,
+                     
+                     'user_has_goal_type_hobby': user_has_goal_type_hobby,
+                     'all_users_hobby_cost': all_users_hobby_cost,
+                     'current_users_hobby_cost': current_users_hobby_cost,
+                     'all_users_hobby_time': all_users_hobby_time,
+                     'current_users_hobby_time': current_users_hobby_time,
+                     'all_users_hobby_hours': all_users_hobby_hours,
+                     'current_users_hobby_hours': current_users_hobby_hours,
+                     
+                     'user_has_goal_type_building': user_has_goal_type_building,
+                     'all_users_building_cost': all_users_building_cost,
+                     'current_users_building_cost': current_users_building_cost,
+                     'all_users_building_time': all_users_building_time,
+                     'current_users_building_time': current_users_building_time,
+                     'all_users_building_hours': all_users_building_hours,
+                     'current_users_building_hours': current_users_building_hours,
+                     
+                     'user_has_goal_type_education': user_has_goal_type_education,
+                     'all_users_education_cost': all_users_education_cost,
+                     'current_users_education_cost': current_users_education_cost,
+                     'all_users_education_time': all_users_education_time,
+                     'current_users_education_time': current_users_education_time,
+                     'all_users_education_hours': all_users_education_hours,
+                     'current_users_education_hours': current_users_education_hours,
+                     
+                     'user_has_goal_type_volunteering': user_has_goal_type_volunteering,
+                     'all_users_volunteering_cost': all_users_volunteering_cost,
+                     'current_users_volunteering_cost': current_users_volunteering_cost,
+                     'all_users_volunteering_time': all_users_volunteering_time,
+                     'current_users_volunteering_time': current_users_volunteering_time,
+                     'all_users_volunteering_hours': all_users_volunteering_hours,
+                     'current_users_volunteering_hours': current_users_volunteering_hours,
+                     
+                   
+                   }
 
     return render(request, 'BucketList/recommendation.html', context)
     
