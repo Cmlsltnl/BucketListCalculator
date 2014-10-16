@@ -68,6 +68,10 @@ def UsersActivity(User):
     crossed_off = BucketListItem.objects.filter(pub_by = User, crossed_off = True)
     users_comments = Comment.objects.filter(author = User)
     
+    for item in all_list_items:
+        comment_count = Comment.objects.filter(item = item).exclude(author = User)
+        score += len(comment_count)*5
+    
     score += len(all_list_items) * 1
     score += len(crossed_off) * 1
     score += len(users_comments) * 2
@@ -86,7 +90,8 @@ def index(request):
     all_users = User.objects.all()
     
     all = BucketListItem.objects.all()
-
+    
+    print UsersActivity(request.user)
             
     context = {'all_list_items': all_list_items,
                       'recently_crossed_off': recently_crossed_off,
@@ -1213,7 +1218,7 @@ def delete_comment(request, id):
     
     if comment:
         is_comment = 1
-        del comment
+        comment.delete()
         
     context = {'is_comment': is_comment,
                       'item_id': item_id,
