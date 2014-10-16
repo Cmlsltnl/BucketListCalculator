@@ -1206,5 +1206,17 @@ def compare_my_list_item(request, id):
         
 @login_required
 def delete_comment(request, id):
-    comment = Comment.objects.filter(author = request.user.username, pk = id)
-    return HttpResponse("It's working!")
+
+    comment = Comment.objects.get(pk = id)
+    is_comment = 0
+    item_id = comment.item.id
+    
+    if comment:
+        is_comment = 1
+        del comment
+        
+    context = {'is_comment': is_comment,
+                      'item_id': item_id,
+    }
+    
+    return render(request, 'BucketList/delete_comment.html', context)

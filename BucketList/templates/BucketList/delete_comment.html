@@ -1,19 +1,15 @@
 {% extends 'base.html' %}
 
-{% block title %}Delete Comment{% endblock title %}
+{% block title %}Comment Deleted{% endblock title %}
 
 {% block content %}
 
-{% if comment %}
+{% if is_comment %}
 <br>
-<p>Are you sure you would like to delete this comment?</p>
-<br>
-<button><a href = "">Yes</a></button>
-<button><a href= "">No</a></button>
-<br>
+<p>Your comment has been successfully deleted. Click <a href = "/bucketlist/item/{{item_id}}/">here</a> to go back to the previous page.</p></p>
 {% else %}
 <br>
-<p>It looks like something went wrong or the comment you are trying to delete is not your own.  Click <a href = "/bucketlist/item/{{id}}/">here</a> to go back to the previous page.</p>
+<p>It looks like something went wrong or the comment you are trying to delete is not your own.  Click <a href = "/bucketlist/">here</a> to go back to the home page.</p>
 </br>
 {% endif %}
 
