@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Comment{% endblock title %}
+
+{% block content %}
+
+{% if comment %}
+<br>
+<p>Are you sure you would like to delete this comment?</p>
+<br>
+<button><a href = "">Yes</a></button>
+<button><a href= "">No</a></button>
+<br>
+{% else %}
+<br>
+<p>It looks like something went wrong or the comment you are trying to delete is not your own.  Click <a href = "/bucketlist/item/{{id}}/">here</a> to go back to the previous page.</p>
+</br>
+{% endif %}
+
+{% endblock content %}

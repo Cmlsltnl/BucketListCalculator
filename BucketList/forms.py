@@ -47,7 +47,6 @@ class UserProfileEditForm(forms.Form):
     new_life_expectancy = forms.CharField(label = 'Age You Will Be Done', max_length = 3)
     new_yearly_earnings = forms.CharField(label = 'Yearly Earnings', max_length = 8)
     new_hourly_wage = forms.CharField(label = 'Hourly Wage', max_length = 3)
-    new_birth_date = forms.DateField(label = 'Birth Date')
         
 
 class BucketListItemEditForm(forms.ModelForm):

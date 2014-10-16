@@ -1204,3 +1204,7 @@ def compare_my_list_item(request, id):
     return render(request, 'BucketList/my_list_compare.html', context)
     
         
+@login_required
+def delete_comment(request, id):
+    comment = Comment.objects.filter(author = request.user.username, pk = id)
+    return HttpResponse(comment)

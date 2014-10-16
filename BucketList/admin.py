@@ -22,8 +22,8 @@ class UserProfileAdmin(admin.ModelAdmin):
         ('Age',            {'fields': ['age']}),
         ('Life Expectancy',            {'fields': ['life_expectancy']}),
     ]
-    readonly_fields = ('user', 'age', 'life_expectancy', 'yearly_earnings', 'hourly_wage', 'birth_date')
-    list_display = ['user', 'age', 'life_expectancy', 'yearly_earnings', 'hourly_wage', 'birth_date']
+    readonly_fields = ('user', 'age', 'life_expectancy', 'yearly_earnings', 'hourly_wage')
+    list_display = ['user', 'age', 'life_expectancy', 'yearly_earnings', 'hourly_wage']
     
 admin.site.register(UserProfile, UserProfileAdmin)
 
