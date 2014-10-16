@@ -4,6 +4,7 @@ from BucketList import views
 urlpatterns = patterns('',
 
     url(r'^$', views.index, name='index'),
+    url(r'^item/(?P<id>\w+)/delete-comment/', views.delete_comment, name = 'delete comment'),
     url(r'^item/(?P<id>\w+)/', views.index_items, name = 'index items'),
     url(r'^userstats/(?P<id>\w+)/', views.user_stats, name='user profile'),
     url(r'^create/$', views.create, name='create'),
@@ -16,6 +17,6 @@ urlpatterns = patterns('',
     url(r'^mylist/recommendation/$', views.recommendation, name = 'recommendation'),
     url(r'^mylist/compare/(?P<id>\w+)/', views.compare_my_list_item, name = 'compare list item'),
     url(r'^profile/edit/$', views.edit_profile, name = 'edit profile'),
-    url(r'^item/(?P<id>\w+)/delete-comment/', views.delete_comment, name = 'delete comment'),
+
 )
 

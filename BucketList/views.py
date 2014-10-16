@@ -114,13 +114,13 @@ def index_items(request, id):
             form = CommentForm()
     else:
         form = CommentForm()
-        
       
             
     context = {'item': item,
                       'id': id,
                       'comments': comments,
                       'form': form,
+                      'current_user': str(current_user.user),
                       }
                       
 
@@ -1207,4 +1207,4 @@ def compare_my_list_item(request, id):
 @login_required
 def delete_comment(request, id):
     comment = Comment.objects.filter(author = request.user.username, pk = id)
-    return HttpResponse(comment)
+    return HttpResponse("It's working!")

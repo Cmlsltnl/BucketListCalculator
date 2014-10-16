@@ -30,6 +30,9 @@
                     {% avatar comment.author 30 %}
                     <h5>{{comment.created}}</h3>
                     <p>{{comment.body}}</h3>
+                    {% if comment.author == current_user %}
+                        <button><a href="delete-comment/">Remove Comment</a></button>
+                    {% endif %}
                 </div>
                 <hr>
             {% endfor %}
