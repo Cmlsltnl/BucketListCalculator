@@ -3,7 +3,7 @@
 {% block title %}Home{% endblock title %}
 
 {% block content %}
-
+{% load avatar_tags %}
 <h1>Community Bucket List</h1>
 
     <ol>
@@ -20,4 +20,12 @@
         <li><a href="/bucketlist/item/{{item.id}}/" style="text-decoration: line-through;">{{ item.text }}</a></li>
     {% endfor %}
     </ol>
+    
+<br>
+<br>
+<h1>Popular Users</h1>
+    
+{% for key, values in new_users_by_activity.items %}
+<a href="/bucketlist/userstats/{{key}}/">{% avatar key %}</a>
+{% endfor %}
 {% endblock content%}

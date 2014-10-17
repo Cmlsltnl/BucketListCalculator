@@ -11,7 +11,7 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from fuzzywuzzy import fuzz, process
 from chartit import DataPool, Chart
-
+import operator
 
 
 
@@ -91,10 +91,16 @@ def index(request):
     
     all = BucketListItem.objects.all()
     
-    print UsersActivity(request.user)
+    users_by_activity = {}
+    for user in all_users:
+        users_by_activity[user] = UsersActivity(user)
+        
+    new_users_by_activity = dict(sorted(users_by_activity.iteritems(), key=operator.itemgetter(1), reverse=True)[:6])
+    
             
     context = {'all_list_items': all_list_items,
                       'recently_crossed_off': recently_crossed_off,
+                      'new_users_by_activity': new_users_by_activity,
     }
     
     
