@@ -548,7 +548,42 @@
 <hr>
 <br>
 <h2>Your End Date</h2>
-<p>Many of the stats on this site change based on the date you would like to have accomplished all of them.  Lets check out what happens if this date changes.
+<p>Many of the stats on this site change based on the date you would like to have accomplished all of them.  Lets check out what happens if this date changes.</p>
+<p>You currently have {{years_left|floatformat:"0"}} years left to meet all of your goals.</p>
+<ul>
+    <li>
+        How things change at age {{years_left_plus_five|floatformat:"0"}}
+    </li>
+    <li>
+        How things change at age {{years_left_plus_ten|floatformat:"0"}}
+    </li>
+    <li>
+        How things change at age {{years_left_plus_fifteen|floatformat:"0"}}
+    </li>
+    <li>
+        How things change at age {{years_left_plus_twenty|floatformat:"0"}}
+    </li>
+    {% if years_left_minus_five > 0 %}
+    <li>
+        How things change at age {{years_left_minus_five|floatformat:"0"}}
+    </li>
+    {% endif %}
+    {% if years_left_minus_ten > 0 %}
+    <li>
+        How things change at age {{years_left_minus_ten|floatformat:"0"}}
+    </li>
+    {% endif %}
+    {% if years_left_minus_fifteen > 0 %}
+    <li>
+        How things change at age {{years_left_minus_fifteen|floatformat:"0"}}
+    </li>
+    {% endif %}
+    {% if years_left_minus_twenty > 0 %}
+    <li>
+        How things change at age {{years_left_minus_twenty|floatformat:"0"}}
+    </li>
+    {% endif %}
+</ul>
 <hr>
 {% endblock content %}
  
