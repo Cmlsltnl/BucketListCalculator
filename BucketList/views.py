@@ -806,13 +806,28 @@ def recommendation(request):
     
     #Your End Date
     years_left_plus_five = years_left +5
+    total_cost_plus_five = total_cost/years_left_plus_five
+    
     years_left_plus_ten = years_left + 10
+    total_cost_plus_ten = total_cost/years_left_plus_ten
+    
     years_left_plus_fifteen = years_left + 15
+    total_cost_plus_fifteen = total_cost/years_left_plus_fifteen
+    
     years_left_plus_twenty = years_left +20
+    total_cost_plus_twenty = total_cost/years_left_plus_twenty
+    
     years_left_minus_five = years_left - 5
+    total_cost_minus_five = total_cost/years_left_minus_five
+    
     years_left_minus_ten = years_left - 10
+    total_cost_minus_ten = total_cost/years_left_minus_ten
+    
     years_left_minus_fifteen = years_left - 15
+    total_cost_minus_fifteen = total_cost/years_left_minus_fifteen
+    
     years_left_minus_twenty = years_left - 20
+    total_cost_minus_twenty = total_cost/years_left_minus_twenty
     
     #--------------------Passed To Template-----------------------              
     
@@ -1010,13 +1025,29 @@ def recommendation(request):
                      'current_users_volunteering_hours': current_users_volunteering_hours,
                      
                     'years_left_plus_five': years_left_plus_five,
+                    'total_cost_plus_five': total_cost_plus_five,
+                    
                     'years_left_plus_ten': years_left_plus_ten,
+                    'total_cost_plus_ten': total_cost_plus_ten,
+                    
                     'years_left_plus_fifteen': years_left_plus_fifteen,
+                    'total_cost_plus_fifteen': total_cost_plus_fifteen,
+                    
                     'years_left_plus_twenty': years_left_plus_twenty,
+                    'total_cost_plus_twenty': total_cost_plus_twenty,
+                    
                     'years_left_minus_five': years_left_minus_five,
+                    'total_cost_minus_five': total_cost_minus_five,
+                    
                     'years_left_minus_ten': years_left_minus_ten,
+                    'total_cost_minus_ten': total_cost_minus_ten,
+                    
                     'years_left_minus_fifteen': years_left_minus_fifteen,
+                    'total_cost_minus_fifteen': total_cost_minus_fifteen,
+                    
                     'years_left_minus_twenty': years_left_minus_twenty,
+                    'total_cost_minus_twenty': total_cost_minus_twenty,
+                    
                    }
 
     return render(request, 'BucketList/recommendation.html', context)

@@ -553,34 +553,58 @@
 <ul>
     <li>
         How things change at age {{years_left_plus_five|floatformat:"0"}}
+        <ul>
+            <li>If you have five more years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"0"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_plus_five|floatformat:"0"|intcomma}} every year.</li>
+        </ul>
     </li>
     <li>
         How things change at age {{years_left_plus_ten|floatformat:"0"}}
+        <ul>
+            <li>If you have ten more years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"0"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_plus_ten|floatformat:"0"|intcomma}} every year.</li>
+        </ul>       
     </li>
     <li>
         How things change at age {{years_left_plus_fifteen|floatformat:"0"}}
+        <ul>
+            <li>If you have fifteen more years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"0"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_plus_fifteen|floatformat:"0"|intcomma}} every year.</li>
+        </ul>
     </li>
     <li>
         How things change at age {{years_left_plus_twenty|floatformat:"0"}}
+        <ul>
+            <li>If you have twenty more years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"0"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_plus_twenty|floatformat:"0"|intcomma}} every year.</li>
+        </ul>
     </li>
     {% if years_left_minus_five > 0 %}
     <li>
         How things change at age {{years_left_minus_five|floatformat:"0"}}
+        <ul>
+            <li>If you have five less years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"0"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_minus_five|floatformat:"0"|intcomma}} every year.</li>
+        </ul>
     </li>
     {% endif %}
     {% if years_left_minus_ten > 0 %}
     <li>
         How things change at age {{years_left_minus_ten|floatformat:"0"}}
+        <ul>
+            <li>If you have ten less years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"0"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_minus_ten|floatformat:"0"|intcomma}} every year.</li>
+        </ul>
     </li>
     {% endif %}
     {% if years_left_minus_fifteen > 0 %}
     <li>
         How things change at age {{years_left_minus_fifteen|floatformat:"0"}}
+        <ul>
+            <li>If you have fifteen less years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"0"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_minus_fifteen|floatformat:"0"|intcomma}} every year.</li>
+        </ul>
     </li>
     {% endif %}
     {% if years_left_minus_twenty > 0 %}
     <li>
         How things change at age {{years_left_minus_twenty|floatformat:"0"}}
+        <ul>
+            <li>If you have twenty less years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"0"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_minus_twenty|floatformat:"0"|intcomma}} every year.</li>
+        </ul>
     </li>
     {% endif %}
 </ul>
