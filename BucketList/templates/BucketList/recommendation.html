@@ -552,58 +552,106 @@
 <p>You currently have {{years_left|floatformat:"0"}} years left to meet all of your goals.</p>
 <ul>
     <li>
-        How things change at age {{years_left_plus_five|floatformat:"0"}}
+        How things change with {{years_left_plus_five|floatformat:"0"}} years left:
+        <br>
         <ul>
-            <li>If you have five more years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"0"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_plus_five|floatformat:"0"|intcomma}} every year.</li>
+            <li>
+                If you have five more years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_plus_five|floatformat:"2"|intcomma}} every year.
+            </li>
+            <li>
+                With five more years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_plus_five|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
+            </li>
         </ul>
+        <br>
     </li>
     <li>
-        How things change at age {{years_left_plus_ten|floatformat:"0"}}
+        How things change with {{years_left_plus_ten|floatformat:"0"}} years left:
         <ul>
-            <li>If you have ten more years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"0"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_plus_ten|floatformat:"0"|intcomma}} every year.</li>
-        </ul>       
+            <li>
+                If you have ten more years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_plus_ten|floatformat:"2"|intcomma}} every year.
+            </li>
+            <li>
+                With ten more years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_plus_ten|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
+            </li>
+        </ul> 
+        <br>
     </li>
     <li>
-        How things change at age {{years_left_plus_fifteen|floatformat:"0"}}
+        How things change with {{years_left_plus_fifteen|floatformat:"0"}} years left:
         <ul>
-            <li>If you have fifteen more years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"0"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_plus_fifteen|floatformat:"0"|intcomma}} every year.</li>
+            <li>
+                If you have fifteen more years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_plus_fifteen|floatformat:"2"|intcomma}} every year.
+            </li>
+            <li>
+                With fifteen more years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_plus_fifteen|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
+            </li>
         </ul>
+        <br>
     </li>
     <li>
-        How things change at age {{years_left_plus_twenty|floatformat:"0"}}
+        How things change with {{years_left_plus_twenty|floatformat:"0"}} years left:
         <ul>
-            <li>If you have twenty more years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"0"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_plus_twenty|floatformat:"0"|intcomma}} every year.</li>
+            <li>
+                If you have twenty more years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_plus_twenty|floatformat:"2"|intcomma}} every year.
+            </li>
+            <li>
+                With twenty more years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_plus_twenty|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
+            </li>
         </ul>
+        <br>
     </li>
     {% if years_left_minus_five > 0 %}
     <li>
-        How things change at age {{years_left_minus_five|floatformat:"0"}}
+        How things change with {{years_left_minus_five|floatformat:"0"}} years left:
         <ul>
-            <li>If you have five less years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"0"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_minus_five|floatformat:"0"|intcomma}} every year.</li>
+            <li>
+                If you have five less years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_minus_five|floatformat:"2"|intcomma}} every year.
+            </li>
+            <li>
+                With five less years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_minus_five|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
+            </li>
         </ul>
+        <br>
     </li>
     {% endif %}
     {% if years_left_minus_ten > 0 %}
     <li>
-        How things change at age {{years_left_minus_ten|floatformat:"0"}}
+        How things change with {{years_left_minus_ten|floatformat:"0"}} years left:
         <ul>
-            <li>If you have ten less years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"0"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_minus_ten|floatformat:"0"|intcomma}} every year.</li>
+            <li>
+                If you have ten less years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_minus_ten|floatformat:"2"|intcomma}} every year.
+            </li>
+            <li>
+                With ten less years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_minus_ten|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
+            </li>
         </ul>
+        <br>
     </li>
     {% endif %}
     {% if years_left_minus_fifteen > 0 %}
     <li>
-        How things change at age {{years_left_minus_fifteen|floatformat:"0"}}
+        How things change with {{years_left_minus_fifteen|floatformat:"0"}} years left:
         <ul>
-            <li>If you have fifteen less years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"0"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_minus_fifteen|floatformat:"0"|intcomma}} every year.</li>
+            <li>
+                If you have fifteen less years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_minus_fifteen|floatformat:"2"|intcomma}} every year.
+            </li>
+            <li>
+                With fifteen less years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_minus_fifteen|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
+            </li>
         </ul>
+        <br>
     </li>
     {% endif %}
     {% if years_left_minus_twenty > 0 %}
     <li>
-        How things change at age {{years_left_minus_twenty|floatformat:"0"}}
+        How things change with {{years_left_minus_twenty|floatformat:"0"}} years left:
         <ul>
-            <li>If you have twenty less years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"0"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_minus_twenty|floatformat:"0"|intcomma}} every year.</li>
+            <li>
+                If you have twenty less years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_minus_twenty|floatformat:"2"|intcomma}} every year.
+            </li>
+            <li>
+                With twenty less years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_minus_twenty|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
+            </li>
         </ul>
     </li>
     {% endif %}

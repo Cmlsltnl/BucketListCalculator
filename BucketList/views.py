@@ -807,27 +807,35 @@ def recommendation(request):
     #Your End Date
     years_left_plus_five = years_left +5
     total_cost_plus_five = total_cost/years_left_plus_five
+    days_per_goal_plus_five = (years_left_plus_five*365)/total_number_of_items
     
     years_left_plus_ten = years_left + 10
     total_cost_plus_ten = total_cost/years_left_plus_ten
+    days_per_goal_plus_ten = (years_left_plus_ten*365)/total_number_of_items
     
     years_left_plus_fifteen = years_left + 15
     total_cost_plus_fifteen = total_cost/years_left_plus_fifteen
+    days_per_goal_plus_fifteen = (years_left_plus_fifteen*365)/total_number_of_items
     
     years_left_plus_twenty = years_left +20
     total_cost_plus_twenty = total_cost/years_left_plus_twenty
+    days_per_goal_plus_twenty = (years_left_plus_twenty*365)/total_number_of_items
     
     years_left_minus_five = years_left - 5
     total_cost_minus_five = total_cost/years_left_minus_five
+    days_per_goal_minus_five = (years_left_minus_five*365)/total_number_of_items
     
     years_left_minus_ten = years_left - 10
     total_cost_minus_ten = total_cost/years_left_minus_ten
+    days_per_goal_minus_ten = (years_left_minus_ten*365)/total_number_of_items
     
     years_left_minus_fifteen = years_left - 15
     total_cost_minus_fifteen = total_cost/years_left_minus_fifteen
+    days_per_goal_minus_fifteen = (years_left_minus_fifteen*365)/total_number_of_items
     
     years_left_minus_twenty = years_left - 20
     total_cost_minus_twenty = total_cost/years_left_minus_twenty
+    days_per_goal_minus_twenty = (years_left_minus_twenty*365)/total_number_of_items
     
     #--------------------Passed To Template-----------------------              
     
@@ -1026,27 +1034,35 @@ def recommendation(request):
                      
                     'years_left_plus_five': years_left_plus_five,
                     'total_cost_plus_five': total_cost_plus_five,
+                    'days_per_goal_plus_five': days_per_goal_plus_five,
                     
                     'years_left_plus_ten': years_left_plus_ten,
                     'total_cost_plus_ten': total_cost_plus_ten,
+                    'days_per_goal_plus_ten': days_per_goal_plus_ten,
                     
                     'years_left_plus_fifteen': years_left_plus_fifteen,
                     'total_cost_plus_fifteen': total_cost_plus_fifteen,
+                    'days_per_goal_plus_fifteen': days_per_goal_plus_fifteen,
                     
                     'years_left_plus_twenty': years_left_plus_twenty,
                     'total_cost_plus_twenty': total_cost_plus_twenty,
+                    'days_per_goal_plus_twenty': days_per_goal_plus_twenty,
                     
                     'years_left_minus_five': years_left_minus_five,
                     'total_cost_minus_five': total_cost_minus_five,
+                    'days_per_goal_minus_five': days_per_goal_minus_five,
                     
                     'years_left_minus_ten': years_left_minus_ten,
                     'total_cost_minus_ten': total_cost_minus_ten,
+                    'days_per_goal_minus_ten': days_per_goal_minus_ten,
                     
                     'years_left_minus_fifteen': years_left_minus_fifteen,
                     'total_cost_minus_fifteen': total_cost_minus_fifteen,
+                    'days_per_goal_minus_fifteen': days_per_goal_minus_fifteen,
                     
                     'years_left_minus_twenty': years_left_minus_twenty,
                     'total_cost_minus_twenty': total_cost_minus_twenty,
+                    'days_per_goal_minus_twenty': days_per_goal_minus_twenty,
                     
                    }
 
