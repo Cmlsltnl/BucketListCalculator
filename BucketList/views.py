@@ -808,34 +808,51 @@ def recommendation(request):
     years_left_plus_five = years_left +5
     total_cost_plus_five = total_cost/years_left_plus_five
     days_per_goal_plus_five = (years_left_plus_five*365)/total_number_of_items
+    days_per_year_plus_five = total_time/years_left_plus_five
+    hours_per_month_plus_five = (total_hours/years_left_plus_five)/12
+    
     
     years_left_plus_ten = years_left + 10
     total_cost_plus_ten = total_cost/years_left_plus_ten
     days_per_goal_plus_ten = (years_left_plus_ten*365)/total_number_of_items
+    days_per_year_plus_ten = total_time/years_left_plus_ten
+    hours_per_month_plus_ten = (total_hours/years_left_plus_ten)/12
     
     years_left_plus_fifteen = years_left + 15
     total_cost_plus_fifteen = total_cost/years_left_plus_fifteen
     days_per_goal_plus_fifteen = (years_left_plus_fifteen*365)/total_number_of_items
+    days_per_year_plus_fifteen = total_time/years_left_plus_fifteen
+    hours_per_month_plus_fifteen = (total_hours/years_left_plus_fifteen)/12
     
     years_left_plus_twenty = years_left +20
     total_cost_plus_twenty = total_cost/years_left_plus_twenty
     days_per_goal_plus_twenty = (years_left_plus_twenty*365)/total_number_of_items
+    days_per_year_plus_twenty = total_time/years_left_plus_twenty
+    hours_per_month_plus_twenty = (total_hours/years_left_plus_twenty)/12
     
     years_left_minus_five = years_left - 5
     total_cost_minus_five = total_cost/years_left_minus_five
     days_per_goal_minus_five = (years_left_minus_five*365)/total_number_of_items
+    days_per_year_minus_five = total_time/years_left_minus_five
+    hours_per_month_minus_five = (total_hours/years_left_minus_five)/12
     
     years_left_minus_ten = years_left - 10
     total_cost_minus_ten = total_cost/years_left_minus_ten
     days_per_goal_minus_ten = (years_left_minus_ten*365)/total_number_of_items
+    days_per_year_minus_ten = total_time/years_left_minus_ten
+    hours_per_month_minus_ten = (total_hours/years_left_minus_ten)/12
     
     years_left_minus_fifteen = years_left - 15
     total_cost_minus_fifteen = total_cost/years_left_minus_fifteen
     days_per_goal_minus_fifteen = (years_left_minus_fifteen*365)/total_number_of_items
+    days_per_year_minus_fifteen = total_time/years_left_minus_fifteen
+    hours_per_month_minus_fifteen = (total_hours/years_left_minus_fifteen)/12
     
     years_left_minus_twenty = years_left - 20
     total_cost_minus_twenty = total_cost/years_left_minus_twenty
     days_per_goal_minus_twenty = (years_left_minus_twenty*365)/total_number_of_items
+    days_per_year_minus_twenty = total_time/years_left_minus_twenty
+    hours_per_month_minus_twenty = (total_hours/years_left_minus_twenty)/12
     
     #--------------------Passed To Template-----------------------              
     
@@ -1032,37 +1049,54 @@ def recommendation(request):
                      'all_users_volunteering_hours': all_users_volunteering_hours,
                      'current_users_volunteering_hours': current_users_volunteering_hours,
                      
+                     #----------------Your End Date------------------
                     'years_left_plus_five': years_left_plus_five,
                     'total_cost_plus_five': total_cost_plus_five,
                     'days_per_goal_plus_five': days_per_goal_plus_five,
+                    'days_per_year_plus_five': days_per_year_plus_five,
+                    'hours_per_month_plus_five': hours_per_month_plus_five,
                     
                     'years_left_plus_ten': years_left_plus_ten,
                     'total_cost_plus_ten': total_cost_plus_ten,
                     'days_per_goal_plus_ten': days_per_goal_plus_ten,
+                    'days_per_year_plus_ten': days_per_year_plus_ten,
+                    'hours_per_month_plus_ten': hours_per_month_plus_ten,
                     
                     'years_left_plus_fifteen': years_left_plus_fifteen,
                     'total_cost_plus_fifteen': total_cost_plus_fifteen,
                     'days_per_goal_plus_fifteen': days_per_goal_plus_fifteen,
+                    'days_per_year_plus_fifteen': days_per_year_plus_fifteen,
+                    'hours_per_month_plus_fifteen': hours_per_month_plus_fifteen,
                     
                     'years_left_plus_twenty': years_left_plus_twenty,
                     'total_cost_plus_twenty': total_cost_plus_twenty,
                     'days_per_goal_plus_twenty': days_per_goal_plus_twenty,
+                    'days_per_year_plus_twenty': days_per_year_plus_twenty,
+                    'hours_per_month_plus_twenty': hours_per_month_plus_twenty,
                     
                     'years_left_minus_five': years_left_minus_five,
                     'total_cost_minus_five': total_cost_minus_five,
                     'days_per_goal_minus_five': days_per_goal_minus_five,
+                    'days_per_year_minus_five': days_per_year_minus_five,
+                    'hours_per_month_minus_five': hours_per_month_minus_five,
                     
                     'years_left_minus_ten': years_left_minus_ten,
                     'total_cost_minus_ten': total_cost_minus_ten,
                     'days_per_goal_minus_ten': days_per_goal_minus_ten,
+                    'days_per_year_minus_ten': days_per_year_minus_ten,
+                    'hours_per_month_minus_ten': hours_per_month_minus_ten,
                     
                     'years_left_minus_fifteen': years_left_minus_fifteen,
                     'total_cost_minus_fifteen': total_cost_minus_fifteen,
                     'days_per_goal_minus_fifteen': days_per_goal_minus_fifteen,
+                    'days_per_year_minus_fifteen': days_per_year_minus_fifteen,
+                    'hours_per_month_minus_fifteen': hours_per_month_minus_fifteen,
                     
                     'years_left_minus_twenty': years_left_minus_twenty,
                     'total_cost_minus_twenty': total_cost_minus_twenty,
                     'days_per_goal_minus_twenty': days_per_goal_minus_twenty,
+                    'days_per_year_minus_twenty': days_per_year_minus_twenty,
+                    'hours_per_month_minus_twenty': hours_per_month_minus_twenty,
                     
                    }
 
