@@ -295,7 +295,7 @@ def recommendation(request):
     total_hours = BucketListItemListSum(mylist, 'hours')
     total_time = BucketListItemListSum(mylist, 'time')
     total_number_of_items = float(len(mylist))
-    age = float(user.age)
+    age = user.age()
     life_expectancy = float(user.life_expectancy)
     years_left = float(life_expectancy - age)
     days_left = float(years_left*365)
@@ -1287,7 +1287,7 @@ def edit_profile(request):
             current_user.yearly_earnings = new_yearly_earnings
             current_user.hourly_wage = new_hourly_wage
             current_user.life_expectancy = new_life_expectancy
-            current_user.age = FindAge(new_birth_date) 
+            #current_user.age = FindAge(new_birth_date) 
             current_user.birth_date = new_birth_date
             current_user.save()
             return HttpResponseRedirect('/bucketlist/mylist/')

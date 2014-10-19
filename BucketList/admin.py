@@ -9,7 +9,7 @@ class BucketListItemAdmin(admin.ModelAdmin):
         ('Time',              {'fields': ['time']}),
     ]
     readonly_fields = ('pub_date',)
-    list_display = ['text', 'pub_date', 'pub_by', 'cost', 'time', 'hours', 'recently_added', 'crossed_off', 'goal_type']
+    list_display = ['text', 'pub_date', 'pub_by', 'cost', 'time', 'hours', 'crossed_off', 'goal_type']
     list_filter = ['pub_date', 'pub_by', 'cost', 'time']
     search_fields = ['text', 'pub_by']
   

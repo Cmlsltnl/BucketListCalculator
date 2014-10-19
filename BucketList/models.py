@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from datetime import datetime
 from datetime import date
+from datetime import timedelta
 from django.contrib.auth.models import User
 from django.core.signals import request_finished
 from django.db.models.signals import post_save, pre_save
@@ -9,7 +10,20 @@ from django.dispatch import receiver
 from Bucket.forms import MyRegistrationForm, UserCreationForm
 
 
+def FindAge(born):
+    #Takes a take argument and outputs the users current age based upon the age given
+    today = date.today()
+    try:
+        birthday = born.replace(year=today.year)
+    except ValueError:
+        #Error raises when bday is on Feb 29 and its nor currently a leap year
+        birthday = born.replace(year=today.year, month=born.month+1, day=1)
+    if birthday > today:
+        return today.year - born.year -1
+    else:
+        return today.year - born.year
 
+        
 CHOICES = (
     ('Travel','Travel'),
     ('Purchase', 'Purchase'), 
@@ -43,11 +57,6 @@ class BucketListItem(models.Model):
     def __unicode__(self):
         return self.text
     
-    def recently_added(self):
-        return self.pub_date >= timezone.now() - datetime.timedelta(days = 1)
-    
-    recently_added.boolean = True
-
     def save(self):
         if not self.id:
             self.pub_date = timezone.now()
@@ -58,14 +67,19 @@ class BucketListItem(models.Model):
 class UserProfile(models.Model):    
     #Model that defines the User Profile
     user = models.OneToOneField(User, editable = False)
-    age = models.CharField(max_length = 3, default = 0)
     life_expectancy = models.CharField(max_length = 3, default = 0)
     yearly_earnings = models.CharField(max_length = 8, default = 0)
     hourly_wage = models.CharField(max_length = 3, default = 0)
     birth_date = models.DateField(default = datetime.now)
-
+    
+    def age(self):
+        return FindAge(self.birth_date)
+        
     def __unicode__(self):
         return self.user
+        
+    
+    
       
 class Comment(models.Model):
     #Model that defines the Commenting system
