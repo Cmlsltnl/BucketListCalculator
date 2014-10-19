@@ -15,6 +15,7 @@ import operator
 
 
 
+
 #-------------Functions Used Throughout Views--------------
 
     
@@ -94,7 +95,7 @@ def index(request):
     users_by_activity = {}
     for user in all_users:
         users_by_activity[user] = UsersActivity(user)
-        
+
     new_users_by_activity = dict(sorted(users_by_activity.iteritems(), key=operator.itemgetter(1), reverse=True)[:6])
     
             
@@ -1264,22 +1265,24 @@ def edit_profile(request):
     if request.method == "POST":
         form = UserProfileEditForm(request.POST)
         if form.is_valid():
-            new_age = form.cleaned_data['new_age']
+            #new_age = form.cleaned_data['new_age']
             new_life_expectancy = form.cleaned_data['new_life_expectancy']
             new_yearly_earnings = form.cleaned_data['new_yearly_earnings']
             new_hourly_wage = form.cleaned_data['new_hourly_wage']
+            new_birth_date = form.cleaned_data['new_birth_date']
             current_user.yearly_earnings = new_yearly_earnings
             current_user.hourly_wage = new_hourly_wage
             current_user.life_expectancy = new_life_expectancy
-            current_user.age = new_age   
+            #current_user.age = new_age  
+            current_user.birth_date = new_birth_date
             current_user.save()
             return HttpResponseRedirect('/bucketlist/mylist/')
         else:
-            form = UserProfileEditForm({'new_age': current_user.age, 'new_life_expectancy': current_user.life_expectancy, 'new_yearly_earnings': current_user.yearly_earnings, 'new_hourly_wage': current_user.hourly_wage})
+            form = UserProfileEditForm({'new_birth_date': current_user.birth_date, 'new_life_expectancy': current_user.life_expectancy, 'new_yearly_earnings': current_user.yearly_earnings, 'new_hourly_wage': current_user.hourly_wage})
             
             context = {'form': form,}
     else:
-        form = UserProfileEditForm({'new_age': current_user.age, 'new_life_expectancy': current_user.life_expectancy, 'new_yearly_earnings': current_user.yearly_earnings, 'new_hourly_wage': current_user.hourly_wage})
+        form = UserProfileEditForm({'new_birth_date': current_user.birth_date, 'new_life_expectancy': current_user.life_expectancy, 'new_yearly_earnings': current_user.yearly_earnings, 'new_hourly_wage': current_user.hourly_wage})
         
         context = {'form': form,
                         }

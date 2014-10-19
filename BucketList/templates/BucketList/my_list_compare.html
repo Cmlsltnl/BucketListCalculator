@@ -3,6 +3,7 @@
 {% block title %}Item Created{% endblock title %}
 
 {% block content %}
+{% load humanize %}
 
 <h1>{{item}}</h1>
 <br>
@@ -15,7 +16,7 @@
                 <p><a href= "/bucketlist/userstats/{{item.pub_by}}/">{{item.pub_by}}</a> thinks that <a href="/bucketlist/item/{{item.id}}/"><i>{{item.text}}</i></a>:</p>
                     <ul>
                         <li>Falls under the category of <i>{{item.goal_type}}</i></li>
-                        <li>Will take {{item.pub_by}} ${{item.cost}} to accomplish</li>
+                        <li>Will take {{item.pub_by}} ${{item.cost|floatformat:"2"|intcomma}} to accomplish</li>
                         <li>Over {{item.hours}} hours to complete</li>
                         <li>And {{item.time}} full days</li> 
                     </ul>
@@ -30,7 +31,7 @@
             <p><a href= "/bucketlist/userstats/{{item.pub_by}}/">{{item.pub_by}}</a> thinks that <a href="/bucketlist/item/{{item.id}}/"><i>{{item.text}}</i></a>:</p>
                 <ul>
                     <li>Falls under the category of <i>{{item.goal_type}}</i></li>
-                    <li>Will take {{item.pub_by}} ${{item.cost}} to accomplish</li>
+                    <li>Will take {{item.pub_by}} ${{item.cost|floatformat:"2"|intcomma}} to accomplish</li>
                     <li>Over {{item.hours}} hours to complete</li>
                     <li>And {{item.time}} full days</li> 
                 </ul>
@@ -42,10 +43,7 @@
 
     {% if 65 > most_similar_accuracy %}
         
-        <p>Normally this is the place that we show you some other users goals that are similar to yours.  But it doesn't seem like there is much out there.  This one must be awfully unique.  Yay for being an original! 
-        <br>
-        <br>
-        P.S.  Check back later. As more users add their goals to this site their is a larger database to search through and a higher likelihood that we will find a good similar to yours. 
+        <p>Congrats!  Your goal has successfully been created.
         </p> 
         
     {% else %}
@@ -57,7 +55,7 @@
                 <p><a href= "/bucketlist/userstats/{{item.pub_by}}/">{{item.pub_by}}</a> thinks that <a href="/bucketlist/item/{{item.id}}/"><i>{{item.text}}</i></a>:</p>
                     <ul>
                         <li>Falls under the category of <i>{{item.goal_type}}</i></li>
-                        <li>Will take {{item.pub_by}} ${{item.cost}} to accomplish</li>
+                        <li>Will take {{item.pub_by}} ${{item.cost|floatformat:"2"|intcomma}} to accomplish</li>
                         <li>Over {{item.hours}} hours to complete</li>
                         <li>And {{item.time}} full days</li>                        
                     </ul>

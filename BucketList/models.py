@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
-import datetime
+from datetime import datetime
+from datetime import date
 from django.contrib.auth.models import User
 from django.core.signals import request_finished
 from django.db.models.signals import post_save, pre_save
@@ -61,6 +62,7 @@ class UserProfile(models.Model):
     life_expectancy = models.CharField(max_length = 3, default = 0)
     yearly_earnings = models.CharField(max_length = 8, default = 0)
     hourly_wage = models.CharField(max_length = 3, default = 0)
+    birth_date = models.DateField(default = datetime.now)
 
     def __unicode__(self):
         return self.user
