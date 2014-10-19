@@ -266,7 +266,7 @@ def recommendation(request):
     user = UserProfile.objects.get(pk = request.user.id)
     
     #If profile is not filled out redirect to Profile Edit Form
-    if user.age() == 0.0 or user.life_expectancy == 0 or user.yearly_earnings == 0 or user.hourly_wage == 0:
+    if user.age() == 0 or user.life_expectancy == 0 or user.yearly_earnings == 0 or user.hourly_wage == 0:
         return HttpResponseRedirect('/bucketlist/profile/edit/')
         
 

@@ -3,7 +3,7 @@
 {% block title %}Your List Item{% endblock title %}
 
 {% block content %}
-
+{% load humanize %}
 
     {% if item.crossed_off == True %}
         <h1 style="text-decoration: line-through;">{{item}}</h1>
@@ -19,7 +19,7 @@
      <br/>
     <hr>
     <br/>
-    <p>Cost:  {{item.cost}}</p>
+    <p>Cost:  ${{item.cost|floatformat:"2"|intcomma}}</p>
     <p>Time: {{item.time}}</p>
     <p>Hours: {{item.hours}}</p>
     <p>Goal Type: {{item.goal_type}}</p>
