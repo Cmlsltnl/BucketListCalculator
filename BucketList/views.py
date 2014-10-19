@@ -81,19 +81,6 @@ def UsersActivity(User):
     return score 
     
     
-def FindAge(born):
-    #Takes a take argument and outputs the users current age based upon the age given
-    today = date.today()
-    try:
-        birthday = born.replace(year=today.year)
-    except ValueError:
-        #Error raises when bday is on Feb 29 and its nor currently a leap year
-        birthday = born.replace(year=today.year, month=born.month+1, day=1)
-    if birthday > today:
-        return today.year - born.year -1
-    else:
-        return today.year - born.year
-    
 #----------------End Functions Used Throughout Views-------------
 
 
@@ -279,7 +266,7 @@ def recommendation(request):
     user = UserProfile.objects.get(pk = request.user.id)
     
     #If profile is not filled out redirect to Profile Edit Form
-    if user.age == 0 or user.life_expectancy == 0 or user.yearly_earnings == 0 or user.hourly_wage == 0:
+    if user.age() == 0.0 or user.life_expectancy == 0 or user.yearly_earnings == 0 or user.hourly_wage == 0:
         return HttpResponseRedirect('/bucketlist/profile/edit/')
         
 
@@ -295,7 +282,7 @@ def recommendation(request):
     total_hours = BucketListItemListSum(mylist, 'hours')
     total_time = BucketListItemListSum(mylist, 'time')
     total_number_of_items = float(len(mylist))
-    age = user.age()
+    age = float(user.age())
     life_expectancy = float(user.life_expectancy)
     years_left = float(life_expectancy - age)
     days_left = float(years_left*365)
