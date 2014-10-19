@@ -12,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 from fuzzywuzzy import fuzz, process
 from chartit import DataPool, Chart
 import operator
+from datetime import date
 
 
 
@@ -79,6 +80,19 @@ def UsersActivity(User):
     
     return score 
     
+    
+def FindAge(born):
+    #Takes a take argument and outputs the users current age based upon the age given
+    today = date.today()
+    try:
+        birthday = born.replace(year=today.year)
+    except ValueError:
+        #Error raises when bday is on Feb 29 and its nor currently a leap year
+        birthday = born.replace(year=today.year, month=born.month+1, day=1)
+    if birthday > today:
+        return today.year - born.year -1
+    else:
+        return today.year - born.year
     
 #----------------End Functions Used Throughout Views-------------
 
@@ -1273,7 +1287,7 @@ def edit_profile(request):
             current_user.yearly_earnings = new_yearly_earnings
             current_user.hourly_wage = new_hourly_wage
             current_user.life_expectancy = new_life_expectancy
-            #current_user.age = new_age  
+            current_user.age = FindAge(new_birth_date) 
             current_user.birth_date = new_birth_date
             current_user.save()
             return HttpResponseRedirect('/bucketlist/mylist/')
