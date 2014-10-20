@@ -1317,7 +1317,7 @@ def compare_my_list_item(request, id):
         
 @login_required
 def delete_comment(request, id):
-
+    #View used to delete a users comment on someones bucket list item
     comment = Comment.objects.get(pk = id)
     is_comment = 0
     item_id = comment.item.id
@@ -1331,3 +1331,11 @@ def delete_comment(request, id):
     }
     
     return render(request, 'BucketList/delete_comment.html', context)
+    
+    
+@login_required
+def tutorial(request):
+    #View for the user tutorial page
+    context = {}
+    return render(request, 'BucketList/tutorial.html', context)
+    

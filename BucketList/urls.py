@@ -17,6 +17,6 @@ urlpatterns = patterns('',
     url(r'^mylist/recommendation/$', views.recommendation, name = 'recommendation'),
     url(r'^mylist/compare/(?P<id>\w+)/', views.compare_my_list_item, name = 'compare list item'),
     url(r'^profile/edit/$', views.edit_profile, name = 'edit profile'),
-
+    url(r'^tutorial/$', views.tutorial, name = 'tutorial'),
 )
 
