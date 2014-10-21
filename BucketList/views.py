@@ -272,7 +272,7 @@ def recommendation(request):
                         
     #-----------------Passed Through to Template (simple)---------------
     
-    print RetirementCalculator(30, 70, 100000, 30000)
+    
     
     #General Information Passed Through to Template
     user = UserProfile.objects.get(pk = request.user.id)
@@ -871,6 +871,12 @@ def recommendation(request):
     days_per_year_minus_twenty = total_time/years_left_minus_twenty
     hours_per_month_minus_twenty = (total_hours/years_left_minus_twenty)/12
     
+    
+    #Retirement
+    retirement_calculated = RetirementCalculator(age, retirement, retirement_savings, yearly_earnings)
+    total_needed_for_retirement = retirement_calculated[0]
+    needed_per_year_for_retirement = retirement_calculated[1]
+    
     #--------------------Passed To Template-----------------------              
     
     context = {
@@ -1118,6 +1124,9 @@ def recommendation(request):
                     'days_per_year_minus_twenty': days_per_year_minus_twenty,
                     'hours_per_month_minus_twenty': hours_per_month_minus_twenty,
                     
+                    #---------------Retirement-----------------
+                    'total_needed_for_retirement': total_needed_for_retirement,
+                    'needed_per_year_for_retirement': needed_per_year_for_retirement,
                    }
 
     return render(request, 'BucketList/recommendation.html', context)

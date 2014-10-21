@@ -710,6 +710,25 @@
     {% endif %}
 </ul>
 <hr>
+<br>
+{% if include_retirement %}
+<h2>Retirement</h2>
+<br>
+<p>
+    Finances are a hugely influential on your Bucket List goals.  Planning for retirement takes a large chunk of you annual income and is worth examining in depth.  Hopefully we can give you a financial roadmap to completing both your retirement and Bucket List goals.  
+</p>
+<p>
+    For the following examples we assume you can make 3% return on your investments AFTER INFLATION.  The number we output will be in today's dollars to give you a better idea of how much wealth you actually need to retire in a number that makes more sense than future dollars.
+</p>
+<p>
+    In order to retire you need to the returns on your investments to supplement your yearly income, which currently is ${{yearly_earnings|floatformat:"2"|intcomma}}.  At a 3% return on investment (after inflation) you need to have ${{total_needed_for_retirement|floatformat:"2"|intcomma}} saved in order for the returns alone to make you ${{yearly_earnings|floatformat:"2"|intcomma}} every year.
+</p>
+<p>
+    So how difficult will it be for you to save this much money? Using our compound interest calculator we found that you need to save ${{needed_per_year_for_retirement|floatformat:"2"|intcomma}} per year until you are age {{retirement|floatformat:"0"}} in order to have enough to fully supplement your annual income with the income from your investments.
+</p>
+<br>
+<hr>
+{% endif %}
 {% endblock content %}
  
  
