@@ -49,6 +49,7 @@ class UserProfileEditForm(forms.Form):
     new_hourly_wage = forms.CharField(label = 'Hourly Wage', max_length = 3)
     new_include_retirement = forms.BooleanField(label = 'Include Retirement', required = False)
     new_retirement = forms.CharField(label = 'Retirement Age', max_length = 3)
+    new_retirement_savings = forms.CharField(label = 'Retirement Savings', max_length = 10)
     
         
 

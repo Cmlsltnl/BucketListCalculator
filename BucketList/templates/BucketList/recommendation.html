@@ -27,6 +27,11 @@
 <p>Your Yearly Earnings: {{yearly_earnings}}</p>
 <p>Your Hourly Wage: {{hourly_wage}}</p>
 <p>Your Average Hours Per Week: {{work_hours_per_week}}</p>
+<p>Include Retirement:  {{include_retirement}}</p>
+{% if include_retirement %}
+    <p>Retirement Age: {{retirement}}</p>
+    <p>Retirement Savings: {{retirement_savings}}</p>
+{% endif %}
 <br>
 <hr>
 <!-------------Basic Overview-------------->

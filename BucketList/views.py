@@ -259,6 +259,10 @@ def recommendation(request):
         else:
             return True
 
+            
+    def RetirementCalculator(current_age, retirement_age, savings, retirement_income):
+        #Takes current_age, retirement_age, savings, and retirement_income and outputs the amount user would have to save per year and the total amount of savings
+        return True
                         
     #-----------------Passed Through to Template (simple)---------------
     
@@ -284,6 +288,9 @@ def recommendation(request):
     total_number_of_items = float(len(mylist))
     age = float(user.age())
     life_expectancy = float(user.life_expectancy)
+    include_retirement = user.include_retirement
+    retirement = float(user.retirement)
+    retirement_savings = float(user.retirement_savings)
     years_left = float(life_expectancy - age)
     days_left = float(years_left*365)
     yearly_earnings = float(user.yearly_earnings)
@@ -868,6 +875,9 @@ def recommendation(request):
                      'total_number_of_items': total_number_of_items,
                      'age': age,
                      'life_expectancy': life_expectancy,
+                     'include_retirement': include_retirement,
+                     'retirement': retirement,
+                     'retirement_savings': retirement_savings,
                      'years_left': years_left,
                      'yearly_earnings': yearly_earnings,
                      'hourly_wage': hourly_wage,
@@ -1273,6 +1283,7 @@ def edit_profile(request):
             new_birth_date = form.cleaned_data['new_birth_date']
             new_retirement = form.cleaned_data['new_retirement']
             new_include_retirement = form.cleaned_data['new_include_retirement']
+            new_retirement_savings = form.cleaned_data['new_retirement_savings']
             current_user.yearly_earnings = new_yearly_earnings
             current_user.hourly_wage = new_hourly_wage
             current_user.life_expectancy = new_life_expectancy
@@ -1281,21 +1292,25 @@ def edit_profile(request):
             
             if new_include_retirement == True:
                 current_user.retirement = new_retirement
+                current_user.retirement_savings = new_retirement_savings
             else: 
                 current_user.retirement = 0
+                current_user.retirement_savings = 0
 
             current_user.save()
             return HttpResponseRedirect('/bucketlist/mylist/')
         else:
             form = UserProfileEditForm({'new_birth_date': current_user.birth_date, 'new_life_expectancy': current_user.life_expectancy, 'new_yearly_earnings': current_user.yearly_earnings, 'new_hourly_wage': current_user.hourly_wage,
             'new_retirement': current_user.retirement,
-            'new_include_retirement': current_user.include_retirement})
+            'new_include_retirement': current_user.include_retirement,
+            'new_retirement_savings': current_user.retirement_savings})
             
             context = {'form': form,}
     else:
         form = UserProfileEditForm({'new_birth_date': current_user.birth_date, 'new_life_expectancy': current_user.life_expectancy, 'new_yearly_earnings': current_user.yearly_earnings, 'new_hourly_wage': current_user.hourly_wage,
         'new_retirement': current_user.retirement,
-        'new_include_retirement': current_user.include_retirement})
+        'new_include_retirement': current_user.include_retirement,
+        'new_retirement_savings': current_user.retirement_savings})
         
         context = {'form': form,
                         }

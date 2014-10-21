@@ -73,6 +73,7 @@ class UserProfile(models.Model):
     birth_date = models.DateField(default = datetime.now)
     include_retirement = models.BooleanField(default = False)
     retirement = models.CharField(max_length = 3, default = 0)
+    retirement_savings = models.CharField(max_length = 10, default = 0)
     
     
     def age(self):
