@@ -1271,19 +1271,31 @@ def edit_profile(request):
             new_yearly_earnings = form.cleaned_data['new_yearly_earnings']
             new_hourly_wage = form.cleaned_data['new_hourly_wage']
             new_birth_date = form.cleaned_data['new_birth_date']
+            new_retirement = form.cleaned_data['new_retirement']
+            new_include_retirement = form.cleaned_data['new_include_retirement']
             current_user.yearly_earnings = new_yearly_earnings
             current_user.hourly_wage = new_hourly_wage
             current_user.life_expectancy = new_life_expectancy
-            #current_user.age = FindAge(new_birth_date) 
             current_user.birth_date = new_birth_date
+            current_user.include_retirement = new_include_retirement
+            
+            if new_include_retirement == True:
+                current_user.retirement = new_retirement
+            else: 
+                current_user.retirement = 0
+
             current_user.save()
             return HttpResponseRedirect('/bucketlist/mylist/')
         else:
-            form = UserProfileEditForm({'new_birth_date': current_user.birth_date, 'new_life_expectancy': current_user.life_expectancy, 'new_yearly_earnings': current_user.yearly_earnings, 'new_hourly_wage': current_user.hourly_wage})
+            form = UserProfileEditForm({'new_birth_date': current_user.birth_date, 'new_life_expectancy': current_user.life_expectancy, 'new_yearly_earnings': current_user.yearly_earnings, 'new_hourly_wage': current_user.hourly_wage,
+            'new_retirement': current_user.retirement,
+            'new_include_retirement': current_user.include_retirement})
             
             context = {'form': form,}
     else:
-        form = UserProfileEditForm({'new_birth_date': current_user.birth_date, 'new_life_expectancy': current_user.life_expectancy, 'new_yearly_earnings': current_user.yearly_earnings, 'new_hourly_wage': current_user.hourly_wage})
+        form = UserProfileEditForm({'new_birth_date': current_user.birth_date, 'new_life_expectancy': current_user.life_expectancy, 'new_yearly_earnings': current_user.yearly_earnings, 'new_hourly_wage': current_user.hourly_wage,
+        'new_retirement': current_user.retirement,
+        'new_include_retirement': current_user.include_retirement})
         
         context = {'form': form,
                         }

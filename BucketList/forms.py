@@ -47,6 +47,8 @@ class UserProfileEditForm(forms.Form):
     new_life_expectancy = forms.CharField(label = 'Age You Will Be Done', max_length = 3)
     new_yearly_earnings = forms.CharField(label = 'Yearly Earnings', max_length = 8)
     new_hourly_wage = forms.CharField(label = 'Hourly Wage', max_length = 3)
+    new_include_retirement = forms.BooleanField(label = 'Include Retirement', required = False)
+    new_retirement = forms.CharField(label = 'Retirement Age', max_length = 3)
     
         
 

@@ -71,6 +71,9 @@ class UserProfile(models.Model):
     yearly_earnings = models.CharField(max_length = 8, default = 0)
     hourly_wage = models.CharField(max_length = 3, default = 0)
     birth_date = models.DateField(default = datetime.now)
+    include_retirement = models.BooleanField(default = False)
+    retirement = models.CharField(max_length = 3, default = 0)
+    
     
     def age(self):
         return FindAge(self.birth_date)
