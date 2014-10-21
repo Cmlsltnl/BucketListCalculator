@@ -260,15 +260,20 @@ def recommendation(request):
             return True
 
             
-    def RetirementCalculator(current_age, retirement_age, savings, retirement_income):
-        #Takes current_age, retirement_age, savings, and retirement_income and outputs the amount user would have to save per year and the total amount of savings.  Uses 3% as APR after inflation
-        amount_needed = retirement_income*(float(1)/.03)
+    def RetirementCalculator(current_age, retirement_age, savings, retirement_income, rate):
+        #Takes current_age, retirement_age, savings, rate, and retirement_income and outputs the amount user would have to save per year and the total amount of savings.  Uses 3% as APR after inflation
+        amount_needed = retirement_income*(float(1)/rate)
         years_left = retirement_age-current_age
-        current_savings_compounded = savings*(1.03**years_left)
+        current_savings_compounded = savings*((1+rate)**years_left)
         numerator = amount_needed - current_savings_compounded
-        denominator = ((1.03**years_left) - 1)*(float(1)/.03)
+        denominator = (((1+rate)**years_left) - 1)*(float(1)/rate)
         save_per_year = numerator/denominator
         return amount_needed, save_per_year
+        
+    def InflationCalculator(amount, years):
+        #Takes a dollar amount, and number of years then outputs how what that dollar amount would cost x years into the future.  Uses historical 1.5% inflation
+        return (1.015**years)*amount
+        
                         
     #-----------------Passed Through to Template (simple)---------------
     
@@ -871,11 +876,30 @@ def recommendation(request):
     days_per_year_minus_twenty = total_time/years_left_minus_twenty
     hours_per_month_minus_twenty = (total_hours/years_left_minus_twenty)/12
     
+    #Retirement 
     
-    #Retirement
-    retirement_calculated = RetirementCalculator(age, retirement, retirement_savings, yearly_earnings)
-    total_needed_for_retirement = retirement_calculated[0]
-    needed_per_year_for_retirement = retirement_calculated[1]
+    yearly_income_at_retirement = InflationCalculator(yearly_earnings, (retirement - age))
+    under_over_same = 0
+    retirement_end_date_difference = 0
+    
+    
+    if retirement == life_expectancy:
+        under_over_same = 0
+    elif retirement > life_expectancy:
+        retirement_end_date_difference = retirement - life_expectancy
+        under_over_same = 1
+    else:
+        retirement_end_date_difference = life_expectancy - retirement
+        under_over_same = 2
+        
+    
+    #Retirement at 3% APR
+    retirement_calculated_3 = RetirementCalculator(age, retirement, retirement_savings, yearly_income_at_retirement, .03)
+    total_needed_for_retirement_3 = retirement_calculated_3[0]
+    needed_per_year_for_retirement_3 = retirement_calculated_3[1]
+    percent_yearly_retirement_3 = (needed_per_year_for_retirement_3/yearly_earnings)*100
+    percent_yearly_retirement_3_all = percent_of_yearly_wage + percent_yearly_retirement_3
+    
     
     #--------------------Passed To Template-----------------------              
     
@@ -1125,8 +1149,13 @@ def recommendation(request):
                     'hours_per_month_minus_twenty': hours_per_month_minus_twenty,
                     
                     #---------------Retirement-----------------
-                    'total_needed_for_retirement': total_needed_for_retirement,
-                    'needed_per_year_for_retirement': needed_per_year_for_retirement,
+                    'yearly_income_at_retirement': yearly_income_at_retirement,
+                    'total_needed_for_retirement_3': total_needed_for_retirement_3,
+                    'needed_per_year_for_retirement_3': needed_per_year_for_retirement_3,
+                    'percent_yearly_retirement_3': percent_yearly_retirement_3,
+                    'percent_yearly_retirement_3_all': percent_yearly_retirement_3_all,
+                    'under_over_same': under_over_same,
+                    'retirement_end_date_difference': retirement_end_date_difference,
                    }
 
     return render(request, 'BucketList/recommendation.html', context)
