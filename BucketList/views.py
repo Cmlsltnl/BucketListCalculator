@@ -261,10 +261,18 @@ def recommendation(request):
 
             
     def RetirementCalculator(current_age, retirement_age, savings, retirement_income):
-        #Takes current_age, retirement_age, savings, and retirement_income and outputs the amount user would have to save per year and the total amount of savings
-        return True
+        #Takes current_age, retirement_age, savings, and retirement_income and outputs the amount user would have to save per year and the total amount of savings.  Uses 3% as APR after inflation
+        amount_needed = retirement_income*(float(1)/.03)
+        years_left = retirement_age-current_age
+        current_savings_compounded = savings*(1.03**years_left)
+        numerator = amount_needed - current_savings_compounded
+        denominator = ((1.03**years_left) - 1)*(float(1)/.03)
+        save_per_year = numerator/denominator
+        return amount_needed, save_per_year
                         
     #-----------------Passed Through to Template (simple)---------------
+    
+    print RetirementCalculator(30, 70, 100000, 30000)
     
     #General Information Passed Through to Template
     user = UserProfile.objects.get(pk = request.user.id)
