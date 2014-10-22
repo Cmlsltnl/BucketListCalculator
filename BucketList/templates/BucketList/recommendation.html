@@ -742,6 +742,26 @@
             {% endif %}
         </p>
     </li>
+    <li>
+        <h4>4% APR</h4>
+        <p>
+            In order to retire you need to the returns on your investments to completely supplement your yearly income. This currently is ${{yearly_earnings|floatformat:"2"|intcomma}}, if we take into account inflation you would need to make ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} per year when you are age {{retirement|floatformat:"0"}} to have the same level of spending power that you do today.  At a 4% return on investment you need to have ${{total_needed_for_retirement_4|floatformat:"2"|intcomma}} saved in order for the returns alone to make you ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} every year.
+        </p>
+        <p>
+            So how difficult will it be for you to save this much money? Using our compound interest calculator we found that you need to save ${{needed_per_year_for_retirement_4|floatformat:"2"|intcomma}} per year until you are age {{retirement|floatformat:"0"}} in order to have enough to fully supplement your annual income with the income from your investments.  This is {{percent_yearly_retirement_4|floatformat:"1"}}% of your current annual income.
+        </p>
+        <p>
+            What about your Bucket List goals?  They already take up {{percent_of_yearly_wage|floatformat:"1"}}% of your yearly income.  This means that {{percent_yearly_retirement_4_all|floatformat:"1"}}% of every pay check until you are 
+            
+            {% if under_over_same == 0%}
+                {{retirement|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.
+            {% elif under_over_same == 1 %}
+                {{life_expectancy|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.  After age {{life_expectancy|floatformat:"0"}} you should be done with all of your goals and only have to worry about saving for retirement for the next {{retirement_end_date_difference|floatformat:"0"}} years.
+            {% else %}
+                {{retirement|floatformat:"0"}} years old needs to be dedicated toward retirement and accomplishing your Bucket List goals.  After age {{retirement|floatformat:"0"}} you will be able to retire and only have to worry about paying for your Bucket List goals for the next {{retirement_end_date_difference|floatformat:"0"}} years.
+            {% endif %}
+        </p>
+    </li>
 </ul>
 <br>
 <hr>

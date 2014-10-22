@@ -900,6 +900,12 @@ def recommendation(request):
     percent_yearly_retirement_3 = (needed_per_year_for_retirement_3/yearly_earnings)*100
     percent_yearly_retirement_3_all = percent_of_yearly_wage + percent_yearly_retirement_3
     
+    #Retirement at 4% APR
+    retirement_calculated_4 = RetirementCalculator(age, retirement, retirement_savings, yearly_income_at_retirement, .04)
+    total_needed_for_retirement_4 = retirement_calculated_4[0]
+    needed_per_year_for_retirement_4 = retirement_calculated_4[1]
+    percent_yearly_retirement_4 = (needed_per_year_for_retirement_4/yearly_earnings)*100
+    percent_yearly_retirement_4_all = percent_of_yearly_wage + percent_yearly_retirement_4
     
     #--------------------Passed To Template-----------------------              
     
@@ -1150,12 +1156,19 @@ def recommendation(request):
                     
                     #---------------Retirement-----------------
                     'yearly_income_at_retirement': yearly_income_at_retirement,
+                    'under_over_same': under_over_same,
+                    'retirement_end_date_difference': retirement_end_date_difference,
+                    
                     'total_needed_for_retirement_3': total_needed_for_retirement_3,
                     'needed_per_year_for_retirement_3': needed_per_year_for_retirement_3,
                     'percent_yearly_retirement_3': percent_yearly_retirement_3,
                     'percent_yearly_retirement_3_all': percent_yearly_retirement_3_all,
-                    'under_over_same': under_over_same,
-                    'retirement_end_date_difference': retirement_end_date_difference,
+                    
+                    
+                    'total_needed_for_retirement_4': total_needed_for_retirement_4,
+                    'needed_per_year_for_retirement_4': needed_per_year_for_retirement_4,
+                    'percent_yearly_retirement_4': percent_yearly_retirement_4,
+                    'percent_yearly_retirement_4_all': percent_yearly_retirement_4_all,
                    }
 
     return render(request, 'BucketList/recommendation.html', context)
