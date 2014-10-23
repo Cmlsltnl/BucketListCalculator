@@ -727,6 +727,7 @@
         <p>
             In order to retire you need to the returns on your investments to completely supplement your yearly income. This currently is ${{yearly_earnings|floatformat:"2"|intcomma}}, if we take into account inflation you would need to make ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} per year when you are age {{retirement|floatformat:"0"}} to have the same level of spending power that you do today.  At a 3% return on investment you need to have ${{total_needed_for_retirement_3|floatformat:"2"|intcomma}} saved in order for the returns alone to make you ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} every year.
         </p>
+       {% if needed_per_year_for_retirement_3 > 0 %}
         <p>
             So how difficult will it be for you to save this much money? Using our compound interest calculator we found that you need to save ${{needed_per_year_for_retirement_3|floatformat:"2"|intcomma}} per year until you are age {{retirement|floatformat:"0"}} in order to have enough to fully supplement your annual income with the income from your investments.  This is {{percent_yearly_retirement_3|floatformat:"1"}}% of your current annual income.
         </p>
@@ -741,12 +742,26 @@
                 {{retirement|floatformat:"0"}} years old needs to be dedicated toward retirement and accomplishing your Bucket List goals.  After age {{retirement|floatformat:"0"}} you will be able to retire and only have to worry about paying for your Bucket List goals for the next {{retirement_end_date_difference|floatformat:"0"}} years.
             {% endif %}
         </p>
+        {% else %}
+        
+            <p>
+                So how much do you need to save per year to make your dreams of retirement a reality?  You don't!  In {{years_left|floatformat:"0"}} years making 3% return on your investment you will have more than the ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} you need at age {{retirement|floatformat:"0"}}. 
+            </p>
+            <p>
+                Given this information you should have no problem reaching retirement.  You could even play around with your numbers a little bit and see if earlier retirement could would be an option for you.
+            </p>
+            <p>
+                Even more importantly this means that the financial burden most people have when saving for retirement won't be as much of an issue for you.  You can dedicate even more of your income towards reaching all of those Bucket List goals!
+            </p>
+            
+        {% endif %}
     </li>
     <li>
         <h4>4% APR</h4>
         <p>
             In order to retire you need to the returns on your investments to completely supplement your yearly income. This currently is ${{yearly_earnings|floatformat:"2"|intcomma}}, if we take into account inflation you would need to make ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} per year when you are age {{retirement|floatformat:"0"}} to have the same level of spending power that you do today.  At a 4% return on investment you need to have ${{total_needed_for_retirement_4|floatformat:"2"|intcomma}} saved in order for the returns alone to make you ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} every year.
         </p>
+       {% if needed_per_year_for_retirement_4 > 0 %}
         <p>
             So how difficult will it be for you to save this much money? Using our compound interest calculator we found that you need to save ${{needed_per_year_for_retirement_4|floatformat:"2"|intcomma}} per year until you are age {{retirement|floatformat:"0"}} in order to have enough to fully supplement your annual income with the income from your investments.  This is {{percent_yearly_retirement_4|floatformat:"1"}}% of your current annual income.
         </p>
@@ -761,12 +776,26 @@
                 {{retirement|floatformat:"0"}} years old needs to be dedicated toward retirement and accomplishing your Bucket List goals.  After age {{retirement|floatformat:"0"}} you will be able to retire and only have to worry about paying for your Bucket List goals for the next {{retirement_end_date_difference|floatformat:"0"}} years.
             {% endif %}
         </p>
+        {% else %}
+        
+            <p>
+                So how much do you need to save per year to make your dreams of retirement a reality?  You don't!  In {{years_left|floatformat:"0"}} years making 4% return on your investment you will have more than the ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} you need at age {{retirement|floatformat:"0"}}. 
+            </p>
+            <p>
+                Given this information you should have no problem reaching retirement.  You could even play around with your numbers a little bit and see if earlier retirement could would be an option for you.
+            </p>
+            <p>
+                Even more importantly this means that the financial burden most people have when saving for retirement won't be as much of an issue for you.  You can dedicate even more of your income towards reaching all of those Bucket List goals!
+            </p>
+            
+        {% endif %}
     </li>
     <li>
         <h4>5% APR</h4>
         <p>
             In order to retire you need to the returns on your investments to completely supplement your yearly income. This currently is ${{yearly_earnings|floatformat:"2"|intcomma}}, if we take into account inflation you would need to make ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} per year when you are age {{retirement|floatformat:"0"}} to have the same level of spending power that you do today.  At a 5% return on investment you need to have ${{total_needed_for_retirement_5|floatformat:"2"|intcomma}} saved in order for the returns alone to make you ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} every year.
         </p>
+       {% if needed_per_year_for_retirement_5 > 0 %}
         <p>
             So how difficult will it be for you to save this much money? Using our compound interest calculator we found that you need to save ${{needed_per_year_for_retirement_5|floatformat:"2"|intcomma}} per year until you are age {{retirement|floatformat:"0"}} in order to have enough to fully supplement your annual income with the income from your investments.  This is {{percent_yearly_retirement_5|floatformat:"1"}}% of your current annual income.
         </p>
@@ -781,12 +810,26 @@
                 {{retirement|floatformat:"0"}} years old needs to be dedicated toward retirement and accomplishing your Bucket List goals.  After age {{retirement|floatformat:"0"}} you will be able to retire and only have to worry about paying for your Bucket List goals for the next {{retirement_end_date_difference|floatformat:"0"}} years.
             {% endif %}
         </p>
+        {% else %}
+        
+            <p>
+                So how much do you need to save per year to make your dreams of retirement a reality?  You don't!  In {{years_left|floatformat:"0"}} years making 5% return on your investment you will have more than the ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} you need at age {{retirement|floatformat:"0"}}. 
+            </p>
+            <p>
+                Given this information you should have no problem reaching retirement.  You could even play around with your numbers a little bit and see if earlier retirement could would be an option for you.
+            </p>
+            <p>
+                Even more importantly this means that the financial burden most people have when saving for retirement won't be as much of an issue for you.  You can dedicate even more of your income towards reaching all of those Bucket List goals!
+            </p>
+            
+        {% endif %}
     </li>
     <li>
         <h4>6% APR</h4>
         <p>
             In order to retire you need to the returns on your investments to completely supplement your yearly income. This currently is ${{yearly_earnings|floatformat:"2"|intcomma}}, if we take into account inflation you would need to make ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} per year when you are age {{retirement|floatformat:"0"}} to have the same level of spending power that you do today.  At a 6% return on investment you need to have ${{total_needed_for_retirement_6|floatformat:"2"|intcomma}} saved in order for the returns alone to make you ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} every year.
         </p>
+       {% if needed_per_year_for_retirement_6 > 0 %}
         <p>
             So how difficult will it be for you to save this much money? Using our compound interest calculator we found that you need to save ${{needed_per_year_for_retirement_6|floatformat:"2"|intcomma}} per year until you are age {{retirement|floatformat:"0"}} in order to have enough to fully supplement your annual income with the income from your investments.  This is {{percent_yearly_retirement_6|floatformat:"1"}}% of your current annual income.
         </p>
@@ -801,12 +844,26 @@
                 {{retirement|floatformat:"0"}} years old needs to be dedicated toward retirement and accomplishing your Bucket List goals.  After age {{retirement|floatformat:"0"}} you will be able to retire and only have to worry about paying for your Bucket List goals for the next {{retirement_end_date_difference|floatformat:"0"}} years.
             {% endif %}
         </p>
+        {% else %}
+        
+            <p>
+                So how much do you need to save per year to make your dreams of retirement a reality?  You don't!  In {{years_left|floatformat:"0"}} years making 6% return on your investment you will have more than the ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} you need at age {{retirement|floatformat:"0"}}. 
+            </p>
+            <p>
+                Given this information you should have no problem reaching retirement.  You could even play around with your numbers a little bit and see if earlier retirement could would be an option for you.
+            </p>
+            <p>
+                Even more importantly this means that the financial burden most people have when saving for retirement won't be as much of an issue for you.  You can dedicate even more of your income towards reaching all of those Bucket List goals!
+            </p>
+            
+        {% endif %}
     </li>
     <li>
         <h4>7% APR</h4>
         <p>
             In order to retire you need to the returns on your investments to completely supplement your yearly income. This currently is ${{yearly_earnings|floatformat:"2"|intcomma}}, if we take into account inflation you would need to make ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} per year when you are age {{retirement|floatformat:"0"}} to have the same level of spending power that you do today.  At a 7% return on investment you need to have ${{total_needed_for_retirement_7|floatformat:"2"|intcomma}} saved in order for the returns alone to make you ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} every year.
         </p>
+        {% if needed_per_year_for_retirement_7 > 0 %}
         <p>
             So how difficult will it be for you to save this much money? Using our compound interest calculator we found that you need to save ${{needed_per_year_for_retirement_7|floatformat:"2"|intcomma}} per year until you are age {{retirement|floatformat:"0"}} in order to have enough to fully supplement your annual income with the income from your investments.  This is {{percent_yearly_retirement_7|floatformat:"1"}}% of your current annual income.
         </p>
@@ -821,12 +878,28 @@
                 {{retirement|floatformat:"0"}} years old needs to be dedicated toward retirement and accomplishing your Bucket List goals.  After age {{retirement|floatformat:"0"}} you will be able to retire and only have to worry about paying for your Bucket List goals for the next {{retirement_end_date_difference|floatformat:"0"}} years.
             {% endif %}
         </p>
+        {% else %}
+        
+            <p>
+                So how much do you need to save per year to make your dreams of retirement a reality?  You don't!  In {{years_left|floatformat:"0"}} years making 7% return on your investment you will have more than the ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} you need at age {{retirement|floatformat:"0"}}. 
+            </p>
+            <p>
+                Given this information you should have no problem reaching retirement.  You could even play around with your numbers a little bit and see if earlier retirement could would be an option for you.
+            </p>
+            <p>
+                Even more importantly this means that the financial burden most people have when saving for retirement won't be as much of an issue for you.  You can dedicate even more of your income towards reaching all of those Bucket List goals!
+            </p>
+            
+        {% endif %}
     </li>
     <li>
         <h4>8% APR</h4>
         <p>
             In order to retire you need to the returns on your investments to completely supplement your yearly income. This currently is ${{yearly_earnings|floatformat:"2"|intcomma}}, if we take into account inflation you would need to make ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} per year when you are age {{retirement|floatformat:"0"}} to have the same level of spending power that you do today.  At a 8% return on investment you need to have ${{total_needed_for_retirement_8|floatformat:"2"|intcomma}} saved in order for the returns alone to make you ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} every year.
         </p>
+        
+        {% if needed_per_year_for_retirement_8 > 0 %}
+        
         <p>
             So how difficult will it be for you to save this much money? Using our compound interest calculator we found that you need to save ${{needed_per_year_for_retirement_8|floatformat:"2"|intcomma}} per year until you are age {{retirement|floatformat:"0"}} in order to have enough to fully supplement your annual income with the income from your investments.  This is {{percent_yearly_retirement_8|floatformat:"1"}}% of your current annual income.
         </p>
@@ -841,17 +914,33 @@
                 {{retirement|floatformat:"0"}} years old needs to be dedicated toward retirement and accomplishing your Bucket List goals.  After age {{retirement|floatformat:"0"}} you will be able to retire and only have to worry about paying for your Bucket List goals for the next {{retirement_end_date_difference|floatformat:"0"}} years.
             {% endif %}
         </p>
+        {% else %}
+        
+            <p>
+                So how much do you need to save per year to make your dreams of retirement a reality?  You don't!  In {{years_left|floatformat:"0"}} years making 8% return on your investment you will have more than the ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} you need at age {{retirement|floatformat:"0"}}. 
+            </p>
+            <p>
+                Given this information you should have no problem reaching retirement.  You could even play around with your numbers a little bit and see if earlier retirement could would be an option for you.
+            </p>
+            <p>
+                Even more importantly this means that the financial burden most people have when saving for retirement won't be as much of an issue for you.  You can dedicate even more of your income towards reaching all of those Bucket List goals!
+            </p>
+            
+        {% endif %}
     </li>
     <li>
         <h4>9% APR</h4>
         <p>
             In order to retire you need to the returns on your investments to completely supplement your yearly income. This currently is ${{yearly_earnings|floatformat:"2"|intcomma}}, if we take into account inflation you would need to make ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} per year when you are age {{retirement|floatformat:"0"}} to have the same level of spending power that you do today.  At a 9% return on investment you need to have ${{total_needed_for_retirement_9|floatformat:"2"|intcomma}} saved in order for the returns alone to make you ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} every year.
         </p>
+        
+        {% if needed_per_year_for_retirement_9 > 0 %}
+        
         <p>
             So how difficult will it be for you to save this much money? Using our compound interest calculator we found that you need to save ${{needed_per_year_for_retirement_9|floatformat:"2"|intcomma}} per year until you are age {{retirement|floatformat:"0"}} in order to have enough to fully supplement your annual income with the income from your investments.  This is {{percent_yearly_retirement_9|floatformat:"1"}}% of your current annual income.
         </p>
         <p>
-            What about your Bucket List goals?  They already take up {{percent_of_yearly_wage|floatformat:"1"}}% of your yearly income.  This means that {{percent_yearly_retirement_8_all|floatformat:"1"}}% of every pay check until you are 
+            What about your Bucket List goals?  They already take up {{percent_of_yearly_wage|floatformat:"1"}}% of your yearly income.  This means that {{percent_yearly_retirement_9_all|floatformat:"1"}}% of every pay check until you are 
             
             {% if under_over_same == 0%}
                 {{retirement|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.
@@ -861,6 +950,20 @@
                 {{retirement|floatformat:"0"}} years old needs to be dedicated toward retirement and accomplishing your Bucket List goals.  After age {{retirement|floatformat:"0"}} you will be able to retire and only have to worry about paying for your Bucket List goals for the next {{retirement_end_date_difference|floatformat:"0"}} years.
             {% endif %}
         </p>
+        
+        {% else %}
+        
+            <p>
+                So how much do you need to save per year to make your dreams of retirement a reality?  You don't!  In {{years_left|floatformat:"0"}} years making 9% return on your investment you will have more than the ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} you need at age {{retirement|floatformat:"0"}}. 
+            </p>
+            <p>
+                Given this information you should have no problem reaching retirement.  You could even play around with your numbers a little bit and see if earlier retirement could would be an option for you.
+            </p>
+            <p>
+                Even more importantly this means that the financial burden most people have when saving for retirement won't be as much of an issue for you.  You can dedicate even more of your income towards reaching all of those Bucket List goals!
+            </p>
+            
+        {% endif %}
     </li>
 </ul>
 <br>
