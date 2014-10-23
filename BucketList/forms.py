@@ -45,12 +45,12 @@ class CommentForm(forms.ModelForm):
 class UserProfileEditForm(forms.Form):
     #Form used to edit the User Profile
     new_birth_date = forms.DateField(label = 'Your Birth Date')
-    new_life_expectancy = forms.CharField(label = 'Age You Will Be Done', max_length = 3)
-    new_yearly_earnings = forms.CharField(label = 'Yearly Earnings', max_length = 8)
-    new_hourly_wage = forms.CharField(label = 'Hourly Wage', max_length = 3)
+    new_life_expectancy = forms.IntegerField(label = 'Age You Will Be Done', validators = [validate_positive])
+    new_yearly_earnings = forms.IntegerField(label = 'Yearly Earnings', validators = [validate_positive])
+    new_hourly_wage = forms.FloatField(label = 'Hourly Wage', validators = [validate_positive])
     new_include_retirement = forms.BooleanField(label = 'Include Retirement', required = False)
-    new_retirement = forms.CharField(label = 'Retirement Age', max_length = 3)
-    new_retirement_savings = forms.CharField(label = 'Retirement Savings', max_length = 10)
+    new_retirement = forms.IntegerField(label = 'Retirement Age', validators = [validate_positive])
+    new_retirement_savings = forms.IntegerField(label = 'Retirement Savings', validators = [validate_positive])
     
         
 

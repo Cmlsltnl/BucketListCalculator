@@ -47,9 +47,9 @@ class BucketListItem(models.Model):
     pub_by = models.ForeignKey(User,editable = False)
     pub_date = models.DateTimeField(editable=False)
     goal_type = models.CharField(choices = CHOICES, max_length = 200)
-    cost = models.IntegerField(max_length = 20, validators=[validate_positive])
-    time = models.IntegerField(max_length = 20, validators=[validate_positive])
-    hours = models.IntegerField(max_length = 20, validators=[validate_positive])
+    cost = models.IntegerField(default =0, validators = [validate_positive])
+    time = models.IntegerField(default =0, validators = [validate_positive])
+    hours = models.IntegerField(default =0, validators = [validate_positive])
     crossed_off = models.BooleanField(editable = False, default = False)
     how_many_items = models.IntegerField(editable = False, default = 1)
     
@@ -67,13 +67,13 @@ class BucketListItem(models.Model):
 class UserProfile(models.Model):    
     #Model that defines the User Profile
     user = models.OneToOneField(User, editable = False)
-    life_expectancy = models.IntegerField(max_length = 3, default = 0)
-    yearly_earnings = models.IntegerField(max_length = 8, default = 0)
-    hourly_wage = models.FloatField(max_length = 3, default = 0)
+    life_expectancy = models.IntegerField(default = 0, validators = [validate_positive])
+    yearly_earnings = models.IntegerField(default = 0, validators = [validate_positive])
+    hourly_wage = models.FloatField(default = 0, validators = [validate_positive])
     birth_date = models.DateField(default = datetime.now)
     include_retirement = models.BooleanField(default = False)
-    retirement = models.IntegerField(max_length = 3, default = 0)
-    retirement_savings = models.IntegerField(max_length = 10, default = 0)
+    retirement = models.IntegerField(default = 0, validators = [validate_positive])
+    retirement_savings = models.IntegerField(default = 0, validators = [validate_positive])
     
     
     def age(self):
@@ -88,7 +88,7 @@ class UserProfile(models.Model):
 class Comment(models.Model):
     #Model that defines the Commenting system
     created = models.DateTimeField(editable =False)
-    author = models.CharField(max_length = 100, editable = False)
+    author = models.CharField(max_length = 200, editable = False)
     body = models.TextField()
     item = models.ForeignKey(BucketListItem)
     
