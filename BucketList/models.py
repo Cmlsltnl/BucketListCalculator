@@ -8,7 +8,7 @@ from django.core.signals import request_finished
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from Bucket.forms import MyRegistrationForm, UserCreationForm
-
+from validators import validate_positive
 
 def FindAge(born):
     #Takes a take argument and outputs the users current age based upon the age given
@@ -47,9 +47,9 @@ class BucketListItem(models.Model):
     pub_by = models.ForeignKey(User,editable = False)
     pub_date = models.DateTimeField(editable=False)
     goal_type = models.CharField(choices = CHOICES, max_length = 200)
-    cost = models.IntegerField(max_length = 20)
-    time = models.IntegerField(max_length = 20)
-    hours = models.IntegerField(max_length = 20)
+    cost = models.IntegerField(max_length = 20, validators=[validate_positive])
+    time = models.IntegerField(max_length = 20, validators=[validate_positive])
+    hours = models.IntegerField(max_length = 20, validators=[validate_positive])
     crossed_off = models.BooleanField(editable = False, default = False)
     how_many_items = models.IntegerField(editable = False, default = 1)
     
@@ -67,13 +67,13 @@ class BucketListItem(models.Model):
 class UserProfile(models.Model):    
     #Model that defines the User Profile
     user = models.OneToOneField(User, editable = False)
-    life_expectancy = models.CharField(max_length = 3, default = 0)
-    yearly_earnings = models.CharField(max_length = 8, default = 0)
-    hourly_wage = models.CharField(max_length = 3, default = 0)
+    life_expectancy = models.IntegerField(max_length = 3, default = 0)
+    yearly_earnings = models.IntegerField(max_length = 8, default = 0)
+    hourly_wage = models.FloatField(max_length = 3, default = 0)
     birth_date = models.DateField(default = datetime.now)
     include_retirement = models.BooleanField(default = False)
-    retirement = models.CharField(max_length = 3, default = 0)
-    retirement_savings = models.CharField(max_length = 10, default = 0)
+    retirement = models.IntegerField(max_length = 3, default = 0)
+    retirement_savings = models.IntegerField(max_length = 10, default = 0)
     
     
     def age(self):

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from BucketList.models import BucketListItem, UserProfile, Comment
 from django.contrib import auth
-from forms import BucketListItemForm, UserProfileForm, UserProfileEditForm, BucketListItemEditForm, CustomItemEditForm, CommentForm
+from forms import BucketListItemForm, UserProfileForm, UserProfileEditForm, BucketListItemEditForm, CommentForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.db.models import Sum
@@ -86,7 +86,6 @@ def UsersActivity(User):
 
 def index(request):
     #The main Bucket List Page View, sorted by pubdate so the most recent are at the top
-    
     all_list_items = BucketListItem.objects.filter(crossed_off = False).order_by('-pub_date')
     recently_crossed_off = BucketListItem.objects.filter(crossed_off = True).order_by('-pub_date')
     all_users = User.objects.all()

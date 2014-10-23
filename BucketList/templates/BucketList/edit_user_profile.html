@@ -9,6 +9,7 @@
     {% for field in form %}
         <br>
         <label>{{field.label}}</label>
+        {{field.errors}}
         {{field}}
         {% if field.label == "Your Birth Date" %}
             <h5>Just insert your age here.</h5>

@@ -1,6 +1,7 @@
 from django import forms
 from models import BucketListItem, UserProfile, Comment
 from django.contrib.auth.models import User
+from validators import validate_positive
 
 CHOICES = (
     ('Travel','Travel'),
@@ -59,11 +60,6 @@ class BucketListItemEditForm(forms.ModelForm):
         model = BucketListItem
     
     
-class CustomItemEditForm(forms.Form):
-    #The form used to create the Bucket List Item once the goal type is already decided upon
-    new_cost = forms.FloatField(label = 'cost')
-    new_time = forms.FloatField(label = 'time')
-    new_hours = forms.FloatField(label = 'hours')
     
     
     
