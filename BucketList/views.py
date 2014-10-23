@@ -907,6 +907,41 @@ def recommendation(request):
     percent_yearly_retirement_4 = (needed_per_year_for_retirement_4/yearly_earnings)*100
     percent_yearly_retirement_4_all = percent_of_yearly_wage + percent_yearly_retirement_4
     
+    #Retirement at 5% APR
+    retirement_calculated_5 = RetirementCalculator(age, retirement, retirement_savings, yearly_income_at_retirement, .05)
+    total_needed_for_retirement_5 = retirement_calculated_5[0]
+    needed_per_year_for_retirement_5 = retirement_calculated_5[1]
+    percent_yearly_retirement_5 = (needed_per_year_for_retirement_5/yearly_earnings)*100
+    percent_yearly_retirement_5_all = percent_of_yearly_wage + percent_yearly_retirement_5
+    
+    #Retirement at 6% APR
+    retirement_calculated_6 = RetirementCalculator(age, retirement, retirement_savings, yearly_income_at_retirement, .06)
+    total_needed_for_retirement_6 = retirement_calculated_6[0]
+    needed_per_year_for_retirement_6 = retirement_calculated_6[1]
+    percent_yearly_retirement_6 = (needed_per_year_for_retirement_6/yearly_earnings)*100
+    percent_yearly_retirement_6_all = percent_of_yearly_wage + percent_yearly_retirement_6
+    
+    #Retirement at 7% APR
+    retirement_calculated_7 = RetirementCalculator(age, retirement, retirement_savings, yearly_income_at_retirement, .07)
+    total_needed_for_retirement_7 = retirement_calculated_7[0]
+    needed_per_year_for_retirement_7 = retirement_calculated_7[1]
+    percent_yearly_retirement_7 = (needed_per_year_for_retirement_7/yearly_earnings)*100
+    percent_yearly_retirement_7_all = percent_of_yearly_wage + percent_yearly_retirement_7
+    
+    #Retirement at 8% APR
+    retirement_calculated_8 = RetirementCalculator(age, retirement, retirement_savings, yearly_income_at_retirement, .08)
+    total_needed_for_retirement_8 = retirement_calculated_8[0]
+    needed_per_year_for_retirement_8 = retirement_calculated_8[1]
+    percent_yearly_retirement_8 = (needed_per_year_for_retirement_8/yearly_earnings)*100
+    percent_yearly_retirement_8_all = percent_of_yearly_wage + percent_yearly_retirement_8
+    
+    #Retirement at 9% APR
+    retirement_calculated_9 = RetirementCalculator(age, retirement, retirement_savings, yearly_income_at_retirement, .09)
+    total_needed_for_retirement_9 = retirement_calculated_9[0]
+    needed_per_year_for_retirement_9 = retirement_calculated_9[1]
+    percent_yearly_retirement_9 = (needed_per_year_for_retirement_9/yearly_earnings)*100
+    percent_yearly_retirement_9_all = percent_of_yearly_wage + percent_yearly_retirement_9
+    
     #--------------------Passed To Template-----------------------              
     
     context = {
@@ -1169,6 +1204,31 @@ def recommendation(request):
                     'needed_per_year_for_retirement_4': needed_per_year_for_retirement_4,
                     'percent_yearly_retirement_4': percent_yearly_retirement_4,
                     'percent_yearly_retirement_4_all': percent_yearly_retirement_4_all,
+                    
+                    'total_needed_for_retirement_5': total_needed_for_retirement_5,
+                    'needed_per_year_for_retirement_5': needed_per_year_for_retirement_5,
+                    'percent_yearly_retirement_5': percent_yearly_retirement_5,
+                    'percent_yearly_retirement_5_all': percent_yearly_retirement_5_all,
+                    
+                    'total_needed_for_retirement_6': total_needed_for_retirement_6,
+                    'needed_per_year_for_retirement_6': needed_per_year_for_retirement_6,
+                    'percent_yearly_retirement_6': percent_yearly_retirement_6,
+                    'percent_yearly_retirement_6_all': percent_yearly_retirement_6_all,
+                    
+                    'total_needed_for_retirement_7': total_needed_for_retirement_7,
+                    'needed_per_year_for_retirement_7': needed_per_year_for_retirement_7,
+                    'percent_yearly_retirement_7': percent_yearly_retirement_7,
+                    'percent_yearly_retirement_7_all': percent_yearly_retirement_7_all,
+                    
+                    'total_needed_for_retirement_8': total_needed_for_retirement_8,
+                    'needed_per_year_for_retirement_8': needed_per_year_for_retirement_8,
+                    'percent_yearly_retirement_8': percent_yearly_retirement_8,
+                    'percent_yearly_retirement_8_all': percent_yearly_retirement_8_all,
+                    
+                    'total_needed_for_retirement_9': total_needed_for_retirement_9,
+                    'needed_per_year_for_retirement_9': needed_per_year_for_retirement_9,
+                    'percent_yearly_retirement_9': percent_yearly_retirement_9,
+                    'percent_yearly_retirement_9_all': percent_yearly_retirement_9_all,
                    }
 
     return render(request, 'BucketList/recommendation.html', context)
