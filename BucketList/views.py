@@ -163,7 +163,7 @@ def my_list(request):
     repeat = RepeatGoalInList(personal_list)
     
     
-    context = {'user': request.user.username,
+    context = {'user1': request.user.username,
                       'personal_list': personal_list,
                       'repeat': repeat,
                     }
@@ -279,16 +279,16 @@ def recommendation(request):
     
     
     #General Information Passed Through to Template
-    user = UserProfile.objects.get(pk = request.user.id)
+    user1 = UserProfile.objects.get(pk = request.user.id)
     
     #If profile is not filled out redirect to Profile Edit Form
-    if user.age() == 0 or user.life_expectancy == 0 or user.yearly_earnings == 0 or user.hourly_wage == 0:
+    if user1.age() == 0 or user1.life_expectancy == 0 or user1.yearly_earnings == 0 or user1.hourly_wage == 0:
         return HttpResponseRedirect('/bucketlist/profile/edit/')
         
 
         
     all_goals = BucketListItem.objects.all().filter(crossed_off = False)
-    mylist = BucketListItem.objects.all().filter(pub_by = user, crossed_off = False)
+    mylist = BucketListItem.objects.all().filter(pub_by = user1, crossed_off = False)
     
     #If not enough Bucket List Items redirect to Create Bucket List Item Form
     if len(mylist) == 0:
@@ -298,15 +298,15 @@ def recommendation(request):
     total_hours = BucketListItemListSum(mylist, 'hours')
     total_time = BucketListItemListSum(mylist, 'time')
     total_number_of_items = float(len(mylist))
-    age = float(user.age())
-    life_expectancy = float(user.life_expectancy)
-    include_retirement = user.include_retirement
-    retirement = float(user.retirement)
-    retirement_savings = float(user.retirement_savings)
+    age = float(user1.age())
+    life_expectancy = float(user1.life_expectancy)
+    include_retirement = user1.include_retirement
+    retirement = float(user1.retirement)
+    retirement_savings = float(user1.retirement_savings)
     years_left = float(life_expectancy - age)
     days_left = float(years_left*365)
-    yearly_earnings = float(user.yearly_earnings)
-    hourly_wage = float(user.hourly_wage)
+    yearly_earnings = float(user1.yearly_earnings)
+    hourly_wage = float(user1.hourly_wage)
     work_hours_per_week = (yearly_earnings/hourly_wage)/52
     
 
@@ -945,7 +945,7 @@ def recommendation(request):
     
     context = {
                      #-------Top Stats & Basic Overview------
-                     'user': user,
+                     'user1': user1,
                      'mylist': mylist,
                      'total_cost': total_cost,
                      'total_hours': total_hours,
@@ -1342,8 +1342,8 @@ def edit_bucket_list_item(request, id):
     #This view lets the user edit their Bucket List Item and directs them to other forms necessary to make the changes needed  
     
    
-    user = UserProfile.objects.get(pk = request.user.id)
-    all_goals_not_users = BucketListItem.objects.all().exclude(pub_by = user)    
+    user1 = UserProfile.objects.get(pk = request.user.id)
+    all_goals_not_users = BucketListItem.objects.all().exclude(pub_by = user1)    
     
     item = BucketListItem.objects.get(pk = id)
     

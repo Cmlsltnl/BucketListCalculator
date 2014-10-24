@@ -14,6 +14,8 @@
     {% bootstrap_css %}
     {% bootstrap_javascript %}
     {% load avatar_tags %}
+    {% load inbox %}
+    {% inbox_count as mail_count %}
 
     <style>
         body {
@@ -54,10 +56,15 @@
                 <li><a href="/bucketlist/mylist/">My List</a></li>
                 <li><a href="/bucketlist/mylist/recommendation/">Recommendations</a></li>
                 {% if user.is_authenticated %}
-                    <li><a href="/bucketlist/">{% avatar user %}{{user}}</a></li>
+                    <li><a href="/bucketlist/">{% avatar user 25 %}{{user}}</a></li>
                     <li><a href="/accounts/logout/">Sign Out</a></li>
                 {% else %}
                     <li><a href="/accounts/login/">Sign In</a></li>
+                {% endif %}
+                {% if mail_count %}
+                    <li><a href="/messages/inbox/">{{mail_count}}{% bootstrap_icon "envelope" %}</a></li>
+                {% else %}
+                    <li><a href="/messages/inbox/">{{mail_count}}{% bootstrap_icon "envelope" %}</a></li>
                 {% endif %}
             </ul>      
             
