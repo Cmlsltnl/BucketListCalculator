@@ -52,20 +52,22 @@
         <div class = "collapse navbar-collapse" id = "dropdown">
             
             <ul class = "nav navbar-nav navbar-right" role = "navigation">
-                <li><a href="/bucketlist/">Home</a></li>
-                <li><a href="/bucketlist/mylist/">My List</a></li>
-                <li><a href="/bucketlist/mylist/recommendation/">Recommendations</a></li>
                 {% if user.is_authenticated %}
-                    <li><a href="/bucketlist/"> {% avatar user 25 %} {{user}}</a></li>
+                    <li><a href="/bucketlist/mylist/"> {% avatar user 25 %} {{user}}</a></li>
+                    <li><a href="/bucketlist/tutorial/">How It Works</a></li>
+                     <li><a href="/bucketlist/mylist/recommendation/">Recommendations</a></li>
+                    {% if mail_count %}
+                        <li><a href="/messages/inbox/">{% bootstrap_icon "envelope" %}  {% bootstrap_icon "badge" %} <span class="badge alert-danger"> {{mail_count}} </span></a></li>
+                    {% else %}
+                        <li><a href="/messages/inbox/">{% bootstrap_icon "envelope" %}</a></li>
+                    {% endif %}
                     <li><a href="/accounts/logout/">Sign Out</a></li>
                 {% else %}
+                    <li><a href="/bucketlist/tutorial/">How It Works</a></li>
+                    <li><a href="/accounts/register/">Sign Up</a></li>
                     <li><a href="/accounts/login/">Sign In</a></li>
                 {% endif %}
-                {% if mail_count %}
-                    <li><a href="/messages/inbox/">{% bootstrap_icon "envelope" %}  {% bootstrap_icon "badge" %} <span class="badge alert-danger"> {{mail_count}} </span></a></li>
-                {% else %}
-                    <li><a href="/messages/inbox/">{% bootstrap_icon "envelope" %}</a></li>
-                {% endif %}
+
             </ul>      
             
         </div><!-- End Nav Contents -->

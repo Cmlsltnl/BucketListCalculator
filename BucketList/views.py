@@ -1478,7 +1478,6 @@ def delete_comment(request, id):
     return render(request, 'BucketList/delete_comment.html', context)
     
     
-@login_required
 def tutorial(request):
     #View for the user tutorial page
     context = {}
