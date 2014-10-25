@@ -62,7 +62,7 @@
                     <li><a href="/accounts/login/">Sign In</a></li>
                 {% endif %}
                 {% if mail_count %}
-                    <li><a href="/messages/inbox/">{% bootstrap_icon "envelope" %}{% bootstrap_icon "badge" %} <span class="badge"> {{mail_count}} </span></a></li>
+                    <li><a href="/messages/inbox/">{% bootstrap_icon "envelope" %}  {% bootstrap_icon "badge" %} <span class="badge alert-danger"> {{mail_count}} </span></a></li>
                 {% else %}
                     <li><a href="/messages/inbox/">{% bootstrap_icon "envelope" %}</a></li>
                 {% endif %}
