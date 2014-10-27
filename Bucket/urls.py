@@ -2,6 +2,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.conf import settings
 
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -18,11 +19,14 @@ urlpatterns = patterns('',
     url(r'^avatar/', include('avatar.urls')),
     url(r'^messages/', include('django_messages.urls')),
     url(r'^password/',include('password_reset.urls')),
-)
+) 
 
+#Development Only
 if settings.DEBUG:
     #static files (images, css, javascript, etc.)
     urlpatterns += patterns('',
         (r'^media/(?P<path>.*)$', 'django.views.static.serve', {
-        'document_root': settings.MEDIA_ROOT})
+        'document_root': settings.MEDIA_ROOT}),
     )
+
+    
