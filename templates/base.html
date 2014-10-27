@@ -2,20 +2,23 @@
 <html lang="en">
 <head>
 
+    {% load bootstrap3 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% load staticfiles %}
+    {% load avatar_tags %}
+    {% load inbox %}
+    {% inbox_count as mail_count %}
     
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static "custom_base" %}" rel="stylesheet">
     <title>{% block title %}{% endblock title %}</title>
     
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
     
-    {% load bootstrap3 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-    {% load avatar_tags %}
-    {% load inbox %}
-    {% inbox_count as mail_count %}
+
 
     <style>
         body {
@@ -30,7 +33,7 @@
     
 </head>
   
-<body>
+<body class = "green">
   
   <!------Navbar ---------->
   
