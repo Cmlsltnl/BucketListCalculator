@@ -21,12 +21,11 @@
     </div>
 </div>
 <div class = "pattern-divide">
-    
 </div>
 
     <div class = "container">
         <div class = "row">
-            <div class = "col-md-4">
+            <div class = "col-md-6">
                 <div class = "sections">
                     <h1>Recently Added</h1>
 
@@ -37,32 +36,53 @@
                         </ul>
                         <br>
                 </div><!--end sections -->
-            </div><!--end recently added-->
-            <div class = "col-md-4">
+                <br>
+            </div><!--end recently added-->  
+            
+            <div class = "col-md-6">
                 <div class = "sections">
-                    <h1>Most Talked About</h1>
-                    <br>
-                </div><!--sections-->
-            </div><!--end most talked about-->
+                    <h1>How It Works</h1>
+                </div><!--end sections-->
+                <br>
+            </div><!--end how it works-->
+            
+        </div><!--end 1st row-->
+        
+
+        
+        <div class = "row">
             <div class = "col-md-4">
                 <div class = "sections">
                     <h1>Recently Completed</h1>
-
                         <ul>
                         {% for item in recently_crossed_off %}
                             <li><a href="/bucketlist/item/{{item.id}}/" style="text-decoration: line-through;">{{ item.text }}</a></li>
                         {% endfor %}
                         </ul>
                 </div><!--end sections-->
-            </div><!--end recently added-->
-        </div><!--end row-->
-    <br>
-    <br>
-    <h1>Popular Users</h1>
-        
-    {% for key, values in new_users_by_activity.items %}
-    <a href="/bucketlist/userstats/{{key}}/">{% avatar key %}</a>
-    {% endfor %}
+                <br>
+            </div><!--end recently completed-->
+            <div class = "col-md-4">
+                <div class = "sections">
+                    <h1>Featured Users</h1>
+                        
+                    {% for key, values in new_users_by_activity.items %}
+                    <a href="/bucketlist/userstats/{{key}}/">{% avatar key %}</a>
+                    {% endfor %}   
+                </div><!--end sections-->
+                <br>
+            </div><!--end featured users-->
+            <div class = "col-md-4">
+                <div class = "sections">
+                    <h1>Most Talked About</h1>
+                    <br>
+                </div><!--sections-->
+                <br>
+            </div><!--end most talked about-->
+
+        </div><!--end 2nd row-->
+
+
 
 </div><!--end container -->
 {% endblock content%}
