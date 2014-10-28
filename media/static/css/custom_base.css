@@ -1,8 +1,4 @@
 
-
-h1 {
-    color: green;
-    }
     
 .glyphicon-envelope {
     font-size: 1.4em;
@@ -21,4 +17,8 @@ h1 {
 
 .navbar-btn {
     padding-left: 3px;
+}
+
+body {
+    background-color: #E8E8E8;
 }

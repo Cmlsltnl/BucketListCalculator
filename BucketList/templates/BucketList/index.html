@@ -4,6 +4,28 @@
 
 {% block content %}
 {% load avatar_tags %}
+
+<link href="/media/static/css/custom_index.css" rel="stylesheet" type="text/css"/>
+
+<div id = "banner">
+    <h1 id = "slogan1">Don't Just <b>Dream</b></h1>
+    <h1 id = "slogan2">About Your <b >Goals</b></h1>
+    <div id = "site-purpose">
+        <p class = "text-shadow">
+            Make a List
+                <span class = "glyphicon glyphicon-chevron-right text-warning"></span>
+            Make a Plan
+                <span class = "glyphicon glyphicon-chevron-right text-warning"></span>
+            <span style = "text-decoration: underline;">Make it Happen!</span>
+        </p>
+    </div>
+</div>
+<div class = "pattern-divide">
+    
+</div>
+
+<div class = "container">
+
 <h1>Community Bucket List</h1>
 
     <ol>
@@ -28,4 +50,6 @@
 {% for key, values in new_users_by_activity.items %}
 <a href="/bucketlist/userstats/{{key}}/">{% avatar key %}</a>
 {% endfor %}
+
+</div><!--end container -->
 {% endblock content%}
