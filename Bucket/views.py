@@ -34,11 +34,8 @@ def loggedin(request):
     if user_profile.age == 0 or user_profile.life_expectancy == 0 or user_profile.yearly_earnings == 0 or user_profile.hourly_wage == 0:
         return HttpResponseRedirect('/bucketlist/profile/edit/')
         
-    args = {}
-    args['full_name'] = request.user.username
-
-    return render_to_response('loggedin.html',
-                                              {'full_name': request.user.username})
+    else:
+        return HttpResponseRedirect('/bucketlist/')
                                               
 def invalid_login(request):
     #Screen displayed if there was a problem with the login information

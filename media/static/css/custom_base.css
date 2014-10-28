@@ -4,3 +4,21 @@ h1 {
     color: green;
     }
     
+.glyphicon-envelope {
+    font-size: 1.4em;
+}
+
+.badge {
+    font-size: 0.5em;
+}
+
+.navbar-right {
+    border-top: 1px solid transparent;
+    border-color: #101010;
+    box-shadow: inset 0 1px 0 black;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1) ;
+}
+
+.navbar-btn {
+    padding-left: 3px;
+}
