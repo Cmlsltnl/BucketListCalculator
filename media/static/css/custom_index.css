@@ -52,6 +52,7 @@ body {
     background: url(/media/static/images/tweed.png) repeat;
     width: 100%;
     height: 5px;
+    margin-bottom: 40px;
 }
 
 
@@ -62,6 +63,13 @@ body {
 
 .glyphicon-chevron-right {
    color: #FFA54F;
+}
+
+.sections {
+    background-color: white;
+    padding: 15px;
+    border-radius: 4px;
+    box-shadow: 0 0 1px black;
 }
 
 /*--------------------------Responsive CSS----------------------------*/
