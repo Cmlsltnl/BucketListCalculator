@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-
     
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,17 +8,14 @@
 
     <title>{% block title %}{% endblock title %}</title>
     
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-    
-    {% load bootstrap3 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-    {% load staticfiles %}
+
     {% load avatar_tags %}
     {% load inbox %}
     {% inbox_count as mail_count %}
-
+    
+    <link href = "/media/static/bootstrap/css/bootstrap.min.css" rel = "stylesheet" />
     <link href="/media/static/css/custom_base.css" rel="stylesheet" type="text/css"/>
+
     
     <style>
         body {
@@ -62,11 +57,11 @@
                     <li><a href="/bucketlist/tutorial/">How It Works</a></li>
                     <li><a href="/bucketlist/mylist/recommendation/">Recommendations</a></li>
                     {% if mail_count %}
-                        <li><a href="/messages/inbox/">{% bootstrap_icon "envelope" %}  {% bootstrap_icon "badge" %} <span class="badge alert-danger"> {{mail_count}} </span></a></li>
+                        <li><a href="/messages/inbox/"> <span class="badge alert-danger"> {{mail_count}} </span></a></li>
                     {% else %}
-                        <li><a href="/messages/inbox/">{% bootstrap_icon "envelope" %}</a></li>
+                        <li><a href="/messages/inbox/"><span class="glyphicon glyphicon-envelope"></span></a></li>
                     {% endif %}
-                    <li><a href="/accounts/logout/">Sign Out</a></li>
+                    <li><a href="/accounts/logout/"><button type = "button" class = "btn navbar-btn">Sign Out</button></a></li>
                 {% else %}
                     <li><a href="/bucketlist/tutorial/">How It Works</a></li>
             </ul>     
@@ -96,5 +91,9 @@
     {% endblock %}
 </div>
     
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/media/static/bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>

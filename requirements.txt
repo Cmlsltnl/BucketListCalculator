@@ -3,7 +3,6 @@ Requirements for this project to work:
         -South
         -Djano_Avatar
         -Django_Messages
-        -Django-Bootstrap3
         -FuzzyWuzzy
         -DiffLib
         -Django-Chartit
