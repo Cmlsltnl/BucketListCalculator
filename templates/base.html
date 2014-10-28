@@ -20,7 +20,7 @@
     {% load inbox %}
     {% inbox_count as mail_count %}
 
-    <link href="/media/static/custom_base.css" rel="stylesheet" type="text/css"/>
+    <link href="/media/static/css/custom_base.css" rel="stylesheet" type="text/css"/>
     
     <style>
         body {
@@ -51,16 +51,16 @@
                 
             </button>
             
-            <a href="/bucketlist/" class ="navbar-brand">Bucket List Calculator</a>
+            <a href="/bucketlist/" class ="navbar-brand">Bucketlist Calculator</a>
         </div><!-- End Navbar Header-->
         
         <div class = "collapse navbar-collapse" id = "dropdown">
             
-            <ul class = "nav navbar-nav navbar-right" role = "navigation">
+            <ul class = "nav navbar-nav" role = "navigation">
                 {% if user.is_authenticated %}
                     <li><a href="/bucketlist/mylist/"> {% avatar user 25 %} {{user}}</a></li>
                     <li><a href="/bucketlist/tutorial/">How It Works</a></li>
-                     <li><a href="/bucketlist/mylist/recommendation/">Recommendations</a></li>
+                    <li><a href="/bucketlist/mylist/recommendation/">Recommendations</a></li>
                     {% if mail_count %}
                         <li><a href="/messages/inbox/">{% bootstrap_icon "envelope" %}  {% bootstrap_icon "badge" %} <span class="badge alert-danger"> {{mail_count}} </span></a></li>
                     {% else %}
@@ -69,11 +69,14 @@
                     <li><a href="/accounts/logout/">Sign Out</a></li>
                 {% else %}
                     <li><a href="/bucketlist/tutorial/">How It Works</a></li>
-                    <li><a href="/accounts/register/">Sign Up</a></li>
-                    <li><a href="/accounts/login/">Sign In</a></li>
+            </ul>     
+            <ul class = "nav navbar-nav navbar-right" role = "navigation">
+                    <li><a href="/accounts/register/"><button type = "button" class = "btn btn-warning navbar-btn btn-sm" >Sign Up</button></a></li>
+                    <li><a href="/accounts/login/"><button type = "button" class = "btn navbar-btn btn-sm">Sign In</button></a></li>
+                    
                 {% endif %}
-
-            </ul>      
+            </ul>
+     
             
         </div><!-- End Nav Contents -->
     </div><!-- End Container -->
