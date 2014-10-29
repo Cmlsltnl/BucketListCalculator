@@ -20,8 +20,9 @@
                 <span class = "glyphicon glyphicon-chevron-right text-warning"></span>
             <span style = "text-decoration: underline;">Make it Happen!</span>
         </p>
-    </div>
-</div>
+    </div><!--end site purpose-->
+</div><!--end banner-->
+
 <div class = "pattern-divide">
 </div>
 
@@ -34,11 +35,20 @@
             <div class = "col-sm-8">
                 <div class = "sections">
                     <h1>Recently Added</h1>
-
-                        <ul>
-                        {% for item in all_list_items %}
-                                <li><a href="/bucketlist/item/{{item.id}}/">{{ item.text }}</a></li>
-                        {% endfor %}
+                        <ul class = "recently-added-list">
+                            {% for item in all_list_items %}
+                                <li>
+                                    <div class = "recently-added-list-item">
+                                        <h4>
+                                            <a href="/bucketlist/item/{{item.id}}/">{{ item.text }}</a>
+                                        </h4>
+                                        <span>{% avatar item.pub_by 25%}</span>
+                                        <a href = "/bucketlist/userstats/{{item.pub_by}}">{{item.pub_by}}</a>
+                                        
+                                    </div>
+                                </li>
+                                <br>
+                            {% endfor %}
                         </ul>
                         <br>
                 </div><!--end sections -->
@@ -112,5 +122,5 @@
 
 
 
-</div><!--end container -->
+</div><!--end main container -->
 {% endblock content%}

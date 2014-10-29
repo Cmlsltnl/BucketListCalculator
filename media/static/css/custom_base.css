@@ -28,7 +28,6 @@
 
 body {
     background-color: #E8E8E8;
-    height: 100%;
 }
 
 /*-------------------Responsive Sticky Footer--------------------*/
@@ -82,6 +81,11 @@ body {
 
 #footer h5 a {
     color: #f0ad4e;
+}
+
+#footer .social-media span:hover {
+    color: #f0ad4e;
+    
 }
 
 
