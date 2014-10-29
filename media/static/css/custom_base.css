@@ -28,11 +28,26 @@
 
 body {
     background-color: #E8E8E8;
+    height: 100%;
+}
+
+/*-------------------Responsive Sticky Footer--------------------*/
+
+.Site {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.Site-content {
+    flex: 1;
 }
 
 /*----------------------Footer---------------------------*/
 
 #footer {
+    margin-top: 15px;
+    bottom: 0;
     color: white;
     background-color: #3D3D3D;
     width: 100%;
