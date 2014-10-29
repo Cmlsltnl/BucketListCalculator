@@ -53,15 +53,12 @@
         <div class = "row">
             <div class = "col-md-4">
                 <div class = "sections">
-                    <h1>Recently Completed</h1>
-                        <ul>
-                        {% for item in recently_crossed_off %}
-                            <li><a href="/bucketlist/item/{{item.id}}/" style="text-decoration: line-through;">{{ item.text }}</a></li>
-                        {% endfor %}
-                        </ul>
-                </div><!--end sections-->
+                    <h1>Most Talked About</h1>
+                    <br>
+                </div><!--sections-->
                 <br>
-            </div><!--end recently completed-->
+            </div><!--end most talked about-->
+
             <div class = "col-md-4">
                 <div class = "sections">
                     <h1>Featured Users</h1>
@@ -74,11 +71,15 @@
             </div><!--end featured users-->
             <div class = "col-md-4">
                 <div class = "sections">
-                    <h1>Most Talked About</h1>
-                    <br>
-                </div><!--sections-->
+                    <h1>Recently Completed</h1>
+                        <ul>
+                        {% for item in recently_crossed_off %}
+                            <li><a href="/bucketlist/item/{{item.id}}/" style="text-decoration: line-through;">{{ item.text }}</a></li>
+                        {% endfor %}
+                        </ul>
+                </div><!--end sections-->
                 <br>
-            </div><!--end most talked about-->
+            </div><!--end recently completed-->
 
         </div><!--end 2nd row-->
 

@@ -1,5 +1,10 @@
 
+/*------------------------Imports---------------------------*/
+
+@import url(http://fonts.googleapis.com/css?family=Oswald:300,400,700);
     
+/*------------------------Navbar---------------------------*/
+
 .glyphicon-envelope {
     font-size: 1.4em;
 }
@@ -19,6 +24,49 @@
     padding-left: 3px;
 }
 
+/*-----------------------Body----------------------------*/
+
 body {
     background-color: #E8E8E8;
 }
+
+/*----------------------Footer---------------------------*/
+
+#footer {
+    color: white;
+    background-color: #3D3D3D;
+    width: 100%;
+    border-top: 5px solid #f0ad4e;
+}
+
+#footer h2 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+    text-decoration: underline;
+}
+
+#footer ul {
+    list-style-type: none;
+}
+
+#footer li a {
+    color: white;
+}
+#footer a:hover {
+    color: white;
+}
+
+#footer span {
+    color: white;
+    padding: 8px;
+}
+
+#footer h5 {
+    text-align: center;
+}
+
+#footer h5 a {
+    color: #f0ad4e;
+}
+
+

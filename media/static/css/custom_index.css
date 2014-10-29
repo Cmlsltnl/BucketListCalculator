@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Oswald:300,700);
+
 
 #banner {
     background: url(/media/static/images/index_background2.jpg) no-repeat center center;
@@ -45,6 +45,7 @@ body {
     text-align: center;
     color: white;
     font-family: 'Oswald', sans-serif;
+    font-weight: 300;
     font-size: 13px;
 }
 

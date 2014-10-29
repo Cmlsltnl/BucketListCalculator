@@ -20,7 +20,7 @@
     
     <link href = "/media/static/bootstrap/css/bootstrap.min.css" rel = "stylesheet" />
     <link href="/media/static/css/custom_base.css" rel="stylesheet" type="text/css"/>
-
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     
     <style>
         body {
@@ -81,7 +81,11 @@
                         <li>
                             <p class = "navbar-btn">
                                 <a href="/accounts/logout/"  class = "btn btn-warning">Sign Out</a>
-                        </p>
+                                
+                            </p>
+                        </li>
+                        <li>
+                            <a href= "#"><span class = "fa fa-cog fa-lg"></span></a>
                         </li>
             </ul>
                 {% else %}
@@ -122,6 +126,42 @@
 {% endblock %}
 
     
-
+        <div id = "footer" class = "wrapper">
+            <br>
+            <div class = "container">
+                <div class = "row">
+                    <div class = "col-md-4">
+                        <h2>About Us</h2>
+                        <ul>
+                            <li><a href = "#">FAQ</a></li>
+                            <li><a href = "#">About Us</a></li>
+                            <li><a href = "#">Contact Us</a></li>
+                            <li><a href = "#">Terms & Conditions</a></li>
+                        </ul>
+                    </div>
+                    <div class = "col-md-4">
+                        <h2>Getting Around</h2>
+                        <ul>
+                            <li><a href = "/bucketlist/">Home</a></li>
+                            <li><a href = "/bucketlist/mylist/">Your Profile</a></li>
+                            <li><a href = "/bucketlist/profile/edit/">Edit Profile Info</a></li>
+                            <li><a href = "/accounts/edit/">Edit Account Settings</a></li>
+                        </ul>
+                    </div>
+                    <div class = "col-md-4">
+                        <h2>Follow Us</h2>
+                            <a href = "#"> <span class = "fa fa-facebook fa-2x"></span> </a>
+                            <a href = "#"> <span class = "fa fa-twitter fa-2x"></span> </a>
+                            <a href = "#"> <span class = "fa fa-github fa-2x"></span> </a>
+                    </div>
+                </div><!--end row-->
+                <br>
+                <div class = "row">
+                    <div class = "col-xs-12 bottom-link">
+                        <h5><a href= "/bucketlist/">BucketListCalculator.com</a> &copy; 2015</h5>
+                    </div>
+                </div>
+            </div><!--end container-->
+        </div><!--end footer-->
     </body>
 </html>
