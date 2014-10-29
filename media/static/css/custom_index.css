@@ -1,5 +1,10 @@
 
 
+body {
+    padding-top: 0;
+}
+
+/*----------------------Banner-----------------------*/
 #banner {
     background: url(/media/static/images/index_background2.jpg) no-repeat center center;
     position: relative;
@@ -14,9 +19,6 @@
 
 }
 
-body {
-    padding-top: 0;
-}
 
 #slogan1 {
     padding-top: 130px;
@@ -63,9 +65,11 @@ body {
 
 
 .glyphicon-chevron-right {
-   color: #FFA54F;
+   color: #f0ad4e;
+   text-shadow: 0 0 3px black;
 }
 
+/*------------------------Site Content-------------------------*/
 .sections {
     background-color: white;
     padding: 10px;
@@ -73,6 +77,25 @@ body {
     box-shadow: 0 0 1px black;
 }
 
+.sections h1 {
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    padding-bottom: 15px;
+}
+
+.how-it-works {
+    margin: auto;
+    text-align: center;
+}
+
+.how-it-works span{
+    padding-bottom: 15px;
+}
+
+.how-it-works .fa {
+    color: #f0ad4e;
+}
 /*--------------------------Responsive CSS----------------------------*/
 
 @media only screen and (min-width : 320px) {
