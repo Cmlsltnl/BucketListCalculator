@@ -146,6 +146,36 @@ body {
     float: right;
     padding-top: 8px;
 }
+
+.talked-about-title a {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    color: #f0ad4e;
+}
+
+.talked-about-title a:hover {
+    color: #3D3D3D;
+}
+
+.talked-about-div {
+    background-color: #F0F0F0;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 0 1px black
+}
+
+.talked-about-div h6 a {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    padding-left: 40px;
+    color: #5cb85c;
+}
+
+.talked-about-div h6 a:hover {
+    color: #3D3D3D;
+    text-decoration: none;
+}
     
 /*--------------------------Responsive CSS----------------------------*/
 
