@@ -90,15 +90,8 @@ def index(request):
     recently_crossed_off = BucketListItem.objects.filter(crossed_off = True).order_by('-pub_date')
     all_users = User.objects.all()
     
-    every_list_item = BucketListItem.objects.filter(crossed_off = False)
+    every_comment = Comment.objects.all().order_by('-created')[:8]
     
-    #---most_commented_on---#
-    """
-    most_commented_on = {}
-    for item in every_list_item:
-        if Comment.objects.filter(pk = item):
-            most_commented_on['item'] = 
-    """
     
     users_by_activity = {}
     for user in all_users:
@@ -110,6 +103,7 @@ def index(request):
     context = {'all_list_items': all_list_items,
                       'recently_crossed_off': recently_crossed_off,
                       'new_users_by_activity': new_users_by_activity,
+                      'every_comment': every_comment,
     }
     
     

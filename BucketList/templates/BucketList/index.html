@@ -86,8 +86,12 @@
             <!--Most Talked About-->
             <div class = "col-md-4">
                 <div class = "sections">
-                    <h1>Most Talked About</h1>
+                    <h1>Talked About</h1>
                     <br>
+                    {% for comment in every_comment %}
+                        <p>{{comment.author}}</p>
+                        <p>{{comment.body}}</p>
+                    {% endfor %}
                 </div><!--sections-->
                 <br>
             </div><!--end most talked about-->
