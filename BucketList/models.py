@@ -52,7 +52,6 @@ class BucketListItem(models.Model):
     hours = models.IntegerField(default =0, validators = [validate_positive])
     crossed_off = models.BooleanField(editable = False, default = False)
     how_many_items = models.IntegerField(editable = False, default = 1)
-    
         
     def __unicode__(self):
         return self.text

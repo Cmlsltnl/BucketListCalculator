@@ -34,6 +34,8 @@
             
             <!--How It Works-->
             <div class = "col-sm-8">
+            
+                <!--How It Works-->
                 <div class = "sections how-it-works">
                     <h1>How It Works</h1>
                     <br>
@@ -51,12 +53,40 @@
                     <span class = "fa fa-check-square fa-4x"></span>
                     <br>
 
-                </div><!--end sections-->
+                </div><!--end How It Works-->
                 <br>
-            </div><!--end how it works-->
+                <!--Featured Users-->
+                <div class = "sections featured-users">
+                    <h1>Featured Users</h1>
+                    <br>
+                        {% for key, values in new_users_by_activity.items %}
+                            <div class= "featured-user-div">
+                                <a href="/bucketlist/userstats/{{key}}/">
+                                    {% avatar key  350 %}
+                                    <p>{{key}}</p>
+                                </a>
+                            </div>
+                            
+                        {% endfor %}   
+                </div><!--end Featured Users-->
+                <br>
+                <!--Recently Completed-->
+                <div class = "sections">
+                    
+                    <h1>Recently Completed</h1>
+                        <ul>
+                        {% for item in recently_crossed_off %}
+                            <li><a href="/bucketlist/item/{{item.id}}/" style="text-decoration: line-through;">{{ item.text }}</a></li>
+                        {% endfor %}
+                        </ul>
+                </div><!--end Recently Completed-->
+                <br>
+            </div><!--end col-sm-8-->
 
-            <!--Recently Added-->
+            
             <div class = "col-sm-4">
+            
+                <!--Recently Added-->
                 <div class = "sections">
                     <h1>Recently Added</h1>
                         <ul class = "recently-added-list">
@@ -75,16 +105,9 @@
                             {% endfor %}
                         </ul>
                         <br>
-                </div><!--end sections -->
+                </div><!--end Recently Added -->
                 <br>
-            </div><!--end recently added-->
-        </div><!--end 1st row-->
-        
-        
-        <div class = "row">
-        
-            <!--Most Talked About-->
-            <div class = "col-md-4">
+                <!--Talked About-->
                 <div class = "sections">
                     <h1>Talked About</h1>
                     <br>
@@ -96,42 +119,15 @@
                         </div>
                         <br>
                     {% endfor %}
-                </div><!--sections-->
+                </div><!--end Talked About-->
                 <br>
-            </div><!--end most talked about-->
+            </div><!--end col-sm-4-->
             
-            <!--Featured Users-->
-            <div class = "col-md-4">
-                <div class = "sections featured-users">
-                    <h1>Featured Users</h1>
-                    <br>
-                        {% for key, values in new_users_by_activity.items %}
-                            <div class= "featured-user-div">
-                                <a href="/bucketlist/userstats/{{key}}/">
-                                    {% avatar key  350 %}
-                                    <p>{{key}}</p>
-                                </a>
-                            </div>
-                            
-                        {% endfor %}   
-                </div><!--end sections-->
-                <br>
-            </div><!--end featured users-->
             
-            <!--Recently Completed-->
-            <div class = "col-md-4">
-                <div class = "sections">
-                    <h1>Recently Completed</h1>
-                        <ul>
-                        {% for item in recently_crossed_off %}
-                            <li><a href="/bucketlist/item/{{item.id}}/" style="text-decoration: line-through;">{{ item.text }}</a></li>
-                        {% endfor %}
-                        </ul>
-                </div><!--end sections-->
-                <br>
-            </div><!--end recently completed-->
-
-        </div><!--end 2nd row-->
+        </div><!--end row-->
+        
+       
+          
 
 
 
