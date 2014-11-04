@@ -14,17 +14,20 @@
             <div class = "sections">
             
             {% if item.crossed_off %}
-                <h1>{{item}}</h1>
+                <h1><span class = "fa fa-check-square-o fa-lg"> </span>  {{item}}</h1>
             {% else %}
-                <h1>{{item}}</h1>
+                <h1><span class = "fa fa-square-o fa-lg"> </span>   {{item}}</h1>
             {% endif %}
+   
+                <h4><span class = "fa fa-plus"> </span> Added by <a href='/bucketlist/userstats/{{item.pub_by}}/'>{{item.pub_by}}</a>
+                <br>
+                {{item.pub_date|date:"DATE_FORMAT"}}</h4>
                 <p>Cost:   ${{item.cost|floatformat:"2"|intcomma}}</p>
                 <p>Days:   {{item.time}}</p>
                 <p>Hours: {{item.hours}}</p>
-                <p>Added By:   <a href='/bucketlist/userstats/{{item.pub_by}}/'>{{item.pub_by}}</a></p>
 
-                {% avatar item.pub_by %}
-                <p>Date Added:   {{item.pub_date}}</p>
+                
+                
                 <br>
                 <hr>
                 <hr>
