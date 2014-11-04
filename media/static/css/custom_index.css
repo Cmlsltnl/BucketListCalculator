@@ -184,7 +184,7 @@ body {
 
 .featured-user-div {
     display: inline-block;
-    width: 49%;
+    width: 48%;
     margin-bottom: 4px;
     border-radius: 2px;
     position: relative;
@@ -222,8 +222,26 @@ body {
     display: inline;
 }
 
+.recently-completed ul {
+    width: 100%;
+}
 
-    
+.recently-completed ul li {
+    font-family: 'Oswald', sans-serif;
+    display:inline-block;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 10px;
+}
+
+.recently-completed ul li a{
+    color: #3D3D3D;
+}
+
+.recently-completed ul li span {
+    color: #5cb85c;
+
+}
 /*--------------------------Responsive CSS----------------------------*/
 
 @media only screen and (min-width : 320px) {
@@ -242,6 +260,12 @@ body {
         }
         .pattern-divide {
             height: 6px;
+        }
+        .featured-user-div {
+            width: 32%;
+        }
+        .recently-completed ul li {
+            width: 100%;
         }
     }
 
@@ -263,6 +287,12 @@ body {
         .pattern-divide {
             height: 7px;
         }
+        .featured-user-div {
+            width: 24%;
+        }
+        .recently-completed ul li {
+            width: 49%;
+        }
     }
 
     /* Small Devices, Tablets */
@@ -282,6 +312,9 @@ body {
         }
         .pattern-divide {
             height: 8px;
+        }
+        .featured-user-div {
+            width: 32%;
         }
     }
 
@@ -303,6 +336,9 @@ body {
         .pattern-divide {
             height: 9px;
         }
+        .featured-user-div {
+            width: 24%;
+        }
     }
 
     /* Large Devices, Wide Screens */
@@ -315,6 +351,9 @@ body {
         #slogan2 {
             font-size: 80px;
             padding-left: 190px;
+        }
+        .featured-user-div {
+            width: 24%;
         }
     }
 

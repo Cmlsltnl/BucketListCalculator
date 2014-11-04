@@ -86,11 +86,11 @@ def UsersActivity(User):
 
 def index(request):
     #The main Bucket List Page View, sorted by pubdate so the most recent are at the top
-    all_list_items = BucketListItem.objects.filter(crossed_off = False).order_by('-pub_date')[:8]
-    recently_crossed_off = BucketListItem.objects.filter(crossed_off = True).order_by('-pub_date')
+    all_list_items = BucketListItem.objects.filter(crossed_off = False).order_by('-pub_date')[:5]
+    recently_crossed_off = BucketListItem.objects.filter(crossed_off = True).order_by('-pub_date')[:12]
     all_users = User.objects.all()
     
-    every_comment = Comment.objects.all().order_by('-created')[:8]
+    every_comment = Comment.objects.all().order_by('-created')[:4]
     
     
     users_by_activity = {}

@@ -41,16 +41,24 @@
                     <br>
                     
                     <h4>1. Make A Profile</h4>
-                    <span class = "fa fa-user fa-4x"></span>
+                    <a href="/bucketlist/profile/edit/">
+                        <span class = "fa fa-user fa-4x"></span>
+                    </a>
                     
                     <h4>2. Add Your Bucket List</h4>
-                    <span class = "fa fa-list fa-4x"></span>
+                    <a href="/bucketlist/mylist/">
+                        <span class = "fa fa-list fa-4x"></span>
+                    </a>
                     
                     <h4>3. Calculate</h4>
-                    <span class = "fa fa-calculator fa-4x"></span>
+                    <a href="/bucketlist/mylist/recommendation/">
+                        <span class = "fa fa-calculator fa-4x"></span>
+                    </a>
                     
                     <h4>4. Go Accomplish Your Goals!</h4>
-                    <span class = "fa fa-check-square fa-4x"></span>
+                    <a href="/bucketlist/">
+                        <span class = "fa fa-check-square fa-4x"></span>
+                    </a>
                     <br>
 
                 </div><!--end How It Works-->
@@ -71,12 +79,15 @@
                 </div><!--end Featured Users-->
                 <br>
                 <!--Recently Completed-->
-                <div class = "sections">
+                <div class = "sections recently-completed">
                     
                     <h1>Recently Completed</h1>
                         <ul>
                         {% for item in recently_crossed_off %}
-                            <li><a href="/bucketlist/item/{{item.id}}/" style="text-decoration: line-through;">{{ item.text }}</a></li>
+                            <li>
+                                <span class = "fa fa-check-square-o fa-2x"></span>
+                                <a href="/bucketlist/item/{{item.id}}/">{{ item.text }}</a>
+                            </li>
                         {% endfor %}
                         </ul>
                 </div><!--end Recently Completed-->
