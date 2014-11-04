@@ -115,7 +115,8 @@ body {
     background-color: #F0F0F0;
     padding: 10px 10px 25px 25px;
     margin: auto;
-    border-radius: 3px;
+    border-radius: 4px;
+    box-shadow: 0 0 1px black;
 }
 
 .recently-added-list-item h4 a{
@@ -133,6 +134,10 @@ body {
     color: #5cb85c;
     font-weight: bold;
     text-decoration: none;
+}
+
+.recently-added-list-item > a:hover {
+    color: #3D3D3D;
 }
 
 .recently-added-list-item .fa-plus {
@@ -176,6 +181,48 @@ body {
     color: #3D3D3D;
     text-decoration: none;
 }
+
+.featured-user-div {
+    display: inline-block;
+    width: 49%;
+    margin-bottom: 4px;
+    border-radius: 2px;
+    position: relative;
+    box-shadow: 0 0 1px black;
+}
+
+.featured-user-div a {
+    width: 100%;
+    height: 100%;
+    border-radius: 2px;
+}
+.featured-user-div a img{
+    width: 100%;
+    height: 100%;
+    border-radius: 2px;
+}
+
+.featured-user-div p {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    margin: 0;
+    display: none;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    padding: 7px;
+    padding-left: 15px;
+    font-family: 'Oswald', sans-serif;
+    background: url(/media/static/images/trans-background.png) repeat;
+    color: #5cb85c;
+}
+
+.featured-user-div:hover p {
+    display: inline;
+}
+
+
     
 /*--------------------------Responsive CSS----------------------------*/
 

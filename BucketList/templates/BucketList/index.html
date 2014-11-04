@@ -102,12 +102,18 @@
             
             <!--Featured Users-->
             <div class = "col-md-4">
-                <div class = "sections">
+                <div class = "sections featured-users">
                     <h1>Featured Users</h1>
-                        
-                    {% for key, values in new_users_by_activity.items %}
-                    <a href="/bucketlist/userstats/{{key}}/">{% avatar key %}</a>
-                    {% endfor %}   
+                    <br>
+                        {% for key, values in new_users_by_activity.items %}
+                            <div class= "featured-user-div">
+                                <a href="/bucketlist/userstats/{{key}}/">
+                                    {% avatar key  350 %}
+                                    <p>{{key}}</p>
+                                </a>
+                            </div>
+                            
+                        {% endfor %}   
                 </div><!--end sections-->
                 <br>
             </div><!--end featured users-->

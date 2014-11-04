@@ -92,4 +92,7 @@ body {
     
 }
 
+#footer .social-media a:hover {
+    text-decoration: none;
+}
 
