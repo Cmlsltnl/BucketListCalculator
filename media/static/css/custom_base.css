@@ -42,7 +42,7 @@ body {
     flex: 1;
 }
 
-/*----------------------Footer---------------------------*/
+/*---------------------------------Footer---------------------------*/
 
 #footer {
     margin-top: 15px;
@@ -95,4 +95,3 @@ body {
 #footer .social-media a:hover {
     text-decoration: none;
 }
-

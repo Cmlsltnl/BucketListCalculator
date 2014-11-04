@@ -112,6 +112,7 @@ def index(request):
 @login_required  
 def index_items(request, id):
     #When a user clicks on a Bucket List Item on the index page it will take them here with a brief overview of that items information
+    all_list_items = BucketListItem.objects.filter(crossed_off = False).order_by('-pub_date')[:5]
     item = BucketListItem.objects.get(pk = id)
     current_user = UserProfile.objects.get(pk = request.user.id)
     comments = Comment.objects.filter(item = item)
@@ -135,6 +136,7 @@ def index_items(request, id):
                       'comments': comments,
                       'form': form,
                       'current_user': str(current_user.user),
+                      'all_list_items': all_list_items,
                       }
                       
 
