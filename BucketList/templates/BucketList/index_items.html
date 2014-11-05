@@ -22,14 +22,10 @@
                 <h4><span class = "fa fa-plus"> </span> Added by <a href='/bucketlist/userstats/{{item.pub_by}}/'>{{item.pub_by}}</a>
                 <br>
                 {{item.pub_date|date:"DATE_FORMAT"}}</h4>
-                <p>Cost:   ${{item.cost|floatformat:"2"|intcomma}}</p>
-                <p>Days:   {{item.time}}</p>
-                <p>Hours: {{item.hours}}</p>
-
-                
-                
+                <h5>Cost:   <b>${{item.cost|floatformat:"2"|intcomma}}</b></h5>
+                <h5>Days:   <b>{{item.time}}</b></h5>
+                <h5>Hours: <b>{{item.hours}}</b></h5>
                 <br>
-                <hr>
                 <hr>
                 <br>
                 <h2>Comments:</h2>
@@ -39,7 +35,7 @@
                         <div>
                             <h3>{{comment.author}}</h3>
                             {% avatar comment.author 30 %}
-                            <h5>{{comment.created}}</h3>
+                            <h5>{{ comment.created|timesince}}</h3>
                             <p>{{comment.body}}</h3>
                             {% if comment.author == current_user %}
                                 <button><a href="/bucketlist/item/{{comment.id}}/delete-comment/">Remove Comment</a></button>

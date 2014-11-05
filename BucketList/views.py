@@ -12,7 +12,8 @@ from django.contrib.auth.decorators import login_required
 from fuzzywuzzy import fuzz, process
 from chartit import DataPool, Chart
 import operator
-from datetime import date
+from datetime import date, datetime
+
 
 
 
@@ -137,6 +138,7 @@ def index_items(request, id):
                       'form': form,
                       'current_user': str(current_user.user),
                       'all_list_items': all_list_items,
+                      'datetime_now': datetime.now(),
                       }
                       
 

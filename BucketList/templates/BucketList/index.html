@@ -109,7 +109,7 @@
                                         </h4>
                                         <span class="avatar-span">{% avatar item.pub_by 25%}</span>
                                         <a href = "/bucketlist/userstats/{{item.pub_by}}">{{item.pub_by}}</a>
-                                        <span class = "date-added"><span class = "fa fa-plus"></span>Added at {{item.pub_date|date:"f A"}}</span>
+                                        <span class = "date-added"><span class = "fa fa-plus"></span>{{item.pub_date|timesince}} ago</span>
                                     </div>
                                 </li>
                                 <br>
