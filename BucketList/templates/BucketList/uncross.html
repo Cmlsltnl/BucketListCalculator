@@ -1,18 +1,28 @@
 {% extends 'base.html' %}
 
-{% block title %}Uncross List Item{% endblock title %}
-
+{% block title %}Item Unchecked{% endblock title %}
 {% block content %}
 
-{% if item and User %}
-    <h1>{{item}}</h1>
-    <h4>This item is no longer crossed off.</h4>
-    <p>We're sorry that this goal is no longer crossed off.  Looks like you have a little bit more work ahead of you!</p>
-    <br/>
-    <h5>Go back to your Bucket List</h5>
-    <button><a href="/bucketlist/mylist/">Go Back</a></button>
-{% else %}
-    <p>Something went wrong.. We are sorry.  You may want to make sure that you are logged in.</p>
-{% endif %}
+<link href="/media/static/css/custom_crossed_off_and_uncross.css" rel="stylesheet" type="text/css"/>
+
+<div class = "container">
+    <div class = "row">
+        <div class = "col-md-12">
+            <div class = "sections">
+        
+                {% if item and User %}
+                    <h1><span class = "fa fa-square-o fa-lg"> </span>{{item}}</h1>
+                    <h4>This item is no longer checked off.</h4>
+                    <p>We're sorry that this goal is no longer checked off.  Looks like you have a little bit more work ahead of you!</p>
+                    <br>
+                    <a href="/bucketlist/item/{{item.id}}/" class = "btn btn-warning">Go Back</a>
+                {% else %}
+                    <p>Something went wrong.. We are sorry.  You may want to make sure that you are logged in.</p>
+                {% endif %}
+            
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock content %}

@@ -19,9 +19,9 @@
         <ol>
         {% for item in personal_list %}
             {% if item.crossed_off == True %}
-                <li><a href = '/bucketlist/mylist/view/{{item.id}}/'  style="text-decoration: line-through;">{{ item.text }}</a></li>
+                <li><a href = '/bucketlist/item/{{item.id}}/'  style="text-decoration: line-through;">{{ item.text }}</a></li>
             {% else %}
-                <li><a href = '/bucketlist/mylist/view/{{item.id}}/'>{{ item.text }}</a></li>
+                <li><a href = '/bucketlist/item/{{item.id}}/'>{{ item.text }}</a></li>
             {% endif %}
         {% endfor %}
         </ol>

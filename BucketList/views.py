@@ -1238,22 +1238,6 @@ def recommendation(request):
 
     return render(request, 'BucketList/recommendation.html', context)
     
-   
-    
-    
-@login_required
-def view_my_list_item(request, id):
-    #View of a current users Bucket List Item with options to cross off or edit the Bucket List Item
-
-    item = BucketListItem.objects.get(pk = id)
-
-    if item.pub_by != request.user:
-        return HttpResponseRedirect('/accounts/login/')
-        
-    context = {'item': item,
-                    }
-                    
-    return render(request, 'BucketList/view_my_list_item.html', context)
     
     
     
