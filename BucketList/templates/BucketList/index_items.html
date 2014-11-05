@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}{{item.text}} - {{ item.pub_by }}{% endblock title %}
+{% block title %}{{item.text}}{% endblock title %}
 
 {% block content %}
 {% load humanize %}
@@ -26,42 +26,64 @@
                 <h5>Days:   <b>{{item.time}}</b></h5>
                 <h5>Hours: <b>{{item.hours}}</b></h5>
                 <br>
+                {% if item.pub_by == user %}
+                    <a href = "/bucketlist/mylist/edit/{{item.id}}/" class = "btn btn-warning btn-sm">Edit</a>
+                    
+                    {% if item.crossed_off %}
+                        <a href = "/bucketlist/mylist/uncross/{{item.id}}/" class = "btn btn-default btn-sm"><span class = "fa fa-square-o"> </span>Uncheck Item</a>
+                    {% else %}
+                        <a href = "/bucketlist/mylist/crossoff/{{item.id}}/" class = "btn btn-sm btn-success"><span class = "fa fa-check-square-o"> </span>Check It Off</a>
+                    {% endif %}          
+                {% endif %}
                 <hr>
                 <br>
                 <h2>Comments:</h2>
                 <br>
                 {% if comments %}
                     {% for comment in comments %}
-                        <div>
-                            <h3>{{comment.author}}</h3>
-                            {% avatar comment.author 30 %}
-                            <h5>{{ comment.created|timesince}}</h3>
+                        <div class = "comment-div">
+                            <h5>{% avatar comment.author 40 %}</h5>
+                            <h5><a href = "/bucketlist/userstats/{{comment.author}}/">{{comment.author}}</a></h5>
+                            <h5 class ="timesince">{{ comment.created|timesince}} ago.</h3>
+                            <br>
+                            <br>
                             <p>{{comment.body}}</h3>
                             {% if comment.author == current_user %}
-                                <button><a href="/bucketlist/item/{{comment.id}}/delete-comment/">Remove Comment</a></button>
+                                <a href="/bucketlist/item/{{comment.id}}/delete-comment/"><span class = "fa fa-close"></span></a>
                             {% endif %}
                         </div>
-                        <hr>
                     {% endfor %}
+                    <br>
+                    <hr>
+                    <br>
                 {% else %}
                     <p>There are no comments yet.  Be the first to add one!</p>
                 {% endif %}
-                <h5>Leave a Comment Here</h5>
-                <form action="/bucketlist/item/{{id}}/" method = "post">
-                    {% csrf_token %}
-                    {% for field in form %}
-                        {{ field.label }}
-                        {{ field }}
+                <h5 class = "leave-comment">Leave a Comment Here: </h5>
+                <br>
+                <form action="/bucketlist/item/{{id}}/" method = "post" role = "form">
+                    <div class = "form-group">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            {{ field.errors }}
+                                {{ field }}
+                            <br>
+                        {% endfor %}
                         <br>
-                    {% endfor %}
-                    <input type = "submit" value = "Submit">
+                        <input type = "submit" value = "Submit" class="btn btn-warning">
+                    </div>
+                    <br>
                 </form>
                 </div><!--end sections-->
                 <br>
             </div><!--end col-sm-8-->
-            
+           
+
+
+
+           
             <div class = "col-sm-4">
-            
+    
                 <!--Recently Added-->
                 <div class = "sections">
                     <h1>Recently Added</h1>

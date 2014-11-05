@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title %}Your List Item{% endblock title %}
-
+{% block title %}{{item}}{% endblock title %}
 {% block content %}
 {% load humanize %}
+
 
     {% if item.crossed_off == True %}
         <h1 style="text-decoration: line-through;">{{item}}</h1>

@@ -1,16 +1,25 @@
 {% extends 'base.html' %}
 
 {% block title %}Comment Deleted{% endblock title %}
-
 {% block content %}
 
-{% if is_comment %}
-<br>
-<p>Your comment has been successfully deleted. Click <a href = "/bucketlist/item/{{item_id}}/">here</a> to go back to the previous page.</p></p>
-{% else %}
-<br>
-<p>It looks like something went wrong or the comment you are trying to delete is not your own.  Click <a href = "/bucketlist/">here</a> to go back to the home page.</p>
-</br>
-{% endif %}
+<link href="/media/static/css/custom_delete_comment.css" rel="stylesheet" type="text/css"/>
+
+<div class = "container">
+    <div class = "row">
+        <div class = "col-md-12">
+            <div class = "sections">
+                {% if is_comment %}
+                <br>
+                    <p>Your comment has been successfully deleted. Click <a href = "/bucketlist/item/{{item_id}}/">here</a> to go back to the previous page.</p>
+                {% else %}
+                    <br>
+                    <p>It looks like something went wrong or the comment you are trying to delete is not your own.  Click <a href = "/bucketlist/">here</a> to go back to the home page.</p>
+                    </br>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock content %}
