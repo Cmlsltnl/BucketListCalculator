@@ -1,55 +1,101 @@
 {% extends 'base.html' %}
 
 {% block title %}Create Item{% endblock title %}
-
 {% block content %}
+{% load avatar_tags %}
 
-<form action = "/bucketlist/create/" method = "post">{% csrf_token %}
+<link href="/media/static/css/custom_create_item.css" rel="stylesheet" type="text/css"/>
 
-{% for field in form %}
-    <div class = "fieldWrapper">
-        {{field.errors}}
-        
-        {% if field.label == 'Text' %}
-            <label>What is your goal?</label>
-        {% endif %}
-        
-        {% if field.label == 'Goal type' %}
-            <label>Pick a what category your goal is: </label>
-        {% endif %}
-        
-        {% if field.label == 'Cost' %}
-            <label>Will this goal cost you any money (in USD)?</label>
-        {% endif %}
-        
-        {% if field.label == 'Time' %}
-            <label>How many full days will this take you?</label>
-        {% endif %}
-        
-        {% if field.label == 'Hours' %}
-            <label>How many hours will this goal take you?</label>
-        {% endif %}
-        
-        {{field}}
-        
-        {% if field.label == 'Cost' %}
-            <h5>If there is any monetary costs for this goal. Place an estimate of the amount here.          
-            </h5>
-        {% endif %}
-        
-        {% if field.label == 'Time' %}
-            <h5>How many full days will this take to accomplish.  These are full days that you will dedicate only to reaching this goal.  Travel is a great example of a goal that requires full days to complete.
-            </h5>
-        {% endif %}
-        
-        {% if field.label == 'Hours' %}
-            <h5>How many hours are required for you to meet this goal?  In this field you will only include hours that you can do in between other things.  In the previous example of travel entire days needed to be dedicated to reaching the goal.  In the example of 'Learn to Speak Italian' you would require more than a days worth of practice but it would be spread out over a larger period of time.  If your goal falls into this category then determine how many hours total this goal will take and place that amount here.
-            </h5>
-        {% endif %}
-    </div>
-{% endfor %}
+<div class = "container">
+    <div class = "row">
+        <div class = "col-sm-8">
+            <div class = "sections">
+            
+                <h1>Create a New Item</h1>
+                <br>
+                
+                <form action = "/bucketlist/create/" method = "post">{% csrf_token %}
 
-<input type = "submit" name = "submit" value = "Create Bucket List Item">
-</form>
+                {% for field in form %}
+                    <div class = "fieldWrapper">
+                        {{field.errors}}
+                        
+                        {% if field.label == 'Text' %}
+                            <label>What is your goal?</label>
+                        {% endif %}
+                        
+                        {% if field.label == 'Goal type' %}
+                            <label>Pick a what category your goal is: </label>
+                        {% endif %}
+                        
+                        {% if field.label == 'Cost' %}
+                            <label>Will this goal cost you any money (in USD)?</label>
+                        {% endif %}
+                        
+                        {% if field.label == 'Time' %}
+                            <label>How many full days will this take you?</label>
+                        {% endif %}
+                        
+                        {% if field.label == 'Hours' %}
+                            <label>How many hours will this goal take you?</label>
+                        {% endif %}
+                        
+                        {{field}}
+                        
+                        {% if field.label == 'Cost' %}
+                            <div class = "description">
+                                <h5>If there is any monetary costs for this goal. Place an estimate of the amount here.</h5>
+                            </div>
+                        {% endif %}
+                        
+                        {% if field.label == 'Time' %}
+                            <div class = "description">
+                                <h5>How many full days will this take to accomplish.  These are full days that you will dedicate only to reaching this goal.  Travel is a great example of a goal that requires full days to complete.</h5>
+                            </div>
+                        {% endif %}
+                        
+                        {% if field.label == 'Hours' %}
+                            <div class = "description">
+                                <h5>How many hours are required for you to meet this goal?  In this field you will only include hours that you can do in between other things.  In the previous example of travel entire days needed to be dedicated to reaching the goal.  In the example of 'Learn to Speak Italian' you would require more than a days worth of practice but it would be spread out over a larger period of time.  If your goal falls into this category then determine how many hours total this goal will take and place that amount here.</h5>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <br>
+                {% endfor %}
+
+                <input type = "submit" name = "submit" value = "Create Bucket List Item" class = "btn btn-warning">
+                </form>
+
+            </div>
+        </div><!--end col-8-m -->
+        
+        <div class = "col-sm-4">
+            <div class = "sections">
+                    <h1>Recently Added</h1>
+                        <ul class = "recently-added-list">
+                            {% for item in all_list_items %}
+                            
+                                <li>
+                                    <div class = "recently-added-list-item">
+                                        <h4>
+                                            <a href="/bucketlist/item/{{item.id}}/">{{ item.text }}</a>
+                                        </h4>
+                                        
+                                            <span class="avatar-span">{% avatar item.pub_by 25 %}</span>
+                                       
+                                        <a href = "/bucketlist/userstats/{{item.pub_by}}">{{item.pub_by}}</a>
+                                        <span class = "date-added"><span class = "fa fa-plus"></span>Added at {{item.pub_date|date:"f A"}}</span>
+                                    </div>
+                                </li>
+                                <br>
+                                
+                            {% endfor %}
+                        </ul>
+                        <br>
+            </div>
+        </div>
+    </div><!--end row-->
+</div><!--end container-->
+
 {% endblock content %}
 

@@ -1301,7 +1301,10 @@ def delete_my_list_item(request, id):
     
 @login_required
 def create(request):
-    #Creates a Bucket List Item, the user only fills out the Name and Type of the item while the rest of the fields are auto-filled: publication date, published by, crossed off, time, hours, and cost 
+    #Creates a Bucket List Item, the user only fills out the Name and Type of the item while the rest of the fields are auto-filled: publication date, published by, crossed off, time, hours, and cost
+    
+    all_list_items = BucketListItem.objects.filter(crossed_off = False).order_by('-pub_date')[:5]
+    
     if request.POST:
         form = BucketListItemForm(request.POST)
         if form.is_valid():
@@ -1323,6 +1326,8 @@ def create(request):
     args = {}
 
     args['form'] = form
+    
+    args['all_list_items'] = all_list_items
         
     return render(request, 'BucketList/create_item.html', args)
         
