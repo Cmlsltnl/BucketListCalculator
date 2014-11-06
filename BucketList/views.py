@@ -1386,6 +1386,8 @@ def edit_bucket_list_item(request, id):
 def edit_profile(request):
     #A view that allows the user to edit their current profile information
     current_user = UserProfile.objects.get(pk = request.user.id)
+    recently_crossed_off = BucketListItem.objects.filter(crossed_off = True).order_by('-pub_date')[:12]
+    
     if request.method == "POST":
         form = UserProfileEditForm(request.POST)
         if form.is_valid():
@@ -1418,7 +1420,9 @@ def edit_profile(request):
             'new_include_retirement': current_user.include_retirement,
             'new_retirement_savings': current_user.retirement_savings})
             
-            context = {'form': form,}
+            context = {'form': form,
+                              'recently_crossed_off': recently_crossed_off,
+                              }
     else:
         form = UserProfileEditForm({'new_birth_date': current_user.birth_date, 'new_life_expectancy': current_user.life_expectancy, 'new_yearly_earnings': current_user.yearly_earnings, 'new_hourly_wage': current_user.hourly_wage,
         'new_retirement': current_user.retirement,
@@ -1426,6 +1430,7 @@ def edit_profile(request):
         'new_retirement_savings': current_user.retirement_savings})
         
         context = {'form': form,
+                          'recently_crossed_off': recently_crossed_off,
                         }
 
     return render(request, 'BucketList/edit_user_profile.html', context)

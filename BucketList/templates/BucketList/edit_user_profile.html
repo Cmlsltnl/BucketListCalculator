@@ -1,33 +1,63 @@
 {% extends 'base.html' %}
 
 {% block title %}Edit User Profile{% endblock title %}
-
 {% block content %}
 
-<form action="/bucketlist/profile/edit/" method = "post">
-    {% csrf_token %}
-    {% for field in form %}
-        <br>
-        <label>{{field.label}}</label>
-        {{field.errors}}
-        {{field}}
-        {% if field.label == "Your Birth Date" %}
-            <h5>Just insert your age here.</h5>
-        {% elif field.label == "Age You Will Be Done" %}
-            <h5>Use this field for the age you would like to be done with everything on your Bucket List.</h5>
-        {% elif field.label == "Yearly Earnings" %}
-            <h5>How much do you make per year?  Be sure to include other streams of income other than just your annual income from your job, like returns on investments.  Don't worry we won't share this information with other users.</h5>
-        {% elif field.label == "Hourly Wage" %}
-            <h5>How much do you make per hour?  Be sure to be accurate, these numbers drastically effect the recommendations that you will receive later.  Once again we share any of this information with our other users. </h5>
-        {% elif field.label == "Include Retirement" %}
-            <h5>Would you like to retire someday?  If so check this box and we will factor in your desired retirement age into our calculations.</h5>
-        {% elif field.label == "Retirement Age" %}
-            <h5>At what age would you like to retire?  You only need to fill this out if you checked the box above.</h5>
-        {% elif field.label == "Retirement Savings" %}
-            <h5>How much money do you have saved up for retirement so far?</h5>
-        {% endif %}
-        <br>
-    {% endfor %}
-    <input type = "submit" value = "Submit">
-</form>
+<link href="/media/static/css/custom_edit_user_profile.css" rel="stylesheet" type="text/css"/>
+
+<div class = "container">
+    <div class = "row">
+        <div class = "col-md-8">
+            <div class = "sections">
+                <h1>Edit Your Profile</h1>
+                <form action="/bucketlist/profile/edit/" method = "post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <br>
+                        <label>{{field.label}}</label>
+                        {{field.errors}}
+                        {{field}}
+                        <br>
+                        <br>
+                        {% if field.label == "Your Birth Date" %}
+                            <h5 class = "description">Just insert your age here.</h5>
+                        {% elif field.label == "Age You Will Be Done" %}
+                            <h5 class = "description">Use this field for the age you would like to be done with everything on your Bucket List.</h5>
+                        {% elif field.label == "Yearly Earnings" %}
+                            <h5 class = "description">How much do you make per year?  Be sure to include other streams of income other than just your annual income from your job, like returns on investments.  Don't worry we won't share this information with other users.</h5>
+                        {% elif field.label == "Hourly Wage" %}
+                            <h5 class = "description">How much do you make per hour?  Be sure to be accurate, these numbers drastically effect the recommendations that you will receive later.  Once again we share any of this information with our other users. </h5>
+                        {% elif field.label == "Include Retirement" %}
+                            <h5 class = "description">Would you like to retire someday?  If so check this box and we will factor in your desired retirement age into our calculations.</h5>
+                        {% elif field.label == "Retirement Age" %}
+                            <h5 class = "description">At what age would you like to retire?  You only need to fill this out if you checked the box above.</h5>
+                        {% elif field.label == "Retirement Savings" %}
+                            <h5 class = "description">How much money do you have saved up for retirement so far?</h5>
+                        {% endif %}
+                        <br>
+                    {% endfor %}
+                    <br>
+                    <input type = "submit" value = "Submit" class = "btn btn-warning">
+                </form>
+
+            </div>
+                    <br>
+        </div><!--end col-sm-8-->
+
+        <div class = "col-md-4">
+            <div class = "sections recently-completed">
+                <h1>Recently Completed</h1>
+                        <ul>
+                        {% for item in recently_crossed_off %}
+                            <li>
+                                <span class = "fa fa-check-square-o fa-2x"></span>
+                                <a href="/bucketlist/item/{{item.id}}/">{{ item.text }}</a>
+                            </li>
+                        {% endfor %}
+                        </ul>
+            </div>
+        </div><!--end col-sm-4-->
+    </div>
+</div>
+
 {% endblock content %}
