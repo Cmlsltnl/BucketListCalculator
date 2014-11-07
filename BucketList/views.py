@@ -1440,6 +1440,7 @@ def compare_my_list_item(request, id):
     #View received after new item creation, shows user other similar goals to their own.  Gives user option to redirect to edit form. 
     user = UserProfile.objects.get(pk = request.user.id)
     all_goals_not_users = BucketListItem.objects.all().exclude(pub_by = user)
+    all_list_items = BucketListItem.objects.filter(crossed_off = False).order_by('-pub_date')[:5]
     item = BucketListItem.objects.get(pk = id)
     
     exact_same = ExactSameGoal(item.text, all_goals_not_users)
@@ -1454,6 +1455,7 @@ def compare_my_list_item(request, id):
                       'most_similar_accuracy': most_similar_accuracy,
                       'exact_same_list': exact_same_list,
                       'exact_same_num': exact_same_num,
+                      'all_list_items': all_list_items,
     }
     
     return render(request, 'BucketList/my_list_compare.html', context)

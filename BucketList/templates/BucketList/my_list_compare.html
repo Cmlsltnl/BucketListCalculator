@@ -4,78 +4,108 @@
 
 {% block content %}
 {% load humanize %}
+{% load avatar_tags %}
 
-<h1>{{item}}</h1>
-<br>
-<br>
-{% if exact_same_num > 1 %}
+<link href="/media/static/css/custom_my_list_compare.css" rel="stylesheet" type="text/css"/>
 
-       <p>It turns out that {{exact_same_num}} users already have this exact same goal!  Here is how difficult these thought this goal would be:
-            {% for item in exact_same_list %}
+<div class = "container">
+    <div class = "row">
+        <div class = "col-md-6">
+            <div class = "sections">
                 
-                <p><a href= "/bucketlist/userstats/{{item.pub_by}}/">{{item.pub_by}}</a> thinks that <a href="/bucketlist/item/{{item.id}}/"><i>{{item.text}}</i></a>:</p>
-                    <ul>
-                        <li>Falls under the category of <i>{{item.goal_type}}</i></li>
-                        <li>Will take {{item.pub_by}} ${{item.cost|floatformat:"2"|intcomma}} to accomplish</li>
-                        <li>Over {{item.hours}} hours to complete</li>
-                        <li>And {{item.time}} full days</li> 
-                    </ul>
-            {% endfor %}
+                <h1>{{item}}</h1>
+                <br>
+                <br>
+                {% if exact_same_num > 1 %}
 
+                       <p>It turns out that {{exact_same_num}} users already have this exact same goal!  Here is how difficult these thought this goal would be:
+                            {% for item in exact_same_list %}
+                                
+                                <p><a href= "/bucketlist/userstats/{{item.pub_by}}/" class = "link">{{item.pub_by}}</a> thinks that <a href="/bucketlist/item/{{item.id}}/" class = "link"><i>{{item.text}}</i></a>:</p>
+                                    <ul>
+                                        <li>Falls under the category of <i>{{item.goal_type}}</i></li>
+                                        <li>Will take {{item.pub_by}} ${{item.cost|floatformat:"2"|intcomma}} to accomplish</li>
+                                        <li>Over {{item.hours}} hours to complete</li>
+                                        <li>And {{item.time}} full days</li> 
+                                    </ul>
+                            {% endfor %}
+
+                            
+                {% elif exact_same_num > 0 %}
+
+                        {% for item in exact_same_list %}
+                        
+                            <p>It turns out that you are not alone in this goal.  <a href= "/bucketlist/userstats/{{item.pub_by}}/" class = "link">{{item.pub_by}}</a> has this on their Bucket List as well.</p>
+                            <p><a href= "/bucketlist/userstats/{{item.pub_by}}/" class = "link">{{item.pub_by}}</a> thinks that <a href="/bucketlist/item/{{item.id}}/" class = "link"><i>{{item.text}}</i></a>:</p>
+                                <ul>
+                                    <li>Falls under the category of <i>{{item.goal_type}}</i></li>
+                                    <li>Will take {{item.pub_by}} ${{item.cost|floatformat:"2"|intcomma}} to accomplish</li>
+                                    <li>Over {{item.hours}} hours to complete</li>
+                                    <li>And {{item.time}} full days</li> 
+                                </ul>
+                            
+                            
+                        {% endfor %}
+                        
+                {% else %}
+
+                    {% if 65 > most_similar_accuracy %}
+                        
+                        <p>Congrats!  Your goal has successfully been created.
+                        </p> 
+                        
+                    {% else %}
+                    <p>This is a pretty darn unique goal! Not one user on this website has the exact same one.  
+                    </p>
+                    <p>Here are the most similar goals we found and the users who posted them: </p>
+                            {% for item, number in most_similar %}
+                                
+                                <p><a href= "/bucketlist/userstats/{{item.pub_by}}/" class = "link">{{item.pub_by}}</a> thinks that <a href="/bucketlist/item/{{item.id}}/" class = "link"><i>{{item.text}}</i></a>:</p>
+                                    <ul>
+                                        <li>Falls under the category of <i>{{item.goal_type}}</i></li>
+                                        <li>Will take {{item.pub_by}} ${{item.cost|floatformat:"2"|intcomma}} to accomplish</li>
+                                        <li>Over {{item.hours}} hours to complete</li>
+                                        <li>And {{item.time}} full days</li>                        
+                                    </ul>
+                                    
+                            {% endfor %}
+                    {% endif %}
+                       
+                {% endif %}
+                <br>
+                {% if most_similar_accuracy >= 65 %}
+                    <p>You could use these numbers to better estimate how difficult this goal will be for you to accomplish and see how other users perceive the difficulty of the goal.</p>
+                {% endif %}
+
+                <br>
+                <a href="/bucketlist/mylist/" class = "btn btn-warning">Go Back</a>
+                <br>
+            </div><!--end sections-->
+            <br>
+        </div><!--end col-md-8-->
+        <div class ="col-md-6">
+            <div class ="sections">
+                    <h1>Recently Added</h1>
+                        <ul class = "recently-added-list">
+                            {% for item in all_list_items %}
+                                <li>
+                                    <div class = "recently-added-list-item">
+                                        <h4>
+                                            <a href="/bucketlist/item/{{item.id}}/">{{ item.text }}</a>
+                                        </h4>
+                                        <span class="avatar-span">{% avatar item.pub_by 25%}</span>
+                                        <a href = "/bucketlist/userstats/{{item.pub_by}}">{{item.pub_by}}</a>
+                                        <span class = "date-added"><span class = "fa fa-plus"></span>{{item.pub_date|timesince}} ago</span>
+                                    </div>
+                                </li>
+                                <br>
+                            {% endfor %}
+                        </ul>
+                        <br>
             
-{% elif exact_same_num > 0 %}
-
-        {% for item in exact_same_list %}
-        
-            <p>It turns out that you are not alone in this goal.  <a href= "/bucketlist/userstats/{{item.pub_by}}/">{{item.pub_by}}</a> has this on their Bucket List as well.</p>
-            <p><a href= "/bucketlist/userstats/{{item.pub_by}}/">{{item.pub_by}}</a> thinks that <a href="/bucketlist/item/{{item.id}}/"><i>{{item.text}}</i></a>:</p>
-                <ul>
-                    <li>Falls under the category of <i>{{item.goal_type}}</i></li>
-                    <li>Will take {{item.pub_by}} ${{item.cost|floatformat:"2"|intcomma}} to accomplish</li>
-                    <li>Over {{item.hours}} hours to complete</li>
-                    <li>And {{item.time}} full days</li> 
-                </ul>
-            
-            
-        {% endfor %}
-        
-{% else %}
-
-    {% if 65 > most_similar_accuracy %}
-        
-        <p>Congrats!  Your goal has successfully been created.
-        </p> 
-        
-    {% else %}
-    <p>This is a pretty darn unique goal! Not one user on this website has the exact same one.  
-    </p>
-    <p>Here are the most similar goals we found and the users who posted them: </p>
-            {% for item, number in most_similar %}
-                
-                <p><a href= "/bucketlist/userstats/{{item.pub_by}}/">{{item.pub_by}}</a> thinks that <a href="/bucketlist/item/{{item.id}}/"><i>{{item.text}}</i></a>:</p>
-                    <ul>
-                        <li>Falls under the category of <i>{{item.goal_type}}</i></li>
-                        <li>Will take {{item.pub_by}} ${{item.cost|floatformat:"2"|intcomma}} to accomplish</li>
-                        <li>Over {{item.hours}} hours to complete</li>
-                        <li>And {{item.time}} full days</li>                        
-                    </ul>
-                    
-            {% endfor %}
-    {% endif %}
-       
-{% endif %}
-<br>
-{% if most_similar_accuracy >= 65 %}
-    <p>You could use these numbers to better estimate how difficult this goal will be for you to accomplish and see how other users perceive the difficulty of the goal.</p>
-{% endif %}
-
-<br>
-<h5>Edit This List Item:</h5>
-<button><a href="/bucketlist/mylist/edit/{{item.id}}/">Edit</a></button>
-<br>
-<h5>Go Back to MyList:</h5>
-<button><a href="/bucketlist/mylist/">My List</a></button>
-<br>
-
+            </div><!--sections-->
+        </div><!--end col-md-4-->
+    </div><!--end row-->
+</div><!--end container-->
 
 {% endblock content %}
