@@ -93,7 +93,6 @@ def index(request):
     
     every_comment = Comment.objects.all().order_by('-created')[:4]
     
-    
     users_by_activity = {}
     for user in all_users:
         users_by_activity[user] = UsersActivity(user)
