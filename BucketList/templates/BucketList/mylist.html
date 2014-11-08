@@ -1,36 +1,69 @@
 {% extends 'base.html' %}
-
 {% block title %}Your Bucket List{% endblock title %}
-
 {% block content %}
+{% load avatar_tags %}
 
-    <br>
-    <h1>{{user1}}'s Bucket List</h1>
-    {% load avatar_tags %}
-    {% avatar user %}
-    {% load inbox %}
-    {% if personal_list %}
-    <br>
-    <br>
-    {% if repeat != 0 %}
-        <h3>If looks like you have more than one instance of <i>{{repeat}}</i> on your Bucket List.  Better remove it!</h3>
-        <br>
-    {% endif %}
-        <ol>
-        {% for item in personal_list %}
-            {% if item.crossed_off == True %}
-                <li><a href = '/bucketlist/item/{{item.id}}/'  style="text-decoration: line-through;">{{ item.text }}</a></li>
-            {% else %}
-                <li><a href = '/bucketlist/item/{{item.id}}/'>{{ item.text }}</a></li>
-            {% endif %}
-        {% endfor %}
-        </ol>
-    {% else %}
-        <p>You don't have any Bucket List items yet!  Better get on that.</p>
-    {% endif %}
-    <br/>
-    <hr>
-    <br/>
+<link href="/media/static/css/custom_mylist.css" rel="stylesheet" type="text/css"/>
+
+<div class = "container">
+    <div class = "row">
+        <div class = "col-md-8">
+            <div class = "sections">
+                <div class = "profile-header">
+                    {% avatar user 130 %}
+                </div>
+                <div class = "profile-header">
+                    <h1>{{user1}}'s Bucket List</h1>
+                </div>
+                
+                    
+            </div><!--end first sections-->
+            <br>
+            <div class = "sections">
+                {% if personal_list %}  
+                <br>
+                <br>
+                {% if repeat != 0 %}
+                    <h3>If looks like you have more than one instance of <i>{{repeat}}</i> on your Bucket List.  Better remove it!</h3>
+                    <br>
+                {% endif %}
+                    <ol>
+                    {% for item in personal_list %}
+                        {% if item.crossed_off == True %}
+                            <li><a href = '/bucketlist/item/{{item.id}}/'  style="text-decoration: line-through;">{{ item.text }}</a></li>
+                        {% else %}
+                            <li><a href = '/bucketlist/item/{{item.id}}/'>{{ item.text }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    </ol>
+                {% else %}
+                    <p>You don't have any Bucket List items yet!  Better get on that.</p>
+                {% endif %}
+                <br/>
+            </div><!--end second sections-->
+            <br>
+        </div><!--end col-md-8-->
+        
+        <div class = "col-md-4">
+            <div class = "sections">
+                <h1>Other Stuff Here</h1>
+                <p>
+                    There are words and stuff here!  Im not sure what will be here in the future, but it will sure be something!
+                </p>
+            </div>
+        </div><!--end col-md-4-->
+    </div><!--end row-->
+</div><!--end container-->
+<br>
+
+    
+    
+    
+    
+    
+    
+    
+    
     <h5>Create a Bucket List Item:</h5>
     <button><a href="/bucketlist/create/">Create</a></button>
     <br/>
@@ -49,4 +82,10 @@
     <h5>Edit Your Profile:</h5>
     <button><a href="/bucketlist/profile/edit/">Edit Profile</a></button>
     <br/>
+    
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock content %}
