@@ -23,22 +23,27 @@
             </div><!--end first sections-->
             <br>
             <div class = "sections">
+                <h1>Goals</h1>
                 {% if personal_list %}  
-                <br>
-                <br>
                 {% if repeat != 0 %}
-                    <h3>If looks like you have more than one instance of <i>{{repeat}}</i> on your Bucket List.  Better remove it!</h3>
+                    <h4 class= "text-danger">If looks like you have more than one instance of <i>{{repeat}}</i> on your Bucket List.  Better remove one of them!</h4>
                     <br>
                 {% endif %}
-                    <ol>
+                    <ul class ="goals-list">
                     {% for item in personal_list %}
                         {% if item.crossed_off == True %}
-                            <li><a href = '/bucketlist/item/{{item.id}}/'  style="text-decoration: line-through;">{{ item.text }}</a></li>
+                            <li>
+                                <span class ="fa fa-check-square-o fa-lg"> </span>
+                                <a href = '/bucketlist/item/{{item.id}}/'> {{ item.text }}</a>
+                            </li>
                         {% else %}
-                            <li><a href = '/bucketlist/item/{{item.id}}/'>{{ item.text }}</a></li>
+                            <li>
+                                <span class ="fa fa-square-o fa-lg">  </span>
+                                <a href = '/bucketlist/item/{{item.id}}/'> {{ item.text }}</a>
+                            </li>
                         {% endif %}
                     {% endfor %}
-                    </ol>
+                    </ul>
                 {% else %}
                     <p>You don't have any Bucket List items yet!  Better get on that.</p>
                 {% endif %}
