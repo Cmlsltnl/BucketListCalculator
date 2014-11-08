@@ -165,12 +165,22 @@ def user_stats(request, id):
 def my_list(request):
     #The current users personal Bucket List view with links to create more list items or learn statistics about their list
     personal_list = BucketListItem.objects.all().filter(pub_by = request.user.id)
+    
+
+    goals_to_complete = 0
+    
+    for item in personal_list:
+        if item.crossed_off == False:
+            goals_to_complete += 1
+    
     repeat = RepeatGoalInList(personal_list)
     
     
     context = {'user1': request.user.username,
                       'personal_list': personal_list,
                       'repeat': repeat,
+                      'goals_to_complete': goals_to_complete,
+
                     }
                       
     return render(request, 'BucketList/mylist.html', context)

@@ -5,6 +5,7 @@
     padding: 25px;
     border-radius: 4px;
     box-shadow: 0 0 1px black;
+
 }
 
 .sections h1 {
@@ -14,9 +15,54 @@
     padding-bottom: 15px;
 }
 
+
 /*------------------------Profile Header-------------------------*/
 
+.profile-sections {
+    position: relative;
+}
+
+.profile-sections .bottom-buttons {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    display: none;
+}
 .profile-header {
     display: inline-block;
-    top: 0;
+    padding: 10px; 
+}
+
+.profile-header h1 {
+    padding: 0;
+    display: inline;
+}
+
+.profile-header h6 {
+    display: inline;
+    padding-left: 3px;
+}
+
+.profile-header h6 a {
+    color: #3D3D3D;
+}
+
+.profile-header h6 a:hover {
+    color: #5cb85c;
+}
+
+.profile-header p {
+    padding-top: 4px;
+    margin: 0;
+    color: #f0ad4e;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+/*------------------------Responsive Styling------------------------*/
+
+@media only screen and (min-width : 480px) {
+    .profile-sections .bottom-buttons {
+        display: inline;      
+    }
 }

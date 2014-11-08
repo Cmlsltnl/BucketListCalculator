@@ -8,14 +8,17 @@
 <div class = "container">
     <div class = "row">
         <div class = "col-md-8">
-            <div class = "sections">
+            <div class = "sections profile-sections">
                 <div class = "profile-header">
                     {% avatar user 130 %}
                 </div>
                 <div class = "profile-header">
                     <h1>{{user1}}'s Bucket List</h1>
-                </div>
-                
+                    <h6><a href= "/bucketlist/profile/edit/">EDIT</a></h6>
+                    <p>{{goals_to_complete}} goals left to complete</p>
+                </div>                
+                <a href="/bucketlist/create/" class = "btn btn-warning bottom-buttons">Add Goal</a>
+
                     
             </div><!--end first sections-->
             <br>
