@@ -148,14 +148,25 @@ def index_items(request, id):
 @login_required
 def user_stats(request, id):
     #A public stats/profile page that displays their basic profile information as well as their bucket list
-    item = User.objects.all().filter(username = id)
-    item_profile = item[0].userprofile
-    list_of_all = BucketListItem.objects.all().filter(pub_by = item)
+    item = User.objects.all().get(username = id)
+
+    personal_list = BucketListItem.objects.all().filter(pub_by = item)
+    
+    every_comment = Comment.objects.all().order_by('-created')[:4]
+    
+    goals_to_complete = 0
+    
+    for thing in personal_list:
+        if thing.crossed_off == False:
+            goals_to_complete += 1
+            
     context = {'id': id,
-                      'item': item[0],
-                      'list_of_all': list_of_all,
-                      'item_profile': item_profile,
+                      'item': item,
+                      'personal_list': personal_list,
+                      'every_comment': every_comment,
+                      'goals_to_complete': goals_to_complete,
                     }
+                    
     return render(request, 'BucketList/user_stats.html', context)
     
 
@@ -166,7 +177,8 @@ def my_list(request):
     #The current users personal Bucket List view with links to create more list items or learn statistics about their list
     personal_list = BucketListItem.objects.all().filter(pub_by = request.user.id)
     
-
+    every_comment = Comment.objects.all().order_by('-created')[:4]
+    
     goals_to_complete = 0
     
     for item in personal_list:
@@ -180,7 +192,7 @@ def my_list(request):
                       'personal_list': personal_list,
                       'repeat': repeat,
                       'goals_to_complete': goals_to_complete,
-
+                      'every_comment': every_comment,
                     }
                       
     return render(request, 'BucketList/mylist.html', context)

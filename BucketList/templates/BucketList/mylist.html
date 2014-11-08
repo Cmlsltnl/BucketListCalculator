@@ -16,8 +16,11 @@
                     <h1>{{user1}}'s Bucket List</h1>
                     <h6><a href= "/bucketlist/profile/edit/">EDIT</a></h6>
                     <p>{{goals_to_complete}} goals left to complete</p>
-                </div>                
-                <a href="/bucketlist/create/" class = "btn btn-warning bottom-buttons">Add Goal</a>
+                </div>
+                <div class="bottom-buttons">
+                    <a href="/bucketlist/mylist/recommendation/" class = "btn btn-success"><span class = "fa fa-calculator"> </span> Calculate!</a>
+                    <a href="/bucketlist/create/" class = "btn btn-warning"><span class = "fa fa-pencil"> </span> Add Goal</a>
+                </div>
 
                     
             </div><!--end first sections-->
@@ -54,46 +57,20 @@
         
         <div class = "col-md-4">
             <div class = "sections">
-                <h1>Other Stuff Here</h1>
-                <p>
-                    There are words and stuff here!  Im not sure what will be here in the future, but it will sure be something!
-                </p>
+                   <h1>Talked About</h1>
+                    <br>
+                    {% for comment in every_comment %}
+                        <h4 class = "talked-about-title"><a href= "/bucketlist/item/{{comment.item.id}}/">{{comment.item}}</a></h4>
+                        <div class = "talked-about-div">
+                            <p><i><q>{{comment.body|truncatewords:30}}</q></i></p>
+                            <h6><a href="/bucketlist/userstats/{{comment.author}}">-{{comment.author}}</a></h6>
+                        </div>
+                        <br>
+                    {% endfor %}
             </div>
         </div><!--end col-md-4-->
     </div><!--end row-->
 </div><!--end container-->
 <br>
-
-    
-    
-    
-    
-    
-    
-    
-    
-    <h5>Create a Bucket List Item:</h5>
-    <button><a href="/bucketlist/create/">Create</a></button>
-    <br/>
-    <h5>Your Profile Page:</h5>
-    <button><a href="/bucketlist/userstats/{{user}}">Profile</a></button>
-    <br/>
-    <h5>Your Recommendation Page:</h5>
-    <button><a href="/bucketlist/mylist/recommendation/">Recommendation</a></button>
-    <br/>
-    <h5>Change Your Avatar:</h5>
-    <button><a href="{% url 'avatar_change' %}">Change Avatar</a></button>
-    <br/>
-    <h5>Edit Your Account Settings:</h5>
-    <button><a href="/accounts/edit/">Edit Account</a></button>
-    <br/>
-    <h5>Edit Your Profile:</h5>
-    <button><a href="/bucketlist/profile/edit/">Edit Profile</a></button>
-    <br/>
-    
-            </div>
-        </div>
-    </div>
-</div>
 
 {% endblock content %}

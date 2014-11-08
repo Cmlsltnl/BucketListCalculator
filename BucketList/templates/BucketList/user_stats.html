@@ -1,32 +1,70 @@
 {% extends 'base.html' %}
-
 {% block title %}{{item}}'s Profile{% endblock title %}
-
 {% block content %}
-
-{% if item %}
 {% load avatar_tags %}
-<h1>{{item}}'s Stats Page</h1>
-{% avatar item %}
-    <p>Email: {{item.email}}</p>
-    <p>Age: {{item_profile.age}}</p>
-    <h4>{{item}}'s Bucket List</h4>
-    <ol>
-    {% for list_item in list_of_all %}
-        {% if list_item.crossed_off == True %}
-            <li style="text-decoration: line-through;">{{list_item}}</li>
-        {% else %}
-            <li>{{list_item}}</li>
-        {% endif %}    
-    {% endfor %}
-    </ol>
-    <br/>
-    <hr>
-    <br/>
-    <h5>Back to Community Bucket List</h5>
-    <button><a href="/bucketlist/">Go Back</a></button>
-{% else %}
-    <p>This page didn't load properly...</p>
-{% endif %}
+
+<link href="/media/static/css/custom_user_stats.css" rel="stylesheet" type="text/css"/>
+
+<div class = "container">
+    <div class = "row">
+        <div class = "col-md-8">
+            <div class = "sections profile-sections">
+                <div class = "profile-header">
+                    {% avatar item 130 %}
+                </div>
+                <div class = "profile-header">
+                    <h1>{{item}}'s Bucket List</h1>
+                    <p>{{goals_to_complete}} goals left to complete</p>
+                </div>
+                
+
+                    
+            </div><!--end first sections-->
+            <br>
+            <div class = "sections">
+                <h1>Goals</h1>
+                {% if personal_list %}  
+                    <ul class ="goals-list">
+                    {% for item in personal_list %}
+                        {% if item.crossed_off == True %}
+                            <li>
+                                <span class ="fa fa-check-square-o fa-lg"> </span>
+                                <a href = '/bucketlist/item/{{item.id}}/'> {{ item.text }}</a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <span class ="fa fa-square-o fa-lg">  </span>
+                                <a href = '/bucketlist/item/{{item.id}}/'> {{ item.text }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>You don't have any Bucket List items yet!  Better get on that.</p>
+                {% endif %}
+                <br/>
+            </div><!--end second sections-->
+            <br>
+        </div><!--end col-md-8-->
+        
+        <div class = "col-md-4">
+            <div class = "sections">
+                   <h1>Talked About</h1>
+                    <br>
+                    {% for comment in every_comment %}
+                        <h4 class = "talked-about-title"><a href= "/bucketlist/item/{{comment.item.id}}/">{{comment.item}}</a></h4>
+                        <div class = "talked-about-div">
+                            <p><i><q>{{comment.body|truncatewords:30}}</q></i></p>
+                            <h6><a href="/bucketlist/userstats/{{comment.author}}">-{{comment.author}}</a></h6>
+                        </div>
+                        <br>
+                    {% endfor %}
+            </div>
+        </div><!--end col-md-4-->
+    </div><!--end row-->
+</div><!--end container-->
+<br>
+
+
 
 {% endblock content %}
