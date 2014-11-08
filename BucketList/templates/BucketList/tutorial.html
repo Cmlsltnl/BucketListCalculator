@@ -1,143 +1,218 @@
 {% extends 'base.html' %}
 
 {% block title %}Tutorial{% endblock title %}
-
 {% block content %}
+{% load avatar_tags %}
 
-<h1>Bucket List Calculator Tutorial</h1>
-<br>
-<p>Welcome to the Bucket List Calculator Tutorial.  You are viewing this page because you are one of our new users or because somewhere along the line you got confused and wanted to learn a bit more about how this site works.  Let me start by saying congrats on getting started, you have made a huge step in the right direction to completing all your life goals.
-<br>
-<br>
-<h3>What is Bucket List Calculator</h3>
-<br>
-<p>
-    The most important thing to understand about Bucket List Calculator is that it is a tool.  As with any tool unless you understand how the tool works and learn to use it properly your gonna have a bad time.  It is very important for you to understand how to input data about your goals correctly in order for relevant statistics to be output for you.
-</p>
-<br>
-<p>
-    Bucket List Calculator also has a lot of ways that you can interact with other users.  We put this in place so you can see what kind of goals other users have and how difficult they believe their goals will be to accomplish.  Plus it's a great way to get awesome goal ideas!  
-</p>
-<hr>
-<br>
-<h3>How to use Bucket List Calculator</h3>
-<br>
-<p>
-    Since the main purpose of Bucket List Calculator is to give you stats how difficult your goals will be to accomplish its really important to know how to input information about yourself and your goals.
-</p>
-<ul>
-    <li>
-        <h4>Setting Up Your Profile</h4>
-        <p>
-            Your profile has four important pieces of information to fill out, before you do ANYTHING else on this site many sure that all of your profile information is filled out correctly.  If not there really is no point in even using the site is there?
-        </p>
-        <ul>
-            <li>
-                <h4>Birth Date</h4>
+<link href="/media/static/css/custom_tutorial.css" rel="stylesheet" type="text/css"/>
+
+
+<div class = "container">
+    <div class = "row">
+        <div class ="col-md-8">
+            <div class = "sections">
+                <h1>Bucket List Calculator Tutorial</h1>
+                <br>
+                <p>Welcome to the Bucket List Calculator Tutorial.  You are viewing this page because you are one of our new users or because somewhere along the line you got confused and wanted to learn a bit more about how this site works.  Let me start by saying congrats on getting started, you have made a huge step in the right direction to completing all your life goals.
+                <br>
+                <br>
+                <hr>
+                <br>
+                <h3>What is Bucket List Calculator?</h3>
+                <br>
                 <p>
-                    This field is pretty self explanatory.  However we urge you to not to mess around with this field or give a false age, almost every statistic output relates to your age in some way shape or form, so don't lie about it! 
+                    The most important thing to understand about Bucket List Calculator is that it is a tool.  As with any tool unless you understand how the tool works and learn to use it properly your gonna have a bad time.  It is very important for you to understand how to input data about your goals correctly in order for relevant statistics to be output for you.
                 </p>
-            </li>
-            <li>
-                <h4>Age Done</h4>
+                <br>
                 <p>
-                    In this field you will fill out the age you would like to be done with all of your goals.  Now unlike your birth date you should feel free to play around with this number as much as you like.  Go crazy with it!  It will drastically change some of the stats that are output but it is fun to see how things changed based on the numbers you input.
+                    Bucket List Calculator also has a lot of ways that you can interact with other users.  We put this in place so you can see what kind of goals other users have and how difficult they believe their goals will be to accomplish.  Plus it's a great way to get awesome goal ideas!  
                 </p>
-            </li>
-            <li>
-                <h4>Yearly Income</h4>
+                <hr>
+                <br>
+                <h3>How to use Bucket List Calculator</h3>
+                <br>
                 <p>
-                    Now this one is interesting.  Most people immediately assume that you should input the amount of money you make at your job every year here, and that's not completely wrong.  But it's not the whole story.  Investments, side jobs, illegal under the table dealings (We won't tell, I promise), and other sources of income should all be included here as well.
+                    Since the main purpose of Bucket List Calculator is to give you stats how difficult your goals will be to accomplish its really important to know how to input information about yourself and your goals.
+                </p>
+                <ul>
+                    <li>
+                        <br>
+                        <h4>Setting Up Your Profile</h4>
+                        <br>
+                        <p>
+                            Your profile has four important pieces of information to fill out, before you do ANYTHING else on this site many sure that all of your profile information is filled out correctly.  If not there really is no point in even using the site is there?
+                        </p>
+                        <br>
+                        <ul>
+                            <li>
+                                <h4>Birth Date</h4>
+                                <p>
+                                    This field is pretty self explanatory.  However we urge you to not to mess around with this field or give a false age, almost every statistic output relates to your age in some way shape or form, so don't lie about it! 
+                                </p>
+                            </li>
+                            <br>
+                            <li>
+                                <h4>Age Done</h4>
+                                <p>
+                                    In this field you will fill out the age you would like to be done with all of your goals.  Now unlike your birth date you should feel free to play around with this number as much as you like.  Go crazy with it!  It will drastically change some of the stats that are output but it is fun to see how things changed based on the numbers you input.
+                                </p>
+                            </li>
+                            <br>
+                            <li>
+                                <h4>Yearly Income</h4>
+                                <p>
+                                    Now this one is interesting.  Most people immediately assume that you should input the amount of money you make at your job every year here, and that's not completely wrong.  But it's not the whole story.  Investments, side jobs, illegal under the table dealings (We won't tell, I promise), and other sources of income should all be included here as well.
+                                    <br>
+                                    <br>
+                                    P.S.   We won't make any of this information public
+                                    <br>
+                                    <br>
+                                    P.P.S.   Plus you can always go back later and play around with these numbers if you want to as well. Bucket List Calculator is your tool, use it however you like!
+                                </p>
+                            </li>
+                            <br>
+                            <li>
+                                <h4>Hourly Wage</h4>
+                                <p>
+                                    In this field you can input one of two things.  One option is to input how much you make per hour, or you can choose how much you value one hour of free time and what dollar amount best represents that.  This field is used when calculating the overall difficulty of each goal (we compile the days, hours, and cost of your goal into one single number and then compare all your goals against one another).
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
                     <br>
+                    <li>
+                        <h4>Creating Goal Items</h4>
+                        <p>
+                            Each Bucket List Item has four attributes, we then use those four attributes to give you some really cool stats about all of your goals!  So many sure to fill everything out accurately. 
+                        </p>
+                        <br>
+                        <ul>
+                            <li>
+                                <h4>Goal Types</h4>
+                                <p>
+                                    There are a variety of different goal types to choose from when creating each goal, when we run all your goals through our calculator we figure out what kind of goals make up your Bucket List and all sorts of other cool information for you.
+                                </p>
+                            </li>
+                            <br>
+                            <li>
+                                <h4>Cost</h4>
+                                <p>
+                                    This field is relatively straight forward.  This is simply the estimated cost of the goal in US Dollars.
+                                </p>
+                            </li>
+                            <br>
+                            <li>
+                                <h4>Days</h4>
+                                <p>
+                                    In this field you will enter how many full days the goal will take you.  Now there is a very important distinction between Days and Hours when using Bucket List Calculator.  The number of days you enter should only be equal to the full number of FULL DAYS you need to allocate to accomplishing your goal.  A great example of a goal type that requires a few days to accomplish is travel: when you travel you will have to take full days off of work and everything else you would normally do in your average day to accomplish your goal. 
+                                </p>
+                            </li>
+                            <br>
+                            <li>
+                                <h4>Hours</h4>
+                                <p>
+                                    Hours is used in tandem with Days to represent how long each goal will take you.  Where Days require full days dedicated to doing things only related to that goal Hours can be split up into smaller chunks and accomplished over time.  A perfect example of a goal type that takes hours to accomplish is Improving a Skill.  If your goal was 'Learn to Play Guitar' it would take you a lot of time.  However it would not take any full days.  So what to do?  That's what we use Hours for!  Predict how many hours this goal will take you and then enter that number here.  For example if you think it would take an hour a day for three months you might put 90 in the hours field for this goal. Get it? Got it? Good!
+                                </p>
+                            </li>
+                            
+                        </ul>
+                    </li>
                     <br>
-                    P.S.   We won't make any of this information public
+                    <li>
+                        <h4>Stats and Recommendations</h4>
+                        <p>
+                            This is the bread an butter of the website.  This outputs all of the cool statistics that are created from the information you have entered.  This is the reason you are using this site in the first place, because of all the cool ways Bucket List Calculator represents your goals and shows you what you have to do to accomplish everything on your list.  Be excited because this is the cool part!
+                        </p>
+                    </li>
                     <br>
+                </ul>
+                <hr>
+                <br>
+                <h3>Side Notes</h3>
+                <br>
+                <ul>
+                    <li>
+                        <h4>Family or Personal Account</h4>
+                        <p>
+                            If you are lucky enough to have yourself a family you may want to use this account for more than just yourself.  Feel free to use this site however you wish!  It works just great for this purpose as well, just enter your profile information as a family instead of as an individual. 
+                        </p>
+                    </li>
                     <br>
-                    P.P.S.   Plus you can always go back later and play around with these numbers if you want to as well. Bucket List Calculator is your tool, use it however you like!
-                </p>
-            </li>
-            <li>
-                <h4>Hourly Wage</h4>
-                <p>
-                    In this field you can input one of two things.  One option is to input how much you make per hour, or you can choose how much you value one hour of free time and what dollar amount best represents that.  This field is used when calculating the overall difficulty of each goal (we compile the days, hours, and cost of your goal into one single number and then compare all your goals against one another).
-                </p>
-            </li>
-        </ul>
-    </li>
-    <br>
-    <li>
-        <h4>Creating Goal Items</h4>
-        <p>
-            Each Bucket List Item has four attributes, we then use those four attributes to give you some really cool stats about all of your goals!  So many sure to fill everything out accurately. 
-        </p>
-        <ul>
-            <li>
-                <h4>Goal Types</h4>
-                <p>
-                    There are a variety of different goal types to choose from when creating each goal, when we run all your goals through our calculator we figure out what kind of goals make up your Bucket List and all sorts of other cool information for you.
-                </p>
-            </li>
-            <li>
-                <h4>Cost</h4>
-                <p>
-                    This field is relatively straight forward.  This is simply the estimated cost of the goal in US Dollars.
-                </p>
-            </li>
-            <li>
-                <h4>Days</h4>
-                <p>
-                    In this field you will enter how many full days the goal will take you.  Now there is a very important distinction between Days and Hours when using Bucket List Calculator.  The number of days you enter should only be equal to the full number of FULL DAYS you need to allocate to accomplishing your goal.  A great example of a goal type that requires a few days to accomplish is travel: when you travel you will have to take full days off of work and everything else you would normally do in your average day to accomplish your goal. 
-                </p>
-            </li>
-            <li>
-                <h4>Hours</h4>
-                <p>
-                    Hours is used in tandem with Days to represent how long each goal will take you.  Where Days require full days dedicated to doing things only related to that goal Hours can be split up into smaller chunks and accomplished over time.  A perfect example of a goal type that takes hours to accomplish is Improving a Skill.  If your goal was 'Learn to Play Guitar' it would take you a lot of time.  However it would not take any full days.  So what to do?  That's what we use Hours for!  Predict how many hours this goal will take you and then enter that number here.  For example if you think it would take an hour a day for three months you might put 90 in the hours field for this goal. Get it? Got it? Good!
-                </p>
-            </li>
-            
-        </ul>
-    </li>
-    <li>
-        <h4>Stats and Recommendations</h4>
-        <p>
-            This is the bread an butter of the website.  This outputs all of the cool statistics that are created from the information you have entered.  This is the reason you are using this site in the first place, because of all the cool ways Bucket List Calculator represents your goals and shows you what you have to do to accomplish everything on your list.  Be excited because this is the cool part!
-        </p>
-    </li>
-</ul>
-<hr>
-<br>
-<br>
-<h3>
-<h3>Side Notes</h3>
-<br>
-<ul>
-    <li>
-        <h4>Family or Personal Account</h4>
-        <p>
-            If you are lucky enough to have yourself a family you may want to use this account for more than just yourself.  Feel free to use this site however you wish!  It works just great for this purpose as well, just enter your profile information as a family instead of as an individual. 
-        </p>
-    </li>
-    <li>
-        <h4>Make Sure to Use Accurate Numbers</h4>
-        <p>
-            When you access this site many of the statistics that are output for you come from other users.  You can compare their goals against your own.  Since users share their information its important to make sure you try to be as accurate as possible with what information you input.  We try to go through and make sure users are not entering any ridiculous as often as we can and then we re-adjust those numbers or remove them entirely so as not to sway our statistics.
-        </p>
-    </li>
-    <li>
-        <h4>Crossing Off Items</h4>
-        <p>
-            Our Bucket List Calculator is used to calculate what items you have left to accomplish.  However many of our users like to have an option to "Cross Off" their list items rather than remove them from your list entirely.  You can choose either one you prefer.  Either option will ensure that they will not be included when calculating your stats.
-        </p>
-    </li>
-    <li>
-        <h4>Contact Use</h4>
-        <p>
-            Feel free to email us if you have issues or recommendation about things you would like Bucket List Calculator to have.  After all this site is built for you!  Please let us know.
-        </p>
-    </li>
-</ul>
-<hr>
-<br>
+                    <li>
+                        <h4>Make Sure to Use Accurate Numbers</h4>
+                        <p>
+                            When you access this site many of the statistics that are output for you come from other users.  You can compare their goals against your own.  Since users share their information its important to make sure you try to be as accurate as possible with what information you input.  We try to go through and make sure users are not entering any ridiculous as often as we can and then we re-adjust those numbers or remove them entirely so as not to sway our statistics.
+                        </p>
+                    </li>
+                    <br>
+                    <li>
+                        <h4>Crossing Off Items</h4>
+                        <p>
+                            Our Bucket List Calculator is used to calculate what items you have left to accomplish.  However many of our users like to have an option to "Cross Off" their list items rather than remove them from your list entirely.  You can choose either one you prefer.  Either option will ensure that they will not be included when calculating your stats.
+                        </p>
+                    </li>
+                    <br>
+                    <li>
+                        <h4>Contact Us</h4>
+                        <p>
+                            Feel free to email us if you have issues or recommendation about things you would like Bucket List Calculator to have.  After all this site is built for you!  Please let us know.
+                        </p>
+                    </li>
+                </ul>
+                <hr>
+                <br>
+            </div><!--end first section-->
+            <br>
+        </div><!--end col-md-8-->
+        <div class = "col-md-4">
+            <div class = "sections">
+                   <h1>Talked About</h1>
+                    <br>
+                    {% for comment in every_comment %}
+                        <h4 class = "talked-about-title"><a href= "/bucketlist/item/{{comment.item.id}}/">{{comment.item}}</a></h4>
+                        <div class = "talked-about-div">
+                            <p><i><q>{{comment.body|truncatewords:30}}</q></i></p>
+                            <h6><a href="/bucketlist/userstats/{{comment.author}}">-{{comment.author}}</a></h6>
+                        </div>
+                        <br>
+                    {% endfor %}             
+            </div>
+            <br>
+            <div class = "sections recently-completed">
+                    
+                    <h1>Recently Completed</h1>
+                        <ul>
+                        {% for item in recently_crossed_off %}
+                            <li>
+                                <span class = "fa fa-check-square-o fa-2x"></span>
+                                <a href="/bucketlist/item/{{item.id}}/">{{ item.text }}</a>
+                            </li>
+                        {% endfor %}
+                        </ul>
+            </div><!--end Recently Completed-->
+            <br>
+            <div class = "sections">
+                    <h1>Recently Added</h1>
+                        <ul class = "recently-added-list">
+                            {% for item in all_list_items %}
+                                <li>
+                                    <div class = "recently-added-list-item">
+                                        <h4>
+                                            <a href="/bucketlist/item/{{item.id}}/">{{ item.text }}</a>
+                                        </h4>
+                                        <span class="avatar-span">{% avatar item.pub_by 25%}</span>
+                                        <a href = "/bucketlist/userstats/{{item.pub_by}}">{{item.pub_by}}</a>
+                                        <span class = "date-added"><span class = "fa fa-plus"></span>{{item.pub_date|timesince}} ago</span>
+                                    </div>
+                                </li>
+                                <br>
+                            {% endfor %}
+                        </ul>
+                        <br>
+                </div><!--end Recently Added -->
+        </div>
+    </div><!--end row-->
+</div><!--end container-->
+
 
 {% endblock content %}

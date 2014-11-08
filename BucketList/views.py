@@ -1503,6 +1503,17 @@ def delete_comment(request, id):
     
 def tutorial(request):
     #View for the user tutorial page
-    context = {}
+    
+    every_comment = Comment.objects.all().order_by('-created')[:4]
+    
+    recently_crossed_off = BucketListItem.objects.filter(crossed_off = True).order_by('-pub_date')[:12]
+    
+    all_list_items = BucketListItem.objects.filter(crossed_off = False).order_by('-pub_date')[:5]
+    
+    context = {'every_comment': every_comment,
+                      'recently_crossed_off': recently_crossed_off,
+                      'all_list_items': all_list_items,
+    }
     return render(request, 'BucketList/tutorial.html', context)
+    
     
