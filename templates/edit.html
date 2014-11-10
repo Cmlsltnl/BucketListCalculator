@@ -1,28 +1,36 @@
 {% extends 'base.html' %}
 
 {% block title %}Edit Your Account Settings{% endblock title %}
-
 {% block content %}
 
-<h2>Edit Your Account Settings</h2>
-<br>
-<form action = "/accounts/edit/" method = "post">{% csrf_token %}
-{% for field in form %}
-    <div class = "fieldWrapper">
-        {{field.errors}}
-            <label>{{field.label}}</label>
-            {{field}}
-            {% if field.label == 'Password' %}
-                <h5>*Your password is required the rest are optional.</h5>
-            {% endif %}
-            <br>
-            <br>
+<link href="/media/static/css/settings.css" rel="stylesheet" type="text/css"/>
+
+<div class = "container">
+    <div class = "row">
+        <div class = "col-md-12">
+            <div class = "sections">
+                <h1>Edit Your Account Settings</h1>
+                <br>
+                <form action = "/accounts/edit/" method = "post">{% csrf_token %}
+                {% for field in form %}
+                    <div class = "fieldWrapper">
+                        {{field.errors}}
+                            <label>{{field.label}}</label>
+                            {{field}}
+                            {% if field.label == 'Password' %}
+                                <h5 class = "text-danger">*Your password is required the rest are optional.</h5>
+                            {% endif %}
+                            <br>
+                            <br>
+                    </div>
+                {% endfor %}
+                <br>
+                <input class = "btn btn-warning" type = "submit" value = "Edit" />
+
+                </form>
+            </div>
+        </div>
     </div>
-{% endfor %}
-
-
-<input type = "submit" value = "Edit" />
-
-</form>
+</div>
 
 {% endblock content %}

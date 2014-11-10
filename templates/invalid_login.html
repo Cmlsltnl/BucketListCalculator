@@ -1,12 +1,21 @@
 {% extends 'base.html' %}
-
 {% block title %}Invalid Login{% endblock title %}
-
 {% block content %}
 
-<h2>Your login details are invalid!</h2>
-<p>Click <a href="/accounts/login/">here</a> to login again.</p>
-<br>
-<br>
-<h5>Forgot your password or username? No problem!  Click <a href= {% url "password_reset_recover" %}>here</a> and we can help you to reset it.</h5>
+<link href="/media/static/css/settings.css" rel="stylesheet" type="text/css"/>
+
+<div class = "container">
+    <div class = "row">
+        <div class = "col-md-12">
+            <div class = "sections">
+
+                <h2>Your login details are invalid!</h2>
+                <p>Click <a href="/accounts/login/">here</a> to login.</p>
+                <br>
+                <h5>Forgot your password or username? No problem!  Click <a href= {% url "password_reset_recover" %}>here</a> and we can help you to reset it.</h5>
+
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}

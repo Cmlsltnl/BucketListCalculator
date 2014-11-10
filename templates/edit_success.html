@@ -1,44 +1,56 @@
 {% extends 'base.html' %}
 
 {% block title %}Edit Success{% endblock title %}
-
 {% block content %}
 
-{% if pass_match == None %}
+<link href="/media/static/css/settings.css" rel="stylesheet" type="text/css"/>
 
-    <h2>It looks like something went wrong.</h2>
-    <br>
-    <p>The password you entered is not correct.  Click <a href="/accounts/edit">here</a> to try again.</p>
-    
-{% elif no_email_match %}
+<div class = "container">
+    <div class = "row">
+        <div class = "col-md-12">
+            <div class = "sections">
+            
+                {% if pass_match == None %}
 
-    <h2>It looks like something went wrong.</h2>
-    <br>
-    <p>The email you entered does not match your current email address.  Click <a href="/accounts/edit">here</a> to try again.</p>
-    
-{% elif email_not_unique %}
+                    <h2>It looks like something went wrong.</h2>
+                    <br>
+                    <p>The password you entered is not correct.  Click <a href="/accounts/edit">here</a> to try again.</p>
+                    
+                {% elif no_email_match %}
 
-    <h2>It looks like something went wrong.</h2>
-    <br>
-    <p>The new email address you entered already is already being used.  Click <a href="/accounts/edit">here</a> to try again.</p>
-    
-{% elif change_password or change_email %}
+                    <h2>It looks like something went wrong.</h2>
+                    <br>
+                    <p>The email you entered does not match your current email address.  Click <a href="/accounts/edit">here</a> to try again.</p>
+                    
+                {% elif email_not_unique %}
 
-    <h2>You have successfully edited your account settings!</h2>
-    <br>
-    
-    {% if change_password and change_email %}
-        <p>Both your email and password were both successfully changed.</p>
-    {% elif change_password %}
-        <p>You have successfully changed your password.</p>
-    {% elif change_email %}
-        <p>You have successfully changed your email address.</p>
-    {% endif %}
-    <br>
-    <p>Click <a href="/bucketlist/">here</a> to return back to your home page.</p>
-    <br>
-    <p>Click <a href="/accounts/edit">here</a> to go back.</p>
-   
-{% endif %}
+                    <h2>It looks like something went wrong.</h2>
+                    <br>
+                    <p>The new email address you entered already is already being used.  Click <a href="/accounts/edit">here</a> to try again.</p>
+                    
+                {% elif change_password or change_email %}
+
+                    <h2>You have successfully edited your account settings!</h2>
+                    <br>
+                    
+                    {% if change_password and change_email %}
+                        <p>Both your email and password were both successfully changed.</p>
+                    {% elif change_password %}
+                        <p>You have successfully changed your password.</p>
+                    {% elif change_email %}
+                        <p>You have successfully changed your email address.</p>
+                    {% endif %}
+                    <br>
+                    <p>Click <a href="/bucketlist/">here</a> to return back to your home page.</p>
+                    <br>
+                    <p>Click <a href="/accounts/edit">here</a> to go back.</p>
+                   
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</div>
+
 
 {% endblock content %}

@@ -1,23 +1,41 @@
 {% extends 'base.html' %}
-
 {% block title %}Login{% endblock title %}
-
 {% block content %}
 
-    {% if form.errors %}
-        <p class = "error">Sorry, that's not a valid username or password</p>
-    {% endif %}
-    
-    <form action ="/accounts/auth/" method ="post">{% csrf_token %}
-        <label for="username">User name: </label>
-        <input type="text" name="username" value="" id="username">
-        <label for="password">Password: </label>
-        <input type="password" name="password" value="" id="password">
-        
-        <input type="submit" value="login" />
-        
-    </form>
-    <br>
-    <h5>Did you forgot your password or username? No problem!  Click <a href= {% url "password_reset_recover" %}>here</a> and we can help you to reset it.</h5>
+<link href="/media/static/css/settings.css" rel="stylesheet" type="text/css"/>
+
+<div class = "container">
+    <div class = "row">
+        <div class = "col-md-12">
+            <div class = "sections">
+                
+                <h1>Log In</h1>
+                <br>
+                {% if form.errors %}
+                    <p class = "error">Sorry, that's not a valid username or password</p>
+                {% endif %}
+                
+                <form action ="/accounts/auth/" method ="post">{% csrf_token %}
+                    <label for="username">User name: </label>
+                    <input type="text" name="username" value="" id="username">
+                    <br>
+                    <br>
+                    <label for="password">Password: </label>
+                    
+                    <input type="password" name="password" value="" id="password">
+                    <br>
+                    <br>
+                    <input type="submit" class = "btn btn-warning" value="Log In" />
+                    
+                </form>
+                <br>
+                <h5>Did you forgot your password or username? No problem!  Click <a href= {% url "password_reset_recover" %}>here</a> and we can help you to reset it.</h5>
+
+
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock content %}
+

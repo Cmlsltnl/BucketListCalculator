@@ -2,8 +2,9 @@
 
 {% block title %}Your Recommendations{% endblock title %}
 {% load humanize %}
-
 {% block content %}
+
+<link href="/media/static/css/custom_recommendation.css" rel="stylesheet" type="text/css"/>
 
 <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
 
@@ -11,964 +12,963 @@
 {% load chartit %}
 {{ charts|load_charts:"UsersGoalDistributionChart, AllUsersGoalDistributionChart, UsersGoalCostDistributionChart, AllUsersGoalCostDistributionChart, UsersGoalHoursDistributionChart, AllUsersGoalHoursDistributionChart, UsersGoalDaysDistributionChart, AllUsersGoalDaysDistributionChart" }}
 
+<div class = "container">
+    <div class = "row">
+        <div class = "col-md-8">
+        <div class = "sections">
+            <h1>{{user1.user}}'s Recommendations</h1>
 
-<h1>{{user1.user}}'s Recommendations</h1>
-
-<p>Great job on making your Bucket List!  Now it's time for the real fun: Statistics and Recommendations!  Yay.  Let's get down to business.</p>
-<hr>
-<br/>
-<!-----------Displayed Statistics------------->
-<p>Total Cost: {{total_cost}}</p>
-<p>Total Hours: {{total_hours}}</p>
-<p>Total Days: {{total_time}}</p>
-<p>Total Number of Items Left on List: {{total_number_of_items}}</p>
-<p>Your age: {{age}}</p>
-<p>Your Life Expectancy: {{life_expectancy}}</p>
-<p>Your Yearly Earnings: {{yearly_earnings}}</p>
-<p>Your Hourly Wage: {{hourly_wage}}</p>
-<p>Your Average Hours Per Week: {{work_hours_per_week}}</p>
-<p>Include Retirement:  {{include_retirement}}</p>
-{% if include_retirement %}
-    <p>Retirement Age: {{retirement}}</p>
-    <p>Retirement Savings: {{retirement_savings}}</p>
-{% endif %}
-<br>
-<hr>
-<!-------------Basic Overview-------------->
-<br>
-<h2>Basic Overview</h2>
-<br>
-<p>In order to finish all of items left on your list by the age of {{life_expectancy|floatformat:"0"}} then you need to accomplish  about {{accomplish_per_year|floatformat:"1"}} goals each year until you are {{life_expectancy|floatformat:"0"}} years old.  In other words you need to accomplish a goal about every {{days_per_goal|floatformat:"0"}} days.
-<br>
-<br>
- In order to accomplish everything that you want you will need to dedicate about ${{cost_per_year|floatformat:"2"|intcomma}} per year.  This is the equivalent of {{percent_of_yearly_wage|floatformat:"1"}}% of your current yearly income.  
- <br>
- <br>
- The cost of the average goal on your bucket list is ${{cost_of_average_goal|floatformat:"2"|intcomma}}.
- <br>
- <br>
- You have {{years_left|floatformat:"0"}} more years to accomplish all of your goals.  Which means you need to dedicate about {{days_per_year|floatformat:"1"}} full days every year doing things that will help you cross off Bucket List Goals. 
- <br>
- <br>
- Now along with those full days you also should allocate about {{hours_per_month|floatformat:"1"}} hours every month to accomplishing these goals.  Or roughly {{hours_per_week|floatformat:"1"}} hours every single week.
- <br>
- <br>
- But this is just general stuff.  Lets get more specific!
- </p>
- <br>
- <hr>
-  <!------------Most Difficult Goal-------------->
- <br>
- <h2>Your Most Difficult Goal</h2>
- <br>
-  <p>Not all goals take the same amount of effort.  For example according to the data you entered <i>{{most_difficult_goal}}</i> is your most difficult goal.  This goal is  {{most_difficult_percentage_harder|floatformat:"1"}} times more difficult than your average goal! That could be a rough one.  But we believe in you.
-  <br>
-  <br>
-  Not only is this goal {{most_difficult_percentage_harder|floatformat:"1"}} times harder than your average goal but it makes up {{most_difficult_goal_percentage|floatformat:"1"}}% of all of the time, money, and resources you need to put into accomplishing everything on your entire Bucket List.  If you want to finish your goals in exactly {{years_left|floatformat:"0"}} years, by the age of {{life_expectancy|floatformat:"0"}} more years you could take {{years_needed_for_most_difficult|floatformat:"0"}} years to accomplish only this goal and still be on pace to accomplish everything else!
-  <br>
-  <br>
-  Now lets see how <i>{{most_difficult_goal}}</i> stacks up against everyone else's goals:
-  <br>
-  <ul>
-      <li>
-      {% if most_difficult_percentage_of_average_cost > 10 %}
-        
-            Now that's an expensive goal!  It's {{most_difficult_percent_of_yearly|floatformat:"1"}}% of your annual income.  At ${{most_difficult_bucket_list_item.cost|floatformat:"2"|intcomma}} <i>{{most_difficult_goal}}</i> is more expensive than {{most_difficult_more_cost_than|floatformat:"1"}}% of the goals on Bucket List Calculator.  Its even  {{most_difficult_percentage_of_average_cost|floatformat:"1"}} times more expensive than the average goal 
-            
-      {% elif most_difficult_percentage_of_average_cost > 3 %}
-            
-            This one sure going to cost you!  At {{most_difficult_percentage_of_average_cost|floatformat:"1"}} times larger than the average users goal, and {{most_difficult_percent_of_yearly|floatformat:"1"}}% of your annual income this is even more costly than {{most_difficult_more_cost_than|floatformat:"1"}}% of all goals on all of Bucket List Calculator.
-            
-      {% elif most_difficult_percentage_of_average_cost > 0.6 %}
-                        
-             This is going to be quite the costly goal.  It's larger than {{most_difficult_more_cost_than|floatformat:"1"}}% of all the goals on Bucket List Calculator.  It also equates to {{most_difficult_percentage_of_average_cost|floatformat:"1"}}% of your annual income. 
-                          
-      {% else %}
-      
-            Your goal is more expensive than {{most_difficult_more_cost_than|floatformat:"1"}}% of all the in progress goals on Bucket List Calculator.  It costs {{most_difficult_percentage_of_average_cost|floatformat:"1"}}% of your annual income.    
-            
-      
-      {% endif %}
-
-      
-      </li>
-      <br>
-      <li>
-      This will take more hours to accomplish than {{most_difficult_more_hours_than|floatformat:"1"}}% of all the Bucket List  Goals on this website. 
-      
-      {% if most_difficult_percentage_of_average_hours > 1 %}
-      
-            You have projected that <i>{{most_difficult_goal}}</i>  will take {{most_difficult_bucket_list_item.hours}}  hours to accomplish,  or {{most_difficult_percentage_of_average_hours|floatformat:"1"}} times more hours than the average users goal.  
-            
-            {% if most_difficult_percentage_of_average_hours > 3 %}
-            
-                In order to put that into perspective a little bit better the average goal on this site would take about {{average_goal_average_hours_per_year|floatformat:"1"}} hours a week for an entire year to accomplish.  In your case it would take {{most_difficult_average_hours_per_year|floatformat:"1"}} every week.
-                
-                
-                {% if most_difficult_percentage_of_average_hours > 5 %}
-                
-                That's quite the goal!  Sounds like it will be a ton of work.  We bet it will be worth it though.
-                
-                {% endif %}
-                
-            {% endif %}
-            
-      {% endif %}
-      </li>
-      <br>
-      <li>
-      Your goal will take more full days dedicated to it than {{most_difficult_more_days_than|floatformat:"1"}}% of all the goals on this website.
-      
-      {% if most_difficult_percentage_of_average_time > 2 %}
-      
-            Most users goals take around {{average_time_of_all_goals|floatformat:"0"}} full days.  Coming in at {{most_difficult_bucket_list_item.time|floatformat:"0"}} full days 
-            
-                {% if most_difficult_percentage_of_average_time > 4 %}
+            <p>
+                Great job on making your Bucket List!  Now it's time for the real fun: Statistics and Recommendations!  Yay.  Let's get down to business.
+            </p>
+            <br>
+            <hr>
+            <!-------------Basic Overview-------------->
+            <br>
+            <h2>Basic Overview</h2>
+            <br>
+            <p>In order to finish all of items left on your list by the age of {{life_expectancy|floatformat:"0"}} then you need to accomplish  about {{accomplish_per_year|floatformat:"1"}} goals each year until you are {{life_expectancy|floatformat:"0"}} years old.  In other words you need to accomplish a goal about every {{days_per_goal|floatformat:"0"}} days.
+            <br>
+            <br>
+             In order to accomplish everything that you want you will need to dedicate about ${{cost_per_year|floatformat:"2"|intcomma}} per year.  This is the equivalent of {{percent_of_yearly_wage|floatformat:"1"}}% of your current yearly income.  
+             <br>
+             <br>
+             The cost of the average goal on your bucket list is ${{cost_of_average_goal|floatformat:"2"|intcomma}}.
+             <br>
+             <br>
+             You have {{years_left|floatformat:"0"}} more years to accomplish all of your goals.  Which means you need to dedicate about {{days_per_year|floatformat:"1"}} full days every year doing things that will help you cross off Bucket List Goals. 
+             <br>
+             <br>
+             Now along with those full days you also should allocate about {{hours_per_month|floatformat:"1"}} hours every month to accomplishing these goals.  Or roughly {{hours_per_week|floatformat:"1"}} hours every single week.
+             <br>
+             <br>
+             But this is just general stuff.  Lets get more specific!
+             </p>
+             <br>
+             <hr>
+              <!------------Most Difficult Goal-------------->
+             <br>
+             <h2>Your Most Difficult Goal</h2>
+             <br>
+              <p>Not all goals take the same amount of effort.  For example according to the data you entered <i>{{most_difficult_goal}}</i> is your most difficult goal.  This goal is  {{most_difficult_percentage_harder|floatformat:"1"}} times more difficult than your average goal! That could be a rough one.  But we believe in you.
+              <br>
+              <br>
+              Not only is this goal {{most_difficult_percentage_harder|floatformat:"1"}} times harder than your average goal but it makes up {{most_difficult_goal_percentage|floatformat:"1"}}% of all of the time, money, and resources you need to put into accomplishing everything on your entire Bucket List.  If you want to finish your goals in exactly {{years_left|floatformat:"0"}} years, by the age of {{life_expectancy|floatformat:"0"}} more years you could take {{years_needed_for_most_difficult|floatformat:"0"}} years to accomplish only this goal and still be on pace to accomplish everything else!
+              <br>
+              <br>
+              Now lets see how <i>{{most_difficult_goal}}</i> stacks up against everyone else's goals:
+              <br>
+              <ul>
+                  <li>
+                  {% if most_difficult_percentage_of_average_cost > 10 %}
                     
-                        ({{most_difficult_percentage_of_average_time|floatformat:"1"}} times more days than the average goal) this goal is going to require some serious time set aside to accomplish!  Good luck.
+                        Now that's an expensive goal!  It's {{most_difficult_percent_of_yearly|floatformat:"1"}}% of your annual income.  At ${{most_difficult_bucket_list_item.cost|floatformat:"2"|intcomma}} <i>{{most_difficult_goal}}</i> is more expensive than {{most_difficult_more_cost_than|floatformat:"1"}}% of the goals on Bucket List Calculator.  Its even  {{most_difficult_percentage_of_average_cost|floatformat:"1"}} times more expensive than the average goal 
                         
-                {% else %}
+                  {% elif most_difficult_percentage_of_average_cost > 3 %}
+                        
+                        This one sure going to cost you!  At {{most_difficult_percentage_of_average_cost|floatformat:"1"}} times larger than the average users goal, and {{most_difficult_percent_of_yearly|floatformat:"1"}}% of your annual income this is even more costly than {{most_difficult_more_cost_than|floatformat:"1"}}% of all goals on all of Bucket List Calculator.
+                        
+                  {% elif most_difficult_percentage_of_average_cost > 0.6 %}
+                                    
+                         This is going to be quite the costly goal.  It's larger than {{most_difficult_more_cost_than|floatformat:"1"}}% of all the goals on Bucket List Calculator.  It also equates to {{most_difficult_percentage_of_average_cost|floatformat:"1"}}% of your annual income. 
+                                      
+                  {% else %}
+                  
+                        Your goal is more expensive than {{most_difficult_more_cost_than|floatformat:"1"}}% of all the in progress goals on Bucket List Calculator.  It costs {{most_difficult_percentage_of_average_cost|floatformat:"1"}}% of your annual income.    
+                        
+                  
+                  {% endif %}
 
-                        this goal is going to take a while!
+                  
+                  </li>
+                  <br>
+                  <li>
+                  This will take more hours to accomplish than {{most_difficult_more_hours_than|floatformat:"1"}}% of all the Bucket List  Goals on this website. 
+                  
+                  {% if most_difficult_percentage_of_average_hours > 1 %}
+                  
+                        You have projected that <i>{{most_difficult_goal}}</i>  will take {{most_difficult_bucket_list_item.hours}}  hours to accomplish,  or {{most_difficult_percentage_of_average_hours|floatformat:"1"}} times more hours than the average users goal.  
+                        
+                        {% if most_difficult_percentage_of_average_hours > 3 %}
+                        
+                            In order to put that into perspective a little bit better the average goal on this site would take about {{average_goal_average_hours_per_year|floatformat:"1"}} hours a week for an entire year to accomplish.  In your case it would take {{most_difficult_average_hours_per_year|floatformat:"1"}} every week.
+                            
+                            
+                            {% if most_difficult_percentage_of_average_hours > 5 %}
+                            
+                            That's quite the goal!  Sounds like it will be a ton of work.  We bet it will be worth it though.
+                            
+                            {% endif %}
+                            
+                        {% endif %}
+                        
+                  {% endif %}
+                  </li>
+                  <br>
+                  <li>
+                  Your goal will take more full days dedicated to it than {{most_difficult_more_days_than|floatformat:"1"}}% of all the goals on this website.
+                  
+                  {% if most_difficult_percentage_of_average_time > 2 %}
+                  
+                        Most users goals take around {{average_time_of_all_goals|floatformat:"0"}} full days.  Coming in at {{most_difficult_bucket_list_item.time|floatformat:"0"}} full days 
+                        
+                            {% if most_difficult_percentage_of_average_time > 4 %}
+                                
+                                    ({{most_difficult_percentage_of_average_time|floatformat:"1"}} times more days than the average goal) this goal is going to require some serious time set aside to accomplish!  Good luck.
+                                    
+                            {% else %}
+
+                                    this goal is going to take a while!
+                            
+                            {% endif %}
+                  
+                  {% endif %}
+                  
+                  </li>
+              </ul>
+              </p>
+              <br> 
+              <hr>
+              <!---------List of Most and Least Difficult----->
+              <br>
+             <h2>Top Five Most Difficult</h2>
+             <ol>
+             {% for item in top_five_most_difficult %}
+                <li>{{item}}</li>
+             {% endfor %}
+             </ol>
+             <br>
+              <br>
+             <h2>Top Five Least Difficult</h2>
+             <ol>
+             {% for item in bottom_five_least_difficult %}
+                <li>{{item}}</li>
+             {% endfor %}
+             </ol>
+             <br>
+             <br>
+             <hr>
+             <!---------Annual Income and Wage Increase------>
+             <br>
+             <h2>Analysing Your Yearly Income</h2>
+             <br>
+             <p>Unfortunately for most of us when it comes to our Bucket List goals money is the bottleneck.  We want to do it all!  But doing it all can cost quite a bit.  But that is where Bucket List Calculator comes in.  We can give you a better outline to accomplish using all of the information you have so graciously provided:
+             <br>
+             <br>
+             <ul>  
+                    {% if 15000 > annual_salary_left %}
+                        <br>
+                        <li>
+                            This is a warning:  According to the of goals on your list and 
+                            your current annual income it appears that if you do accomplish everything on your list it will put you underneath an average liveable wage for a single person.       
+                        </li>
+                        
+                        
+                    {% endif %}       
+                <br>
+                <li>
+                    According to your projections your goals will cost you an average of ${{cost_per_year|floatformat:"2"|intcomma}} per year.  This is the equivalent of {{percent_of_yearly_wage|floatformat:"1"}}% of your current yearly income.
+                    
+                    {% if 10 > percent_of_yearly_wage %}
+                    
+                        This is excellent!  At this percent of your yearly income everything on your Bucket List should be a breeze to pay for.  You could even go check out some of our other awesome users goals and find some things to add. 
+                        
+                    {% elif 25 > percent_of_yearly_wage %}
+                    
+                        This range of income is totally doable.  You may have to do some financial planning but as long as you are focused you should have no issues whatsoever.  It will work out just great for you, don't you worry!
+                        
+                    {% elif 50 > percent_of_yearly_wage %}
+                    
+                        This is a fairly large percentage of your yearly income.  In order to cross off everything on your Bucket List you will need some dedication to financial planning and be able to live well within your means to help save money for your goals.  With that said, congrats!  You have some mighty big dreams and that's pretty neat.
+                        <br>
+                        <br>
+                        This might be a little bit intimidating for you after all ${{cost_per_year|floatformat:"2"|intcomma}} per year is a lot of money.  But it is important for you to see these numbers so you can make a better plan to accomplish everything.  But we urge you not to remove any items from your list.  Instead of removing items first look for other ways to improve your financial situation.  If you increase the age you hope to be done with all the items on your bucket list of that {{percent_of_yearly_wage|floatformat:"1"}}% of your annual wage will drop significantly.  You can do this by editing your user profile.  Along with that if your annual wage increases, even by a small amount, it can drastically change what percentage of your income you need to dedicate to accomplishing your goals. 
+                        
+                    {% elif 75 > percent_of_yearly_wage %}
+                    
+                        Now those are some spendy goals!  That's a huge chunk of your income.  You are going to have to be extremely dedicated if you want to make your hopes and dreams happen.  You are using Bucket List Calculator after all so obviously you are a pretty intelligent person so we have faith that you will be able to accomplish everything.  
+                        <br>
+                        <br>
+                        This might be a little bit intimidating for you after all ${{cost_per_year|floatformat:"2"|intcomma}} per year is a lot of money.  But it is important for you to see these numbers so you can make a better plan to accomplish everything.  But we urge you not to remove any items from your list.  Instead of removing items first look for other ways to improve your financial situation.  If you increase the age you hope to be done with all the items on your bucket list of that {{percent_of_yearly_wage|floatformat:"1"}}% of your annual wage will drop significantly.  You can do this by editing your user profile.  Along with that if your annual wage increases, even by a small amount, it can drastically change what percentage of your income you need to dedicate to accomplishing your goals.
+                        
+                    {% elif 100 > percent_of_yearly_wage %}
+                    
+                        Someone sure is determined to a a lot with their life, and that's what we at Bucket List Calculator are all about!  This is getting into the range that is incredibly difficult to continue for long periods of time.  It is going to take some inspired financial planning to make all of these goals a reality.  With that said you were smart enough to use Bucket List Calculator so we wouldn't be surprised if got everything on this list done with a few million to spare! 
+                        <br>
+                        <br>
+                        This might be a little bit intimidating for you after all ${{cost_per_year|floatformat:"2"|intcomma}} per year is a lot of money.  But it is important for you to see these numbers so you can make a better plan to accomplish everything.  But we urge you not to remove any items from your list.  Instead of removing items first look for other ways to improve your financial situation.  If you increase the age you hope to be done with all the items on your bucket list of that {{percent_of_yearly_wage|floatformat:"1"}}% of your annual wage will drop significantly.  You can do this by editing your user profile.  Along with that if your annual wage increases, even by a small amount, it can drastically change what percentage of your income you need to dedicate to accomplishing your goals.
+                                   
+                        
+                        
+                    {% else %}
+                    
+                        Well someone must have some awfully costly goals! We commend you on having lofty goals and envy how many awesome things you must have on your list.  Unfortunately unless there are some major unforeseen windfalls or you go full on Walter White this is just too much money for you to handle based on what you have listed.  
+                        <br>
+                        <br>
+                        This might be a little bit intimidating for you after all ${{cost_per_year|floatformat:"2"|intcomma}} per year is a lot of money.  But it is important for you to see these numbers so you can make a better plan to accomplish everything.  But we urge you not to remove any items from your list.  Instead of removing items first look for other ways to improve your financial situation.  If you increase the age you hope to be done with all the items on your bucket list of that {{percent_of_yearly_wage|floatformat:"1"}}% of your annual wage will drop significantly.  You can do this by editing your user profile.  Along with that if your annual wage increases, even by a small amount, it can drastically change what percentage of your income you need to dedicate to accomplishing your goals.
+                        
+                    {% endif %}
+                </li>
+                <br>
+                <li>
                 
+                    Now some of our more astute users will be saying "Hey, my income changes over time.  I wonder what the effects of that would be on these statistics?"  Well we thought of that too!  Your welcome.
+                    <br>
+                    <br>
+                    Currently your Bucket List will cost about {{percent_of_yearly_wage|floatformat:"1"}}% of your annual wage every year in order to accomplish by the time you are {{life_expectancy|floatformat:"0"}} years old.  Now lets see how improving your annual income will improve the percent you have to spend every year to accomplish your goals.  
+                    <br>
+                    <br>
+                    For this example we will exclude inflation and increases in price to the current market basket (sorry for all of the econ terms).  These costs often cancel each other out over the long term and for the sake of readability we will not go into much more detail on those topics here.  Just assume no inflation exists when reading the following numbers.
+                    <br>
+                    <br>
+                    You currently make ${{yearly_earnings|floatformat:"2"|intcomma}} per year if your average annual income goes up by just one percent every year you will have an income of about ${{salary_after_compounded_1|floatformat:"2"|intcomma}} per year when you are {{life_expectancy|floatformat:"0"}} years old (remember, this ignores inflation so think of how much money that is in today's dollars, not future dollars).  On average over these years instead of spending {{percent_of_yearly_wage|floatformat:"1"}}% of your annual income on your Bucket List every year you would only need to spend {{annual_percent_after_compounded_1|floatformat:"1"}}% of your annual income every year to meet your goals.
+                    <br>
+                    <br>
+                    Do you think you will do even better than that?  Well if your annual income increases by two percent every year then you would be making ${{salary_after_compounded_2|floatformat:"2"|intcomma}} annually by the age of {{life_expectancy|floatformat:"0"}}.  This would mean that your Bucket List goals would only need to take up to {{annual_percent_after_compounded_2|floatformat:"1"}}% of your annual income during that time frame!
+                    <br>
+                    <br>
+                    Are you REALLY confident about your future? Me too!  Lets be optimistic and see how a three percent, four percent, or even a five percent increase in annual income every year would benefit our annual salary and our Bucket List goals.  At the age of {{life_expectancy|floatformat:"0"}} with a three percent increase in annual income every year would equate to making ${{salary_after_compounded_3|floatformat:"2"|intcomma}} every year.  At four percent you would make ${{salary_after_compounded_4|floatformat:"2"|intcomma}} and at five percent ${{salary_after_compounded_5|floatformat:"2"|intcomma}}.  This would decrease our income dedicated to Bucket List goal to {{annual_percent_after_compounded_3|floatformat:"1"}}%, {{annual_percent_after_compounded_4|floatformat:"1"}}%, and {{annual_percent_after_compounded_5|floatformat:"1"}}% respectively. 
+                    
+                    
+                    
+                </li>
+                <br>
+                <li>
+                    Now how about other sources of income, like returns from investments?  Well for starters you should include these numbers in your annual income (you can go <a href="/bucketlist/profile/edit/">here</a> to edit that information), your annual income should include ALL income from the year not just what you make from your day job.
+                    <br>
+                    <br>
+                    How about retirement?  Most of you would like to retire from working one day.  So how does this effect your income?  Well we hope that it wouldn't!  After you retire you probably would like to continue living at a relatively similar standard of living as you did before.  In which case your income really should not change much.  If you don't want to spend the same amount of money per year money during retirement then you could change the age you finish your Bucket List to the year you would like to retire. (and you can do that by clicking <a href="/bucketlist/profile/edit/">here</a>)
+                </li>
+              </ul>
+             <br>
+             <hr>
+             <!------------Your Goal Distribution--------------->
+             <br>
+             <h2>Distribution of Your Goals</h2>
+             <br>
+             <h4>By Percentage of Whole:</h4>
+             <br>
+             <div id ="UsersGoalDistributionChart"></div>
+             <br>
+            <br>
+            <div id ="AllUsersGoalDistributionChart"></div>
+            <br>
+            <br>
+              <div id ="UsersGoalCostDistributionChart"></div>
+             <br>
+             <br>
+             <div id = "AllUsersGoalCostDistributionChart"></div>
+             <br>
+             <br>
+             <div id = "UsersGoalHoursDistributionChart"></div>
+             <br>
+             <br>
+             <div id = "AllUsersGoalHoursDistributionChart"></div>
+             <br>
+             <br>
+             <div id = "UsersGoalDaysDistributionChart"></div>
+             <br>
+             <br>
+             <div id = "AllUsersGoalDaysDistributionChart"></div>
+             <br>
+             <br>
+            <br>
+
+            {% if total_cost > 50001 %}
+
+            <br>
+            <h2>What Else Could You Do?</h2>
+            <br>
+
+            <p>Now ${{total_cost|floatformat:"2"|intcomma}} is a pretty ridiculous amount of money.  But accomplishing all of your goals is totally worth it!  Lets look at some other things that you could potentially do with that money: </p>
+            <ul>
+
+            {% if total_cost > 2000000 %}
+
+                <li>You could afford {{gold_bars|floatformat:"0"}} of those 400 ounce gold bars!</li>
+                <li>You would have enough to fill up a bathtub and go full on Scrooge McDuck!  Then if you for some reason felt like it you could take the rest in quarters stack them all on top of each other and your stack would reach {{height_of_quarters_stacked|floatformat:"1"}} miles high!</li>  
+                <li>If you wanted to you could spend {{five_star_hotel|floatformat:"0"}} years living in a super fancy five star hotel room.</li>
+                <li>Or you could purchase {{gallardos|floatformat:"0"}} Lamborghini Gallardos!</li>
+                <li>You could buy your own {{orcas|floatformat:"0"}} Orca whales.</li>
+                <li>You could send someone you love a huge bouquet of roses every single day for {{bouquet|floatformat:"0"}} years.</li>
+
+                
+            {% elif total_cost > 1000000 %}
+
+                <li>You could afford {{gold_bars|floatformat:"0"}} of those 400 ounce gold bars!</li>
+                <li>You would have enough to fill up a bathtub and go full on Scrooge McDuck!  Then if you for some reason felt like it you could take the rest in quarters stack them all on top of each other and your stack would reach {{height_of_quarters_stacked|floatformat:"1"}} miles high!</li> 
+                <li>If you wanted to you could spend {{years_in_hotel|floatformat:"0"}} years living in a hotel room.</li>
+                <li>You could send someone you love two dozen roses every single day for {{roses_every_day|floatformat:"0"}} years.</li>
+                <li>Or you could purchase {{gallardos|floatformat:"0"}} Lamborghini Gallardos!</li>
+                <li>You could buy your own Orca Whale!</li>
+                <li>Or one of those sweet magnetic beds that float</li>
+                
+            {% elif total_cost > 500000 %}
+
+                <li>You could afford one whole 400 troy ounce gold bar!</li>
+                <li>You would have enough to fill up a bathtub and go full on Scrooge McDuck!  Then if you for some reason felt like it you could take the rest in quarters stack them all on top of each other and your stack would reach {{height_of_quarters_stacked|floatformat:"1"}} miles high!</li>    
+                <li>If you wanted to you could spend {{years_in_hotel|floatformat:"0"}} years living in a hotel room.</li>
+                {% if total_cost > 750000 %}
+                <li>You would have enough money to buy your own private island!</li>
+                <li>You could even go to outer space.. three times!</li>
+                {% else %}
+                <li>You would have enough money to buy your own private island!</li>
+                <li>You could even go to outer space.. twice!</li>
                 {% endif %}
-      
-      {% endif %}
-      
-      </li>
-  </ul>
-  </p>
-  <br> 
-  <hr>
-  <!---------List of Most and Least Difficult----->
-  <br>
- <h2>Top Five Most Difficult</h2>
- <ol>
- {% for item in top_five_most_difficult %}
-    <li>{{item}}</li>
- {% endfor %}
- </ol>
- <br>
-  <br>
- <h2>Top Five Least Difficult</h2>
- <ol>
- {% for item in bottom_five_least_difficult %}
-    <li>{{item}}</li>
- {% endfor %}
- </ol>
- <br>
- <br>
- <hr>
- <!---------Annual Income and Wage Increase------>
- <br>
- <h2>Analysing Your Yearly Income</h2>
- <br>
- <p>Unfortunately for most of us when it comes to our Bucket List goals money is the bottleneck.  We want to do it all!  But doing it all can cost quite a bit.  But that is where Bucket List Calculator comes in.  We can give you a better outline to accomplish using all of the information you have so graciously provided:
- <br>
- <br>
- <ul>  
-        {% if 15000 > annual_salary_left %}
-            <br>
-            <li>
-                This is a warning:  According to the of goals on your list and 
-                your current annual income it appears that if you do accomplish everything on your list it will put you underneath an average liveable wage for a single person.       
-            </li>
-            
-            
-        {% endif %}       
-    <br>
-    <li>
-        According to your projections your goals will cost you an average of ${{cost_per_year|floatformat:"2"|intcomma}} per year.  This is the equivalent of {{percent_of_yearly_wage|floatformat:"1"}}% of your current yearly income.
-        
-        {% if 10 > percent_of_yearly_wage %}
-        
-            This is excellent!  At this percent of your yearly income everything on your Bucket List should be a breeze to pay for.  You could even go check out some of our other awesome users goals and find some things to add. 
-            
-        {% elif 25 > percent_of_yearly_wage %}
-        
-            This range of income is totally doable.  You may have to do some financial planning but as long as you are focused you should have no issues whatsoever.  It will work out just great for you, don't you worry!
-            
-        {% elif 50 > percent_of_yearly_wage %}
-        
-            This is a fairly large percentage of your yearly income.  In order to cross off everything on your Bucket List you will need some dedication to financial planning and be able to live well within your means to help save money for your goals.  With that said, congrats!  You have some mighty big dreams and that's pretty neat.
-            <br>
-            <br>
-            This might be a little bit intimidating for you after all ${{cost_per_year|floatformat:"2"|intcomma}} per year is a lot of money.  But it is important for you to see these numbers so you can make a better plan to accomplish everything.  But we urge you not to remove any items from your list.  Instead of removing items first look for other ways to improve your financial situation.  If you increase the age you hope to be done with all the items on your bucket list of that {{percent_of_yearly_wage|floatformat:"1"}}% of your annual wage will drop significantly.  You can do this by editing your user profile.  Along with that if your annual wage increases, even by a small amount, it can drastically change what percentage of your income you need to dedicate to accomplishing your goals. 
-            
-        {% elif 75 > percent_of_yearly_wage %}
-        
-            Now those are some spendy goals!  That's a huge chunk of your income.  You are going to have to be extremely dedicated if you want to make your hopes and dreams happen.  You are using Bucket List Calculator after all so obviously you are a pretty intelligent person so we have faith that you will be able to accomplish everything.  
-            <br>
-            <br>
-            This might be a little bit intimidating for you after all ${{cost_per_year|floatformat:"2"|intcomma}} per year is a lot of money.  But it is important for you to see these numbers so you can make a better plan to accomplish everything.  But we urge you not to remove any items from your list.  Instead of removing items first look for other ways to improve your financial situation.  If you increase the age you hope to be done with all the items on your bucket list of that {{percent_of_yearly_wage|floatformat:"1"}}% of your annual wage will drop significantly.  You can do this by editing your user profile.  Along with that if your annual wage increases, even by a small amount, it can drastically change what percentage of your income you need to dedicate to accomplishing your goals.
-            
-        {% elif 100 > percent_of_yearly_wage %}
-        
-            Someone sure is determined to a a lot with their life, and that's what we at Bucket List Calculator are all about!  This is getting into the range that is incredibly difficult to continue for long periods of time.  It is going to take some inspired financial planning to make all of these goals a reality.  With that said you were smart enough to use Bucket List Calculator so we wouldn't be surprised if got everything on this list done with a few million to spare! 
-            <br>
-            <br>
-            This might be a little bit intimidating for you after all ${{cost_per_year|floatformat:"2"|intcomma}} per year is a lot of money.  But it is important for you to see these numbers so you can make a better plan to accomplish everything.  But we urge you not to remove any items from your list.  Instead of removing items first look for other ways to improve your financial situation.  If you increase the age you hope to be done with all the items on your bucket list of that {{percent_of_yearly_wage|floatformat:"1"}}% of your annual wage will drop significantly.  You can do this by editing your user profile.  Along with that if your annual wage increases, even by a small amount, it can drastically change what percentage of your income you need to dedicate to accomplishing your goals.
-                       
-            
-            
-        {% else %}
-        
-            Well someone must have some awfully costly goals! We commend you on having lofty goals and envy how many awesome things you must have on your list.  Unfortunately unless there are some major unforeseen windfalls or you go full on Walter White this is just too much money for you to handle based on what you have listed.  
-            <br>
-            <br>
-            This might be a little bit intimidating for you after all ${{cost_per_year|floatformat:"2"|intcomma}} per year is a lot of money.  But it is important for you to see these numbers so you can make a better plan to accomplish everything.  But we urge you not to remove any items from your list.  Instead of removing items first look for other ways to improve your financial situation.  If you increase the age you hope to be done with all the items on your bucket list of that {{percent_of_yearly_wage|floatformat:"1"}}% of your annual wage will drop significantly.  You can do this by editing your user profile.  Along with that if your annual wage increases, even by a small amount, it can drastically change what percentage of your income you need to dedicate to accomplishing your goals.
-            
-        {% endif %}
-    </li>
-    <br>
-    <li>
-    
-        Now some of our more astute users will be saying "Hey, my income changes over time.  I wonder what the effects of that would be on these statistics?"  Well we thought of that too!  Your welcome.
-        <br>
-        <br>
-        Currently your Bucket List will cost about {{percent_of_yearly_wage|floatformat:"1"}}% of your annual wage every year in order to accomplish by the time you are {{life_expectancy|floatformat:"0"}} years old.  Now lets see how improving your annual income will improve the percent you have to spend every year to accomplish your goals.  
-        <br>
-        <br>
-        For this example we will exclude inflation and increases in price to the current market basket (sorry for all of the econ terms).  These costs often cancel each other out over the long term and for the sake of readability we will not go into much more detail on those topics here.  Just assume no inflation exists when reading the following numbers.
-        <br>
-        <br>
-        You currently make ${{yearly_earnings|floatformat:"2"|intcomma}} per year if your average annual income goes up by just one percent every year you will have an income of about ${{salary_after_compounded_1|floatformat:"2"|intcomma}} per year when you are {{life_expectancy|floatformat:"0"}} years old (remember, this ignores inflation so think of how much money that is in today's dollars, not future dollars).  On average over these years instead of spending {{percent_of_yearly_wage|floatformat:"1"}}% of your annual income on your Bucket List every year you would only need to spend {{annual_percent_after_compounded_1|floatformat:"1"}}% of your annual income every year to meet your goals.
-        <br>
-        <br>
-        Do you think you will do even better than that?  Well if your annual income increases by two percent every year then you would be making ${{salary_after_compounded_2|floatformat:"2"|intcomma}} annually by the age of {{life_expectancy|floatformat:"0"}}.  This would mean that your Bucket List goals would only need to take up to {{annual_percent_after_compounded_2|floatformat:"1"}}% of your annual income during that time frame!
-        <br>
-        <br>
-        Are you REALLY confident about your future? Me too!  Lets be optimistic and see how a three percent, four percent, or even a five percent increase in annual income every year would benefit our annual salary and our Bucket List goals.  At the age of {{life_expectancy|floatformat:"0"}} with a three percent increase in annual income every year would equate to making ${{salary_after_compounded_3|floatformat:"2"|intcomma}} every year.  At four percent you would make ${{salary_after_compounded_4|floatformat:"2"|intcomma}} and at five percent ${{salary_after_compounded_5|floatformat:"2"|intcomma}}.  This would decrease our income dedicated to Bucket List goal to {{annual_percent_after_compounded_3|floatformat:"1"}}%, {{annual_percent_after_compounded_4|floatformat:"1"}}%, and {{annual_percent_after_compounded_5|floatformat:"1"}}% respectively. 
-        
-        
-        
-    </li>
-    <br>
-    <li>
-        Now how about other sources of income, like returns from investments?  Well for starters you should include these numbers in your annual income (you can go <a href="/bucketlist/profile/edit/">here</a> to edit that information), your annual income should include ALL income from the year not just what you make from your day job.
-        <br>
-        <br>
-        How about retirement?  Most of you would like to retire from working one day.  So how does this effect your income?  Well we hope that it wouldn't!  After you retire you probably would like to continue living at a relatively similar standard of living as you did before.  In which case your income really should not change much.  If you don't want to spend the same amount of money per year money during retirement then you could change the age you finish your Bucket List to the year you would like to retire. (and you can do that by clicking <a href="/bucketlist/profile/edit/">here</a>)
-    </li>
-  </ul>
- <br>
- <hr>
- <!------------Your Goal Distribution--------------->
- <br>
- <h2>Distribution of Your Goals</h2>
- <br>
- <h4>By Percentage of Whole:</h4>
- <br>
- <div id ="UsersGoalDistributionChart"></div>
- <br>
-<br>
-<div id ="AllUsersGoalDistributionChart"></div>
-<br>
-<br>
-  <div id ="UsersGoalCostDistributionChart"></div>
- <br>
- <br>
- <div id = "AllUsersGoalCostDistributionChart"></div>
- <br>
- <br>
- <div id = "UsersGoalHoursDistributionChart"></div>
- <br>
- <br>
- <div id = "AllUsersGoalHoursDistributionChart"></div>
- <br>
- <br>
- <div id = "UsersGoalDaysDistributionChart"></div>
- <br>
- <br>
- <div id = "AllUsersGoalDaysDistributionChart"></div>
- <br>
- <br>
-<br>
+                <li>You could send someone you love two dozen roses every single day for {{roses_every_day|floatformat:"0"}} years.</li>
+                <li>You could even take your {{all_inclusive_resort_two_weeks|floatformat:"0"}} closest friends to an all inclusive resort for a full two weeks.</li>
+                
+            {% elif total_cost > 300000 %}
 
-{% if total_cost > 50001 %}
+                <li>You would have enough to fill up a bathtub and go full on Scrooge McDuck!  Then if you for some reason felt like it you could take the rest in quarters stack them all on top of each other and your stack would reach {{height_of_quarters_stacked|floatformat:"1"}} miles high!</li>
+                <li>If you wanted to you could spend {{years_in_hotel|floatformat:"0"}} years living in a hotel room.</li>
+                <li>You could even take your {{all_inclusive_resort|floatformat:"0"}} closest friends to an all inclusive resort for a week.</li>
+                <li>You could send someone you love two dozen roses every single day for {{roses_every_day|floatformat:"0"}} years.</li>
+                <li>You could even pay for a trip to outer space!  Now that would be pretty awesome.</li>
+                
+            {% elif total_cost > 200000 %}
+                
+                <li>You could easily afford a Lamborghini Gallardo!</li>
+                <li>You would have enough to split some of up into singles, fill up a bath tub and go full on Scrooge McDuck. Then, with the money left over you could still take all of those one dollar bills and line them up in a row and it would stretch {{dollar_bills_in_a_row_miles_after_tub|floatformat:"1"}} miles. </li>
+                <li>If you wanted to you could spend {{years_in_hotel|floatformat:"0"}} years living in a hotel room.</li>
+                <li>You and {{number_of_friends_on_cruise|floatformat:"0"}} of your closest friends could even go on a four day Disney Cruise.</li>
+                <li>You could send someone you love two dozen roses once a week for {{roses_every_week|floatformat:"0"}} years.</li>
+                
+            {% elif total_cost > 100000 %}
 
-<br>
-<h2>What Else Could You Do?</h2>
-<br>
+                <li>You would have enough to split some of it into singles, fill up a bath tub and go full on Scrooge McDuck. Then, with the money left over you could still take all of those one dollar bills and line them up in a row and it would stretch {{dollar_bills_in_a_row_miles_after_tub|floatformat:"1"}} miles. </li>
+                <li>Or you could buy two Albino Ball Pythons, one of the rarest pets in the world!</li>
+                <li>You could easily afford a huge in-ground pool along with custom made water slides, two of those cool levitating hover scooters, and still be able to afford {{how_many_trampolines|floatformat:"0"}} trampolines.  Because who doesn't want {{how_many_trampolines|floatformat:"0"}} trampolines? </li>
+                <li>If you wanted to you could spend {{years_in_hotel|floatformat:"0"}} years living in a hotel room.</li>
+                <li>Or three nights in the Ty Warner Penthouse Suite in the Four Seasons New York.</li>
+                <li>You could send someone you love two dozen roses once a week for {{roses_every_week|floatformat:"0"}} years.</li>
+                <li>You and {{number_of_friends_on_cruise|floatformat:"0"}} of your closest friends could even go on a four day Disney Cruise.</li>
+                
+            {% elif total_cost > 50000 %}
 
-<p>Now ${{total_cost|floatformat:"2"|intcomma}} is a pretty ridiculous amount of money.  But accomplishing all of your goals is totally worth it!  Lets look at some other things that you could potentially do with that money: </p>
-<ul>
+                <li>You would have enough to split it all up into singles, fill up a bath tub and go full on Scrooge McDuck. </li>
+                <li>If you were really determined, or just really bored you could take all of those one dollar bills and line them up in a row and it would stretch {{dollar_bills_in_a_row_miles|floatformat:"1"}} miles. </li>
+                <li>Or you could buy an Albino Ball Python, one of the rarest pets in the world!</li>
+                <li>You could easily afford a huge in-ground pool along with custom made water slides.</li>
+                <li>Or two Hippos and a miniature Zoo environment for them.</li>
+                <li>If you wanted to you could spend {{years_in_hotel|floatformat:"1"}} years living in a hotel room.</li>
+                <li>Or a single night in the Ty Warner Penthouse Suite in the Four Seasons New York.</li>
+                <li>You could send someone you love two dozen roses once a week for {{roses_every_week|floatformat:"0"}} years.</li>
 
-{% if total_cost > 2000000 %}
-
-    <li>You could afford {{gold_bars|floatformat:"0"}} of those 400 ounce gold bars!</li>
-    <li>You would have enough to fill up a bathtub and go full on Scrooge McDuck!  Then if you for some reason felt like it you could take the rest in quarters stack them all on top of each other and your stack would reach {{height_of_quarters_stacked|floatformat:"1"}} miles high!</li>  
-    <li>If you wanted to you could spend {{five_star_hotel|floatformat:"0"}} years living in a super fancy five star hotel room.</li>
-    <li>Or you could purchase {{gallardos|floatformat:"0"}} Lamborghini Gallardos!</li>
-    <li>You could buy your own {{orcas|floatformat:"0"}} Orca whales.</li>
-    <li>You could send someone you love a huge bouquet of roses every single day for {{bouquet|floatformat:"0"}} years.</li>
-
-    
-{% elif total_cost > 1000000 %}
-
-    <li>You could afford {{gold_bars|floatformat:"0"}} of those 400 ounce gold bars!</li>
-    <li>You would have enough to fill up a bathtub and go full on Scrooge McDuck!  Then if you for some reason felt like it you could take the rest in quarters stack them all on top of each other and your stack would reach {{height_of_quarters_stacked|floatformat:"1"}} miles high!</li> 
-    <li>If you wanted to you could spend {{years_in_hotel|floatformat:"0"}} years living in a hotel room.</li>
-    <li>You could send someone you love two dozen roses every single day for {{roses_every_day|floatformat:"0"}} years.</li>
-    <li>Or you could purchase {{gallardos|floatformat:"0"}} Lamborghini Gallardos!</li>
-    <li>You could buy your own Orca Whale!</li>
-    <li>Or one of those sweet magnetic beds that float</li>
-    
-{% elif total_cost > 500000 %}
-
-    <li>You could afford one whole 400 troy ounce gold bar!</li>
-    <li>You would have enough to fill up a bathtub and go full on Scrooge McDuck!  Then if you for some reason felt like it you could take the rest in quarters stack them all on top of each other and your stack would reach {{height_of_quarters_stacked|floatformat:"1"}} miles high!</li>    
-    <li>If you wanted to you could spend {{years_in_hotel|floatformat:"0"}} years living in a hotel room.</li>
-    {% if total_cost > 750000 %}
-    <li>You would have enough money to buy your own private island!</li>
-    <li>You could even go to outer space.. three times!</li>
-    {% else %}
-    <li>You would have enough money to buy your own private island!</li>
-    <li>You could even go to outer space.. twice!</li>
-    {% endif %}
-    <li>You could send someone you love two dozen roses every single day for {{roses_every_day|floatformat:"0"}} years.</li>
-    <li>You could even take your {{all_inclusive_resort_two_weeks|floatformat:"0"}} closest friends to an all inclusive resort for a full two weeks.</li>
-    
-{% elif total_cost > 300000 %}
-
-    <li>You would have enough to fill up a bathtub and go full on Scrooge McDuck!  Then if you for some reason felt like it you could take the rest in quarters stack them all on top of each other and your stack would reach {{height_of_quarters_stacked|floatformat:"1"}} miles high!</li>
-    <li>If you wanted to you could spend {{years_in_hotel|floatformat:"0"}} years living in a hotel room.</li>
-    <li>You could even take your {{all_inclusive_resort|floatformat:"0"}} closest friends to an all inclusive resort for a week.</li>
-    <li>You could send someone you love two dozen roses every single day for {{roses_every_day|floatformat:"0"}} years.</li>
-    <li>You could even pay for a trip to outer space!  Now that would be pretty awesome.</li>
-    
-{% elif total_cost > 200000 %}
-    
-    <li>You could easily afford a Lamborghini Gallardo!</li>
-    <li>You would have enough to split some of up into singles, fill up a bath tub and go full on Scrooge McDuck. Then, with the money left over you could still take all of those one dollar bills and line them up in a row and it would stretch {{dollar_bills_in_a_row_miles_after_tub|floatformat:"1"}} miles. </li>
-    <li>If you wanted to you could spend {{years_in_hotel|floatformat:"0"}} years living in a hotel room.</li>
-    <li>You and {{number_of_friends_on_cruise|floatformat:"0"}} of your closest friends could even go on a four day Disney Cruise.</li>
-    <li>You could send someone you love two dozen roses once a week for {{roses_every_week|floatformat:"0"}} years.</li>
-    
-{% elif total_cost > 100000 %}
-
-    <li>You would have enough to split some of it into singles, fill up a bath tub and go full on Scrooge McDuck. Then, with the money left over you could still take all of those one dollar bills and line them up in a row and it would stretch {{dollar_bills_in_a_row_miles_after_tub|floatformat:"1"}} miles. </li>
-    <li>Or you could buy two Albino Ball Pythons, one of the rarest pets in the world!</li>
-    <li>You could easily afford a huge in-ground pool along with custom made water slides, two of those cool levitating hover scooters, and still be able to afford {{how_many_trampolines|floatformat:"0"}} trampolines.  Because who doesn't want {{how_many_trampolines|floatformat:"0"}} trampolines? </li>
-    <li>If you wanted to you could spend {{years_in_hotel|floatformat:"0"}} years living in a hotel room.</li>
-    <li>Or three nights in the Ty Warner Penthouse Suite in the Four Seasons New York.</li>
-    <li>You could send someone you love two dozen roses once a week for {{roses_every_week|floatformat:"0"}} years.</li>
-    <li>You and {{number_of_friends_on_cruise|floatformat:"0"}} of your closest friends could even go on a four day Disney Cruise.</li>
-    
-{% elif total_cost > 50000 %}
-
-    <li>You would have enough to split it all up into singles, fill up a bath tub and go full on Scrooge McDuck. </li>
-    <li>If you were really determined, or just really bored you could take all of those one dollar bills and line them up in a row and it would stretch {{dollar_bills_in_a_row_miles|floatformat:"1"}} miles. </li>
-    <li>Or you could buy an Albino Ball Python, one of the rarest pets in the world!</li>
-    <li>You could easily afford a huge in-ground pool along with custom made water slides.</li>
-    <li>Or two Hippos and a miniature Zoo environment for them.</li>
-    <li>If you wanted to you could spend {{years_in_hotel|floatformat:"1"}} years living in a hotel room.</li>
-    <li>Or a single night in the Ty Warner Penthouse Suite in the Four Seasons New York.</li>
-    <li>You could send someone you love two dozen roses once a week for {{roses_every_week|floatformat:"0"}} years.</li>
-
-{% endif %}
-</ul>
-<br>
-<br>
-{% endif %}
-<br>
-<!---------------------Comparing Goal Types-------------------------->
-<hr>
-<br>
-<h2>Comparing Goal Types</h2>
-<br>
-<p>Now lets compare how the values for your goal types stack up against other users values.</p>
-<ul>
-    {% if user_has_goal_type_career %}
-        <li>
-            <h4>Career</h4>
-            <ul>
-                <li>The average users Career Goal Cost is ${{all_users_career_cost|floatformat:"2"|intcomma}} yours is ${{current_users_career_cost|floatformat:"2"|intcomma}}.
-                </li>
-                <li>The average users Career Goal takes {{all_users_career_time|floatformat:"0"}} full days yours takes {{current_users_career_time|floatformat:"0"}}.
-                </li>
-              <li>The average users Career Goal  takes {{all_users_career_hours|floatformat:"0"}} hours yours takes {{current_users_career_hours|floatformat:"0"}}.
-                </li>
-            </ul>
-        </li>
-        
-    {% endif %}
-    {% if user_has_goal_type_purchase %}
-        <li>
-            <h4>Purchase</h4>
-            <ul>
-                <li>The average users Purchase Goal Cost is ${{all_users_purchase_cost|floatformat:"2"|intcomma}} yours is ${{current_users_purchase_cost|floatformat:"2"|intcomma}}.
-                </li>
-                <li>The average users Purchase Goal takes {{all_users_purchase_time|floatformat:"0"}} full days yours takes {{current_users_purchase_time|floatformat:"0"}}.
-                </li>
-              <li>The average users Purchase Goal takes {{all_users_purchase_hours|floatformat:"0"}} hours yours takes {{current_users_purchase_hours|floatformat:"0"}}.
-                </li>
-            </ul>
-        </li>
-        
-    {% endif %}
-    {% if user_has_goal_type_travel %}
-        <li>
-            <h4>Travel</h4>
-            <ul>
-                <li>The average users Travel Goal Cost is ${{all_users_travel_cost|floatformat:"2"|intcomma}} yours is ${{current_users_travel_cost|floatformat:"2"|intcomma}}.
-                </li>
-                <li>The average users Travel Goal takes {{all_users_travel_time|floatformat:"0"}} full days yours takes {{current_users_travel_time|floatformat:"0"}}.
-                </li>
-              <li>The average users Travel Goal takes {{all_users_travel_hours|floatformat:"0"}} hours yours takes {{current_users_travel_hours|floatformat:"0"}}.
-                </li>
-            </ul>
-        </li>
-        
-    {% endif %}
-    {% if user_has_goal_type_extreme %}
-        <li>
-            <h4>Extreme Sport</h4>
-            <ul>
-                <li>The average users Extreme Sport Goal Cost is ${{all_users_extreme_cost|floatformat:"2"|intcomma}} yours is ${{current_users_extreme_cost|floatformat:"2"|intcomma}}.
-                </li>
-                <li>The average users Extreme Sport Goal takes {{all_users_extreme_time|floatformat:"0"}} full days yours takes {{current_users_extreme_time|floatformat:"0"}}.
-                </li>
-              <li>The average users Extreme Sport Goal takes {{all_users_extreme_hours|floatformat:"0"}} hours yours takes {{current_users_extreme_hours|floatformat:"0"}}.
-                </li>
-            </ul>
-        </li>
-        
-    {% endif %}
-    {% if user_has_goal_type_family %}
-        <li>
-            <h4>Family/Social</h4>
-            <ul>
-                <li>The average users Family/Social Goal Cost is ${{all_users_family_cost|floatformat:"2"|intcomma}} yours is ${{current_users_family_cost|floatformat:"2"|intcomma}}.
-                </li>
-                <li>The average users Family/Social Goal takes {{all_users_family_time|floatformat:"0"}} full days yours takes {{current_users_family_time|floatformat:"0"}}.
-                </li>
-              <li>The average users Family/Social Goal takes {{all_users_family_hours|floatformat:"0"}} hours yours takes {{current_users_family_hours|floatformat:"0"}}.
-                </li>
-            </ul>
-        </li>
-        
-    {% endif %}
-    {% if user_has_goal_type_relationship %}
-        <li>
-            <h4>Relationship</h4>
-            <ul>
-                <li>The average users Relationship Goal Cost is ${{all_users_relationship_cost|floatformat:"2"|intcomma}} yours is ${{current_users_relationship_cost|floatformat:"2"|intcomma}}.
-                </li>
-                <li>The average users Relationship Goal takes {{all_users_relationship_time|floatformat:"0"}} full days yours takes {{current_users_relationship_time|floatformat:"0"}}.
-                </li>
-              <li>The average users Relationship Goal takes {{all_users_relationship_hours|floatformat:"0"}} hours yours takes {{current_users_relationship_hours|floatformat:"0"}}.
-                </li>
-            </ul>
-        </li>
-        
-    {% endif %}
-    {% if user_has_goal_type_exercise %}
-        <li>
-            <h4>Exercise/Health</h4>
-            <ul>
-                <li>The average users Exercise/Health Goal Cost is ${{all_users_exercise_cost|floatformat:"2"|intcomma}} yours is ${{current_users_exercise_cost|floatformat:"2"|intcomma}}.
-                </li>
-                <li>The average users Exercise/Health Goal takes {{all_users_exercise_time|floatformat:"0"}} full days yours takes {{current_users_exercise_time|floatformat:"0"}}.
-                </li>
-              <li>The average users Exercise/Health Goal takes {{all_users_exercise_hours|floatformat:"0"}} hours yours takes {{current_users_exercise_hours|floatformat:"0"}}.
-                </li>
-            </ul>
-        </li>
-        
-    {% endif %}
-    {% if user_has_goal_type_skill %}
-        <li>
-            <h4>Improving a Skill</h4>
-            <ul>
-                <li>The average users Improving a Skill Goal Cost is ${{all_users_skill_cost|floatformat:"2"|intcomma}} yours is ${{current_users_skill_cost|floatformat:"2"|intcomma}}.
-                </li>
-                <li>The average users Improving a Skill Goal takes {{all_users_skill_time|floatformat:"0"}} full days yours takes {{current_users_skill_time|floatformat:"0"}}.
-                </li>
-              <li>The average users Improving a Skill Goal takes {{all_users_skill_hours|floatformat:"0"}} hours yours takes {{current_users_skill_hours|floatformat:"0"}}.
-                </li>
-            </ul>
-        </li>
-        
-    {% endif %}
-    {% if user_has_goal_type_hobby %}
-        <li>
-            <h4>Hobby</h4>
-            <ul>
-                <li>The average users Improving a Hobby Goal Cost is ${{all_users_hobby_cost|floatformat:"2"|intcomma}} yours is ${{current_users_hobby_cost|floatformat:"2"|intcomma}}.
-                </li>
-                <li>The average users Improving a Hobby Goal takes {{all_users_hobby_time|floatformat:"0"}} full days yours takes {{current_users_hobby_time|floatformat:"0"}}.
-                </li>
-              <li>The average users Improving a Hobby Goal takes {{all_users_hobby_hours|floatformat:"0"}} hours yours takes {{current_users_hobby_hours|floatformat:"0"}}.
-                </li>
-            </ul>
-        </li>
-        
-    {% endif %}
-    {% if user_has_goal_type_building %}
-        <li>
-            <h4>Building/Creating Something</h4>
-            <ul>
-                <li>The average users Improving a Building/Creating Something Goal Cost is ${{all_users_building_cost|floatformat:"2"|intcomma}} yours is ${{current_users_building_cost|floatformat:"2"|intcomma}}.
-                </li>
-                <li>The average users Improving a Building/Creating Something Goal takes {{all_users_building_time|floatformat:"0"}} full days yours takes {{current_users_building_time|floatformat:"0"}}.
-                </li>
-              <li>The average users Improving a Building/Creating Something Goal takes {{all_users_building_hours|floatformat:"0"}} hours yours takes {{current_users_building_hours|floatformat:"0"}}.
-                </li>
-            </ul>
-        </li>
-        
-    {% endif %}
-    {% if user_has_goal_type_education %}
-        <li>
-            <h4>Education/Self Improvement</h4>
-            <ul>
-                <li>The average users Improving a Education/Self Improvement Goal Cost is ${{all_users_education_cost|floatformat:"2"|intcomma}} yours is ${{current_users_education_cost|floatformat:"2"|intcomma}}.
-                </li>
-                <li>The average users Improving a Education/Self Improvement Goal takes {{all_users_education_time|floatformat:"0"}} full days yours takes {{current_users_education_time|floatformat:"0"}}.
-                </li>
-              <li>The average users Improving a Education/Self Improvement takes {{all_users_education_hours|floatformat:"0"}} hours yours takes {{current_users_education_hours|floatformat:"0"}}.
-                </li>
-            </ul>
-        </li>
-        
-    {% endif %}
-    {% if user_has_goal_type_volunteering %}
-        <li>
-            <h4>Volunteering</h4>
-            <ul>
-                <li>The average users Improving a Volunteering Goal Cost is ${{all_users_volunteering_cost|floatformat:"2"|intcomma}} yours is ${{current_users_volunteering_cost|floatformat:"2"|intcomma}}.
-                </li>
-                <li>The average users Improving a Volunteering Goal takes {{all_users_volunteering_time|floatformat:"0"}} full days yours takes {{current_users_volunteering_time|floatformat:"0"}}.
-                </li>
-              <li>The average users Improving a Volunteering takes {{all_users_volunteering_hours|floatformat:"0"}} hours yours takes {{current_users_volunteering_hours|floatformat:"0"}}.
-                </li>
-            </ul>
-        </li>
-        
-    {% endif %}
-    
-</ul>
-<br>
-<hr>
-<br>
-<h2>Your End Date</h2>
-<p>Many of the stats on this site change based on the date you would like to have accomplished all of them.  Lets check out what happens if this date changes.</p>
-<p>You currently have {{years_left|floatformat:"0"}} years left to meet all of your goals.</p>
-<ul>
-    <li>
-        How things change with {{years_left_plus_five|floatformat:"0"}} years left:
-        <br>
-        <ul>
-            <li>
-                If you have five more years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_plus_five|floatformat:"2"|intcomma}} every year.
-            </li>
-            <li>
-                With five more years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_plus_five|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
-            </li>
-            <li>
-                At {{years_left_plus_five|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_plus_five|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
-            </li>
-            <li>
-                Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours down to {{hours_per_month_plus_five|floatformat:"1"}} hours.
-            </li>
-        </ul>
-        <br>
-    </li>
-    <li>
-        How things change with {{years_left_plus_ten|floatformat:"0"}} years left:
-        <ul>
-            <li>
-                If you have ten more years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_plus_ten|floatformat:"2"|intcomma}} every year.
-            </li>
-            <li>
-                With ten more years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_plus_ten|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
-            </li>
-            <li>
-                At {{years_left_plus_ten|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_plus_ten|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
-            </li>
-            <li>
-                Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours down to {{hours_per_month_plus_ten|floatformat:"1"}} hours.
-            </li>
-        </ul> 
-        <br>
-    </li>
-    <li>
-        How things change with {{years_left_plus_fifteen|floatformat:"0"}} years left:
-        <ul>
-            <li>
-                If you have fifteen more years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_plus_fifteen|floatformat:"2"|intcomma}} every year.
-            </li>
-            <li>
-                With fifteen more years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_plus_fifteen|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
-            </li>
-            <li>
-                At {{years_left_plus_fifteen|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_plus_fifteen|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
-            </li>
-            <li>
-                Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours down to {{hours_per_month_plus_fifteen|floatformat:"1"}} hours.
-            </li>
-        </ul>
-        <br>
-    </li>
-    <li>
-        How things change with {{years_left_plus_twenty|floatformat:"0"}} years left:
-        <ul>
-            <li>
-                If you have twenty more years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_plus_twenty|floatformat:"2"|intcomma}} every year.
-            </li>
-            <li>
-                With twenty more years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_plus_twenty|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
-            </li>
-            <li>
-                At {{years_left_plus_twenty|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_plus_twenty|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
-            </li>
-            <li>
-                Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours down to {{hours_per_month_plus_twenty|floatformat:"1"}} hours.
-            </li>
-        </ul>
-        <br>
-    </li>
-    {% if years_left_minus_five > 0 %}
-    <li>
-        How things change with {{years_left_minus_five|floatformat:"0"}} years left:
-        <ul>
-            <li>
-                If you have five less years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_minus_five|floatformat:"2"|intcomma}} every year.
-            </li>
-            <li>
-                With five less years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_minus_five|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
-            </li>
-            <li>
-                At {{years_left_minus_five|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_minus_five|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
-            </li>
-            <li>
-                Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours up to {{hours_per_month_minus_five|floatformat:"1"}} hours.
-            </li>
-        </ul>
-        <br>
-    </li>
-    {% endif %}
-    {% if years_left_minus_ten > 0 %}
-    <li>
-        How things change with {{years_left_minus_ten|floatformat:"0"}} years left:
-        <ul>
-            <li>
-                If you have ten less years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_minus_ten|floatformat:"2"|intcomma}} every year.
-            </li>
-            <li>
-                With ten less years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_minus_ten|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
-            </li>
-            <li>
-                At {{years_left_minus_ten|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_minus_ten|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
-            </li>
-            <li>
-                Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours up to {{hours_per_month_minus_ten|floatformat:"1"}} hours.
-            </li>
-        </ul>
-        <br>
-    </li>
-    {% endif %}
-    {% if years_left_minus_fifteen > 0 %}
-    <li>
-        How things change with {{years_left_minus_fifteen|floatformat:"0"}} years left:
-        <ul>
-            <li>
-                If you have fifteen less years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_minus_fifteen|floatformat:"2"|intcomma}} every year.
-            </li>
-            <li>
-                With fifteen less years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_minus_fifteen|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
-            </li>
-            <li>
-                At {{years_left_minus_fifteen|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_minus_fifteen|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
-            </li>
-            <li>
-                Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours up to {{hours_per_month_minus_fifteen|floatformat:"1"}} hours.
-            </li>
-        </ul>
-        <br>
-    </li>
-    {% endif %}
-    {% if years_left_minus_twenty > 0 %}
-    <li>
-        How things change with {{years_left_minus_twenty|floatformat:"0"}} years left:
-        <ul>
-            <li>
-                If you have twenty less years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_minus_twenty|floatformat:"2"|intcomma}} every year.
-            </li>
-            <li>
-                With twenty less years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_minus_twenty|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
-            </li>
-            <li>
-                At {{years_left_minus_twenty|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_minus_twenty|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
-            </li>
-            <li>
-                Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours up to {{hours_per_month_minus_twenty|floatformat:"1"}} hours.
-            </li>
-        </ul>
-    </li>
-    {% endif %}
-</ul>
-<hr>
-<br>
-{% if include_retirement %}
-<h2>Retirement</h2>
-<br>
-<p>
-    Finances are a hugely influential on your Bucket List goals.  Planning for retirement takes a large chunk of you annual income and is worth examining in depth.  Hopefully we can give you a financial roadmap to completing both your retirement and Bucket List goals.  
-</p>
-<p>
-    Note: We use the historical inflation rate of 1.5% when calculating all of these figures.
-</p>
-<br>
-<ul>
-    <li>
-        <h4>3% APR</h4>
-        <p>
-            In order to retire you need to the returns on your investments to completely supplement your yearly income. This currently is ${{yearly_earnings|floatformat:"2"|intcomma}}, if we take into account inflation you would need to make ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} per year when you are age {{retirement|floatformat:"0"}} to have the same level of spending power that you do today.  At a 3% return on investment you need to have ${{total_needed_for_retirement_3|floatformat:"2"|intcomma}} saved in order for the returns alone to make you ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} every year.
-        </p>
-       {% if needed_per_year_for_retirement_3 > 0 %}
-        <p>
-            So how difficult will it be for you to save this much money? Using our compound interest calculator we found that you need to save ${{needed_per_year_for_retirement_3|floatformat:"2"|intcomma}} per year until you are age {{retirement|floatformat:"0"}} in order to have enough to fully supplement your annual income with the income from your investments.  This is {{percent_yearly_retirement_3|floatformat:"1"}}% of your current annual income.
-        </p>
-        <p>
-            What about your Bucket List goals?  They already take up {{percent_of_yearly_wage|floatformat:"1"}}% of your yearly income.  This means that {{percent_yearly_retirement_3_all|floatformat:"1"}}% of every pay check until you are 
-            
-            {% if under_over_same == 0%}
-                {{retirement|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.
-            {% elif under_over_same == 1 %}
-                {{life_expectancy|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.  After age {{life_expectancy|floatformat:"0"}} you should be done with all of your goals and only have to worry about saving for retirement for the next {{retirement_end_date_difference|floatformat:"0"}} years.
-            {% else %}
-                {{retirement|floatformat:"0"}} years old needs to be dedicated toward retirement and accomplishing your Bucket List goals.  After age {{retirement|floatformat:"0"}} you will be able to retire and only have to worry about paying for your Bucket List goals for the next {{retirement_end_date_difference|floatformat:"0"}} years.
             {% endif %}
-        </p>
-        {% else %}
-        
-            <p>
-                So how much do you need to save per year to make your dreams of retirement a reality?  You don't!  In {{years_left|floatformat:"0"}} years making 3% return on your investment you will have more than the ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} you need at age {{retirement|floatformat:"0"}}. 
-            </p>
-            <p>
-                Given this information you should have no problem reaching retirement.  You could even play around with your numbers a little bit and see if earlier retirement could would be an option for you.
-            </p>
-            <p>
-                Even more importantly this means that the financial burden most people have when saving for retirement won't be as much of an issue for you.  You can dedicate even more of your income towards reaching all of those Bucket List goals!
-            </p>
-            
-        {% endif %}
-    </li>
-    <li>
-        <h4>4% APR</h4>
-        <p>
-            In order to retire you need to the returns on your investments to completely supplement your yearly income. This currently is ${{yearly_earnings|floatformat:"2"|intcomma}}, if we take into account inflation you would need to make ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} per year when you are age {{retirement|floatformat:"0"}} to have the same level of spending power that you do today.  At a 4% return on investment you need to have ${{total_needed_for_retirement_4|floatformat:"2"|intcomma}} saved in order for the returns alone to make you ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} every year.
-        </p>
-       {% if needed_per_year_for_retirement_4 > 0 %}
-        <p>
-            So how difficult will it be for you to save this much money? Using our compound interest calculator we found that you need to save ${{needed_per_year_for_retirement_4|floatformat:"2"|intcomma}} per year until you are age {{retirement|floatformat:"0"}} in order to have enough to fully supplement your annual income with the income from your investments.  This is {{percent_yearly_retirement_4|floatformat:"1"}}% of your current annual income.
-        </p>
-        <p>
-            What about your Bucket List goals?  They already take up {{percent_of_yearly_wage|floatformat:"1"}}% of your yearly income.  This means that {{percent_yearly_retirement_4_all|floatformat:"1"}}% of every pay check until you are 
-            
-            {% if under_over_same == 0%}
-                {{retirement|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.
-            {% elif under_over_same == 1 %}
-                {{life_expectancy|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.  After age {{life_expectancy|floatformat:"0"}} you should be done with all of your goals and only have to worry about saving for retirement for the next {{retirement_end_date_difference|floatformat:"0"}} years.
-            {% else %}
-                {{retirement|floatformat:"0"}} years old needs to be dedicated toward retirement and accomplishing your Bucket List goals.  After age {{retirement|floatformat:"0"}} you will be able to retire and only have to worry about paying for your Bucket List goals for the next {{retirement_end_date_difference|floatformat:"0"}} years.
+            </ul>
+            <br>
+            <br>
             {% endif %}
-        </p>
-        {% else %}
-        
+            <br>
+            <!---------------------Comparing Goal Types-------------------------->
+            <hr>
+            <br>
+            <h2>Comparing Goal Types</h2>
+            <br>
+            <p>Now lets compare how the values for your goal types stack up against other users values.</p>
+            <ul>
+                {% if user_has_goal_type_career %}
+                    <li>
+                        <h4>Career</h4>
+                        <ul>
+                            <li>The average users Career Goal Cost is ${{all_users_career_cost|floatformat:"2"|intcomma}} yours is ${{current_users_career_cost|floatformat:"2"|intcomma}}.
+                            </li>
+                            <li>The average users Career Goal takes {{all_users_career_time|floatformat:"0"}} full days yours takes {{current_users_career_time|floatformat:"0"}}.
+                            </li>
+                          <li>The average users Career Goal  takes {{all_users_career_hours|floatformat:"0"}} hours yours takes {{current_users_career_hours|floatformat:"0"}}.
+                            </li>
+                        </ul>
+                    </li>
+                    
+                {% endif %}
+                {% if user_has_goal_type_purchase %}
+                    <li>
+                        <h4>Purchase</h4>
+                        <ul>
+                            <li>The average users Purchase Goal Cost is ${{all_users_purchase_cost|floatformat:"2"|intcomma}} yours is ${{current_users_purchase_cost|floatformat:"2"|intcomma}}.
+                            </li>
+                            <li>The average users Purchase Goal takes {{all_users_purchase_time|floatformat:"0"}} full days yours takes {{current_users_purchase_time|floatformat:"0"}}.
+                            </li>
+                          <li>The average users Purchase Goal takes {{all_users_purchase_hours|floatformat:"0"}} hours yours takes {{current_users_purchase_hours|floatformat:"0"}}.
+                            </li>
+                        </ul>
+                    </li>
+                    
+                {% endif %}
+                {% if user_has_goal_type_travel %}
+                    <li>
+                        <h4>Travel</h4>
+                        <ul>
+                            <li>The average users Travel Goal Cost is ${{all_users_travel_cost|floatformat:"2"|intcomma}} yours is ${{current_users_travel_cost|floatformat:"2"|intcomma}}.
+                            </li>
+                            <li>The average users Travel Goal takes {{all_users_travel_time|floatformat:"0"}} full days yours takes {{current_users_travel_time|floatformat:"0"}}.
+                            </li>
+                          <li>The average users Travel Goal takes {{all_users_travel_hours|floatformat:"0"}} hours yours takes {{current_users_travel_hours|floatformat:"0"}}.
+                            </li>
+                        </ul>
+                    </li>
+                    
+                {% endif %}
+                {% if user_has_goal_type_extreme %}
+                    <li>
+                        <h4>Extreme Sport</h4>
+                        <ul>
+                            <li>The average users Extreme Sport Goal Cost is ${{all_users_extreme_cost|floatformat:"2"|intcomma}} yours is ${{current_users_extreme_cost|floatformat:"2"|intcomma}}.
+                            </li>
+                            <li>The average users Extreme Sport Goal takes {{all_users_extreme_time|floatformat:"0"}} full days yours takes {{current_users_extreme_time|floatformat:"0"}}.
+                            </li>
+                          <li>The average users Extreme Sport Goal takes {{all_users_extreme_hours|floatformat:"0"}} hours yours takes {{current_users_extreme_hours|floatformat:"0"}}.
+                            </li>
+                        </ul>
+                    </li>
+                    
+                {% endif %}
+                {% if user_has_goal_type_family %}
+                    <li>
+                        <h4>Family/Social</h4>
+                        <ul>
+                            <li>The average users Family/Social Goal Cost is ${{all_users_family_cost|floatformat:"2"|intcomma}} yours is ${{current_users_family_cost|floatformat:"2"|intcomma}}.
+                            </li>
+                            <li>The average users Family/Social Goal takes {{all_users_family_time|floatformat:"0"}} full days yours takes {{current_users_family_time|floatformat:"0"}}.
+                            </li>
+                          <li>The average users Family/Social Goal takes {{all_users_family_hours|floatformat:"0"}} hours yours takes {{current_users_family_hours|floatformat:"0"}}.
+                            </li>
+                        </ul>
+                    </li>
+                    
+                {% endif %}
+                {% if user_has_goal_type_relationship %}
+                    <li>
+                        <h4>Relationship</h4>
+                        <ul>
+                            <li>The average users Relationship Goal Cost is ${{all_users_relationship_cost|floatformat:"2"|intcomma}} yours is ${{current_users_relationship_cost|floatformat:"2"|intcomma}}.
+                            </li>
+                            <li>The average users Relationship Goal takes {{all_users_relationship_time|floatformat:"0"}} full days yours takes {{current_users_relationship_time|floatformat:"0"}}.
+                            </li>
+                          <li>The average users Relationship Goal takes {{all_users_relationship_hours|floatformat:"0"}} hours yours takes {{current_users_relationship_hours|floatformat:"0"}}.
+                            </li>
+                        </ul>
+                    </li>
+                    
+                {% endif %}
+                {% if user_has_goal_type_exercise %}
+                    <li>
+                        <h4>Exercise/Health</h4>
+                        <ul>
+                            <li>The average users Exercise/Health Goal Cost is ${{all_users_exercise_cost|floatformat:"2"|intcomma}} yours is ${{current_users_exercise_cost|floatformat:"2"|intcomma}}.
+                            </li>
+                            <li>The average users Exercise/Health Goal takes {{all_users_exercise_time|floatformat:"0"}} full days yours takes {{current_users_exercise_time|floatformat:"0"}}.
+                            </li>
+                          <li>The average users Exercise/Health Goal takes {{all_users_exercise_hours|floatformat:"0"}} hours yours takes {{current_users_exercise_hours|floatformat:"0"}}.
+                            </li>
+                        </ul>
+                    </li>
+                    
+                {% endif %}
+                {% if user_has_goal_type_skill %}
+                    <li>
+                        <h4>Improving a Skill</h4>
+                        <ul>
+                            <li>The average users Improving a Skill Goal Cost is ${{all_users_skill_cost|floatformat:"2"|intcomma}} yours is ${{current_users_skill_cost|floatformat:"2"|intcomma}}.
+                            </li>
+                            <li>The average users Improving a Skill Goal takes {{all_users_skill_time|floatformat:"0"}} full days yours takes {{current_users_skill_time|floatformat:"0"}}.
+                            </li>
+                          <li>The average users Improving a Skill Goal takes {{all_users_skill_hours|floatformat:"0"}} hours yours takes {{current_users_skill_hours|floatformat:"0"}}.
+                            </li>
+                        </ul>
+                    </li>
+                    
+                {% endif %}
+                {% if user_has_goal_type_hobby %}
+                    <li>
+                        <h4>Hobby</h4>
+                        <ul>
+                            <li>The average users Improving a Hobby Goal Cost is ${{all_users_hobby_cost|floatformat:"2"|intcomma}} yours is ${{current_users_hobby_cost|floatformat:"2"|intcomma}}.
+                            </li>
+                            <li>The average users Improving a Hobby Goal takes {{all_users_hobby_time|floatformat:"0"}} full days yours takes {{current_users_hobby_time|floatformat:"0"}}.
+                            </li>
+                          <li>The average users Improving a Hobby Goal takes {{all_users_hobby_hours|floatformat:"0"}} hours yours takes {{current_users_hobby_hours|floatformat:"0"}}.
+                            </li>
+                        </ul>
+                    </li>
+                    
+                {% endif %}
+                {% if user_has_goal_type_building %}
+                    <li>
+                        <h4>Building/Creating Something</h4>
+                        <ul>
+                            <li>The average users Improving a Building/Creating Something Goal Cost is ${{all_users_building_cost|floatformat:"2"|intcomma}} yours is ${{current_users_building_cost|floatformat:"2"|intcomma}}.
+                            </li>
+                            <li>The average users Improving a Building/Creating Something Goal takes {{all_users_building_time|floatformat:"0"}} full days yours takes {{current_users_building_time|floatformat:"0"}}.
+                            </li>
+                          <li>The average users Improving a Building/Creating Something Goal takes {{all_users_building_hours|floatformat:"0"}} hours yours takes {{current_users_building_hours|floatformat:"0"}}.
+                            </li>
+                        </ul>
+                    </li>
+                    
+                {% endif %}
+                {% if user_has_goal_type_education %}
+                    <li>
+                        <h4>Education/Self Improvement</h4>
+                        <ul>
+                            <li>The average users Improving a Education/Self Improvement Goal Cost is ${{all_users_education_cost|floatformat:"2"|intcomma}} yours is ${{current_users_education_cost|floatformat:"2"|intcomma}}.
+                            </li>
+                            <li>The average users Improving a Education/Self Improvement Goal takes {{all_users_education_time|floatformat:"0"}} full days yours takes {{current_users_education_time|floatformat:"0"}}.
+                            </li>
+                          <li>The average users Improving a Education/Self Improvement takes {{all_users_education_hours|floatformat:"0"}} hours yours takes {{current_users_education_hours|floatformat:"0"}}.
+                            </li>
+                        </ul>
+                    </li>
+                    
+                {% endif %}
+                {% if user_has_goal_type_volunteering %}
+                    <li>
+                        <h4>Volunteering</h4>
+                        <ul>
+                            <li>The average users Improving a Volunteering Goal Cost is ${{all_users_volunteering_cost|floatformat:"2"|intcomma}} yours is ${{current_users_volunteering_cost|floatformat:"2"|intcomma}}.
+                            </li>
+                            <li>The average users Improving a Volunteering Goal takes {{all_users_volunteering_time|floatformat:"0"}} full days yours takes {{current_users_volunteering_time|floatformat:"0"}}.
+                            </li>
+                          <li>The average users Improving a Volunteering takes {{all_users_volunteering_hours|floatformat:"0"}} hours yours takes {{current_users_volunteering_hours|floatformat:"0"}}.
+                            </li>
+                        </ul>
+                    </li>
+                    
+                {% endif %}
+                
+            </ul>
+            <br>
+            <hr>
+            <br>
+            <h2>Your End Date</h2>
+            <p>Many of the stats on this site change based on the date you would like to have accomplished all of them.  Lets check out what happens if this date changes.</p>
+            <p>You currently have {{years_left|floatformat:"0"}} years left to meet all of your goals.</p>
+            <ul>
+                <li>
+                    How things change with {{years_left_plus_five|floatformat:"0"}} years left:
+                    <br>
+                    <ul>
+                        <li>
+                            If you have five more years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_plus_five|floatformat:"2"|intcomma}} every year.
+                        </li>
+                        <li>
+                            With five more years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_plus_five|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
+                        </li>
+                        <li>
+                            At {{years_left_plus_five|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_plus_five|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
+                        </li>
+                        <li>
+                            Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours down to {{hours_per_month_plus_five|floatformat:"1"}} hours.
+                        </li>
+                    </ul>
+                    <br>
+                </li>
+                <li>
+                    How things change with {{years_left_plus_ten|floatformat:"0"}} years left:
+                    <ul>
+                        <li>
+                            If you have ten more years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_plus_ten|floatformat:"2"|intcomma}} every year.
+                        </li>
+                        <li>
+                            With ten more years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_plus_ten|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
+                        </li>
+                        <li>
+                            At {{years_left_plus_ten|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_plus_ten|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
+                        </li>
+                        <li>
+                            Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours down to {{hours_per_month_plus_ten|floatformat:"1"}} hours.
+                        </li>
+                    </ul> 
+                    <br>
+                </li>
+                <li>
+                    How things change with {{years_left_plus_fifteen|floatformat:"0"}} years left:
+                    <ul>
+                        <li>
+                            If you have fifteen more years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_plus_fifteen|floatformat:"2"|intcomma}} every year.
+                        </li>
+                        <li>
+                            With fifteen more years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_plus_fifteen|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
+                        </li>
+                        <li>
+                            At {{years_left_plus_fifteen|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_plus_fifteen|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
+                        </li>
+                        <li>
+                            Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours down to {{hours_per_month_plus_fifteen|floatformat:"1"}} hours.
+                        </li>
+                    </ul>
+                    <br>
+                </li>
+                <li>
+                    How things change with {{years_left_plus_twenty|floatformat:"0"}} years left:
+                    <ul>
+                        <li>
+                            If you have twenty more years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_plus_twenty|floatformat:"2"|intcomma}} every year.
+                        </li>
+                        <li>
+                            With twenty more years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_plus_twenty|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
+                        </li>
+                        <li>
+                            At {{years_left_plus_twenty|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_plus_twenty|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
+                        </li>
+                        <li>
+                            Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours down to {{hours_per_month_plus_twenty|floatformat:"1"}} hours.
+                        </li>
+                    </ul>
+                    <br>
+                </li>
+                {% if years_left_minus_five > 0 %}
+                <li>
+                    How things change with {{years_left_minus_five|floatformat:"0"}} years left:
+                    <ul>
+                        <li>
+                            If you have five less years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_minus_five|floatformat:"2"|intcomma}} every year.
+                        </li>
+                        <li>
+                            With five less years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_minus_five|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
+                        </li>
+                        <li>
+                            At {{years_left_minus_five|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_minus_five|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
+                        </li>
+                        <li>
+                            Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours up to {{hours_per_month_minus_five|floatformat:"1"}} hours.
+                        </li>
+                    </ul>
+                    <br>
+                </li>
+                {% endif %}
+                {% if years_left_minus_ten > 0 %}
+                <li>
+                    How things change with {{years_left_minus_ten|floatformat:"0"}} years left:
+                    <ul>
+                        <li>
+                            If you have ten less years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_minus_ten|floatformat:"2"|intcomma}} every year.
+                        </li>
+                        <li>
+                            With ten less years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_minus_ten|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
+                        </li>
+                        <li>
+                            At {{years_left_minus_ten|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_minus_ten|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
+                        </li>
+                        <li>
+                            Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours up to {{hours_per_month_minus_ten|floatformat:"1"}} hours.
+                        </li>
+                    </ul>
+                    <br>
+                </li>
+                {% endif %}
+                {% if years_left_minus_fifteen > 0 %}
+                <li>
+                    How things change with {{years_left_minus_fifteen|floatformat:"0"}} years left:
+                    <ul>
+                        <li>
+                            If you have fifteen less years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_minus_fifteen|floatformat:"2"|intcomma}} every year.
+                        </li>
+                        <li>
+                            With fifteen less years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_minus_fifteen|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
+                        </li>
+                        <li>
+                            At {{years_left_minus_fifteen|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_minus_fifteen|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
+                        </li>
+                        <li>
+                            Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours up to {{hours_per_month_minus_fifteen|floatformat:"1"}} hours.
+                        </li>
+                    </ul>
+                    <br>
+                </li>
+                {% endif %}
+                {% if years_left_minus_twenty > 0 %}
+                <li>
+                    How things change with {{years_left_minus_twenty|floatformat:"0"}} years left:
+                    <ul>
+                        <li>
+                            If you have twenty less years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_minus_twenty|floatformat:"2"|intcomma}} every year.
+                        </li>
+                        <li>
+                            With twenty less years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_minus_twenty|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
+                        </li>
+                        <li>
+                            At {{years_left_minus_twenty|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_minus_twenty|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
+                        </li>
+                        <li>
+                            Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours up to {{hours_per_month_minus_twenty|floatformat:"1"}} hours.
+                        </li>
+                    </ul>
+                </li>
+                {% endif %}
+            </ul>
+            <hr>
+            <br>
+            {% if include_retirement %}
+            <h2>Retirement</h2>
+            <br>
             <p>
-                So how much do you need to save per year to make your dreams of retirement a reality?  You don't!  In {{years_left|floatformat:"0"}} years making 4% return on your investment you will have more than the ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} you need at age {{retirement|floatformat:"0"}}. 
+                Finances are a hugely influential on your Bucket List goals.  Planning for retirement takes a large chunk of you annual income and is worth examining in depth.  Hopefully we can give you a financial roadmap to completing both your retirement and Bucket List goals.  
             </p>
             <p>
-                Given this information you should have no problem reaching retirement.  You could even play around with your numbers a little bit and see if earlier retirement could would be an option for you.
+                Note: We use the historical inflation rate of 1.5% when calculating all of these figures.
             </p>
-            <p>
-                Even more importantly this means that the financial burden most people have when saving for retirement won't be as much of an issue for you.  You can dedicate even more of your income towards reaching all of those Bucket List goals!
-            </p>
-            
-        {% endif %}
-    </li>
-    <li>
-        <h4>5% APR</h4>
-        <p>
-            In order to retire you need to the returns on your investments to completely supplement your yearly income. This currently is ${{yearly_earnings|floatformat:"2"|intcomma}}, if we take into account inflation you would need to make ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} per year when you are age {{retirement|floatformat:"0"}} to have the same level of spending power that you do today.  At a 5% return on investment you need to have ${{total_needed_for_retirement_5|floatformat:"2"|intcomma}} saved in order for the returns alone to make you ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} every year.
-        </p>
-       {% if needed_per_year_for_retirement_5 > 0 %}
-        <p>
-            So how difficult will it be for you to save this much money? Using our compound interest calculator we found that you need to save ${{needed_per_year_for_retirement_5|floatformat:"2"|intcomma}} per year until you are age {{retirement|floatformat:"0"}} in order to have enough to fully supplement your annual income with the income from your investments.  This is {{percent_yearly_retirement_5|floatformat:"1"}}% of your current annual income.
-        </p>
-        <p>
-            What about your Bucket List goals?  They already take up {{percent_of_yearly_wage|floatformat:"1"}}% of your yearly income.  This means that {{percent_yearly_retirement_5_all|floatformat:"1"}}% of every pay check until you are 
-            
-            {% if under_over_same == 0%}
-                {{retirement|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.
-            {% elif under_over_same == 1 %}
-                {{life_expectancy|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.  After age {{life_expectancy|floatformat:"0"}} you should be done with all of your goals and only have to worry about saving for retirement for the next {{retirement_end_date_difference|floatformat:"0"}} years.
-            {% else %}
-                {{retirement|floatformat:"0"}} years old needs to be dedicated toward retirement and accomplishing your Bucket List goals.  After age {{retirement|floatformat:"0"}} you will be able to retire and only have to worry about paying for your Bucket List goals for the next {{retirement_end_date_difference|floatformat:"0"}} years.
+            <br>
+            <ul>
+                <li>
+                    <h4>3% APR</h4>
+                    <p>
+                        In order to retire you need to the returns on your investments to completely supplement your yearly income. This currently is ${{yearly_earnings|floatformat:"2"|intcomma}}, if we take into account inflation you would need to make ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} per year when you are age {{retirement|floatformat:"0"}} to have the same level of spending power that you do today.  At a 3% return on investment you need to have ${{total_needed_for_retirement_3|floatformat:"2"|intcomma}} saved in order for the returns alone to make you ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} every year.
+                    </p>
+                   {% if needed_per_year_for_retirement_3 > 0 %}
+                    <p>
+                        So how difficult will it be for you to save this much money? Using our compound interest calculator we found that you need to save ${{needed_per_year_for_retirement_3|floatformat:"2"|intcomma}} per year until you are age {{retirement|floatformat:"0"}} in order to have enough to fully supplement your annual income with the income from your investments.  This is {{percent_yearly_retirement_3|floatformat:"1"}}% of your current annual income.
+                    </p>
+                    <p>
+                        What about your Bucket List goals?  They already take up {{percent_of_yearly_wage|floatformat:"1"}}% of your yearly income.  This means that {{percent_yearly_retirement_3_all|floatformat:"1"}}% of every pay check until you are 
+                        
+                        {% if under_over_same == 0%}
+                            {{retirement|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.
+                        {% elif under_over_same == 1 %}
+                            {{life_expectancy|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.  After age {{life_expectancy|floatformat:"0"}} you should be done with all of your goals and only have to worry about saving for retirement for the next {{retirement_end_date_difference|floatformat:"0"}} years.
+                        {% else %}
+                            {{retirement|floatformat:"0"}} years old needs to be dedicated toward retirement and accomplishing your Bucket List goals.  After age {{retirement|floatformat:"0"}} you will be able to retire and only have to worry about paying for your Bucket List goals for the next {{retirement_end_date_difference|floatformat:"0"}} years.
+                        {% endif %}
+                    </p>
+                    {% else %}
+                    
+                        <p>
+                            So how much do you need to save per year to make your dreams of retirement a reality?  You don't!  In {{years_left|floatformat:"0"}} years making 3% return on your investment you will have more than the ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} you need at age {{retirement|floatformat:"0"}}. 
+                        </p>
+                        <p>
+                            Given this information you should have no problem reaching retirement.  You could even play around with your numbers a little bit and see if earlier retirement could would be an option for you.
+                        </p>
+                        <p>
+                            Even more importantly this means that the financial burden most people have when saving for retirement won't be as much of an issue for you.  You can dedicate even more of your income towards reaching all of those Bucket List goals!
+                        </p>
+                        
+                    {% endif %}
+                </li>
+                <li>
+                    <h4>4% APR</h4>
+                    <p>
+                        In order to retire you need to the returns on your investments to completely supplement your yearly income. This currently is ${{yearly_earnings|floatformat:"2"|intcomma}}, if we take into account inflation you would need to make ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} per year when you are age {{retirement|floatformat:"0"}} to have the same level of spending power that you do today.  At a 4% return on investment you need to have ${{total_needed_for_retirement_4|floatformat:"2"|intcomma}} saved in order for the returns alone to make you ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} every year.
+                    </p>
+                   {% if needed_per_year_for_retirement_4 > 0 %}
+                    <p>
+                        So how difficult will it be for you to save this much money? Using our compound interest calculator we found that you need to save ${{needed_per_year_for_retirement_4|floatformat:"2"|intcomma}} per year until you are age {{retirement|floatformat:"0"}} in order to have enough to fully supplement your annual income with the income from your investments.  This is {{percent_yearly_retirement_4|floatformat:"1"}}% of your current annual income.
+                    </p>
+                    <p>
+                        What about your Bucket List goals?  They already take up {{percent_of_yearly_wage|floatformat:"1"}}% of your yearly income.  This means that {{percent_yearly_retirement_4_all|floatformat:"1"}}% of every pay check until you are 
+                        
+                        {% if under_over_same == 0%}
+                            {{retirement|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.
+                        {% elif under_over_same == 1 %}
+                            {{life_expectancy|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.  After age {{life_expectancy|floatformat:"0"}} you should be done with all of your goals and only have to worry about saving for retirement for the next {{retirement_end_date_difference|floatformat:"0"}} years.
+                        {% else %}
+                            {{retirement|floatformat:"0"}} years old needs to be dedicated toward retirement and accomplishing your Bucket List goals.  After age {{retirement|floatformat:"0"}} you will be able to retire and only have to worry about paying for your Bucket List goals for the next {{retirement_end_date_difference|floatformat:"0"}} years.
+                        {% endif %}
+                    </p>
+                    {% else %}
+                    
+                        <p>
+                            So how much do you need to save per year to make your dreams of retirement a reality?  You don't!  In {{years_left|floatformat:"0"}} years making 4% return on your investment you will have more than the ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} you need at age {{retirement|floatformat:"0"}}. 
+                        </p>
+                        <p>
+                            Given this information you should have no problem reaching retirement.  You could even play around with your numbers a little bit and see if earlier retirement could would be an option for you.
+                        </p>
+                        <p>
+                            Even more importantly this means that the financial burden most people have when saving for retirement won't be as much of an issue for you.  You can dedicate even more of your income towards reaching all of those Bucket List goals!
+                        </p>
+                        
+                    {% endif %}
+                </li>
+                <li>
+                    <h4>5% APR</h4>
+                    <p>
+                        In order to retire you need to the returns on your investments to completely supplement your yearly income. This currently is ${{yearly_earnings|floatformat:"2"|intcomma}}, if we take into account inflation you would need to make ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} per year when you are age {{retirement|floatformat:"0"}} to have the same level of spending power that you do today.  At a 5% return on investment you need to have ${{total_needed_for_retirement_5|floatformat:"2"|intcomma}} saved in order for the returns alone to make you ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} every year.
+                    </p>
+                   {% if needed_per_year_for_retirement_5 > 0 %}
+                    <p>
+                        So how difficult will it be for you to save this much money? Using our compound interest calculator we found that you need to save ${{needed_per_year_for_retirement_5|floatformat:"2"|intcomma}} per year until you are age {{retirement|floatformat:"0"}} in order to have enough to fully supplement your annual income with the income from your investments.  This is {{percent_yearly_retirement_5|floatformat:"1"}}% of your current annual income.
+                    </p>
+                    <p>
+                        What about your Bucket List goals?  They already take up {{percent_of_yearly_wage|floatformat:"1"}}% of your yearly income.  This means that {{percent_yearly_retirement_5_all|floatformat:"1"}}% of every pay check until you are 
+                        
+                        {% if under_over_same == 0%}
+                            {{retirement|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.
+                        {% elif under_over_same == 1 %}
+                            {{life_expectancy|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.  After age {{life_expectancy|floatformat:"0"}} you should be done with all of your goals and only have to worry about saving for retirement for the next {{retirement_end_date_difference|floatformat:"0"}} years.
+                        {% else %}
+                            {{retirement|floatformat:"0"}} years old needs to be dedicated toward retirement and accomplishing your Bucket List goals.  After age {{retirement|floatformat:"0"}} you will be able to retire and only have to worry about paying for your Bucket List goals for the next {{retirement_end_date_difference|floatformat:"0"}} years.
+                        {% endif %}
+                    </p>
+                    {% else %}
+                    
+                        <p>
+                            So how much do you need to save per year to make your dreams of retirement a reality?  You don't!  In {{years_left|floatformat:"0"}} years making 5% return on your investment you will have more than the ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} you need at age {{retirement|floatformat:"0"}}. 
+                        </p>
+                        <p>
+                            Given this information you should have no problem reaching retirement.  You could even play around with your numbers a little bit and see if earlier retirement could would be an option for you.
+                        </p>
+                        <p>
+                            Even more importantly this means that the financial burden most people have when saving for retirement won't be as much of an issue for you.  You can dedicate even more of your income towards reaching all of those Bucket List goals!
+                        </p>
+                        
+                    {% endif %}
+                </li>
+                <li>
+                    <h4>6% APR</h4>
+                    <p>
+                        In order to retire you need to the returns on your investments to completely supplement your yearly income. This currently is ${{yearly_earnings|floatformat:"2"|intcomma}}, if we take into account inflation you would need to make ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} per year when you are age {{retirement|floatformat:"0"}} to have the same level of spending power that you do today.  At a 6% return on investment you need to have ${{total_needed_for_retirement_6|floatformat:"2"|intcomma}} saved in order for the returns alone to make you ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} every year.
+                    </p>
+                   {% if needed_per_year_for_retirement_6 > 0 %}
+                    <p>
+                        So how difficult will it be for you to save this much money? Using our compound interest calculator we found that you need to save ${{needed_per_year_for_retirement_6|floatformat:"2"|intcomma}} per year until you are age {{retirement|floatformat:"0"}} in order to have enough to fully supplement your annual income with the income from your investments.  This is {{percent_yearly_retirement_6|floatformat:"1"}}% of your current annual income.
+                    </p>
+                    <p>
+                        What about your Bucket List goals?  They already take up {{percent_of_yearly_wage|floatformat:"1"}}% of your yearly income.  This means that {{percent_yearly_retirement_6_all|floatformat:"1"}}% of every pay check until you are 
+                        
+                        {% if under_over_same == 0%}
+                            {{retirement|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.
+                        {% elif under_over_same == 1 %}
+                            {{life_expectancy|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.  After age {{life_expectancy|floatformat:"0"}} you should be done with all of your goals and only have to worry about saving for retirement for the next {{retirement_end_date_difference|floatformat:"0"}} years.
+                        {% else %}
+                            {{retirement|floatformat:"0"}} years old needs to be dedicated toward retirement and accomplishing your Bucket List goals.  After age {{retirement|floatformat:"0"}} you will be able to retire and only have to worry about paying for your Bucket List goals for the next {{retirement_end_date_difference|floatformat:"0"}} years.
+                        {% endif %}
+                    </p>
+                    {% else %}
+                    
+                        <p>
+                            So how much do you need to save per year to make your dreams of retirement a reality?  You don't!  In {{years_left|floatformat:"0"}} years making 6% return on your investment you will have more than the ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} you need at age {{retirement|floatformat:"0"}}. 
+                        </p>
+                        <p>
+                            Given this information you should have no problem reaching retirement.  You could even play around with your numbers a little bit and see if earlier retirement could would be an option for you.
+                        </p>
+                        <p>
+                            Even more importantly this means that the financial burden most people have when saving for retirement won't be as much of an issue for you.  You can dedicate even more of your income towards reaching all of those Bucket List goals!
+                        </p>
+                        
+                    {% endif %}
+                </li>
+                <li>
+                    <h4>7% APR</h4>
+                    <p>
+                        In order to retire you need to the returns on your investments to completely supplement your yearly income. This currently is ${{yearly_earnings|floatformat:"2"|intcomma}}, if we take into account inflation you would need to make ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} per year when you are age {{retirement|floatformat:"0"}} to have the same level of spending power that you do today.  At a 7% return on investment you need to have ${{total_needed_for_retirement_7|floatformat:"2"|intcomma}} saved in order for the returns alone to make you ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} every year.
+                    </p>
+                    {% if needed_per_year_for_retirement_7 > 0 %}
+                    <p>
+                        So how difficult will it be for you to save this much money? Using our compound interest calculator we found that you need to save ${{needed_per_year_for_retirement_7|floatformat:"2"|intcomma}} per year until you are age {{retirement|floatformat:"0"}} in order to have enough to fully supplement your annual income with the income from your investments.  This is {{percent_yearly_retirement_7|floatformat:"1"}}% of your current annual income.
+                    </p>
+                    <p>
+                        What about your Bucket List goals?  They already take up {{percent_of_yearly_wage|floatformat:"1"}}% of your yearly income.  This means that {{percent_yearly_retirement_7_all|floatformat:"1"}}% of every pay check until you are 
+                        
+                        {% if under_over_same == 0%}
+                            {{retirement|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.
+                        {% elif under_over_same == 1 %}
+                            {{life_expectancy|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.  After age {{life_expectancy|floatformat:"0"}} you should be done with all of your goals and only have to worry about saving for retirement for the next {{retirement_end_date_difference|floatformat:"0"}} years.
+                        {% else %}
+                            {{retirement|floatformat:"0"}} years old needs to be dedicated toward retirement and accomplishing your Bucket List goals.  After age {{retirement|floatformat:"0"}} you will be able to retire and only have to worry about paying for your Bucket List goals for the next {{retirement_end_date_difference|floatformat:"0"}} years.
+                        {% endif %}
+                    </p>
+                    {% else %}
+                    
+                        <p>
+                            So how much do you need to save per year to make your dreams of retirement a reality?  You don't!  In {{years_left|floatformat:"0"}} years making 7% return on your investment you will have more than the ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} you need at age {{retirement|floatformat:"0"}}. 
+                        </p>
+                        <p>
+                            Given this information you should have no problem reaching retirement.  You could even play around with your numbers a little bit and see if earlier retirement could would be an option for you.
+                        </p>
+                        <p>
+                            Even more importantly this means that the financial burden most people have when saving for retirement won't be as much of an issue for you.  You can dedicate even more of your income towards reaching all of those Bucket List goals!
+                        </p>
+                        
+                    {% endif %}
+                </li>
+                <li>
+                    <h4>8% APR</h4>
+                    <p>
+                        In order to retire you need to the returns on your investments to completely supplement your yearly income. This currently is ${{yearly_earnings|floatformat:"2"|intcomma}}, if we take into account inflation you would need to make ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} per year when you are age {{retirement|floatformat:"0"}} to have the same level of spending power that you do today.  At a 8% return on investment you need to have ${{total_needed_for_retirement_8|floatformat:"2"|intcomma}} saved in order for the returns alone to make you ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} every year.
+                    </p>
+                    
+                    {% if needed_per_year_for_retirement_8 > 0 %}
+                    
+                    <p>
+                        So how difficult will it be for you to save this much money? Using our compound interest calculator we found that you need to save ${{needed_per_year_for_retirement_8|floatformat:"2"|intcomma}} per year until you are age {{retirement|floatformat:"0"}} in order to have enough to fully supplement your annual income with the income from your investments.  This is {{percent_yearly_retirement_8|floatformat:"1"}}% of your current annual income.
+                    </p>
+                    <p>
+                        What about your Bucket List goals?  They already take up {{percent_of_yearly_wage|floatformat:"1"}}% of your yearly income.  This means that {{percent_yearly_retirement_8_all|floatformat:"1"}}% of every pay check until you are 
+                        
+                        {% if under_over_same == 0%}
+                            {{retirement|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.
+                        {% elif under_over_same == 1 %}
+                            {{life_expectancy|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.  After age {{life_expectancy|floatformat:"0"}} you should be done with all of your goals and only have to worry about saving for retirement for the next {{retirement_end_date_difference|floatformat:"0"}} years.
+                        {% else %}
+                            {{retirement|floatformat:"0"}} years old needs to be dedicated toward retirement and accomplishing your Bucket List goals.  After age {{retirement|floatformat:"0"}} you will be able to retire and only have to worry about paying for your Bucket List goals for the next {{retirement_end_date_difference|floatformat:"0"}} years.
+                        {% endif %}
+                    </p>
+                    {% else %}
+                    
+                        <p>
+                            So how much do you need to save per year to make your dreams of retirement a reality?  You don't!  In {{years_left|floatformat:"0"}} years making 8% return on your investment you will have more than the ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} you need at age {{retirement|floatformat:"0"}}. 
+                        </p>
+                        <p>
+                            Given this information you should have no problem reaching retirement.  You could even play around with your numbers a little bit and see if earlier retirement could would be an option for you.
+                        </p>
+                        <p>
+                            Even more importantly this means that the financial burden most people have when saving for retirement won't be as much of an issue for you.  You can dedicate even more of your income towards reaching all of those Bucket List goals!
+                        </p>
+                        
+                    {% endif %}
+                </li>
+                <li>
+                    <h4>9% APR</h4>
+                    <p>
+                        In order to retire you need to the returns on your investments to completely supplement your yearly income. This currently is ${{yearly_earnings|floatformat:"2"|intcomma}}, if we take into account inflation you would need to make ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} per year when you are age {{retirement|floatformat:"0"}} to have the same level of spending power that you do today.  At a 9% return on investment you need to have ${{total_needed_for_retirement_9|floatformat:"2"|intcomma}} saved in order for the returns alone to make you ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} every year.
+                    </p>
+                    
+                    {% if needed_per_year_for_retirement_9 > 0 %}
+                    
+                    <p>
+                        So how difficult will it be for you to save this much money? Using our compound interest calculator we found that you need to save ${{needed_per_year_for_retirement_9|floatformat:"2"|intcomma}} per year until you are age {{retirement|floatformat:"0"}} in order to have enough to fully supplement your annual income with the income from your investments.  This is {{percent_yearly_retirement_9|floatformat:"1"}}% of your current annual income.
+                    </p>
+                    <p>
+                        What about your Bucket List goals?  They already take up {{percent_of_yearly_wage|floatformat:"1"}}% of your yearly income.  This means that {{percent_yearly_retirement_9_all|floatformat:"1"}}% of every pay check until you are 
+                        
+                        {% if under_over_same == 0%}
+                            {{retirement|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.
+                        {% elif under_over_same == 1 %}
+                            {{life_expectancy|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.  After age {{life_expectancy|floatformat:"0"}} you should be done with all of your goals and only have to worry about saving for retirement for the next {{retirement_end_date_difference|floatformat:"0"}} years.
+                        {% else %}
+                            {{retirement|floatformat:"0"}} years old needs to be dedicated toward retirement and accomplishing your Bucket List goals.  After age {{retirement|floatformat:"0"}} you will be able to retire and only have to worry about paying for your Bucket List goals for the next {{retirement_end_date_difference|floatformat:"0"}} years.
+                        {% endif %}
+                    </p>
+                    
+                    {% else %}
+                    
+                        <p>
+                            So how much do you need to save per year to make your dreams of retirement a reality?  You don't!  In {{years_left|floatformat:"0"}} years making 9% return on your investment you will have more than the ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} you need at age {{retirement|floatformat:"0"}}. 
+                        </p>
+                        <p>
+                            Given this information you should have no problem reaching retirement.  You could even play around with your numbers a little bit and see if earlier retirement could would be an option for you.
+                        </p>
+                        <p>
+                            Even more importantly this means that the financial burden most people have when saving for retirement won't be as much of an issue for you.  You can dedicate even more of your income towards reaching all of those Bucket List goals!
+                        </p>
+                        
+                    {% endif %}
+                </li>
+            </ul>
+            <br>
+            <hr>
             {% endif %}
-        </p>
-        {% else %}
+        </div><!--end sections-->
+        </div><!--end col-md-8-->
         
-            <p>
-                So how much do you need to save per year to make your dreams of retirement a reality?  You don't!  In {{years_left|floatformat:"0"}} years making 5% return on your investment you will have more than the ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} you need at age {{retirement|floatformat:"0"}}. 
-            </p>
-            <p>
-                Given this information you should have no problem reaching retirement.  You could even play around with your numbers a little bit and see if earlier retirement could would be an option for you.
-            </p>
-            <p>
-                Even more importantly this means that the financial burden most people have when saving for retirement won't be as much of an issue for you.  You can dedicate even more of your income towards reaching all of those Bucket List goals!
-            </p>
-            
-        {% endif %}
-    </li>
-    <li>
-        <h4>6% APR</h4>
-        <p>
-            In order to retire you need to the returns on your investments to completely supplement your yearly income. This currently is ${{yearly_earnings|floatformat:"2"|intcomma}}, if we take into account inflation you would need to make ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} per year when you are age {{retirement|floatformat:"0"}} to have the same level of spending power that you do today.  At a 6% return on investment you need to have ${{total_needed_for_retirement_6|floatformat:"2"|intcomma}} saved in order for the returns alone to make you ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} every year.
-        </p>
-       {% if needed_per_year_for_retirement_6 > 0 %}
-        <p>
-            So how difficult will it be for you to save this much money? Using our compound interest calculator we found that you need to save ${{needed_per_year_for_retirement_6|floatformat:"2"|intcomma}} per year until you are age {{retirement|floatformat:"0"}} in order to have enough to fully supplement your annual income with the income from your investments.  This is {{percent_yearly_retirement_6|floatformat:"1"}}% of your current annual income.
-        </p>
-        <p>
-            What about your Bucket List goals?  They already take up {{percent_of_yearly_wage|floatformat:"1"}}% of your yearly income.  This means that {{percent_yearly_retirement_6_all|floatformat:"1"}}% of every pay check until you are 
-            
-            {% if under_over_same == 0%}
-                {{retirement|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.
-            {% elif under_over_same == 1 %}
-                {{life_expectancy|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.  After age {{life_expectancy|floatformat:"0"}} you should be done with all of your goals and only have to worry about saving for retirement for the next {{retirement_end_date_difference|floatformat:"0"}} years.
-            {% else %}
-                {{retirement|floatformat:"0"}} years old needs to be dedicated toward retirement and accomplishing your Bucket List goals.  After age {{retirement|floatformat:"0"}} you will be able to retire and only have to worry about paying for your Bucket List goals for the next {{retirement_end_date_difference|floatformat:"0"}} years.
-            {% endif %}
-        </p>
-        {% else %}
         
-            <p>
-                So how much do you need to save per year to make your dreams of retirement a reality?  You don't!  In {{years_left|floatformat:"0"}} years making 6% return on your investment you will have more than the ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} you need at age {{retirement|floatformat:"0"}}. 
-            </p>
-            <p>
-                Given this information you should have no problem reaching retirement.  You could even play around with your numbers a little bit and see if earlier retirement could would be an option for you.
-            </p>
-            <p>
-                Even more importantly this means that the financial burden most people have when saving for retirement won't be as much of an issue for you.  You can dedicate even more of your income towards reaching all of those Bucket List goals!
-            </p>
-            
-        {% endif %}
-    </li>
-    <li>
-        <h4>7% APR</h4>
-        <p>
-            In order to retire you need to the returns on your investments to completely supplement your yearly income. This currently is ${{yearly_earnings|floatformat:"2"|intcomma}}, if we take into account inflation you would need to make ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} per year when you are age {{retirement|floatformat:"0"}} to have the same level of spending power that you do today.  At a 7% return on investment you need to have ${{total_needed_for_retirement_7|floatformat:"2"|intcomma}} saved in order for the returns alone to make you ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} every year.
-        </p>
-        {% if needed_per_year_for_retirement_7 > 0 %}
-        <p>
-            So how difficult will it be for you to save this much money? Using our compound interest calculator we found that you need to save ${{needed_per_year_for_retirement_7|floatformat:"2"|intcomma}} per year until you are age {{retirement|floatformat:"0"}} in order to have enough to fully supplement your annual income with the income from your investments.  This is {{percent_yearly_retirement_7|floatformat:"1"}}% of your current annual income.
-        </p>
-        <p>
-            What about your Bucket List goals?  They already take up {{percent_of_yearly_wage|floatformat:"1"}}% of your yearly income.  This means that {{percent_yearly_retirement_7_all|floatformat:"1"}}% of every pay check until you are 
-            
-            {% if under_over_same == 0%}
-                {{retirement|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.
-            {% elif under_over_same == 1 %}
-                {{life_expectancy|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.  After age {{life_expectancy|floatformat:"0"}} you should be done with all of your goals and only have to worry about saving for retirement for the next {{retirement_end_date_difference|floatformat:"0"}} years.
-            {% else %}
-                {{retirement|floatformat:"0"}} years old needs to be dedicated toward retirement and accomplishing your Bucket List goals.  After age {{retirement|floatformat:"0"}} you will be able to retire and only have to worry about paying for your Bucket List goals for the next {{retirement_end_date_difference|floatformat:"0"}} years.
-            {% endif %}
-        </p>
-        {% else %}
-        
-            <p>
-                So how much do you need to save per year to make your dreams of retirement a reality?  You don't!  In {{years_left|floatformat:"0"}} years making 7% return on your investment you will have more than the ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} you need at age {{retirement|floatformat:"0"}}. 
-            </p>
-            <p>
-                Given this information you should have no problem reaching retirement.  You could even play around with your numbers a little bit and see if earlier retirement could would be an option for you.
-            </p>
-            <p>
-                Even more importantly this means that the financial burden most people have when saving for retirement won't be as much of an issue for you.  You can dedicate even more of your income towards reaching all of those Bucket List goals!
-            </p>
-            
-        {% endif %}
-    </li>
-    <li>
-        <h4>8% APR</h4>
-        <p>
-            In order to retire you need to the returns on your investments to completely supplement your yearly income. This currently is ${{yearly_earnings|floatformat:"2"|intcomma}}, if we take into account inflation you would need to make ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} per year when you are age {{retirement|floatformat:"0"}} to have the same level of spending power that you do today.  At a 8% return on investment you need to have ${{total_needed_for_retirement_8|floatformat:"2"|intcomma}} saved in order for the returns alone to make you ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} every year.
-        </p>
-        
-        {% if needed_per_year_for_retirement_8 > 0 %}
-        
-        <p>
-            So how difficult will it be for you to save this much money? Using our compound interest calculator we found that you need to save ${{needed_per_year_for_retirement_8|floatformat:"2"|intcomma}} per year until you are age {{retirement|floatformat:"0"}} in order to have enough to fully supplement your annual income with the income from your investments.  This is {{percent_yearly_retirement_8|floatformat:"1"}}% of your current annual income.
-        </p>
-        <p>
-            What about your Bucket List goals?  They already take up {{percent_of_yearly_wage|floatformat:"1"}}% of your yearly income.  This means that {{percent_yearly_retirement_8_all|floatformat:"1"}}% of every pay check until you are 
-            
-            {% if under_over_same == 0%}
-                {{retirement|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.
-            {% elif under_over_same == 1 %}
-                {{life_expectancy|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.  After age {{life_expectancy|floatformat:"0"}} you should be done with all of your goals and only have to worry about saving for retirement for the next {{retirement_end_date_difference|floatformat:"0"}} years.
-            {% else %}
-                {{retirement|floatformat:"0"}} years old needs to be dedicated toward retirement and accomplishing your Bucket List goals.  After age {{retirement|floatformat:"0"}} you will be able to retire and only have to worry about paying for your Bucket List goals for the next {{retirement_end_date_difference|floatformat:"0"}} years.
-            {% endif %}
-        </p>
-        {% else %}
-        
-            <p>
-                So how much do you need to save per year to make your dreams of retirement a reality?  You don't!  In {{years_left|floatformat:"0"}} years making 8% return on your investment you will have more than the ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} you need at age {{retirement|floatformat:"0"}}. 
-            </p>
-            <p>
-                Given this information you should have no problem reaching retirement.  You could even play around with your numbers a little bit and see if earlier retirement could would be an option for you.
-            </p>
-            <p>
-                Even more importantly this means that the financial burden most people have when saving for retirement won't be as much of an issue for you.  You can dedicate even more of your income towards reaching all of those Bucket List goals!
-            </p>
-            
-        {% endif %}
-    </li>
-    <li>
-        <h4>9% APR</h4>
-        <p>
-            In order to retire you need to the returns on your investments to completely supplement your yearly income. This currently is ${{yearly_earnings|floatformat:"2"|intcomma}}, if we take into account inflation you would need to make ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} per year when you are age {{retirement|floatformat:"0"}} to have the same level of spending power that you do today.  At a 9% return on investment you need to have ${{total_needed_for_retirement_9|floatformat:"2"|intcomma}} saved in order for the returns alone to make you ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} every year.
-        </p>
-        
-        {% if needed_per_year_for_retirement_9 > 0 %}
-        
-        <p>
-            So how difficult will it be for you to save this much money? Using our compound interest calculator we found that you need to save ${{needed_per_year_for_retirement_9|floatformat:"2"|intcomma}} per year until you are age {{retirement|floatformat:"0"}} in order to have enough to fully supplement your annual income with the income from your investments.  This is {{percent_yearly_retirement_9|floatformat:"1"}}% of your current annual income.
-        </p>
-        <p>
-            What about your Bucket List goals?  They already take up {{percent_of_yearly_wage|floatformat:"1"}}% of your yearly income.  This means that {{percent_yearly_retirement_9_all|floatformat:"1"}}% of every pay check until you are 
-            
-            {% if under_over_same == 0%}
-                {{retirement|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.
-            {% elif under_over_same == 1 %}
-                {{life_expectancy|floatformat:"0"}} years old needs to be dedicated towards retirement and accomplishing your Bucket List goals.  After age {{life_expectancy|floatformat:"0"}} you should be done with all of your goals and only have to worry about saving for retirement for the next {{retirement_end_date_difference|floatformat:"0"}} years.
-            {% else %}
-                {{retirement|floatformat:"0"}} years old needs to be dedicated toward retirement and accomplishing your Bucket List goals.  After age {{retirement|floatformat:"0"}} you will be able to retire and only have to worry about paying for your Bucket List goals for the next {{retirement_end_date_difference|floatformat:"0"}} years.
-            {% endif %}
-        </p>
-        
-        {% else %}
-        
-            <p>
-                So how much do you need to save per year to make your dreams of retirement a reality?  You don't!  In {{years_left|floatformat:"0"}} years making 9% return on your investment you will have more than the ${{yearly_income_at_retirement|floatformat:"2"|intcomma}} you need at age {{retirement|floatformat:"0"}}. 
-            </p>
-            <p>
-                Given this information you should have no problem reaching retirement.  You could even play around with your numbers a little bit and see if earlier retirement could would be an option for you.
-            </p>
-            <p>
-                Even more importantly this means that the financial burden most people have when saving for retirement won't be as much of an issue for you.  You can dedicate even more of your income towards reaching all of those Bucket List goals!
-            </p>
-            
-        {% endif %}
-    </li>
-</ul>
-<br>
-<hr>
-{% endif %}
+        <div class = "col-md-4">
+        <div class = "sections">
+        </div><!--end sections one-->
+        </div><!--end col-md-4-->
+    </div><!--end tow-->
+</div><!--end container-->
+
 {% endblock content %}
  
  
