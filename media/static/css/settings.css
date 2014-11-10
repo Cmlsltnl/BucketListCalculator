@@ -29,3 +29,7 @@
     width: 100%;
     margin: auto;
 }
+
+.sections ul li {
+    list-style: none;
+}

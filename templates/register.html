@@ -1,18 +1,28 @@
 {% extends 'base.html' %}
-
 {% block title %}Register{% endblock title %}
-
 {% block content %}
 
-<h2>Register</h2>
+<link href="/media/static/css/settings.css" rel="stylesheet" type="text/css"/>
 
-<form action = "/accounts/register/" method = "post">{% csrf_token %}
-<ul>
-    {{form.as_ul}}
+<div class = "container">
+    <div class = "row">
+        <div class = "col-md-12">
+            <div class = "sections">
 
-</ul>
-<input type = "submit" value = "Register" />
+                <h2>Register</h2>
 
-</form>
+                <form action = "/accounts/register/" method = "post">{% csrf_token %}
+                <ul>
+                    {{form.as_ul}}
+    
+                </ul>
+                <input type = "submit" value = "Register" />
+
+                </form>
+               
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock content %}
