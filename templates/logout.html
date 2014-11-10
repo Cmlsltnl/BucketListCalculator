@@ -1,10 +1,21 @@
 {% extends 'base.html' %}
-
 {% block title %}Home{% endblock title %}
-
 {% block content %}
 
-    <h2>You are now logged out!</h2>
-    <p>Click <a href="/accounts/login/">here</a> to log in again.</p>
+<link href="/media/static/css/settings.css" rel="stylesheet" type="text/css"/>
+
+<div class = "container">
+    <div class = "row">
+        <div class = "col-md-12">
+            <div class = "sections">
+            
+                <h2>You are now logged out!</h2>
+                <br>
+                <p>Click <a href="/accounts/login/">here</a> to log in again.</p>
     
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock content %}
