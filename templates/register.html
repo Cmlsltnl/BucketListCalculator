@@ -10,13 +10,27 @@
             <div class = "sections">
 
                 <h2>Register</h2>
-
+                
                 <form action = "/accounts/register/" method = "post">{% csrf_token %}
-                <ul>
-                    {{form.as_ul}}
-    
-                </ul>
-                <input type = "submit" value = "Register" />
+                
+                    {% for field in form %}
+                        <div class = "fieldWrapper">
+                            {{field.errors }}
+                            {{field.label_tag}}
+                            {{field}}
+                            <br>
+                            <br>
+                            {% if field.help_text %}
+                            <div class = "helper-text">
+                                {{ field.help_text }}
+                            </div>
+                            <br>
+                            {% endif %}
+                        </div>
+                  
+                    {% endfor %}
+               <br>
+                <input type = "submit" value = "Register" class = "btn btn-warning" />
 
                 </form>
                

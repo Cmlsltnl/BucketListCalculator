@@ -33,3 +33,12 @@
 .sections ul li {
     list-style: none;
 }
+
+.sections .helper-text {
+    background-color: #F0F0F0;
+    padding: 10px 10px 10px 25px;
+    margin: auto;
+    border-radius: 4px;
+    box-shadow: 0 0 1px black;
+    width: 85%;
+}
