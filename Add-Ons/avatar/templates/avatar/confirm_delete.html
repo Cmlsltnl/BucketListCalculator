@@ -1,10 +1,14 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load url from future %}
+{% block title %}Delete Profile Picture{% endblock %}
+{% block content %}
+
+
 
 <link href="/media/static/css/custom_avatar.css" rel="stylesheet" type="text/css"/>
 
-{% block content %}
+
 
 <div class = "container">
     <div class = "row">
@@ -12,7 +16,8 @@
             <div class = "sections">
 
                 <div class = "container">
-                    <p>{% trans "Please select the avatars that you would like to delete." %}</p>
+                    <h1>Delete Your Profile Pictures</h1>
+                    <p>{% trans "Please select the pictures that you would like to delete." %}</p>
                     {% if not avatars %}
                         {% url 'avatar_change' as avatar_change_url %}
                         <p>{% blocktrans %}You have no avatars to delete. Please <a href="{{ avatar_change_url }}">upload one</a> now.{% endblocktrans %}</p>

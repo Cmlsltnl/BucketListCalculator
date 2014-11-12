@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n avatar_tags %}
 {% load url from future %}
-
+{% block title %}Add Profile Picture{% endblock %}
 {% block content %}
 
 <link href="/media/static/css/custom_avatar.css" rel="stylesheet" type="text/css"/>
@@ -11,11 +11,11 @@
         <div class = "col-md-12">
             <div class = "sections">
             
-                        
-                <p>{% trans "Your current avatar: " %}</p>
+                <h1>Change Your Profile Picture</h1>
+                <p>{% trans "Your current picture: " %}</p>
                 {% avatar user %}
                 {% if not avatars %}
-                    <p>{% trans "You haven't uploaded an avatar yet. Please upload one now." %}</p>
+                    <p>{% trans "You haven't uploaded an picture yet. Please upload one now." %}</p>
                 {% endif %}
                 <form enctype="multipart/form-data" method="POST" action="{% url 'avatar_add' %}">
                     {{ upload_avatar_form.as_p }}

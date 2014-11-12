@@ -2,18 +2,23 @@
 {% load i18n avatar_tags %}
 {% load url from future %}
 
-{% block title %}Change Avatar{% endblock %}
+{% block title %}Change Profile Picture{% endblock %}
+
+
+{% block content %}
+
 
 <link href="/media/static/css/custom_avatar.css" rel="stylesheet" type="text/css"/>
 
-{% block content %}
+
 
 <div class = "container">
     <div class = "row">
         <div class = "col-md-12">
             <div class = "sections">
-                        
-                <p>{% trans "Your current avatar: " %}</p>
+                <h1>Change Your Profile Picture</h1>    
+                <p>{% trans "Your Current Picture:" %}</p>
+                
                 <br>
                 {% avatar user %}
                 <br>
