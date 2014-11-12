@@ -13,8 +13,9 @@
                     {% avatar item 130 %}
                 </div>
                 <div class = "profile-header">
-                    <h1>{{item}}'s Bucket List</h1>
-                    <p>{{goals_to_complete}} goals left to complete</p>
+                    <h1>{{item}}'s Bucket List</h1> 
+                    <p class = "left-to-complete">{{goals_to_complete}} goals left to complete</p>
+                    <a href = "/messages/compose/{{item}}/" class = "btn btn-success btn-sm bottom-buttons"><span class = "fa fa-envelope mail-icon"></span> Message {{item}}</a>
                 </div>
                 
 

@@ -30,11 +30,13 @@
     position: absolute;
     bottom: 15px;
     right: 15px;
-    display: none;
+    display: inline-block;
 }
+
 .profile-header {
     display: inline-block;
     padding: 10px; 
+    margin-bottom: 25px;
 }
 
 .profile-header h1 {
@@ -130,9 +132,12 @@
 
 /*------------------------Responsive Styling------------------------*/
 
-@media only screen and (min-width : 480px) {
+@media only screen and (min-width : 410px) {
     .profile-sections .bottom-buttons {
         display: inline-block;      
+    }
+    .profile-header {
+        margin-bottom: 0;
     }
 }
 
