@@ -16,3 +16,33 @@
 .sections ul li {
     list-style: none;
 }
+
+.sections .padding {
+    padding: 10px;
+}
+
+.sections a:hover {
+    color: #3D3D3D;
+    text-decoration: none;
+}
+
+.oswald {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 800;
+}
+
+.padding-left {
+    padding-left: 22px;
+}
+
+.message-body {
+    background-color: #F0F0F0;
+    padding: 15px 15px 5px 20px;
+    margin: auto;
+    border-radius: 4px;
+    box-shadow: 0 0 1px black;
+}
+
+#id_body {
+    width: 100%;
+}

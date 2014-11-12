@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load url from future %}
+
+{% block content %}
+
+<link href="/media/static/css/custom_messages.css" rel="stylesheet" type="text/css"/>
+
+<div class = "container">
+    <div class = "row">
+        <div class = "col-sm-8">
+            <div class = "sections">
+            
+                <h1>{% trans "View Message" %}</h1>
+                <dl class="message-headers">
+                    <dt class = "padding oswald">{% trans "Subject" %}</dt>
+                    <dd class = "padding-left"><strong>{{ message.subject }}</strong></dd>
+                    <dt class = "padding oswald">{% trans "Sender" %}</dt>
+                    <dd class = "padding-left"><a href="/bucketlist/userstats/{{message.sender}}/">{{ message.sender }}</a></dd>
+                    <dt class = "padding oswald">{% trans "Date" %} </dt>
+                    <dd class = "padding-left">{{ message.sent_at|date:_("DATETIME_FORMAT")}}</dd>
+                    <dt class = "padding oswald">{% trans "Recipient" %}</dt>
+                    <dd class = "padding-left"><a href="/bucketlist/userstats/{{ message.recipient }}/">{{ message.recipient }}</a></dd>
+                </dl>
+                <div class = "message-body">
+                    {{ message.body|linebreaksbr }}<br /><br />
+                </div>
+                <br>
+                {% ifequal message.recipient.pk user.pk %}
+                <a href="{% url 'messages_reply' message.id %}"class = "btn btn-success btn-sm">{% trans "Reply" %}</a>
+                {% endifequal %}
+                <a href="{% url 'messages_delete' message.id %}" class = "btn btn-warning btn-sm">{% trans "Delete" %}</a>
+
+                {% comment %}Example reply_form integration
+                {% if reply_form %}
+                <h1>{% trans "Compose reply"%}</h1>
+                <form action="{% url 'messages_reply' message.id %}" method="post">
+                {% csrf_token %}
+                <table>
+                {{ reply_form.as_table }}
+                </table>
+                <input type="submit" value="{% trans "Send" %} &raquo;"/>
+                </form>
+                {% endif %}
+                {% endcomment %}
+                <br>
+            </div>
+            <br>
+        </div>
+        <div class = "col-sm-4">
+            <div class = "sections">
+                <ul class="subnavilist">
+                    <li><a href="{% url 'messages_inbox' %} ">&raquo;&nbsp;{% trans "Inbox" %}</a></li>
+                    <li><a href="{% url 'messages_outbox' %} ">&raquo;&nbsp;{% trans "Sent Messages" %}</a></li>
+                    <li><a href="{% url 'messages_compose' %} ">&raquo;&nbsp;{% trans "New Message" %}</a></li>
+                    <li><a href="{% url 'messages_trash' %} ">&raquo;&nbsp;{% trans "Trash" %}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
