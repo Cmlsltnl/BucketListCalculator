@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}New Password Set{% endblock %}
+{% block content %}
+
+<link href="/media/static/css/custom_password_reset.css" rel="stylesheet" type="text/css"/>
+
+<div class = "container">
+    <div class = "row">
+        <div class = "col-md-12">
+            <div class = "sections">
+                <h1>Password Reset</h1>
+                <br>
+                <p>{% trans "Your password has successfully been reset. You can use it right now on the login page." %}</p>
+    
+            </div>
+        </div>    
+    </div>
+</div>
+
+{% endblock %}

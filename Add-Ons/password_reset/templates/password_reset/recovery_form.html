@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load url from future %}
+{% block title %}Password Recovery{% endblock %}
+{% block content %}
+
+<link href="/media/static/css/custom_password_reset.css" rel="stylesheet" type="text/css"/>
+
+<div class = "container">
+    <div class = "row">
+        <div class = "col-md-12">
+            <div class = "sections">
+                <h1>Password Reset</h1>
+                <br>
+                <form method="post" action="{{ url }}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <p><br><input type="submit" value="{% trans "Recover my password" %}" class = "btn btn-warning"></p>
+                </form>
+    
+            </div>
+        </div>    
+    </div>
+</div>
+
+{% endblock %}
