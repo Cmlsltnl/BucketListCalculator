@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load i18n avatar_tags %}
+{% load url from future %}
+
+{% block title %}Change Avatar{% endblock %}
+
+<link href="/media/static/css/custom_avatar.css" rel="stylesheet" type="text/css"/>
+
+{% block content %}
+
+<div class = "container">
+    <div class = "row">
+        <div class = "col-md-12">
+            <div class = "sections">
+                        
+                <p>{% trans "Your current avatar: " %}</p>
+                <br>
+                {% avatar user %}
+                <br>
+                <br>
+                {% if not avatars %}
+                    <p>{% trans "You haven't uploaded an avatar yet. Please upload one now." %}</p>
+                {% else %}
+                    <form method="POST" action="{% url 'avatar_change' %}">
+                        <ul>
+                            {{ primary_avatar_form.as_ul }}
+                        </ul>
+                        <p>{% csrf_token %}<input type="submit" value="{% trans "Choose new Default" %}" class= "btn btn-warning btn-sm" /></p>
+                    </form>
+                {% endif %}
+                <form enctype="multipart/form-data" method="POST" action="{% url 'avatar_add' %}">
+                    {{ upload_avatar_form.as_p }}
+                    <p>{% csrf_token %}<br><input type="submit" value="{% trans "Upload New Image" %}" class = "btn btn-success" /></p>
+                </form>
+            
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
