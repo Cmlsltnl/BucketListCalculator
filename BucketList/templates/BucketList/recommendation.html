@@ -959,11 +959,18 @@
             <hr>
             {% endif %}
         </div><!--end sections-->
+        <br>
         </div><!--end col-md-8-->
         
         
         <div class = "col-md-4">
         <div class = "sections">
+            <h1></h1>
+            {% for item in mylist %}
+                <div class = "mylist-items">
+                    <p>{{item}}</p>
+                </div>
+            {% endfor %}
         </div><!--end sections one-->
         </div><!--end col-md-4-->
     </div><!--end tow-->

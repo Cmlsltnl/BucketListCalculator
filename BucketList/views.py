@@ -968,12 +968,14 @@ def recommendation(request):
     percent_yearly_retirement_9 = (needed_per_year_for_retirement_9/yearly_earnings)*100
     percent_yearly_retirement_9_all = percent_of_yearly_wage + percent_yearly_retirement_9
     
+    
     #--------------------Passed To Template-----------------------              
     
     context = {
                      #-------Top Stats & Basic Overview------
                      'user1': user1,
                      'mylist': mylist,
+                     'all_goals': all_goals,
                      'total_cost': total_cost,
                      'total_hours': total_hours,
                      'total_time': total_time,

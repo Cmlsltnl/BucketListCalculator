@@ -21,3 +21,14 @@
     font-weight: 400;
     padding-bottom: 15px;
 }
+
+/*-------------------------Mylist Items------------------------*/
+
+.mylist-items {
+    background-color: #F0F0F0;
+    padding: 10px 10px 25px 25px;
+    margin: auto;
+    border-radius: 4px;
+    box-shadow: 0 0 1px black;
+    margin-bottom: 12px;
+}
