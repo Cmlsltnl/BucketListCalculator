@@ -968,7 +968,10 @@
             <h1></h1>
             {% for item in mylist %}
                 <div class = "mylist-items">
-                    <p>{{item}}</p>
+                    <h4>{{item}}</h4>
+                    <p>Hours: {{item.hours}}</p>
+                    <p>Time: {{item.time}}</p>
+                    <p>Cost: {{item.cost}}</p>
                 </div>
             {% endfor %}
         </div><!--end sections one-->
