@@ -54,31 +54,31 @@
              <br>
              <h2>Your Most Difficult Goal</h2>
              <br>
-              <p>Not all goals take the same amount of effort.  For example according to the data you entered <i>{{most_difficult_goal}}</i> is your most difficult goal.  This goal is  {{most_difficult_percentage_harder|floatformat:"1"}} times more difficult than your average goal! That could be a rough one.  But we believe in you.
+              <p>Not all goals take the same amount of effort.  For example according to the data you entered <i class = "number">{{most_difficult_goal}}</i> is your most difficult goal.  This goal is  <span class = "number">{{most_difficult_percentage_harder|floatformat:"1"}} times more difficult</span> than your average goal! That could be a rough one.  But we believe in you.
               <br>
               <br>
-              Not only is this goal {{most_difficult_percentage_harder|floatformat:"1"}} times harder than your average goal but it makes up {{most_difficult_goal_percentage|floatformat:"1"}}% of all of the time, money, and resources you need to put into accomplishing everything on your entire Bucket List.  If you want to finish your goals in exactly {{years_left|floatformat:"0"}} years, by the age of {{life_expectancy|floatformat:"0"}} more years you could take {{years_needed_for_most_difficult|floatformat:"0"}} years to accomplish only this goal and still be on pace to accomplish everything else!
+              Not only is this goal <span class = "number">{{most_difficult_percentage_harder|floatformat:"1"}} times harder</span> than your average goal but it makes up <span class = "number orange">{{most_difficult_goal_percentage|floatformat:"1"}}%</span> of all of the time, money, and resources you need to put into accomplishing everything on your entire Bucket List.  If you want to finish your goals in exactly {{years_left|floatformat:"0"}} years (by the age of {{life_expectancy|floatformat:"0"}}) you could take <span class = "number">{{years_needed_for_most_difficult|floatformat:"0"}} years</span> to accomplish only this goal and still be on pace to accomplish everything else!
               <br>
               <br>
-              Now lets see how <i>{{most_difficult_goal}}</i> stacks up against everyone else's goals:
+              How does <i class = "number">{{most_difficult_goal}}</i> stacks up against everyone else's goals?
               <br>
               <ul>
                   <li>
                   {% if most_difficult_percentage_of_average_cost > 10 %}
                     
-                        Now that's an expensive goal!  It's {{most_difficult_percent_of_yearly|floatformat:"1"}}% of your annual income.  At ${{most_difficult_bucket_list_item.cost|floatformat:"2"|intcomma}} <i>{{most_difficult_goal}}</i> is more expensive than {{most_difficult_more_cost_than|floatformat:"1"}}% of the goals on Bucket List Calculator.  Its even  {{most_difficult_percentage_of_average_cost|floatformat:"1"}} times more expensive than the average goal 
+                        It's a very expensive goal!  It's <span class = "number orange">{{most_difficult_percent_of_yearly|floatformat:"1"}}%</span> of your annual income.  At <span class = "number text-success">${{most_difficult_bucket_list_item.cost|floatformat:"2"|intcomma}}</span> <i>{{most_difficult_goal}}</i> is more expensive than <span class = "number orange">{{most_difficult_more_cost_than|floatformat:"1"}}%</span> of the goals on Bucket List Calculator.  Its even  <span class = "number">{{most_difficult_percentage_of_average_cost|floatformat:"1"}} times</span> more expensive than the average goal 
                         
                   {% elif most_difficult_percentage_of_average_cost > 3 %}
                         
-                        This one sure going to cost you!  At {{most_difficult_percentage_of_average_cost|floatformat:"1"}} times larger than the average users goal, and {{most_difficult_percent_of_yearly|floatformat:"1"}}% of your annual income this is even more costly than {{most_difficult_more_cost_than|floatformat:"1"}}% of all goals on all of Bucket List Calculator.
+                        This one sure going to cost you!  At <span class = "number">{{most_difficult_percentage_of_average_cost|floatformat:"1"}} times</span> larger than the average users goal, and <span class = "number orange">{{most_difficult_percent_of_yearly|floatformat:"1"}}% </span>of your annual income this is even more costly than <span class = "number orange">{{most_difficult_more_cost_than|floatformat:"1"}}%</span> of all goals on all of Bucket List Calculator.
                         
                   {% elif most_difficult_percentage_of_average_cost > 0.6 %}
                                     
-                         This is going to be quite the costly goal.  It's larger than {{most_difficult_more_cost_than|floatformat:"1"}}% of all the goals on Bucket List Calculator.  It also equates to {{most_difficult_percentage_of_average_cost|floatformat:"1"}}% of your annual income. 
+                         This is going to be quite the costly goal.  It's larger than <span class = "number orange">{{most_difficult_more_cost_than|floatformat:"1"}}%</span> of all the goals on Bucket List Calculator.  It also equates to <span class = "number orange">{{most_difficult_percentage_of_average_cost|floatformat:"1"}}%</span> of your annual income. 
                                       
                   {% else %}
                   
-                        Your goal is more expensive than {{most_difficult_more_cost_than|floatformat:"1"}}% of all the in progress goals on Bucket List Calculator.  It costs {{most_difficult_percentage_of_average_cost|floatformat:"1"}}% of your annual income.    
+                        Your goal is more expensive than <span class = "number orange">{{most_difficult_more_cost_than|floatformat:"1"}}%</span> of all the in progress goals on Bucket List Calculator.  It costs <span class = "number orange">{{most_difficult_percentage_of_average_cost|floatformat:"1"}}%</span> of your annual income.    
                         
                   
                   {% endif %}
@@ -87,15 +87,15 @@
                   </li>
                   <br>
                   <li>
-                  This will take more hours to accomplish than {{most_difficult_more_hours_than|floatformat:"1"}}% of all the Bucket List  Goals on this website. 
+                  This will take more hours to accomplish than <span class = "number orange">{{most_difficult_more_hours_than|floatformat:"1"}}%</span> of all the Bucket List  Goals on this website. 
                   
                   {% if most_difficult_percentage_of_average_hours > 1 %}
                   
-                        You have projected that <i>{{most_difficult_goal}}</i>  will take {{most_difficult_bucket_list_item.hours}}  hours to accomplish,  or {{most_difficult_percentage_of_average_hours|floatformat:"1"}} times more hours than the average users goal.  
+                        You have projected that <i>{{most_difficult_goal}}</i>  will take {{most_difficult_bucket_list_item.hours}}  hours to accomplish,  or <span class = "number">{{most_difficult_percentage_of_average_hours|floatformat:"1"}} times</span> more hours than the average users goal.  
                         
                         {% if most_difficult_percentage_of_average_hours > 3 %}
                         
-                            In order to put that into perspective a little bit better the average goal on this site would take about {{average_goal_average_hours_per_year|floatformat:"1"}} hours a week for an entire year to accomplish.  In your case it would take {{most_difficult_average_hours_per_year|floatformat:"1"}} every week.
+                            In order to put that into perspective a little bit better the average goal on this site would take about {{average_goal_average_hours_per_year|floatformat:"1"}} hours a week for an entire year to accomplish.  In your case it would take <span class = "number">{{most_difficult_average_hours_per_year|floatformat:"1"}} every week</span>.
                             
                             
                             {% if most_difficult_percentage_of_average_hours > 5 %}
@@ -110,7 +110,7 @@
                   </li>
                   <br>
                   <li>
-                  Your goal will take more full days dedicated to it than {{most_difficult_more_days_than|floatformat:"1"}}% of all the goals on this website.
+                  Your goal will take more full days dedicated to it than <span class = "number orange">{{most_difficult_more_days_than|floatformat:"1"}}%</span> of all the goals on this website.
                   
                   {% if most_difficult_percentage_of_average_time > 2 %}
                   
@@ -118,7 +118,7 @@
                         
                             {% if most_difficult_percentage_of_average_time > 4 %}
                                 
-                                    ({{most_difficult_percentage_of_average_time|floatformat:"1"}} times more days than the average goal) this goal is going to require some serious time set aside to accomplish!  Good luck.
+                                    (<span class = "number">{{most_difficult_percentage_of_average_time|floatformat:"1"}} times</span> more days than the average goal) this goal is going to require some serious time set aside to accomplish!  Good luck.
                                     
                             {% else %}
 
@@ -132,7 +132,9 @@
               </ul>
               </p>
               <br> 
-              <hr>
+              </div><!--end third section-->
+              <br>
+              <div class = "sections">
               <!---------List of Most and Least Difficult----->
               <br>
              <h2>Top Five Most Difficult</h2>
