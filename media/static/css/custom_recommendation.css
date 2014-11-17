@@ -40,10 +40,20 @@
     padding-bottom: 15px;
 }
 
+.mylist-items h4 a {
+    color: #3D3D3D;
+}
+
+.mylist-items h4 a:hover {
+    color: #5cb85c;
+    text-decoration: underline;
+}
+
 /*-----------------------Number Highlights----------------------*/
 
 .number {
     font-weight: bold;
+    
 }
 
 .orange {

@@ -975,10 +975,11 @@
             <br>
             {% for item in mylist %}
                 <div class = "mylist-items">
-                    <h4>{{item}}</h4>
-                    <p>Hours: {{item.hours}}</p>
-                    <p>Time: {{item.time}}</p>
-                    <p>Cost: {{item.cost}}</p>
+                    <h4><a href = "/bucketlist/item/{{item.id}}/">{{item}}</a></h4>
+                    <p>Hours: <span class = "number">{{item.hours}}</span></p>
+                    <p>Days: <span class = "number">{{item.time}}</span></p>
+                    <p>Cost: <span class = "number text-success">${{item.cost}}</span></p>
+                    <p>Category: <span class = "number orange">{{item.goal_type}}</span></p>
                 </div>
             {% endfor %}
         </div><!--end sections one-->
