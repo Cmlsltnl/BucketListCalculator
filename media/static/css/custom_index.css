@@ -302,6 +302,7 @@ body {
         }
     }
 
+    
     /* Small Devices, Tablets */
 @media only screen and (min-width : 768px) {
         #slogan1 {
@@ -323,6 +324,7 @@ body {
         .featured-user-div {
             width: 32%;
         }
+        
     }
 
     /* Medium Devices, Desktops */

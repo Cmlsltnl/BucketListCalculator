@@ -30,6 +30,7 @@
 }
 
 
+
 /*-------------------------Mylist Items------------------------*/
 
 .mylist-items {
@@ -70,3 +71,14 @@
 
 /*---------------------Top Five & Bottom Five ------------------*/
 
+.most-least-difficult {
+    width: 100%;
+    display: inline-block;
+}
+
+@media only screen and (min-width : 650px) {
+        
+    .most-least-difficult {
+        width: 49%;
+    }
+}
