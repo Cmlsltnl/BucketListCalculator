@@ -39,3 +39,13 @@
     font-weight: 400;
     padding-bottom: 15px;
 }
+
+/*-----------------------Number Highlights----------------------*/
+
+.number {
+    font-weight: bold;
+}
+
+.orange {
+    color: #EE9A00;
+}
