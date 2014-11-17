@@ -22,6 +22,14 @@
     padding-bottom: 15px;
 }
 
+.sections h3 {
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    padding-bottom: 15px;
+}
+
+
 /*-------------------------Mylist Items------------------------*/
 
 .mylist-items {
@@ -59,3 +67,6 @@
 .orange {
     color: #CD8162;
 }
+
+/*---------------------Top Five & Bottom Five ------------------*/
+

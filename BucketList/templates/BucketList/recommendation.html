@@ -137,7 +137,13 @@
               <div class = "sections">
               <!---------List of Most and Least Difficult----->
               <br>
-             <h2>Top Five Most Difficult</h2>
+             <h2>Most and Least Difficult Goals</h2>
+             <br>
+             <p>
+                For this section we use an algorithm that converts all of the days, hours, and costs of your goal into one single number and then compare the goals against one another to find which are going to be the most difficult overall.  We even factor in your hourly wage so we can compare items that cost a lot of money to items that require a great deal of time.
+             </p>
+             <br>
+             <h3>Five Most Difficult</h3>
              <ol>
              {% for item in top_five_most_difficult %}
                 <li>{{item}}</li>
@@ -145,7 +151,7 @@
              </ol>
              <br>
               <br>
-             <h2>Top Five Least Difficult</h2>
+             <h3>Five Least Difficult</h3>
              <ol>
              {% for item in bottom_five_least_difficult %}
                 <li>{{item}}</li>
@@ -153,7 +159,9 @@
              </ol>
              <br>
              <br>
-             <hr>
+             </div><!--end fourth section-->
+             <br>
+             <div class = "sections">
              <!---------Annual Income and Wage Increase------>
              <br>
              <h2>Analysing Your Yearly Income</h2>
