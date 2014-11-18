@@ -74,11 +74,19 @@
 .most-least-difficult {
     width: 100%;
     display: inline-block;
+    background-color: #F0F0F0;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 0 1px black;
+    margin: 4px;
+    margin-bottom: 15px;
+    vertical-align: top;
+    height: 100%;
 }
 
 @media only screen and (min-width : 650px) {
         
     .most-least-difficult {
-        width: 49%;
+        width: 48%;
     }
 }
