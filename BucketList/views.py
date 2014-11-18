@@ -454,44 +454,56 @@ def recommendation(request):
     #Finds Annual Salary Left After Bucket List Goals
     annual_salary_left = yearly_earnings - ((yearly_earnings*percent_of_yearly_wage)/100)
     
+   
+    adjusted_life_expectancy = life_expectancy
+    adjusted_years_left = float(adjusted_life_expectancy - age)
+    retirement_less_than_life_expectancy = False
     
+    if user1.include_retirement == True:
+        if life_expectancy > user1.retirement:
+            adjusted_life_expectancy = user1.retirement
+            retirement_less_than_life_expectancy = True
+            
+    print adjusted_life_expectancy
+    print adjusted_years_left
+    print retirement_less_than_life_expectancy
     
     #Salary and Total Earnings if Annual Salary Increases by 1% every year
-    salary_after_compounded_1 = total_amount_after_compounded(0.01, yearly_earnings, years_left)[1]
+    salary_after_compounded_1 = total_amount_after_compounded(0.01, yearly_earnings, adjusted_years_left)[1]
     
-    total_earnings_after_compounded_1 = total_amount_after_compounded(0.01, yearly_earnings, years_left)[0]
+    total_earnings_after_compounded_1 = total_amount_after_compounded(0.01, yearly_earnings, adjusted_years_left)[0]
     
     annual_percent_after_compounded_1 = (total_cost/total_earnings_after_compounded_1)*100
     
     
     #Salary and Total Earnings if Annual Salary Increases by 2% every year
-    salary_after_compounded_2 = total_amount_after_compounded(0.02, yearly_earnings, years_left)[1]
+    salary_after_compounded_2 = total_amount_after_compounded(0.02, yearly_earnings, adjusted_years_left)[1]
     
-    total_earnings_after_compounded_2 = total_amount_after_compounded(0.02, yearly_earnings, years_left)[0]
+    total_earnings_after_compounded_2 = total_amount_after_compounded(0.02, yearly_earnings, adjusted_years_left)[0]
     
     annual_percent_after_compounded_2 = (total_cost/total_earnings_after_compounded_2)*100
     
     
     #Salary and Total Earnings if Annual Salary Increases by 3% every year
-    salary_after_compounded_3 = total_amount_after_compounded(0.03, yearly_earnings, years_left)[1]
+    salary_after_compounded_3 = total_amount_after_compounded(0.03, yearly_earnings, adjusted_years_left)[1]
     
-    total_earnings_after_compounded_3 = total_amount_after_compounded(0.03, yearly_earnings, years_left)[0]
+    total_earnings_after_compounded_3 = total_amount_after_compounded(0.03, yearly_earnings, adjusted_years_left)[0]
     
     annual_percent_after_compounded_3 = (total_cost/total_earnings_after_compounded_3)*100
     
     
     #Salary and Total Earnings if Annual Salary Increases by 4% every year
-    salary_after_compounded_4 = total_amount_after_compounded(0.04, yearly_earnings, years_left)[1]
+    salary_after_compounded_4 = total_amount_after_compounded(0.04, yearly_earnings, adjusted_years_left)[1]
     
-    total_earnings_after_compounded_4 = total_amount_after_compounded(0.04, yearly_earnings, years_left)[0]
+    total_earnings_after_compounded_4 = total_amount_after_compounded(0.04, yearly_earnings, adjusted_years_left)[0]
     
     annual_percent_after_compounded_4 = (total_cost/total_earnings_after_compounded_4)*100
     
     
     #Salary and Total Earnings if Annual Salary Increases by 5% every year
-    salary_after_compounded_5 = total_amount_after_compounded(0.05, yearly_earnings, years_left)[1]
+    salary_after_compounded_5 = total_amount_after_compounded(0.05, yearly_earnings, adjusted_years_left)[1]
     
-    total_earnings_after_compounded_5 = total_amount_after_compounded(0.05, yearly_earnings, years_left)[0]
+    total_earnings_after_compounded_5 = total_amount_after_compounded(0.05, yearly_earnings, adjusted_years_left)[0]
     
     annual_percent_after_compounded_5 = (total_cost/total_earnings_after_compounded_5)*100
         
@@ -1042,6 +1054,8 @@ def recommendation(request):
                      'annual_percent_after_compounded_4': annual_percent_after_compounded_4,
                      'salary_after_compounded_5': salary_after_compounded_5,
                      'annual_percent_after_compounded_5': annual_percent_after_compounded_5,
+                     'adjusted_life_expectancy': adjusted_life_expectancy,
+                     'retirement_less_than_life_expectancy': retirement_less_than_life_expectancy,
                      
                      #----------------Distribution of Goals-------------
 
