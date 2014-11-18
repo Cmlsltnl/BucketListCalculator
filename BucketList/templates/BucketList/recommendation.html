@@ -66,7 +66,7 @@
                   <li>
                   {% if most_difficult_percentage_of_average_cost > 10 %}
                     
-                        It's a very expensive goal!  It's <span class = "number orange">{{most_difficult_percent_of_yearly|floatformat:"1"}}%</span> of your annual income.  At <span class = "number text-success">${{most_difficult_bucket_list_item.cost|floatformat:"2"|intcomma}}</span> <i>{{most_difficult_goal}}</i> is more expensive than <span class = "number orange">{{most_difficult_more_cost_than|floatformat:"1"}}%</span> of the goals on Bucket List Calculator.  Its even  <span class = "number">{{most_difficult_percentage_of_average_cost|floatformat:"1"}} times</span> more expensive than the average goal 
+                        It's a very expensive goal!  It's <span class = "number orange">{{most_difficult_percent_of_yearly|floatformat:"1"}}%</span> of your annual income.  At <span class = "number text-success">${{most_difficult_bucket_list_item.cost|floatformat:"0"|intcomma}}</span> <i>{{most_difficult_goal}}</i> is more expensive than <span class = "number orange">{{most_difficult_more_cost_than|floatformat:"1"}}%</span> of the goals on Bucket List Calculator.  Its even  <span class = "number">{{most_difficult_percentage_of_average_cost|floatformat:"1"}} times</span> more expensive than the average goal 
                         
                   {% elif most_difficult_percentage_of_average_cost > 3 %}
                         
@@ -171,76 +171,138 @@
              <br>
              <h2>Analysing Your Yearly Income</h2>
              <br>
-             <p>Unfortunately for most of us when it comes to our Bucket List goals money is the bottleneck.  We want to do it all!  But doing it all can cost quite a bit.  But that is where Bucket List Calculator comes in.  We can give you a better outline to accomplish using all of the information you have so graciously provided:
-             <br>
+             <p>Unfortunately for most of us when it comes to our Bucket List goals money is the bottleneck.  We want to do it all, but doing it all can cost quite a bit.  That is where Bucket List Calculator comes in.  We can give you a better outline to accomplish using all of the information you have so graciously provided:
              <br>
              <ul>  
                     {% if 15000 > annual_salary_left %}
                         <br>
-                        <li>
-                            This is a warning:  According to the of goals on your list and 
-                            your current annual income it appears that if you do accomplish everything on your list it will put you underneath an average liveable wage for a single person.       
+                        <li class = "text-danger number">
+                            According to the of goals on your list and your current annual income it appears that in order to accomplish everything on your list it will put you underneath an average liveable wage for a single person.       
                         </li>
                         
                         
                     {% endif %}       
                 <br>
                 <li>
-                    According to your projections your goals will cost you an average of ${{cost_per_year|floatformat:"2"|intcomma}} per year.  This is the equivalent of {{percent_of_yearly_wage|floatformat:"1"}}% of your current yearly income.
+                    Your goals will cost you an average of <span class = "number text-success">${{cost_per_year|floatformat:"2"|intcomma}}</span> per year.  This is the equivalent of <span class = "number orange">{{percent_of_yearly_wage|floatformat:"1"}}%</span> of your current yearly income.
                     
                     {% if 10 > percent_of_yearly_wage %}
                     
-                        This is excellent!  At this percent of your yearly income everything on your Bucket List should be a breeze to pay for.  You could even go check out some of our other awesome users goals and find some things to add. 
+                        This is excellent!  At this percent of your yearly income everything on your Bucket List should be a breeze to pay for.  You could even go check out some of our other intriguing users goals and find some things to add to your own list. 
                         
                     {% elif 25 > percent_of_yearly_wage %}
                     
-                        This range of income is totally doable.  You may have to do some financial planning but as long as you are focused you should have no issues whatsoever.  It will work out just great for you, don't you worry!
+                        At this range of income is your goals are completely feasible .  You may have to do some financial planning but as long as you are focused you should have no issues whatsoever.  It will work out just great for you, don't you worry!
                         
                     {% elif 50 > percent_of_yearly_wage %}
                     
                         This is a fairly large percentage of your yearly income.  In order to cross off everything on your Bucket List you will need some dedication to financial planning and be able to live well within your means to help save money for your goals.  With that said, congrats!  You have some mighty big dreams and that's pretty neat.
                         <br>
                         <br>
-                        This might be a little bit intimidating for you after all ${{cost_per_year|floatformat:"2"|intcomma}} per year is a lot of money.  But it is important for you to see these numbers so you can make a better plan to accomplish everything.  But we urge you not to remove any items from your list.  Instead of removing items first look for other ways to improve your financial situation.  If you increase the age you hope to be done with all the items on your bucket list of that {{percent_of_yearly_wage|floatformat:"1"}}% of your annual wage will drop significantly.  You can do this by editing your user profile.  Along with that if your annual wage increases, even by a small amount, it can drastically change what percentage of your income you need to dedicate to accomplishing your goals. 
+                        This might be a little bit intimidating for you after all <span class = "number text-success">${{cost_per_year|floatformat:"2"|intcomma}}</span> per year is a lot of money.  But it is important for you to see these numbers so you can make a better plan to accomplish everything.  We urge you not to remove any items from your list.  We don't want you to cross off any of your dreams!  Instead of removing items first look for other ways to improve your financial situation.  If you increase the age you hope to be done with all the items on your bucket list of that <span class = "number orange">{{percent_of_yearly_wage|floatformat:"1"}}%</span> of your annual wage will drop significantly.  You can do this by editing your user profile.  Along with that if your annual wage increases, even by a small amount, it can drastically change what percentage of your income you need to dedicate to accomplishing your goals. 
                         
                     {% elif 75 > percent_of_yearly_wage %}
                     
-                        Now those are some spendy goals!  That's a huge chunk of your income.  You are going to have to be extremely dedicated if you want to make your hopes and dreams happen.  You are using Bucket List Calculator after all so obviously you are a pretty intelligent person so we have faith that you will be able to accomplish everything.  
+                        Those are some spendy goals!  That's a huge chunk of your income.  You are going to have to be extremely dedicated if you want to make these goals happen.  You are using Bucket List Calculator after all so obviously you are a pretty intelligent person so we have faith that you will be able to accomplish everything. 
                         <br>
                         <br>
-                        This might be a little bit intimidating for you after all ${{cost_per_year|floatformat:"2"|intcomma}} per year is a lot of money.  But it is important for you to see these numbers so you can make a better plan to accomplish everything.  But we urge you not to remove any items from your list.  Instead of removing items first look for other ways to improve your financial situation.  If you increase the age you hope to be done with all the items on your bucket list of that {{percent_of_yearly_wage|floatformat:"1"}}% of your annual wage will drop significantly.  You can do this by editing your user profile.  Along with that if your annual wage increases, even by a small amount, it can drastically change what percentage of your income you need to dedicate to accomplishing your goals.
+                        This might be a little bit intimidating for you after all <span class = "number text-success">${{cost_per_year|floatformat:"2"|intcomma}}</span> per year is a lot of money.  But it is important for you to see these numbers so you can make a better plan to accomplish everything.  We urge you not to remove any items from your list.  We don't want you to cross off any of your dreams!  Instead of removing items first look for other ways to improve your financial situation.  If you increase the age you hope to be done with all the items on your bucket list of that <span class = "number orange">{{percent_of_yearly_wage|floatformat:"1"}}%</span> of your annual wage will drop significantly.  You can do this by editing your user profile.  Along with that if your annual wage increases, even by a small amount, it can drastically change what percentage of your income you need to dedicate to accomplishing your goals. 
                         
                     {% elif 100 > percent_of_yearly_wage %}
                     
-                        Someone sure is determined to a a lot with their life, and that's what we at Bucket List Calculator are all about!  This is getting into the range that is incredibly difficult to continue for long periods of time.  It is going to take some inspired financial planning to make all of these goals a reality.  With that said you were smart enough to use Bucket List Calculator so we wouldn't be surprised if got everything on this list done with a few million to spare! 
+                        Someone sure is determined to a a lot with their life, and that's what we at Bucket List Calculator are all about!  This is getting into the range that is incredibly difficult to continue for long periods of time.  It is going to take some inspired financial planning to make all of these goals a reality.  With that said you were smart enough to use Bucket List Calculator so we wouldn't be surprised if got everything on this list done with a few million dollars to spare! 
                         <br>
                         <br>
-                        This might be a little bit intimidating for you after all ${{cost_per_year|floatformat:"2"|intcomma}} per year is a lot of money.  But it is important for you to see these numbers so you can make a better plan to accomplish everything.  But we urge you not to remove any items from your list.  Instead of removing items first look for other ways to improve your financial situation.  If you increase the age you hope to be done with all the items on your bucket list of that {{percent_of_yearly_wage|floatformat:"1"}}% of your annual wage will drop significantly.  You can do this by editing your user profile.  Along with that if your annual wage increases, even by a small amount, it can drastically change what percentage of your income you need to dedicate to accomplishing your goals.
+                        This might be a little bit intimidating for you after all <span class = "number text-success">${{cost_per_year|floatformat:"2"|intcomma}}</span> per year is a lot of money.  But it is important for you to see these numbers so you can make a better plan to accomplish everything.  We urge you not to remove any items from your list.  We don't want you to cross off any of your dreams!  Instead of removing items first look for other ways to improve your financial situation.  If you increase the age you hope to be done with all the items on your bucket list of that <span class = "number orange">{{percent_of_yearly_wage|floatformat:"1"}}%</span> of your annual wage will drop significantly.  You can do this by editing your user profile.  Along with that if your annual wage increases, even by a small amount, it can drastically change what percentage of your income you need to dedicate to accomplishing your goals. 
                                    
                         
                         
                     {% else %}
                     
-                        Well someone must have some awfully costly goals! We commend you on having lofty goals and envy how many awesome things you must have on your list.  Unfortunately unless there are some major unforeseen windfalls or you go full on Walter White this is just too much money for you to handle based on what you have listed.  
+                        Well someone must have some awfully costly goals! We commend you on having lofty goals and envy how many awesome things you must have on your list.  Unfortunately unless there are some major unforeseen windfalls this is just too much money for you to handle based on what you have listed.  
                         <br>
                         <br>
-                        This might be a little bit intimidating for you after all ${{cost_per_year|floatformat:"2"|intcomma}} per year is a lot of money.  But it is important for you to see these numbers so you can make a better plan to accomplish everything.  But we urge you not to remove any items from your list.  Instead of removing items first look for other ways to improve your financial situation.  If you increase the age you hope to be done with all the items on your bucket list of that {{percent_of_yearly_wage|floatformat:"1"}}% of your annual wage will drop significantly.  You can do this by editing your user profile.  Along with that if your annual wage increases, even by a small amount, it can drastically change what percentage of your income you need to dedicate to accomplishing your goals.
+                        This might be a little bit intimidating for you after all <span class = "number text-success">${{cost_per_year|floatformat:"2"|intcomma}}</span> per year is a lot of money.  But it is important for you to see these numbers so you can make a better plan to accomplish everything.  We urge you not to remove any items from your list.  We don't want you to cross off any of your dreams!  Instead of removing items first look for other ways to improve your financial situation.  If you increase the age you hope to be done with all the items on your bucket list of that <span class = "number orange">{{percent_of_yearly_wage|floatformat:"1"}}%</span> of your annual wage will drop significantly.  You can do this by editing your user profile.  Along with that if your annual wage increases, even by a small amount, it can drastically change what percentage of your income you need to dedicate to accomplishing your goals. 
                         
                     {% endif %}
                 </li>
-                <br>
+                <br>           
                 <li>
-                
-                    Now some of our more astute users will be saying "Hey, my income changes over time.  I wonder what the effects of that would be on these statistics?"  Well we thought of that too!  Your welcome.
+                    Some of our more astute users may be thinking <i class = "number">"Hey, my income changes over time.  I wonder how that would effect these statistics?"</i>  Well we thought of that too!  We know, we are pretty awesome.
+                    <br>
+                </li>
+                    <br>
+                <li>
+                    Currently your Bucket List will require about <span class= "number orange">{{percent_of_yearly_wage|floatformat:"1"}}%</span> of your annual income every year if you want to accomplish everything by the time you are <span class= "number">{{life_expectancy|floatformat:"0"}} years old</span>.  Now lets see how improving your annual income will improve the percent you have to spend every year to accomplish your goals.  
+                    <br>
+                </li>
+            </ul>
+                    <br>
+                    <div class = "side-note">
+                        <h4 class = "text-danger">*Important Note*</h4>
+                        <p>
+                            For this example we will not include inflation and increases in price to the current market basket.  These costs often cancel each other out over the long term and for the sake of readability we will not go into much more detail on those topics here.  Just assume no inflation exists when reading the following numbers and that all numbers are in today's dollars.
+                        </p>
+                    </div>
                     <br>
                     <br>
-                    Currently your Bucket List will cost about {{percent_of_yearly_wage|floatformat:"1"}}% of your annual wage every year in order to accomplish by the time you are {{life_expectancy|floatformat:"0"}} years old.  Now lets see how improving your annual income will improve the percent you have to spend every year to accomplish your goals.  
-                    <br>
-                    <br>
-                    For this example we will exclude inflation and increases in price to the current market basket (sorry for all of the econ terms).  These costs often cancel each other out over the long term and for the sake of readability we will not go into much more detail on those topics here.  Just assume no inflation exists when reading the following numbers.
-                    <br>
-                    <br>
-                    You currently make ${{yearly_earnings|floatformat:"2"|intcomma}} per year if your average annual income goes up by just one percent every year you will have an income of about ${{salary_after_compounded_1|floatformat:"2"|intcomma}} per year when you are {{life_expectancy|floatformat:"0"}} years old (remember, this ignores inflation so think of how much money that is in today's dollars, not future dollars).  On average over these years instead of spending {{percent_of_yearly_wage|floatformat:"1"}}% of your annual income on your Bucket List every year you would only need to spend {{annual_percent_after_compounded_1|floatformat:"1"}}% of your annual income every year to meet your goals.
+                    <div role = "tabpanel"> 
+                        <ul class = "nav nav-tabs" role = "tablist">
+                            <li role = "presentation" class = "active">
+                                <a href = "#onepercent" aria-controls="onepercent" role = "tab" data-toggle = "tab">One Percent</a>
+                            </li>
+                            <li role = "presentation">
+                                <a href = "#twopercent" aria-controls="twopercent" role = "tab" data-toggle = "tab">Two Percent</a>
+                            </li>
+                            <li role = "presentation">
+                                <a href = "#threepercent" aria-controls="threepercent" role = "tab" data-toggle = "tab">Three Percent</a>
+                            </li>
+                            <li role = "presentation">
+                                <a href = "#fourpercent" aria-controls="fourpercent" role = "tab" data-toggle = "tab">Four Percent</a>
+                            </li>
+                            <li role = "presentation">
+                                <a href = "#fivepercent" aria-controls="fivepercent" role = "tab" data-toggle = "tab">Five Percent</a>
+                            </li>
+                        </ul>
+                        <div class = "tab-content">
+                            <div role = "tabpanel" class = "tab-pane active" id = "onepercent">
+                            
+                            
+                                <p>It's the one percent!</p>
+                                
+                                
+                            </div>
+                            <div role = "tabpanel" class = "tab-pane" id = "twopercent">
+                            
+                            
+                                <p>It's the two percent!</p>
+                                
+                                
+                            </div>
+                            <div role = "tabpanel" class = "tab-pane" id = "threepercent">
+                            
+                            
+                                <p>It's the three percent!</p>
+                                
+                                
+                            </div>
+                            <div role = "tabpanel" class = "tab-pane" id = "fourpercent">
+                            
+                            
+                                <p>It's the four percent!</p>
+                                
+                                
+                            </div>
+                            <div role = "tabpanel" class = "tab-pane" id = "fivepercent">
+                            
+                            
+                                <p>It's the five percent!</p>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                    You currently make <span class = "number text-success">${{yearly_earnings|floatformat:"0"|intcomma}}</span> per year if your average annual income goes up by just one percent every year you will have an income of about <span class = "number text-success">${{salary_after_compounded_1|floatformat:"0"|intcomma}}</span> per year when you are {{life_expectancy|floatformat:"0"}} years old (remember, this ignores inflation so think of how much money that is in today's dollars, not future dollars).  On average over these years instead of spending <span class = "number orange">{{percent_of_yearly_wage|floatformat:"1"}}%</span> of your annual income on your Bucket List every year you would only need to spend <span class = "number orange">{{annual_percent_after_compounded_1|floatformat:"1"}}%</span> of your annual income every year to meet your goals.
                     <br>
                     <br>
                     Do you think you will do even better than that?  Well if your annual income increases by two percent every year then you would be making ${{salary_after_compounded_2|floatformat:"2"|intcomma}} annually by the age of {{life_expectancy|floatformat:"0"}}.  This would mean that your Bucket List goals would only need to take up to {{annual_percent_after_compounded_2|floatformat:"1"}}% of your annual income during that time frame!
@@ -250,15 +312,15 @@
                     
                     
                     
-                </li>
+                
                 <br>
-                <li>
+                <p>
                     Now how about other sources of income, like returns from investments?  Well for starters you should include these numbers in your annual income (you can go <a href="/bucketlist/profile/edit/">here</a> to edit that information), your annual income should include ALL income from the year not just what you make from your day job.
                     <br>
                     <br>
                     How about retirement?  Most of you would like to retire from working one day.  So how does this effect your income?  Well we hope that it wouldn't!  After you retire you probably would like to continue living at a relatively similar standard of living as you did before.  In which case your income really should not change much.  If you don't want to spend the same amount of money per year money during retirement then you could change the age you finish your Bucket List to the year you would like to retire. (and you can do that by clicking <a href="/bucketlist/profile/edit/">here</a>)
-                </li>
-              </ul>
+                </p>
+              
              <br>
              <hr>
              <!------------Your Goal Distribution--------------->

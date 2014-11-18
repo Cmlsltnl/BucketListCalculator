@@ -90,3 +90,20 @@
         width: 48%;
     }
 }
+
+/*----------------Analysing Your Yearly Income-------------*/
+
+.side-note {
+    background-color: #F0F0F0;
+    padding: 16px;
+    border-radius: 4px;
+    box-shadow: 0 0 1px black;
+    margin: 4px;
+}
+
+.side-note h4 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    padding-bottom: 5px;
+}
+

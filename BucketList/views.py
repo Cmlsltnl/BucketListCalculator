@@ -454,10 +454,6 @@ def recommendation(request):
     #Finds Annual Salary Left After Bucket List Goals
     annual_salary_left = yearly_earnings - ((yearly_earnings*percent_of_yearly_wage)/100)
     
-
-
-    
-
     
     
     #Salary and Total Earnings if Annual Salary Increases by 1% every year
