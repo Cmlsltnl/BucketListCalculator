@@ -246,64 +246,87 @@
                     </div>
                     <br>
                     <br>
+                    <br>
+                    
+                    <!------------------Tab Panel---------------->
+                    
                     <div role = "tabpanel"> 
                         <ul class = "nav nav-tabs" role = "tablist">
-                            <li role = "presentation" class = "active">
-                                <a href = "#onepercent" aria-controls="onepercent" role = "tab" data-toggle = "tab">One Percent</a>
+                            <li role = "presentation" class = "active tab-nav-width">
+                                <a href = "#onepercent" aria-controls="onepercent" role = "tab" data-toggle = "tab">1%</a>
                             </li>
-                            <li role = "presentation">
-                                <a href = "#twopercent" aria-controls="twopercent" role = "tab" data-toggle = "tab">Two Percent</a>
+                            <li role = "presentation" class = "tab-nav-width">
+                                <a href = "#twopercent" aria-controls="twopercent" role = "tab" data-toggle = "tab">2%</a>
                             </li>
-                            <li role = "presentation">
-                                <a href = "#threepercent" aria-controls="threepercent" role = "tab" data-toggle = "tab">Three Percent</a>
+                            <li role = "presentation" class = "tab-nav-width">
+                                <a href = "#threepercent" aria-controls="threepercent" role = "tab" data-toggle = "tab">3%</a>
                             </li>
-                            <li role = "presentation">
-                                <a href = "#fourpercent" aria-controls="fourpercent" role = "tab" data-toggle = "tab">Four Percent</a>
+                            <li role = "presentation" class = "tab-nav-width">
+                                <a href = "#fourpercent" aria-controls="fourpercent" role = "tab" data-toggle = "tab">4%</a>
                             </li>
-                            <li role = "presentation">
-                                <a href = "#fivepercent" aria-controls="fivepercent" role = "tab" data-toggle = "tab">Five Percent</a>
+                            <li role = "presentation" class = "tab-nav-width">
+                                <a href = "#fivepercent" aria-controls="fivepercent" role = "tab" data-toggle = "tab">5%</a>
                             </li>
                         </ul>
+                        <br>
+                        <br>
+                        
+                        <!-------------Tab Content-------------->
+                        
                         <div class = "tab-content">
                             <div role = "tabpanel" class = "tab-pane active" id = "onepercent">
                             
-                            
-                                <p>It's the one percent!</p>
-                                
+                                <div class = "percent-tab-content">
+                                    <p>
+                                        You currently make <span class = "number text-success">${{yearly_earnings|floatformat:"0"|intcomma}}</span> per year if your average annual income goes up by just one percent every year you will have an income of about <span class = "number text-success">${{salary_after_compounded_1|floatformat:"0"|intcomma}}</span> per year when you are {{life_expectancy|floatformat:"0"}} years old (remember, this ignores inflation so think of how much money that is in today's dollars, not future dollars).  On average over these years instead of spending <span class = "number orange">{{percent_of_yearly_wage|floatformat:"1"}}%</span> of your annual income on your Bucket List every year you would only need to spend <span class = "number orange">{{annual_percent_after_compounded_1|floatformat:"1"}}%</span> of your annual income every year to meet your goals.
+                                    </p>
+                                </div>
                                 
                             </div>
                             <div role = "tabpanel" class = "tab-pane" id = "twopercent">
                             
-                            
-                                <p>It's the two percent!</p>
+                                <div class = "percent-tab-content">
+                                    <p>
+                                        You currently make <span class = "number text-success">${{yearly_earnings|floatformat:"0"|intcomma}}</span> per year if your average annual income goes up by just one percent every year you will have an income of about <span class = "number text-success">${{salary_after_compounded_2|floatformat:"0"|intcomma}}</span> per year when you are {{life_expectancy|floatformat:"0"}} years old (remember, this ignores inflation so think of how much money that is in today's dollars, not future dollars).  On average over these years instead of spending <span class = "number orange">{{percent_of_yearly_wage|floatformat:"1"}}%</span> of your annual income on your Bucket List every year you would only need to spend <span class = "number orange">{{annual_percent_after_compounded_2|floatformat:"1"}}%</span> of your annual income every year to meet your goals.
+                                    </p>
+                                </div>
+                               
                                 
                                 
                             </div>
                             <div role = "tabpanel" class = "tab-pane" id = "threepercent">
                             
-                            
-                                <p>It's the three percent!</p>
+                                <div class = "percent-tab-content">
+                                    <p>
+                                        You currently make <span class = "number text-success">${{yearly_earnings|floatformat:"0"|intcomma}}</span> per year if your average annual income goes up by just one percent every year you will have an income of about <span class = "number text-success">${{salary_after_compounded_3|floatformat:"0"|intcomma}}</span> per year when you are {{life_expectancy|floatformat:"0"}} years old (remember, this ignores inflation so think of how much money that is in today's dollars, not future dollars).  On average over these years instead of spending <span class = "number orange">{{percent_of_yearly_wage|floatformat:"1"}}%</span> of your annual income on your Bucket List every year you would only need to spend <span class = "number orange">{{annual_percent_after_compounded_3|floatformat:"1"}}%</span> of your annual income every year to meet your goals.
+                                    </p>
+                                </div>
                                 
                                 
                             </div>
                             <div role = "tabpanel" class = "tab-pane" id = "fourpercent">
                             
-                            
-                                <p>It's the four percent!</p>
+                                <div class = "percent-tab-content">
+                                    <p>
+                                        You currently make <span class = "number text-success">${{yearly_earnings|floatformat:"0"|intcomma}}</span> per year if your average annual income goes up by just one percent every year you will have an income of about <span class = "number text-success">${{salary_after_compounded_4|floatformat:"0"|intcomma}}</span> per year when you are {{life_expectancy|floatformat:"0"}} years old (remember, this ignores inflation so think of how much money that is in today's dollars, not future dollars).  On average over these years instead of spending <span class = "number orange">{{percent_of_yearly_wage|floatformat:"1"}}%</span> of your annual income on your Bucket List every year you would only need to spend <span class = "number orange">{{annual_percent_after_compounded_4|floatformat:"1"}}%</span> of your annual income every year to meet your goals.
+                                    </p>
+                                </div>
                                 
                                 
                             </div>
                             <div role = "tabpanel" class = "tab-pane" id = "fivepercent">
                             
-                            
-                                <p>It's the five percent!</p>
+                                <div class = "percent-tab-content">
+                                    <p>
+                                        You currently make <span class = "number text-success">${{yearly_earnings|floatformat:"0"|intcomma}}</span> per year if your average annual income goes up by just one percent every year you will have an income of about <span class = "number text-success">${{salary_after_compounded_5|floatformat:"0"|intcomma}}</span> per year when you are {{life_expectancy|floatformat:"0"}} years old (remember, this ignores inflation so think of how much money that is in today's dollars, not future dollars).  On average over these years instead of spending <span class = "number orange">{{percent_of_yearly_wage|floatformat:"1"}}%</span> of your annual income on your Bucket List every year you would only need to spend <span class = "number orange">{{annual_percent_after_compounded_5|floatformat:"1"}}%</span> of your annual income every year to meet your goals.
+                                    </p>
+                                </div>
                                 
                                 
                             </div>
                         </div>
                     </div>
-                    You currently make <span class = "number text-success">${{yearly_earnings|floatformat:"0"|intcomma}}</span> per year if your average annual income goes up by just one percent every year you will have an income of about <span class = "number text-success">${{salary_after_compounded_1|floatformat:"0"|intcomma}}</span> per year when you are {{life_expectancy|floatformat:"0"}} years old (remember, this ignores inflation so think of how much money that is in today's dollars, not future dollars).  On average over these years instead of spending <span class = "number orange">{{percent_of_yearly_wage|floatformat:"1"}}%</span> of your annual income on your Bucket List every year you would only need to spend <span class = "number orange">{{annual_percent_after_compounded_1|floatformat:"1"}}%</span> of your annual income every year to meet your goals.
-                    <br>
+                    
                     <br>
                     Do you think you will do even better than that?  Well if your annual income increases by two percent every year then you would be making ${{salary_after_compounded_2|floatformat:"2"|intcomma}} annually by the age of {{life_expectancy|floatformat:"0"}}.  This would mean that your Bucket List goals would only need to take up to {{annual_percent_after_compounded_2|floatformat:"1"}}% of your annual income during that time frame!
                     <br>

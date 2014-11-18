@@ -107,3 +107,21 @@
     padding-bottom: 5px;
 }
 
+.tab-nav-width {
+    width: 20%;
+}
+
+.tab-nav-width a {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    color: #3D3D3D;
+}
+
+.nav-tabs > li.active > a {
+    color: #f0ad4e
+}
+
+.percent-tab-content {
+    margin: auto;
+    width: 90%;
+}
