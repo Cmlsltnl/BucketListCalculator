@@ -172,6 +172,7 @@
              <h2>Analysing Your Yearly Income</h2>
              <br>
              <p>Unfortunately for most of us when it comes to our Bucket List goals money is the bottleneck.  We want to do it all, but doing it all can cost quite a bit.  That is where Bucket List Calculator comes in.  We can give you a better outline to accomplish using all of the information you have so graciously provided:
+             </p>
              <br>
              <ul>  
                     {% if 15000 > annual_salary_left %}
@@ -385,7 +386,7 @@
                                         (remember, this ignores inflation so think of how much money that is in today's dollars, not future dollars).  On average over these years instead of spending <span class = "number orange">{{percent_of_yearly_wage|floatformat:"1"}}%</span> of your annual income on your Bucket List every year you would only need to spend <span class = "number orange">{{annual_percent_after_compounded_4|floatformat:"1"}}%</span> of your annual income every year to meet your goals.  Click on the tabs on top to see how your annual income changes with different percentages.
                                     <br>
                                     <br>
-                                        Four percent is an absolutely gigantic increase in your annual income over your lifetime.  It is very optimistic but we bet that if you apply yourself and work hard until you are <span class = "number">{{adjusted_life_expectancy|floatformat:"0"}} years old</span> you could make it happen.  For many people this kind of increase in income would require a complete career change, extremely profitable investments, or a venture into entrepreneurship.  But you use Bucket List Calculator, your are a pretty darn intelligent person.  We bet you could do it!  Click on the tabs on top again to see how your annual income changes when you change  the percentages.
+                                        Four percent is an absolutely gigantic increase in your annual income over your lifetime.  It is very optimistic but we bet that if you apply yourself and work hard until you are <span class = "number">{{adjusted_life_expectancy|floatformat:"0"}} years old</span> you could make it happen.  For many people this kind of increase in income would require a complete career change, extremely profitable investments, or a venture into entrepreneurship.  But you use Bucket List Calculator, you've gotta be a pretty darn intelligent person.  We bet you could do it!  Click on the tabs on top again to see how your annual income changes when you change  the percentages.
                                     </p>
                                 </div>
                                 
@@ -413,7 +414,7 @@
                                         (remember, this ignores inflation so think of how much money that is in today's dollars, not future dollars).  On average over these years instead of spending <span class = "number orange">{{percent_of_yearly_wage|floatformat:"1"}}%</span> of your annual income on your Bucket List every year you would only need to spend <span class = "number orange">{{annual_percent_after_compounded_5|floatformat:"1"}}%</span> of your annual income every year to meet your goals.  Click on the tabs on top to see how your annual income changes with different percentages.
                                     <br>
                                     <br>
-                                        Five percent is an absolutely gigantic increase in your annual income over your lifetime.  It is very optimistic but we bet that if you apply yourself and work hard until you are <span class = "number">{{adjusted_life_expectancy|floatformat:"0"}} years old</span> you could make it happen.  For many people this kind of increase in income would require a complete career change, extremely profitable investments, or a venture into entrepreneurship.  But you use Bucket List Calculator, your are a pretty darn intelligent person.  We bet you could do it!  Click on the tabs on top again to see how your annual income changes when you change  the percentages.
+                                        Five percent is an absolutely gigantic increase in your annual income over your lifetime.  It is very optimistic but we bet that if you apply yourself and work hard until you are <span class = "number">{{adjusted_life_expectancy|floatformat:"0"}} years old</span> you could make it happen.  For many people this kind of increase in income would require a complete career change, extremely profitable investments, or a venture into entrepreneurship.  But you use Bucket List Calculator, you've gotta be a pretty darn intelligent person.  We bet you could do it!  Click on the tabs on top again to see how your annual income changes when you change  the percentages.
                                         <br>
                                         <br>
                                         <span class = "number">P.S.</span>  If you think you can attain a five percent increase in your annual income every year we would love to hear your plan.  Because we want in on that!
@@ -424,17 +425,24 @@
                             </div>
                         </div>
                     </div>                    
+                    <br>
                     
-                
-                <br>
-                
-                    <br>
-                    <br>
-                    How about retirement?  Most of you would like to retire from working one day.  So how does this effect your income?  Well we hope that it wouldn't!  After you retire you probably would like to continue living at a relatively similar standard of living as you did before.  In which case your income really should not change much.  If you don't want to spend the same amount of money per year money during retirement then you could change the age you finish your Bucket List to the year you would like to retire. (and you can do that by clicking <a href="/bucketlist/profile/edit/">here</a>)
-                </p>
-              
+                    {% if user1.include_retirement %}
+                        
+                        <p class = "percent-tab-content">
+                            All of the above information talks about your income and the effects on your Bucket List as it increases over time.  At this point you may be thinking <i class = "number">"What about all that information about retirement I filled out earlier?  Where is that?"</i>  If this is you, don't worry, it's coming up in just a minute.  We wanted to first show you how changes to your yearly income effect your Bucket List goals.  Then we will show you how your plan for retirement will impact your goals.
+                        </p>
+                        
+                    {% else %}
+                        <p class = "percent-tab-content">
+                            How about retirement?  Most of our users would like to retire from working one day.  So how does this effect your income?  If you would like to have more information about how retirement would influence your Bucket List goals click <a href="/bucketlist/profile/edit/">here</a> and fill out the retirement information.
+                         </p>
+                    {% endif %}
              <br>
-             <hr>
+             <br>
+             </div><!--end fifth sections-->
+             <br>
+             <div class = "sections">
              <!------------Your Goal Distribution--------------->
              <br>
              <h2>Distribution of Your Goals</h2>

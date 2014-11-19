@@ -463,10 +463,6 @@ def recommendation(request):
         if life_expectancy > user1.retirement:
             adjusted_life_expectancy = user1.retirement
             retirement_less_than_life_expectancy = True
-            
-    print adjusted_life_expectancy
-    print adjusted_years_left
-    print retirement_less_than_life_expectancy
     
     #Salary and Total Earnings if Annual Salary Increases by 1% every year
     salary_after_compounded_1 = total_amount_after_compounded(0.01, yearly_earnings, adjusted_years_left)[1]
