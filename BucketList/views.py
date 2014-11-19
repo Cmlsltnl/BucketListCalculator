@@ -559,7 +559,7 @@ def recommendation(request):
                             }}],
                 chart_options = 
                     {'title': {
-                        'text': 'All Users Goal Distribution'}},)
+                        'text': 'Average Goal Distribution'}},)
                         
     #Passing Data to Chartit for the Users Cost Distribution 
     

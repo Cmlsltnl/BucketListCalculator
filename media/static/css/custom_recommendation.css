@@ -69,6 +69,7 @@
     color: #CD8162;
 }
 
+
 /*---------------------Top Five & Bottom Five ------------------*/
 
 .most-least-difficult {
@@ -88,8 +89,12 @@
         
     .most-least-difficult {
         width: 48%;
+        display: inline-block;
     }
 }
+
+/*----------------------Chartit Charts----------------------*/
+
 
 /*----------------Analysing Your Yearly Income-------------*/
 
