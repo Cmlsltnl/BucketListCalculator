@@ -462,28 +462,193 @@
              </div><!--end sixth sections-->
              <br>
             <div class = "sections">
-                <h2>Comparing Cost by Goal Type</h2>
+                <h2>Your Goal Types</h2>
                 <br>
                 <div id ="UsersGoalCostDistributionChart"></div>
                 <br>
                 <br>
-
-            <br>
-
-                <h2>Comparing Hours by Goal Type</h2>
-                <br>
                 <div id = "UsersGoalHoursDistributionChart"></div>
                 <br>
-                <br>
-
-            <br>
-
-                <h2>Comparing Days by Goal Type</h2>
                 <br>
                 <div id = "UsersGoalDaysDistributionChart"></div>
                 <br>
                 <br>
-            </div>
+                <h3>Comparing Goal Types</h3>
+                <br>
+                <p>Now lets compare how the values for your goal types stack up against other users values.</p>
+                <ul>
+                    {% if user_has_goal_type_career %}
+                        <li>
+                            <h4>Career</h4>
+                            <ul>
+                                <li>The average users Career Goal Cost is ${{all_users_career_cost|floatformat:"2"|intcomma}} yours is ${{current_users_career_cost|floatformat:"2"|intcomma}}.
+                                </li>
+                                <li>The average users Career Goal takes {{all_users_career_time|floatformat:"0"}} full days yours takes {{current_users_career_time|floatformat:"0"}}.
+                                </li>
+                              <li>The average users Career Goal  takes {{all_users_career_hours|floatformat:"0"}} hours yours takes {{current_users_career_hours|floatformat:"0"}}.
+                                </li>
+                            </ul>
+                        </li>
+                        
+                    {% endif %}
+                    {% if user_has_goal_type_purchase %}
+                        <li>
+                            <h4>Purchase</h4>
+                            <ul>
+                                <li>The average users Purchase Goal Cost is ${{all_users_purchase_cost|floatformat:"2"|intcomma}} yours is ${{current_users_purchase_cost|floatformat:"2"|intcomma}}.
+                                </li>
+                                <li>The average users Purchase Goal takes {{all_users_purchase_time|floatformat:"0"}} full days yours takes {{current_users_purchase_time|floatformat:"0"}}.
+                                </li>
+                              <li>The average users Purchase Goal takes {{all_users_purchase_hours|floatformat:"0"}} hours yours takes {{current_users_purchase_hours|floatformat:"0"}}.
+                                </li>
+                            </ul>
+                        </li>
+                        
+                    {% endif %}
+                    {% if user_has_goal_type_travel %}
+                        <li>
+                            <h4>Travel</h4>
+                            <ul>
+                                <li>The average users Travel Goal Cost is ${{all_users_travel_cost|floatformat:"2"|intcomma}} yours is ${{current_users_travel_cost|floatformat:"2"|intcomma}}.
+                                </li>
+                                <li>The average users Travel Goal takes {{all_users_travel_time|floatformat:"0"}} full days yours takes {{current_users_travel_time|floatformat:"0"}}.
+                                </li>
+                              <li>The average users Travel Goal takes {{all_users_travel_hours|floatformat:"0"}} hours yours takes {{current_users_travel_hours|floatformat:"0"}}.
+                                </li>
+                            </ul>
+                        </li>
+                        
+                    {% endif %}
+                    {% if user_has_goal_type_extreme %}
+                        <li>
+                            <h4>Extreme Sport</h4>
+                            <ul>
+                                <li>The average users Extreme Sport Goal Cost is ${{all_users_extreme_cost|floatformat:"2"|intcomma}} yours is ${{current_users_extreme_cost|floatformat:"2"|intcomma}}.
+                                </li>
+                                <li>The average users Extreme Sport Goal takes {{all_users_extreme_time|floatformat:"0"}} full days yours takes {{current_users_extreme_time|floatformat:"0"}}.
+                                </li>
+                              <li>The average users Extreme Sport Goal takes {{all_users_extreme_hours|floatformat:"0"}} hours yours takes {{current_users_extreme_hours|floatformat:"0"}}.
+                                </li>
+                            </ul>
+                        </li>
+                        
+                    {% endif %}
+                    {% if user_has_goal_type_family %}
+                        <li>
+                            <h4>Family/Social</h4>
+                            <ul>
+                                <li>The average users Family/Social Goal Cost is ${{all_users_family_cost|floatformat:"2"|intcomma}} yours is ${{current_users_family_cost|floatformat:"2"|intcomma}}.
+                                </li>
+                                <li>The average users Family/Social Goal takes {{all_users_family_time|floatformat:"0"}} full days yours takes {{current_users_family_time|floatformat:"0"}}.
+                                </li>
+                              <li>The average users Family/Social Goal takes {{all_users_family_hours|floatformat:"0"}} hours yours takes {{current_users_family_hours|floatformat:"0"}}.
+                                </li>
+                            </ul>
+                        </li>
+                        
+                    {% endif %}
+                    {% if user_has_goal_type_relationship %}
+                        <li>
+                            <h4>Relationship</h4>
+                            <ul>
+                                <li>The average users Relationship Goal Cost is ${{all_users_relationship_cost|floatformat:"2"|intcomma}} yours is ${{current_users_relationship_cost|floatformat:"2"|intcomma}}.
+                                </li>
+                                <li>The average users Relationship Goal takes {{all_users_relationship_time|floatformat:"0"}} full days yours takes {{current_users_relationship_time|floatformat:"0"}}.
+                                </li>
+                              <li>The average users Relationship Goal takes {{all_users_relationship_hours|floatformat:"0"}} hours yours takes {{current_users_relationship_hours|floatformat:"0"}}.
+                                </li>
+                            </ul>
+                        </li>
+                        
+                    {% endif %}
+                    {% if user_has_goal_type_exercise %}
+                        <li>
+                            <h4>Exercise/Health</h4>
+                            <ul>
+                                <li>The average users Exercise/Health Goal Cost is ${{all_users_exercise_cost|floatformat:"2"|intcomma}} yours is ${{current_users_exercise_cost|floatformat:"2"|intcomma}}.
+                                </li>
+                                <li>The average users Exercise/Health Goal takes {{all_users_exercise_time|floatformat:"0"}} full days yours takes {{current_users_exercise_time|floatformat:"0"}}.
+                                </li>
+                              <li>The average users Exercise/Health Goal takes {{all_users_exercise_hours|floatformat:"0"}} hours yours takes {{current_users_exercise_hours|floatformat:"0"}}.
+                                </li>
+                            </ul>
+                        </li>
+                        
+                    {% endif %}
+                    {% if user_has_goal_type_skill %}
+                        <li>
+                            <h4>Improving a Skill</h4>
+                            <ul>
+                                <li>The average users Improving a Skill Goal Cost is ${{all_users_skill_cost|floatformat:"2"|intcomma}} yours is ${{current_users_skill_cost|floatformat:"2"|intcomma}}.
+                                </li>
+                                <li>The average users Improving a Skill Goal takes {{all_users_skill_time|floatformat:"0"}} full days yours takes {{current_users_skill_time|floatformat:"0"}}.
+                                </li>
+                              <li>The average users Improving a Skill Goal takes {{all_users_skill_hours|floatformat:"0"}} hours yours takes {{current_users_skill_hours|floatformat:"0"}}.
+                                </li>
+                            </ul>
+                        </li>
+                        
+                    {% endif %}
+                    {% if user_has_goal_type_hobby %}
+                        <li>
+                            <h4>Hobby</h4>
+                            <ul>
+                                <li>The average users Improving a Hobby Goal Cost is ${{all_users_hobby_cost|floatformat:"2"|intcomma}} yours is ${{current_users_hobby_cost|floatformat:"2"|intcomma}}.
+                                </li>
+                                <li>The average users Improving a Hobby Goal takes {{all_users_hobby_time|floatformat:"0"}} full days yours takes {{current_users_hobby_time|floatformat:"0"}}.
+                                </li>
+                              <li>The average users Improving a Hobby Goal takes {{all_users_hobby_hours|floatformat:"0"}} hours yours takes {{current_users_hobby_hours|floatformat:"0"}}.
+                                </li>
+                            </ul>
+                        </li>
+                        
+                    {% endif %}
+                    {% if user_has_goal_type_building %}
+                        <li>
+                            <h4>Building/Creating Something</h4>
+                            <ul>
+                                <li>The average users Improving a Building/Creating Something Goal Cost is ${{all_users_building_cost|floatformat:"2"|intcomma}} yours is ${{current_users_building_cost|floatformat:"2"|intcomma}}.
+                                </li>
+                                <li>The average users Improving a Building/Creating Something Goal takes {{all_users_building_time|floatformat:"0"}} full days yours takes {{current_users_building_time|floatformat:"0"}}.
+                                </li>
+                              <li>The average users Improving a Building/Creating Something Goal takes {{all_users_building_hours|floatformat:"0"}} hours yours takes {{current_users_building_hours|floatformat:"0"}}.
+                                </li>
+                            </ul>
+                        </li>
+                        
+                    {% endif %}
+                    {% if user_has_goal_type_education %}
+                        <li>
+                            <h4>Education/Self Improvement</h4>
+                            <ul>
+                                <li>The average users Improving a Education/Self Improvement Goal Cost is ${{all_users_education_cost|floatformat:"2"|intcomma}} yours is ${{current_users_education_cost|floatformat:"2"|intcomma}}.
+                                </li>
+                                <li>The average users Improving a Education/Self Improvement Goal takes {{all_users_education_time|floatformat:"0"}} full days yours takes {{current_users_education_time|floatformat:"0"}}.
+                                </li>
+                              <li>The average users Improving a Education/Self Improvement takes {{all_users_education_hours|floatformat:"0"}} hours yours takes {{current_users_education_hours|floatformat:"0"}}.
+                                </li>
+                            </ul>
+                        </li>
+                        
+                    {% endif %}
+                    {% if user_has_goal_type_volunteering %}
+                        <li>
+                            <h4>Volunteering</h4>
+                            <ul>
+                                <li>The average users Improving a Volunteering Goal Cost is ${{all_users_volunteering_cost|floatformat:"2"|intcomma}} yours is ${{current_users_volunteering_cost|floatformat:"2"|intcomma}}.
+                                </li>
+                                <li>The average users Improving a Volunteering Goal takes {{all_users_volunteering_time|floatformat:"0"}} full days yours takes {{current_users_volunteering_time|floatformat:"0"}}.
+                                </li>
+                              <li>The average users Improving a Volunteering takes {{all_users_volunteering_hours|floatformat:"0"}} hours yours takes {{current_users_volunteering_hours|floatformat:"0"}}.
+                                </li>
+                            </ul>
+                        </li>
+                        
+                    {% endif %}
+                    
+                </ul>
+            <br>
+            </div><!-- end seventh sections-->
             <br>
             <div class = "sections">
             <br>
@@ -574,184 +739,6 @@
             <br>
             <br>
             {% endif %}
-            <br>
-            <!---------------------Comparing Goal Types-------------------------->
-            <hr>
-            <br>
-            <h2>Comparing Goal Types</h2>
-            <br>
-            <p>Now lets compare how the values for your goal types stack up against other users values.</p>
-            <ul>
-                {% if user_has_goal_type_career %}
-                    <li>
-                        <h4>Career</h4>
-                        <ul>
-                            <li>The average users Career Goal Cost is ${{all_users_career_cost|floatformat:"2"|intcomma}} yours is ${{current_users_career_cost|floatformat:"2"|intcomma}}.
-                            </li>
-                            <li>The average users Career Goal takes {{all_users_career_time|floatformat:"0"}} full days yours takes {{current_users_career_time|floatformat:"0"}}.
-                            </li>
-                          <li>The average users Career Goal  takes {{all_users_career_hours|floatformat:"0"}} hours yours takes {{current_users_career_hours|floatformat:"0"}}.
-                            </li>
-                        </ul>
-                    </li>
-                    
-                {% endif %}
-                {% if user_has_goal_type_purchase %}
-                    <li>
-                        <h4>Purchase</h4>
-                        <ul>
-                            <li>The average users Purchase Goal Cost is ${{all_users_purchase_cost|floatformat:"2"|intcomma}} yours is ${{current_users_purchase_cost|floatformat:"2"|intcomma}}.
-                            </li>
-                            <li>The average users Purchase Goal takes {{all_users_purchase_time|floatformat:"0"}} full days yours takes {{current_users_purchase_time|floatformat:"0"}}.
-                            </li>
-                          <li>The average users Purchase Goal takes {{all_users_purchase_hours|floatformat:"0"}} hours yours takes {{current_users_purchase_hours|floatformat:"0"}}.
-                            </li>
-                        </ul>
-                    </li>
-                    
-                {% endif %}
-                {% if user_has_goal_type_travel %}
-                    <li>
-                        <h4>Travel</h4>
-                        <ul>
-                            <li>The average users Travel Goal Cost is ${{all_users_travel_cost|floatformat:"2"|intcomma}} yours is ${{current_users_travel_cost|floatformat:"2"|intcomma}}.
-                            </li>
-                            <li>The average users Travel Goal takes {{all_users_travel_time|floatformat:"0"}} full days yours takes {{current_users_travel_time|floatformat:"0"}}.
-                            </li>
-                          <li>The average users Travel Goal takes {{all_users_travel_hours|floatformat:"0"}} hours yours takes {{current_users_travel_hours|floatformat:"0"}}.
-                            </li>
-                        </ul>
-                    </li>
-                    
-                {% endif %}
-                {% if user_has_goal_type_extreme %}
-                    <li>
-                        <h4>Extreme Sport</h4>
-                        <ul>
-                            <li>The average users Extreme Sport Goal Cost is ${{all_users_extreme_cost|floatformat:"2"|intcomma}} yours is ${{current_users_extreme_cost|floatformat:"2"|intcomma}}.
-                            </li>
-                            <li>The average users Extreme Sport Goal takes {{all_users_extreme_time|floatformat:"0"}} full days yours takes {{current_users_extreme_time|floatformat:"0"}}.
-                            </li>
-                          <li>The average users Extreme Sport Goal takes {{all_users_extreme_hours|floatformat:"0"}} hours yours takes {{current_users_extreme_hours|floatformat:"0"}}.
-                            </li>
-                        </ul>
-                    </li>
-                    
-                {% endif %}
-                {% if user_has_goal_type_family %}
-                    <li>
-                        <h4>Family/Social</h4>
-                        <ul>
-                            <li>The average users Family/Social Goal Cost is ${{all_users_family_cost|floatformat:"2"|intcomma}} yours is ${{current_users_family_cost|floatformat:"2"|intcomma}}.
-                            </li>
-                            <li>The average users Family/Social Goal takes {{all_users_family_time|floatformat:"0"}} full days yours takes {{current_users_family_time|floatformat:"0"}}.
-                            </li>
-                          <li>The average users Family/Social Goal takes {{all_users_family_hours|floatformat:"0"}} hours yours takes {{current_users_family_hours|floatformat:"0"}}.
-                            </li>
-                        </ul>
-                    </li>
-                    
-                {% endif %}
-                {% if user_has_goal_type_relationship %}
-                    <li>
-                        <h4>Relationship</h4>
-                        <ul>
-                            <li>The average users Relationship Goal Cost is ${{all_users_relationship_cost|floatformat:"2"|intcomma}} yours is ${{current_users_relationship_cost|floatformat:"2"|intcomma}}.
-                            </li>
-                            <li>The average users Relationship Goal takes {{all_users_relationship_time|floatformat:"0"}} full days yours takes {{current_users_relationship_time|floatformat:"0"}}.
-                            </li>
-                          <li>The average users Relationship Goal takes {{all_users_relationship_hours|floatformat:"0"}} hours yours takes {{current_users_relationship_hours|floatformat:"0"}}.
-                            </li>
-                        </ul>
-                    </li>
-                    
-                {% endif %}
-                {% if user_has_goal_type_exercise %}
-                    <li>
-                        <h4>Exercise/Health</h4>
-                        <ul>
-                            <li>The average users Exercise/Health Goal Cost is ${{all_users_exercise_cost|floatformat:"2"|intcomma}} yours is ${{current_users_exercise_cost|floatformat:"2"|intcomma}}.
-                            </li>
-                            <li>The average users Exercise/Health Goal takes {{all_users_exercise_time|floatformat:"0"}} full days yours takes {{current_users_exercise_time|floatformat:"0"}}.
-                            </li>
-                          <li>The average users Exercise/Health Goal takes {{all_users_exercise_hours|floatformat:"0"}} hours yours takes {{current_users_exercise_hours|floatformat:"0"}}.
-                            </li>
-                        </ul>
-                    </li>
-                    
-                {% endif %}
-                {% if user_has_goal_type_skill %}
-                    <li>
-                        <h4>Improving a Skill</h4>
-                        <ul>
-                            <li>The average users Improving a Skill Goal Cost is ${{all_users_skill_cost|floatformat:"2"|intcomma}} yours is ${{current_users_skill_cost|floatformat:"2"|intcomma}}.
-                            </li>
-                            <li>The average users Improving a Skill Goal takes {{all_users_skill_time|floatformat:"0"}} full days yours takes {{current_users_skill_time|floatformat:"0"}}.
-                            </li>
-                          <li>The average users Improving a Skill Goal takes {{all_users_skill_hours|floatformat:"0"}} hours yours takes {{current_users_skill_hours|floatformat:"0"}}.
-                            </li>
-                        </ul>
-                    </li>
-                    
-                {% endif %}
-                {% if user_has_goal_type_hobby %}
-                    <li>
-                        <h4>Hobby</h4>
-                        <ul>
-                            <li>The average users Improving a Hobby Goal Cost is ${{all_users_hobby_cost|floatformat:"2"|intcomma}} yours is ${{current_users_hobby_cost|floatformat:"2"|intcomma}}.
-                            </li>
-                            <li>The average users Improving a Hobby Goal takes {{all_users_hobby_time|floatformat:"0"}} full days yours takes {{current_users_hobby_time|floatformat:"0"}}.
-                            </li>
-                          <li>The average users Improving a Hobby Goal takes {{all_users_hobby_hours|floatformat:"0"}} hours yours takes {{current_users_hobby_hours|floatformat:"0"}}.
-                            </li>
-                        </ul>
-                    </li>
-                    
-                {% endif %}
-                {% if user_has_goal_type_building %}
-                    <li>
-                        <h4>Building/Creating Something</h4>
-                        <ul>
-                            <li>The average users Improving a Building/Creating Something Goal Cost is ${{all_users_building_cost|floatformat:"2"|intcomma}} yours is ${{current_users_building_cost|floatformat:"2"|intcomma}}.
-                            </li>
-                            <li>The average users Improving a Building/Creating Something Goal takes {{all_users_building_time|floatformat:"0"}} full days yours takes {{current_users_building_time|floatformat:"0"}}.
-                            </li>
-                          <li>The average users Improving a Building/Creating Something Goal takes {{all_users_building_hours|floatformat:"0"}} hours yours takes {{current_users_building_hours|floatformat:"0"}}.
-                            </li>
-                        </ul>
-                    </li>
-                    
-                {% endif %}
-                {% if user_has_goal_type_education %}
-                    <li>
-                        <h4>Education/Self Improvement</h4>
-                        <ul>
-                            <li>The average users Improving a Education/Self Improvement Goal Cost is ${{all_users_education_cost|floatformat:"2"|intcomma}} yours is ${{current_users_education_cost|floatformat:"2"|intcomma}}.
-                            </li>
-                            <li>The average users Improving a Education/Self Improvement Goal takes {{all_users_education_time|floatformat:"0"}} full days yours takes {{current_users_education_time|floatformat:"0"}}.
-                            </li>
-                          <li>The average users Improving a Education/Self Improvement takes {{all_users_education_hours|floatformat:"0"}} hours yours takes {{current_users_education_hours|floatformat:"0"}}.
-                            </li>
-                        </ul>
-                    </li>
-                    
-                {% endif %}
-                {% if user_has_goal_type_volunteering %}
-                    <li>
-                        <h4>Volunteering</h4>
-                        <ul>
-                            <li>The average users Improving a Volunteering Goal Cost is ${{all_users_volunteering_cost|floatformat:"2"|intcomma}} yours is ${{current_users_volunteering_cost|floatformat:"2"|intcomma}}.
-                            </li>
-                            <li>The average users Improving a Volunteering Goal takes {{all_users_volunteering_time|floatformat:"0"}} full days yours takes {{current_users_volunteering_time|floatformat:"0"}}.
-                            </li>
-                          <li>The average users Improving a Volunteering takes {{all_users_volunteering_hours|floatformat:"0"}} hours yours takes {{current_users_volunteering_hours|floatformat:"0"}}.
-                            </li>
-                        </ul>
-                    </li>
-                    
-                {% endif %}
-                
-            </ul>
             <br>
             <hr>
             <br>
