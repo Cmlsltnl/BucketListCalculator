@@ -586,34 +586,8 @@ def recommendation(request):
                             }}],
                 chart_options = 
                     {'title': {
-                        'text': 'Your Cost Distribution By Goal Type'}},)
+                        'text': 'Cost Distribution'}},)
 
-    #Passing Data to Chartit for the All Users Cost Distribution 
-    
-    ds3 = DataPool(
-        series = 
-            [{'options': {
-                    'source': BucketListItem.objects.values('goal_type').annotate(cost=Sum('cost')),
-                    },
-                'terms': [
-                    'goal_type',
-                    'cost',
-                    ]}
-            ])
-        
-    AllUsersGoalCostDistributionChart = Chart(
-                datasource = ds3,
-                series_options = 
-                    [{'options':{
-                            'type': 'pie',
-                            'stacking': False},
-                        'terms': {
-                            'goal_type': [
-                                'cost']
-                            }}],
-                chart_options = 
-                    {'title': {
-                        'text': 'All Users Cost Distribution By Goal Type'}},)
                         
                        
     #Passing Data to Chartit for the Users Hours Distribution 
@@ -641,37 +615,11 @@ def recommendation(request):
                             }}],
                 chart_options = 
                     {'title': {
-                        'text': 'Your Hours Distribution By Goal Type'}},)
+                        'text': 'Hours Distribution'}},)
               
-
-    #Passing Data to Chartit for all Users Hours Distribution 
-    
-    ds5 = DataPool(
-        series = 
-            [{'options': {
-                    'source': BucketListItem.objects.values('goal_type').annotate(hours=Sum('hours')),
-                    },
-                'terms': [
-                    'goal_type',
-                    'hours',
-                    ]}
-            ])
+              
         
-    AllUsersGoalHoursDistributionChart = Chart(
-                datasource = ds5,
-                series_options = 
-                    [{'options':{
-                            'type': 'pie',
-                            'stacking': False},
-                        'terms': {
-                            'goal_type': [
-                                'hours']
-                            }}],
-                chart_options = 
-                    {'title': {
-                        'text': 'All Users Hours Distribution By Goal Type'}},)              
-        
-    #Passing Data to Chartit for all Users Hours Distribution 
+    #Passing Data to Chartit for Users Days Distribution 
     
     ds6 = DataPool(
         series = 
@@ -696,35 +644,9 @@ def recommendation(request):
                             }}],
                 chart_options = 
                     {'title': {
-                        'text': 'Your Days Distribution By Goal Type'}},)
+                        'text': 'Days Distribution'}},)
 
                         
-    #Passing Data to Chartit for all Users Hours Distribution 
-    
-    ds7 = DataPool(
-        series = 
-            [{'options': {
-                    'source': BucketListItem.objects.values('goal_type').annotate(time=Sum('time')),
-                    },
-                'terms': [
-                    'goal_type',
-                    'time',
-                    ]}
-            ])
-        
-    AllUsersGoalDaysDistributionChart = Chart(
-                datasource = ds7,
-                series_options = 
-                    [{'options':{
-                            'type': 'pie',
-                            'stacking': False},
-                        'terms': {
-                            'goal_type': [
-                                'time']
-                            }}],
-                chart_options = 
-                    {'title': {
-                        'text': 'All Users Days Distribution By Goal Type'}},)
                         
     #Numbers for What Else Could You Do
     
@@ -1055,7 +977,7 @@ def recommendation(request):
                      
                      #----------------Distribution of Goals-------------
 
-                     'charts': [UsersGoalDistributionChart, AllUsersGoalDistributionChart, UsersGoalCostDistributionChart, AllUsersGoalCostDistributionChart, UsersGoalHoursDistributionChart, AllUsersGoalHoursDistributionChart, UsersGoalDaysDistributionChart, AllUsersGoalDaysDistributionChart],
+                     'charts': [UsersGoalDistributionChart, AllUsersGoalDistributionChart, UsersGoalCostDistributionChart, UsersGoalHoursDistributionChart, UsersGoalDaysDistributionChart],
                         
                      
 

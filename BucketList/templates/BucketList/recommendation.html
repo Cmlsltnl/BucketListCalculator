@@ -10,7 +10,7 @@
 
 
 {% load chartit %}
-{{ charts|load_charts:"UsersGoalDistributionChart, AllUsersGoalDistributionChart, UsersGoalCostDistributionChart, AllUsersGoalCostDistributionChart, UsersGoalHoursDistributionChart, AllUsersGoalHoursDistributionChart, UsersGoalDaysDistributionChart, AllUsersGoalDaysDistributionChart" }}
+{{ charts|load_charts:"UsersGoalDistributionChart, AllUsersGoalDistributionChart, UsersGoalCostDistributionChart, UsersGoalHoursDistributionChart, UsersGoalDaysDistributionChart" }}
 
 <div class = "container">
     <div class = "row">
@@ -467,29 +467,20 @@
                 <div id ="UsersGoalCostDistributionChart"></div>
                 <br>
                 <br>
-                <div id = "AllUsersGoalCostDistributionChart"></div>
-                <br>
-                <br>
-            </div>
+
             <br>
-            <div class = "sections">
+
                 <h2>Comparing Hours by Goal Type</h2>
                 <br>
                 <div id = "UsersGoalHoursDistributionChart"></div>
                 <br>
                 <br>
-                <div id = "AllUsersGoalHoursDistributionChart"></div>
-                <br>
-                <br>
-            </div>
+
             <br>
-            <div class = "sections">
+
                 <h2>Comparing Days by Goal Type</h2>
                 <br>
                 <div id = "UsersGoalDaysDistributionChart"></div>
-                <br>
-                <br>
-                <div id = "AllUsersGoalDaysDistributionChart"></div>
                 <br>
                 <br>
             </div>
