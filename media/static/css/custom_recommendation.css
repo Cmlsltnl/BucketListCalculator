@@ -103,6 +103,15 @@
     
 }
 
+.chart-description {
+    background-color: #F0F0F0;
+    padding: 20px;
+    margin: auto;
+    border-radius: 4px;
+    box-shadow: 0 0 1px black;
+    width: 90%;
+}
+
 /*----------------Analysing Your Yearly Income-------------*/
 
 .side-note {
