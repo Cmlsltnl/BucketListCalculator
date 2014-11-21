@@ -27,7 +27,7 @@
         <div class = "sections">
             <!-------------Basic Overview-------------->
             <br>
-            <h2>Basic Overview</h2>
+            <h2>Overview</h2>
             <br>
             <p>In order to finish all of items left on your list by the age of {{life_expectancy|floatformat:"0"}} then you need to accomplish <span class = "number">{{accomplish_per_year|floatformat:"1"}} goals each year</span> until you are {{life_expectancy|floatformat:"0"}} years old.  In other words you need to accomplish a goal about every <span class = "number">{{days_per_goal|floatformat:"0"}} days</span>.
             <br>
@@ -169,7 +169,7 @@
              <div class = "sections">
              <!------------Your Goal Distribution--------------->
                  <br>
-                 <h2>Your Goal Type Distribution</h2>
+                 <h2>Goal Type Distribution</h2>
                  <br>
                  <br>
                  <p>
@@ -499,39 +499,131 @@
                 <h3>Comparing Goal Types</h3>
                 <br>
                 <p>Now lets compare how the values for your goal types stack up against other users values.</p>
-                <ul>
-                    {% if user_has_goal_type_career %}
-                        <li>
-                            <h4>Career</h4>
-                            <ul>
-                                <li>The average users Career Goal Cost is ${{all_users_career_cost|floatformat:"2"|intcomma}} yours is ${{current_users_career_cost|floatformat:"2"|intcomma}}.
-                                </li>
-                                <li>The average users Career Goal takes {{all_users_career_time|floatformat:"0"}} full days yours takes {{current_users_career_time|floatformat:"0"}}.
-                                </li>
-                              <li>The average users Career Goal  takes {{all_users_career_hours|floatformat:"0"}} hours yours takes {{current_users_career_hours|floatformat:"0"}}.
-                                </li>
-                            </ul>
+                
+                <!---------------Start Tabbed Nav for Goals------------------>
+
+                <div role = "tab-panel">     
+                    <ul class = "nav nav-tabs" role = "tablist">
+                    
+                    
+                        <li role = "presentation" class = "active">
+                            <a href = "#overview" aria-controls="overview" role = "tab" data-toggle = "tab">Overview</a>
                         </li>
                         
-                    {% endif %}
-                    {% if user_has_goal_type_purchase %}
-                        <li>
-                            <h4>Purchase</h4>
-                            <ul>
-                                <li>The average users Purchase Goal Cost is ${{all_users_purchase_cost|floatformat:"2"|intcomma}} yours is ${{current_users_purchase_cost|floatformat:"2"|intcomma}}.
-                                </li>
-                                <li>The average users Purchase Goal takes {{all_users_purchase_time|floatformat:"0"}} full days yours takes {{current_users_purchase_time|floatformat:"0"}}.
-                                </li>
-                              <li>The average users Purchase Goal takes {{all_users_purchase_hours|floatformat:"0"}} hours yours takes {{current_users_purchase_hours|floatformat:"0"}}.
-                                </li>
-                            </ul>
-                        </li>
+                        {% if user_has_goal_type_career %}
+                            <li role = "presentation">
+                                <a href = "#career" aria-controls = "career" role = "tab" data-toggle = "tab">Career</a>
+                            </li>
+                        {% endif %}
                         
-                    {% endif %}
-                    {% if user_has_goal_type_travel %}
-                        <li>
-                            <h4>Travel</h4>
-                            <ul>
+                        {% if user_has_goal_type_purchase %}
+                            <li role = "presentation">
+                                <a href = "#purchase" aria-controls = "purchase" role = "tab" data-toggle = "tab">Purchase</a>
+                            </li>
+                        {% endif %}
+                        
+                        {% if user_has_goal_type_travel %}
+                            <li role = "presentation">
+                                <a href = "#travel" aria-controls = "travel" role = "tab" data-toggle = "tab">Travel</a>
+                            </li>
+                        {% endif %}
+                        
+                        {% if user_has_goal_type_extreme %}
+                            <li role = "presentation">
+                                <a href = "#extreme" aria-controls = "extreme" role = "tab" data-toggle = "tab">Extreme Sport</a>
+                            </li>
+                        {% endif %}
+                        
+                        {% if user_has_goal_type_family %}
+                            <li role = "presentation">
+                                <a href = "#family" aria-controls = "family" role = "tab" data-toggle = "tab">Family/Social</a>
+                            </li>
+                        {% endif %}
+                        
+                        {% if user_has_goal_type_relationship %}
+                            <li role = "presentation">
+                                <a href = "#relationship" aria-controls = "relationship" role = "tab" data-toggle = "tab">Relationship</a>
+                            </li>
+                        {% endif %}
+                        
+                        {% if user_has_goal_type_exercise %}
+                            <li role = "presentation">
+                                <a href = "#exercise" aria-controls = "exercise" role = "tab" data-toggle = "tab">Exercise/Health</a>
+                            </li>
+                        {% endif %}
+                        
+                        {% if user_has_goal_type_skill %}
+                            <li role = "presentation">
+                                <a href = "#skill" aria-controls = "skill" role = "tab" data-toggle = "tab">Improving a Skill</a>
+                            </li>
+                        {% endif %}
+                        
+                        {% if user_has_goal_type_hobby %}
+                            <li role = "presentation">
+                                <a href = "#hobby" aria-controls = "hobby" role = "tab" data-toggle = "tab">Hobby</a>
+                            </li>
+                        {% endif %}
+                        
+                        {% if user_has_goal_type_building %}
+                            <li role = "presentation">
+                                <a href = "#building" aria-controls = "building" role = "tab" data-toggle = "tab">Building/Creating Something</a>
+                            </li>
+                        {% endif %}
+                        
+                        {% if user_has_goal_type_education %}
+                            <li role = "presentation">
+                                <a href = "#education" aria-controls = "education" role = "tab" data-toggle = "tab">Education/Self Improvement</a>
+                            </li>
+                        {% endif %}
+                        
+                        {% if user_has_goal_type_volunteering %}
+                            <li role = "presentation">
+                                <a href = "#volunteering" aria-controls = "volunteering" role = "tab" data-toggle = "tab">Volunteering</a>
+                            </li>
+                        {% endif %}
+                        
+                    </ul>
+                    
+                    
+                    
+                    <!--------------------------Tab Content------------------>
+                    
+                    
+                    <div class = "tab-content">
+                    
+                        <div role = "tabpanel" class = "tab-pane active" id = "overview">
+                                <p>The first div is here and this one is active</p>
+                        </div>
+                        
+                        {% if user_has_goal_type_career %}
+                            <div role = "tabpanel" class = "tab-pane" id = "career">
+                                <ul>
+                                    <li>The average users Career Goal Cost is ${{all_users_career_cost|floatformat:"2"|intcomma}} yours is ${{current_users_career_cost|floatformat:"2"|intcomma}}.
+                                    </li>
+                                    <li>The average users Career Goal takes {{all_users_career_time|floatformat:"0"}} full days yours takes {{current_users_career_time|floatformat:"0"}}.
+                                    </li>
+                                  <li>The average users Career Goal  takes {{all_users_career_hours|floatformat:"0"}} hours yours takes {{current_users_career_hours|floatformat:"0"}}.
+                                    </li>
+                                </ul>
+                            </div>
+                        {% endif %}
+                        
+                        {% if user_has_goal_type_purchase %}
+                            <div role = "tabpanel" class = "tab-pane" id = "purchase">
+                                <ul>
+                                    <li>The average users Purchase Goal Cost is ${{all_users_purchase_cost|floatformat:"2"|intcomma}} yours is ${{current_users_purchase_cost|floatformat:"2"|intcomma}}.
+                                    </li>
+                                    <li>The average users Purchase Goal takes {{all_users_purchase_time|floatformat:"0"}} full days yours takes {{current_users_purchase_time|floatformat:"0"}}.
+                                    </li>
+                                  <li>The average users Purchase Goal takes {{all_users_purchase_hours|floatformat:"0"}} hours yours takes {{current_users_purchase_hours|floatformat:"0"}}.
+                                    </li>
+                                </ul>
+                            </div>
+                        {% endif %}
+                        
+                        {% if user_has_goal_type_travel %}
+                            <div role = "tabpanel" class = "tab-pane" id = "travel">
+                                <ul>
                                 <li>The average users Travel Goal Cost is ${{all_users_travel_cost|floatformat:"2"|intcomma}} yours is ${{current_users_travel_cost|floatformat:"2"|intcomma}}.
                                 </li>
                                 <li>The average users Travel Goal takes {{all_users_travel_time|floatformat:"0"}} full days yours takes {{current_users_travel_time|floatformat:"0"}}.
@@ -539,138 +631,134 @@
                               <li>The average users Travel Goal takes {{all_users_travel_hours|floatformat:"0"}} hours yours takes {{current_users_travel_hours|floatformat:"0"}}.
                                 </li>
                             </ul>
-                        </li>
+                            </div>
+                        {% endif %}
                         
-                    {% endif %}
-                    {% if user_has_goal_type_extreme %}
-                        <li>
-                            <h4>Extreme Sport</h4>
-                            <ul>
-                                <li>The average users Extreme Sport Goal Cost is ${{all_users_extreme_cost|floatformat:"2"|intcomma}} yours is ${{current_users_extreme_cost|floatformat:"2"|intcomma}}.
-                                </li>
-                                <li>The average users Extreme Sport Goal takes {{all_users_extreme_time|floatformat:"0"}} full days yours takes {{current_users_extreme_time|floatformat:"0"}}.
-                                </li>
-                              <li>The average users Extreme Sport Goal takes {{all_users_extreme_hours|floatformat:"0"}} hours yours takes {{current_users_extreme_hours|floatformat:"0"}}.
-                                </li>
+                        {% if user_has_goal_type_extreme %}
+                            <div role = "tabpanel" class = "tab-pane" id = "extreme">
+                                <ul>
+                                    <li>The average users Extreme Sport Goal Cost is ${{all_users_extreme_cost|floatformat:"2"|intcomma}} yours is ${{current_users_extreme_cost|floatformat:"2"|intcomma}}.
+                                    </li>
+                                    <li>The average users Extreme Sport Goal takes {{all_users_extreme_time|floatformat:"0"}} full days yours takes {{current_users_extreme_time|floatformat:"0"}}.
+                                    </li>
+                                  <li>The average users Extreme Sport Goal takes {{all_users_extreme_hours|floatformat:"0"}} hours yours takes {{current_users_extreme_hours|floatformat:"0"}}.
+                                    </li>
+                                </ul>
+                            </div>
+                        {% endif %}
+                        
+                        {% if user_has_goal_type_family %}
+                            <div role = "tabpanel" class = "tab-pane" id = "family">
+                                <ul>
+                                    <li>The average users Family/Social Goal Cost is ${{all_users_family_cost|floatformat:"2"|intcomma}} yours is ${{current_users_family_cost|floatformat:"2"|intcomma}}.
+                                    </li>
+                                    <li>The average users Family/Social Goal takes {{all_users_family_time|floatformat:"0"}} full days yours takes {{current_users_family_time|floatformat:"0"}}.
+                                    </li>
+                                  <li>The average users Family/Social Goal takes {{all_users_family_hours|floatformat:"0"}} hours yours takes {{current_users_family_hours|floatformat:"0"}}.
+                                    </li>
+                                </ul>
+                            </div>
+                        {% endif %}
+                        
+                        {% if user_has_goal_type_relationship %}
+                            <div role = "tabpanel" class = "tab-pane" id = "relationship">
+                                <ul>
+                                    <li>The average users Relationship Goal Cost is ${{all_users_relationship_cost|floatformat:"2"|intcomma}} yours is ${{current_users_relationship_cost|floatformat:"2"|intcomma}}.
+                                    </li>
+                                    <li>The average users Relationship Goal takes {{all_users_relationship_time|floatformat:"0"}} full days yours takes {{current_users_relationship_time|floatformat:"0"}}.
+                                    </li>
+                                  <li>The average users Relationship Goal takes {{all_users_relationship_hours|floatformat:"0"}} hours yours takes {{current_users_relationship_hours|floatformat:"0"}}.
+                                    </li>
                             </ul>
-                        </li>
+                            </div>
+                        {% endif %}
                         
-                    {% endif %}
-                    {% if user_has_goal_type_family %}
-                        <li>
-                            <h4>Family/Social</h4>
-                            <ul>
-                                <li>The average users Family/Social Goal Cost is ${{all_users_family_cost|floatformat:"2"|intcomma}} yours is ${{current_users_family_cost|floatformat:"2"|intcomma}}.
-                                </li>
-                                <li>The average users Family/Social Goal takes {{all_users_family_time|floatformat:"0"}} full days yours takes {{current_users_family_time|floatformat:"0"}}.
-                                </li>
-                              <li>The average users Family/Social Goal takes {{all_users_family_hours|floatformat:"0"}} hours yours takes {{current_users_family_hours|floatformat:"0"}}.
-                                </li>
+                        {% if user_has_goal_type_exercise %}
+                            <div role = "tabpanel" class = "tab-pane" id = "exercise">
+                                <ul>
+                                    <li>The average users Exercise/Health Goal Cost is ${{all_users_exercise_cost|floatformat:"2"|intcomma}} yours is ${{current_users_exercise_cost|floatformat:"2"|intcomma}}.
+                                    </li>
+                                    <li>The average users Exercise/Health Goal takes {{all_users_exercise_time|floatformat:"0"}} full days yours takes {{current_users_exercise_time|floatformat:"0"}}.
+                                    </li>
+                                  <li>The average users Exercise/Health Goal takes {{all_users_exercise_hours|floatformat:"0"}} hours yours takes {{current_users_exercise_hours|floatformat:"0"}}.
+                                    </li>
+                                </ul>
+                            </div>
+                        {% endif %}
+                        
+                        {% if user_has_goal_type_skill %}
+                            <div role = "tabpanel" class = "tab-pane" id = "skill">
+                                <ul>
+                                    <li>The average users Improving a Skill Goal Cost is ${{all_users_skill_cost|floatformat:"2"|intcomma}} yours is ${{current_users_skill_cost|floatformat:"2"|intcomma}}.
+                                    </li>
+                                    <li>The average users Improving a Skill Goal takes {{all_users_skill_time|floatformat:"0"}} full days yours takes {{current_users_skill_time|floatformat:"0"}}.
+                                    </li>
+                                  <li>The average users Improving a Skill Goal takes {{all_users_skill_hours|floatformat:"0"}} hours yours takes {{current_users_skill_hours|floatformat:"0"}}.
+                                    </li>
+                                </ul>
+                            </div>
+                        {% endif %}
+                        
+                        {% if user_has_goal_type_hobby %}
+                            <div role = "tabpanel" class = "tab-pane" id = "hobby">
+                                <ul>
+                                    <li>The average users Improving a Hobby Goal Cost is ${{all_users_hobby_cost|floatformat:"2"|intcomma}} yours is ${{current_users_hobby_cost|floatformat:"2"|intcomma}}.
+                                    </li>
+                                    <li>The average users Improving a Hobby Goal takes {{all_users_hobby_time|floatformat:"0"}} full days yours takes {{current_users_hobby_time|floatformat:"0"}}.
+                                    </li>
+                                  <li>The average users Improving a Hobby Goal takes {{all_users_hobby_hours|floatformat:"0"}} hours yours takes {{current_users_hobby_hours|floatformat:"0"}}.
+                                    </li>
                             </ul>
-                        </li>
+                            </div>
+                        {% endif %}
                         
-                    {% endif %}
-                    {% if user_has_goal_type_relationship %}
-                        <li>
-                            <h4>Relationship</h4>
-                            <ul>
-                                <li>The average users Relationship Goal Cost is ${{all_users_relationship_cost|floatformat:"2"|intcomma}} yours is ${{current_users_relationship_cost|floatformat:"2"|intcomma}}.
-                                </li>
-                                <li>The average users Relationship Goal takes {{all_users_relationship_time|floatformat:"0"}} full days yours takes {{current_users_relationship_time|floatformat:"0"}}.
-                                </li>
-                              <li>The average users Relationship Goal takes {{all_users_relationship_hours|floatformat:"0"}} hours yours takes {{current_users_relationship_hours|floatformat:"0"}}.
-                                </li>
-                            </ul>
-                        </li>
+                        {% if user_has_goal_type_building %}
+                            <div role = "tabpanel" class = "tab-pane" id = "building">
+                                <ul>
+                                    <li>The average users Improving a Building/Creating Something Goal Cost is ${{all_users_building_cost|floatformat:"2"|intcomma}} yours is ${{current_users_building_cost|floatformat:"2"|intcomma}}.
+                                    </li>
+                                    <li>The average users Improving a Building/Creating Something Goal takes {{all_users_building_time|floatformat:"0"}} full days yours takes {{current_users_building_time|floatformat:"0"}}.
+                                    </li>
+                                  <li>The average users Improving a Building/Creating Something Goal takes {{all_users_building_hours|floatformat:"0"}} hours yours takes {{current_users_building_hours|floatformat:"0"}}.
+                                    </li>
+                                </ul>
+                            </div>
+                        {% endif %}
                         
-                    {% endif %}
-                    {% if user_has_goal_type_exercise %}
-                        <li>
-                            <h4>Exercise/Health</h4>
-                            <ul>
-                                <li>The average users Exercise/Health Goal Cost is ${{all_users_exercise_cost|floatformat:"2"|intcomma}} yours is ${{current_users_exercise_cost|floatformat:"2"|intcomma}}.
-                                </li>
-                                <li>The average users Exercise/Health Goal takes {{all_users_exercise_time|floatformat:"0"}} full days yours takes {{current_users_exercise_time|floatformat:"0"}}.
-                                </li>
-                              <li>The average users Exercise/Health Goal takes {{all_users_exercise_hours|floatformat:"0"}} hours yours takes {{current_users_exercise_hours|floatformat:"0"}}.
-                                </li>
-                            </ul>
-                        </li>
+                        {% if user_has_goal_type_education %}
+                            <div role = "tabpanel" class = "tab-pane" id = "education">
+                                <ul>
+                                    <li>The average users Improving a Education/Self Improvement Goal Cost is ${{all_users_education_cost|floatformat:"2"|intcomma}} yours is ${{current_users_education_cost|floatformat:"2"|intcomma}}.
+                                    </li>
+                                    <li>The average users Improving a Education/Self Improvement Goal takes {{all_users_education_time|floatformat:"0"}} full days yours takes {{current_users_education_time|floatformat:"0"}}.
+                                    </li>
+                                  <li>The average users Improving a Education/Self Improvement takes {{all_users_education_hours|floatformat:"0"}} hours yours takes {{current_users_education_hours|floatformat:"0"}}.
+                                    </li>
+                                </ul>
+                            </div>
+                        {% endif %}
                         
-                    {% endif %}
-                    {% if user_has_goal_type_skill %}
-                        <li>
-                            <h4>Improving a Skill</h4>
-                            <ul>
-                                <li>The average users Improving a Skill Goal Cost is ${{all_users_skill_cost|floatformat:"2"|intcomma}} yours is ${{current_users_skill_cost|floatformat:"2"|intcomma}}.
-                                </li>
-                                <li>The average users Improving a Skill Goal takes {{all_users_skill_time|floatformat:"0"}} full days yours takes {{current_users_skill_time|floatformat:"0"}}.
-                                </li>
-                              <li>The average users Improving a Skill Goal takes {{all_users_skill_hours|floatformat:"0"}} hours yours takes {{current_users_skill_hours|floatformat:"0"}}.
-                                </li>
-                            </ul>
-                        </li>
+                        {% if user_has_goal_type_volunteering %}
+                            <div role = "tabpanel" class = "tab-pane" id = "volunteering">
+                                <ul>
+                                    <li>The average users Improving a Volunteering Goal Cost is ${{all_users_volunteering_cost|floatformat:"2"|intcomma}} yours is ${{current_users_volunteering_cost|floatformat:"2"|intcomma}}.
+                                    </li>
+                                    <li>The average users Improving a Volunteering Goal takes {{all_users_volunteering_time|floatformat:"0"}} full days yours takes {{current_users_volunteering_time|floatformat:"0"}}.
+                                    </li>
+                                  <li>The average users Improving a Volunteering takes {{all_users_volunteering_hours|floatformat:"0"}} hours yours takes {{current_users_volunteering_hours|floatformat:"0"}}.
+                                    </li>
+                                </ul>
+                            </div>
+                        {% endif %}
                         
-                    {% endif %}
-                    {% if user_has_goal_type_hobby %}
-                        <li>
-                            <h4>Hobby</h4>
-                            <ul>
-                                <li>The average users Improving a Hobby Goal Cost is ${{all_users_hobby_cost|floatformat:"2"|intcomma}} yours is ${{current_users_hobby_cost|floatformat:"2"|intcomma}}.
-                                </li>
-                                <li>The average users Improving a Hobby Goal takes {{all_users_hobby_time|floatformat:"0"}} full days yours takes {{current_users_hobby_time|floatformat:"0"}}.
-                                </li>
-                              <li>The average users Improving a Hobby Goal takes {{all_users_hobby_hours|floatformat:"0"}} hours yours takes {{current_users_hobby_hours|floatformat:"0"}}.
-                                </li>
-                            </ul>
-                        </li>
                         
-                    {% endif %}
-                    {% if user_has_goal_type_building %}
-                        <li>
-                            <h4>Building/Creating Something</h4>
-                            <ul>
-                                <li>The average users Improving a Building/Creating Something Goal Cost is ${{all_users_building_cost|floatformat:"2"|intcomma}} yours is ${{current_users_building_cost|floatformat:"2"|intcomma}}.
-                                </li>
-                                <li>The average users Improving a Building/Creating Something Goal takes {{all_users_building_time|floatformat:"0"}} full days yours takes {{current_users_building_time|floatformat:"0"}}.
-                                </li>
-                              <li>The average users Improving a Building/Creating Something Goal takes {{all_users_building_hours|floatformat:"0"}} hours yours takes {{current_users_building_hours|floatformat:"0"}}.
-                                </li>
-                            </ul>
-                        </li>
-                        
-                    {% endif %}
-                    {% if user_has_goal_type_education %}
-                        <li>
-                            <h4>Education/Self Improvement</h4>
-                            <ul>
-                                <li>The average users Improving a Education/Self Improvement Goal Cost is ${{all_users_education_cost|floatformat:"2"|intcomma}} yours is ${{current_users_education_cost|floatformat:"2"|intcomma}}.
-                                </li>
-                                <li>The average users Improving a Education/Self Improvement Goal takes {{all_users_education_time|floatformat:"0"}} full days yours takes {{current_users_education_time|floatformat:"0"}}.
-                                </li>
-                              <li>The average users Improving a Education/Self Improvement takes {{all_users_education_hours|floatformat:"0"}} hours yours takes {{current_users_education_hours|floatformat:"0"}}.
-                                </li>
-                            </ul>
-                        </li>
-                        
-                    {% endif %}
-                    {% if user_has_goal_type_volunteering %}
-                        <li>
-                            <h4>Volunteering</h4>
-                            <ul>
-                                <li>The average users Improving a Volunteering Goal Cost is ${{all_users_volunteering_cost|floatformat:"2"|intcomma}} yours is ${{current_users_volunteering_cost|floatformat:"2"|intcomma}}.
-                                </li>
-                                <li>The average users Improving a Volunteering Goal takes {{all_users_volunteering_time|floatformat:"0"}} full days yours takes {{current_users_volunteering_time|floatformat:"0"}}.
-                                </li>
-                              <li>The average users Improving a Volunteering takes {{all_users_volunteering_hours|floatformat:"0"}} hours yours takes {{current_users_volunteering_hours|floatformat:"0"}}.
-                                </li>
-                            </ul>
-                        </li>
-                        
-                    {% endif %}
-                    
-                </ul>
-            <br>
+                    </div><!-- end tab content-->                
+                </div><!--end tab-panel-->
+                
+                <!----------------------End Tabbed Nav-------------------->
+                
+                
+
             </div><!-- end seventh sections-->
             <br>
             <div class = "sections">
