@@ -599,7 +599,7 @@
                         
                         {% if user_has_goal_type_career %}
                             <div role = "tabpanel" class = "tab-pane" id = "career">
-                                <ul>
+                                <ul class = "comparing-goal-types-inner">
                                     <li>The average users Career Goal Cost is ${{all_users_career_cost|floatformat:"2"|intcomma}} yours is ${{current_users_career_cost|floatformat:"2"|intcomma}}.
                                     </li>
                                     <li>The average users Career Goal takes {{all_users_career_time|floatformat:"0"}} full days yours takes {{current_users_career_time|floatformat:"0"}}.
