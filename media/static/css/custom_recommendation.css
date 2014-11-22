@@ -255,3 +255,34 @@
   border-color: #ddd #ddd #ddd transparent;
   *border-left-color: #ffffff;
 }
+
+.tabs-left ul li a {
+    font-size: 7px;
+}
+
+.nav-stacked {
+   width: 35%;
+}
+
+
+@media only screen and (min-width : 610px) {
+        
+    .nav-stacked {
+        width: 20%;
+    }
+    .tabs-left ul li a {
+        font-size: 11px;
+    }
+}
+
+@media only screen and (min-width : 500px) {
+    .nav-stacked {
+        width: 30%;
+        }
+}
+
+@media only screen and (min-width : 350px) {
+    .tabs-left ul li a {
+    font-size: 9px;
+    }
+}
