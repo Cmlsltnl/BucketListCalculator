@@ -299,6 +299,7 @@ def recommendation(request):
     def InflationCalculator(amount, years):
         #Takes a dollar amount, and number of years then outputs how what that dollar amount would cost x years into the future.  Uses historical 1.5% inflation
         return (1.015**years)*amount
+       
         
             
     #-----------------Passed Through to Template (simple)---------------
@@ -669,12 +670,6 @@ def recommendation(request):
     
     
     #*******Comparing Goal Types******
-    
-    #Finding Most Popular Goal Types
-    goal = []
-    #This would be more efficiently done in a different fashion...
-    for goal in mylist:
-        print "Thingy"
         
     #Career
     user_has_goal_type_career = UserHasGoalType("Career")
@@ -684,6 +679,11 @@ def recommendation(request):
     current_users_career_time = AverageForGoalType("Career", "time", 2)
     all_users_career_hours = AverageForGoalType("Career", "hours", 1)
     current_users_career_hours = AverageForGoalType("Career", "hours", 2)
+    users_career_goal_count = BucketListItem.objects.filter(pub_by = user1, goal_type = "Career").count()
+    largest_career_goal_cost = BucketListItem.objects.filter(pub_by = user1, goal_type = "Career").order_by("-cost")[:1]
+    print largest_career_goal_cost[0]
+   
+    
     
     #Purchase
     user_has_goal_type_purchase = UserHasGoalType("Purchase")
@@ -693,6 +693,9 @@ def recommendation(request):
     current_users_purchase_time = AverageForGoalType("Purchase", "time", 2)
     all_users_purchase_hours = AverageForGoalType("Purchase", "hours", 1)
     current_users_purchase_hours = AverageForGoalType("Purchase", "hours", 2)
+    users_purchase_goal_count = BucketListItem.objects.filter(pub_by = user1, goal_type = "Purchase").count()
+    largest_purchase_goal_cost = BucketListItem.objects.filter(pub_by = user1, goal_type = "Purchase").order_by("-cost")[:1]
+    print largest_purchase_goal_cost[0]
     
     #Travel
     user_has_goal_type_travel = UserHasGoalType("Travel")
@@ -702,6 +705,7 @@ def recommendation(request):
     current_users_travel_time = AverageForGoalType("Travel", "time", 2)
     all_users_travel_hours = AverageForGoalType("Travel", "hours", 1)
     current_users_travel_hours = AverageForGoalType("Travel", "hours", 2)
+    users_travel_goal_count = BucketListItem.objects.filter(pub_by = user1, goal_type = "Travel").count()
     
     #Extreme Sport
     user_has_goal_type_extreme = UserHasGoalType("Extreme Sport")
@@ -711,6 +715,7 @@ def recommendation(request):
     current_users_extreme_time = AverageForGoalType("Extreme Sport", "time", 2)
     all_users_extreme_hours = AverageForGoalType("Extreme Sport", "hours", 1)
     current_users_extreme_hours = AverageForGoalType("Extreme Sport", "hours", 2)    
+    users_extreme_goal_count = BucketListItem.objects.filter(pub_by = user1, goal_type = "Extreme Sport").count()
     
     #Family/Social
     user_has_goal_type_family = UserHasGoalType("Family/Social")
@@ -720,6 +725,7 @@ def recommendation(request):
     current_users_family_time = AverageForGoalType("Family/Social", "time", 2)
     all_users_family_hours = AverageForGoalType("Family/Social", "hours", 1)
     current_users_family_hours = AverageForGoalType("Family/Social", "hours", 2)    
+    users_family_goal_count = BucketListItem.objects.filter(pub_by = user1, goal_type = "Family/Social").count()
     
     #Relationship
     user_has_goal_type_relationship = UserHasGoalType("Relationship")
@@ -729,6 +735,7 @@ def recommendation(request):
     current_users_relationship_time = AverageForGoalType("Relationship", "time", 2)
     all_users_relationship_hours = AverageForGoalType("Relationship", "hours", 1)
     current_users_relationship_hours = AverageForGoalType("Relationship", "hours", 2)     
+    users_relationship_goal_count = BucketListItem.objects.filter(pub_by = user1, goal_type = "Relationship").count()
     
     #Exercise/Health
     user_has_goal_type_exercise = UserHasGoalType("Exercise/Health")
@@ -738,6 +745,7 @@ def recommendation(request):
     current_users_exercise_time = AverageForGoalType("Exercise/Health", "time", 2)
     all_users_exercise_hours = AverageForGoalType("Exercise/Health", "hours", 1)
     current_users_exercise_hours = AverageForGoalType("Exercise/Health", "hours", 2)
+    users_exercise_goal_count = BucketListItem.objects.filter(pub_by = user1, goal_type = "Exercise/Health").count()
     
     #Improving a Skill
     user_has_goal_type_skill = UserHasGoalType("Improving a Skill")
@@ -747,6 +755,7 @@ def recommendation(request):
     current_users_skill_time = AverageForGoalType("Improving a Skill", "time", 2)
     all_users_skill_hours = AverageForGoalType("Improving a Skill", "hours", 1)
     current_users_skill_hours = AverageForGoalType("Improving a Skill", "hours", 2)
+    users_skill_goal_count = BucketListItem.objects.filter(pub_by = user1, goal_type = "Improving a Skill").count()
     
     #Hobby
     user_has_goal_type_hobby = UserHasGoalType("Hobby")
@@ -756,6 +765,7 @@ def recommendation(request):
     current_users_hobby_time = AverageForGoalType("Hobby", "time", 2)
     all_users_hobby_hours = AverageForGoalType("Hobby", "hours", 1)
     current_users_hobby_hours = AverageForGoalType("Hobby", "hours", 2)
+    users_hobby_goal_count = BucketListItem.objects.filter(pub_by = user1, goal_type = "Hobby").count()
     
     #Building/Creating Something
     user_has_goal_type_building = UserHasGoalType("Building/Creating Something")
@@ -765,6 +775,7 @@ def recommendation(request):
     current_users_building_time = AverageForGoalType("Building/Creating Something", "time", 2)
     all_users_building_hours = AverageForGoalType("Building/Creating Something", "hours", 1)
     current_users_building_hours = AverageForGoalType("Building/Creating Something", "hours", 2)  
+    users_building_goal_count = BucketListItem.objects.filter(pub_by = user1, goal_type = "Building/Creating Something").count()
     
     #Education/Self Improvement
     user_has_goal_type_education = UserHasGoalType("Education/Self Improvement")
@@ -774,6 +785,7 @@ def recommendation(request):
     current_users_education_time = AverageForGoalType("Education/Self Improvement", "time", 2)
     all_users_education_hours = AverageForGoalType("Education/Self Improvement", "hours", 1)
     current_users_education_hours = AverageForGoalType("Education/Self Improvement", "hours", 2)
+    users_education_goal_count = BucketListItem.objects.filter(pub_by = user1, goal_type = "Education/Self Improvement").count()
     
     #Volunteering
     user_has_goal_type_volunteering = UserHasGoalType("Volunteering")
@@ -783,6 +795,7 @@ def recommendation(request):
     current_users_volunteering_time = AverageForGoalType("Volunteering", "time", 2)
     all_users_volunteering_hours = AverageForGoalType("Volunteering", "hours", 1)
     current_users_volunteering_hours = AverageForGoalType("Volunteering", "hours", 2)
+    users_volunteering_goal_count = BucketListItem.objects.filter(pub_by = user1, goal_type = "Volunteering").count()
     
     
     #Your End Date
@@ -1014,7 +1027,8 @@ def recommendation(request):
                       'current_users_career_time': current_users_career_time,
                       'all_users_career_hours': all_users_career_hours,
                       'current_users_career_hours': current_users_career_hours,
-                     
+                      'users_career_goal_count': users_career_goal_count,
+                      
                      'user_has_goal_type_purchase': user_has_goal_type_purchase,
                      'all_users_purchase_cost': all_users_purchase_cost,
                      'current_users_purchase_cost': current_users_purchase_cost,
@@ -1022,6 +1036,7 @@ def recommendation(request):
                      'current_users_purchase_time': current_users_purchase_time,
                      'all_users_purchase_hours': all_users_purchase_hours,
                      'current_users_purchase_hours': current_users_purchase_hours,
+                     'users_purchase_goal_count': users_purchase_goal_count,
                      
                      'user_has_goal_type_travel': user_has_goal_type_travel,
                      'all_users_travel_cost': all_users_travel_cost,
@@ -1030,6 +1045,7 @@ def recommendation(request):
                      'current_users_travel_time': current_users_travel_time,
                      'all_users_travel_hours': all_users_travel_hours,
                      'current_users_travel_hours': current_users_travel_hours,
+                     'users_travel_goal_count': users_travel_goal_count,
                      
                      'user_has_goal_type_extreme': user_has_goal_type_extreme,
                      'all_users_extreme_cost': all_users_extreme_cost,
@@ -1038,6 +1054,7 @@ def recommendation(request):
                      'current_users_extreme_time': current_users_extreme_time,
                      'all_users_extreme_hours': all_users_extreme_hours,
                      'current_users_extreme_hours': current_users_extreme_hours,
+                     'users_extreme_goal_count': users_extreme_goal_count,
                      
                      'user_has_goal_type_family': user_has_goal_type_family,
                      'all_users_family_cost': all_users_family_cost,
@@ -1046,6 +1063,7 @@ def recommendation(request):
                      'current_users_family_time': current_users_family_time,
                      'all_users_family_hours': all_users_family_hours,
                      'current_users_family_hours': current_users_family_hours,
+                     'users_family_goal_count': users_family_goal_count,
                      
                      'user_has_goal_type_relationship': user_has_goal_type_relationship,
                      'all_users_relationship_cost': all_users_relationship_cost,
@@ -1054,6 +1072,7 @@ def recommendation(request):
                      'current_users_relationship_time': current_users_relationship_time,
                      'all_users_relationship_hours': all_users_relationship_hours,
                      'current_users_relationship_hours': current_users_relationship_hours,
+                     'users_relationship_goal_count': users_relationship_goal_count,
                      
                      'user_has_goal_type_exercise': user_has_goal_type_exercise,
                      'all_users_exercise_cost': all_users_exercise_cost,
@@ -1062,6 +1081,7 @@ def recommendation(request):
                      'current_users_exercise_time': current_users_exercise_time,
                      'all_users_exercise_hours': all_users_exercise_hours,
                      'current_users_exercise_hours': current_users_exercise_hours,
+                     'users_exercise_goal_count': users_exercise_goal_count,
                      
                      'user_has_goal_type_skill': user_has_goal_type_skill,
                      'all_users_skill_cost': all_users_skill_cost,
@@ -1070,6 +1090,7 @@ def recommendation(request):
                      'current_users_skill_time': current_users_skill_time,
                      'all_users_skill_hours': all_users_skill_hours,
                      'current_users_skill_hours': current_users_skill_hours,
+                     'users_skill_goal_count': users_skill_goal_count,
                      
                      'user_has_goal_type_hobby': user_has_goal_type_hobby,
                      'all_users_hobby_cost': all_users_hobby_cost,
@@ -1078,6 +1099,7 @@ def recommendation(request):
                      'current_users_hobby_time': current_users_hobby_time,
                      'all_users_hobby_hours': all_users_hobby_hours,
                      'current_users_hobby_hours': current_users_hobby_hours,
+                     'users_hobby_goal_count': users_hobby_goal_count,
                      
                      'user_has_goal_type_building': user_has_goal_type_building,
                      'all_users_building_cost': all_users_building_cost,
@@ -1086,6 +1108,7 @@ def recommendation(request):
                      'current_users_building_time': current_users_building_time,
                      'all_users_building_hours': all_users_building_hours,
                      'current_users_building_hours': current_users_building_hours,
+                     'users_building_goal_count': users_building_goal_count,
                      
                      'user_has_goal_type_education': user_has_goal_type_education,
                      'all_users_education_cost': all_users_education_cost,
@@ -1094,6 +1117,7 @@ def recommendation(request):
                      'current_users_education_time': current_users_education_time,
                      'all_users_education_hours': all_users_education_hours,
                      'current_users_education_hours': current_users_education_hours,
+                     'users_education_goal_count': users_education_goal_count,
                      
                      'user_has_goal_type_volunteering': user_has_goal_type_volunteering,
                      'all_users_volunteering_cost': all_users_volunteering_cost,
@@ -1102,6 +1126,7 @@ def recommendation(request):
                      'current_users_volunteering_time': current_users_volunteering_time,
                      'all_users_volunteering_hours': all_users_volunteering_hours,
                      'current_users_volunteering_hours': current_users_volunteering_hours,
+                     'users_volunteering_goal_count': users_volunteering_goal_count,
                      
                      #----------------Your End Date------------------
                     'years_left_plus_five': years_left_plus_five,

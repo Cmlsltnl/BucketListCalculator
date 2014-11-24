@@ -605,6 +605,7 @@
                                     The average users Career Goal costs <span class = "number text-success">${{all_users_career_cost|floatformat:"0"|intcomma}}</span> yours is <span class = "number text-success">${{current_users_career_cost|floatformat:"0"|intcomma}}</span>.
                                     The average users Career Goal takes {{all_users_career_time|floatformat:"0"}} full days to your {{current_users_career_time|floatformat:"0"}}.
                                     The average users Career Goal  takes {{all_users_career_hours|floatformat:"0"}} hours while yours takes {{current_users_career_hours|floatformat:"0"}}.
+                                    You currently have <span class = "number">{{users_career_goal_count}}</span> Career Goal items.
                                 </p>
                             </div>
                         {% endif %}
@@ -617,6 +618,7 @@
                                     <li>The average users Purchase Goal takes {{all_users_purchase_time|floatformat:"0"}} full days yours takes {{current_users_purchase_time|floatformat:"0"}}.
                                     </li>
                                   <li>The average users Purchase Goal takes {{all_users_purchase_hours|floatformat:"0"}} hours yours takes {{current_users_purchase_hours|floatformat:"0"}}.
+                                  You currently have <span class = "number">{{users_purchase_goal_count}}</span> Purchase Goal items.
                                     </li>
                                 </ul>
                             </div>
@@ -630,6 +632,7 @@
                                 <li>The average users Travel Goal takes {{all_users_travel_time|floatformat:"0"}} full days yours takes {{current_users_travel_time|floatformat:"0"}}.
                                 </li>
                               <li>The average users Travel Goal takes {{all_users_travel_hours|floatformat:"0"}} hours yours takes {{current_users_travel_hours|floatformat:"0"}}.
+                              You currently have <span class = "number">{{users_travel_goal_count}}</span> Travel Goal items.
                                 </li>
                             </ul>
                             </div>
@@ -643,6 +646,7 @@
                                     <li>The average users Extreme Sport Goal takes {{all_users_extreme_time|floatformat:"0"}} full days yours takes {{current_users_extreme_time|floatformat:"0"}}.
                                     </li>
                                   <li>The average users Extreme Sport Goal takes {{all_users_extreme_hours|floatformat:"0"}} hours yours takes {{current_users_extreme_hours|floatformat:"0"}}.
+                                  You currently have <span class = "number">{{users_extreme_goal_count}}</span> Extreme Sport Goal items.
                                     </li>
                                 </ul>
                             </div>
@@ -656,6 +660,7 @@
                                     <li>The average users Family/Social Goal takes {{all_users_family_time|floatformat:"0"}} full days yours takes {{current_users_family_time|floatformat:"0"}}.
                                     </li>
                                   <li>The average users Family/Social Goal takes {{all_users_family_hours|floatformat:"0"}} hours yours takes {{current_users_family_hours|floatformat:"0"}}.
+                                  You currently have <span class = "number">{{users_family_goal_count}}</span> Family/Social Goal items.
                                     </li>
                                 </ul>
                             </div>
@@ -669,6 +674,7 @@
                                     <li>The average users Relationship Goal takes {{all_users_relationship_time|floatformat:"0"}} full days yours takes {{current_users_relationship_time|floatformat:"0"}}.
                                     </li>
                                   <li>The average users Relationship Goal takes {{all_users_relationship_hours|floatformat:"0"}} hours yours takes {{current_users_relationship_hours|floatformat:"0"}}.
+                                  You currently have <span class = "number">{{users_relationship_goal_count}}</span> Relationship Goal items.
                                     </li>
                             </ul>
                             </div>
@@ -682,6 +688,7 @@
                                     <li>The average users Exercise/Health Goal takes {{all_users_exercise_time|floatformat:"0"}} full days yours takes {{current_users_exercise_time|floatformat:"0"}}.
                                     </li>
                                   <li>The average users Exercise/Health Goal takes {{all_users_exercise_hours|floatformat:"0"}} hours yours takes {{current_users_exercise_hours|floatformat:"0"}}.
+                                  You currently have <span class = "number">{{users_exercise_goal_count}}</span> Exercise/Health Goal items.
                                     </li>
                                 </ul>
                             </div>
@@ -695,6 +702,7 @@
                                     <li>The average users Improving a Skill Goal takes {{all_users_skill_time|floatformat:"0"}} full days yours takes {{current_users_skill_time|floatformat:"0"}}.
                                     </li>
                                   <li>The average users Improving a Skill Goal takes {{all_users_skill_hours|floatformat:"0"}} hours yours takes {{current_users_skill_hours|floatformat:"0"}}.
+                                  You currently have <span class = "number">{{users_skill_goal_count}}</span> Improving a Skill Goal items.
                                     </li>
                                 </ul>
                             </div>
@@ -708,6 +716,7 @@
                                     <li>The average users Improving a Hobby Goal takes {{all_users_hobby_time|floatformat:"0"}} full days yours takes {{current_users_hobby_time|floatformat:"0"}}.
                                     </li>
                                   <li>The average users Improving a Hobby Goal takes {{all_users_hobby_hours|floatformat:"0"}} hours yours takes {{current_users_hobby_hours|floatformat:"0"}}.
+                                  You currently have <span class = "number">{{users_hobby_goal_count}}</span> Hobby Goal items.
                                     </li>
                             </ul>
                             </div>
@@ -721,6 +730,7 @@
                                     <li>The average users Improving a Building/Creating Something Goal takes {{all_users_building_time|floatformat:"0"}} full days yours takes {{current_users_building_time|floatformat:"0"}}.
                                     </li>
                                   <li>The average users Improving a Building/Creating Something Goal takes {{all_users_building_hours|floatformat:"0"}} hours yours takes {{current_users_building_hours|floatformat:"0"}}.
+                                  You currently have <span class = "number">{{users_building_goal_count}}</span> Building/Creating Something Goal items.
                                     </li>
                                 </ul>
                             </div>
@@ -734,6 +744,7 @@
                                     <li>The average users Improving a Education/Self Improvement Goal takes {{all_users_education_time|floatformat:"0"}} full days yours takes {{current_users_education_time|floatformat:"0"}}.
                                     </li>
                                   <li>The average users Improving a Education/Self Improvement takes {{all_users_education_hours|floatformat:"0"}} hours yours takes {{current_users_education_hours|floatformat:"0"}}.
+                                  You currently have <span class = "number">{{users_education_goal_count}}</span> Education/Self Improvement Goal items.
                                     </li>
                                 </ul>
                             </div>
@@ -747,6 +758,7 @@
                                     <li>The average users Improving a Volunteering Goal takes {{all_users_volunteering_time|floatformat:"0"}} full days yours takes {{current_users_volunteering_time|floatformat:"0"}}.
                                     </li>
                                   <li>The average users Improving a Volunteering takes {{all_users_volunteering_hours|floatformat:"0"}} hours yours takes {{current_users_volunteering_hours|floatformat:"0"}}.
+                                  You currently have <span class = "number">{{users_volunteering_goal_count}}</span> Volunteering Goal items.
                                     </li>
                                 </ul>
                                 <br>
