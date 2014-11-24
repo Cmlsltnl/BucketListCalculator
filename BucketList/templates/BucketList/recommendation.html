@@ -595,23 +595,17 @@
                     
                         <div role = "tabpanel" class = "tab-pane active" id = "overview">
                                 <p>
-                                    In this segment you can view how each of your goal types compares to the average users goal types, and how they stack up against one another
-                                    <br>
-                                    <br>
-                                    Select different tab to toggle through all of your different goal types.
+                                    In this segment you can view how each of your goal types compares to the average users goal types.  Select different tab to toggle through all of your different goal types.
                                 </p>
                         </div>
                         
                         {% if user_has_goal_type_career %}
                             <div role = "tabpanel" class = "tab-pane" id = "career">
-                                <ul class = "comparing-goal-types-inner">
-                                    <li>The average users Career Goal Cost is ${{all_users_career_cost|floatformat:"2"|intcomma}} yours is ${{current_users_career_cost|floatformat:"2"|intcomma}}.
-                                    </li>
-                                    <li>The average users Career Goal takes {{all_users_career_time|floatformat:"0"}} full days yours takes {{current_users_career_time|floatformat:"0"}}.
-                                    </li>
-                                  <li>The average users Career Goal  takes {{all_users_career_hours|floatformat:"0"}} hours yours takes {{current_users_career_hours|floatformat:"0"}}.
-                                    </li>
-                                </ul>
+                                <p class = "comparing-goal-types-inner">
+                                    The average users Career Goal costs <span class = "number text-success">${{all_users_career_cost|floatformat:"0"|intcomma}}</span> yours is <span class = "number text-success">${{current_users_career_cost|floatformat:"0"|intcomma}}</span>.
+                                    The average users Career Goal takes {{all_users_career_time|floatformat:"0"}} full days to your {{current_users_career_time|floatformat:"0"}}.
+                                    The average users Career Goal  takes {{all_users_career_hours|floatformat:"0"}} hours while yours takes {{current_users_career_hours|floatformat:"0"}}.
+                                </p>
                             </div>
                         {% endif %}
                         

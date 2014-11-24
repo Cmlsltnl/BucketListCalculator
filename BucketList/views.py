@@ -245,13 +245,13 @@ def recommendation(request):
         return total_amount_after_compounded, annual_salary       
 
     def AverageForGoalType(type, category, all_or_user):
-        #Searches through all goal using the goal type given and outputs the average cost/hours/time of that goal type takes type and category argument both as a string. For the third argument enter 1 for all users or 2 for the current user
+        #Searches through all goals using the goal type given and outputs the average cost/hours/time of that goal type takes type and category argument both as a string. For the third argument enter 1 for all users or 2 for the current user
         if all_or_user == 1:
             goals = BucketListItem.objects.filter(goal_type = type)
         elif all_or_user == 2:
             goals = BucketListItem.objects.filter(goal_type = type, pub_by = request.user)
         else:
-            print "Something went wrong"
+            print "AverageForGoalType -- Something went wrong"
             
         sum = 0
         number_of_goals = 0
@@ -300,7 +300,7 @@ def recommendation(request):
         #Takes a dollar amount, and number of years then outputs how what that dollar amount would cost x years into the future.  Uses historical 1.5% inflation
         return (1.015**years)*amount
         
-                        
+            
     #-----------------Passed Through to Template (simple)---------------
     
     
@@ -316,6 +316,7 @@ def recommendation(request):
         
     all_goals = BucketListItem.objects.all().filter(crossed_off = False)
     mylist = BucketListItem.objects.all().filter(pub_by = user1, crossed_off = False)
+    
     
     #If not enough Bucket List Items redirect to Create Bucket List Item Form
     if len(mylist) == 0:
@@ -669,6 +670,12 @@ def recommendation(request):
     
     #*******Comparing Goal Types******
     
+    #Finding Most Popular Goal Types
+    goal = []
+    #This would be more efficiently done in a different fashion...
+    for goal in mylist:
+        print "Thingy"
+        
     #Career
     user_has_goal_type_career = UserHasGoalType("Career")
     all_users_career_cost = AverageForGoalType("Career", "cost", 1)
