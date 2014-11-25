@@ -290,3 +290,11 @@
 .comparing-goal-types-inner { 
     padding-top: 20px;
 }
+
+.comparing-goal-types-inner i a {
+    color: #3D3D3D;
+}
+
+.comparing-goal-types-inner i a:hover {
+    color: #5cb85c;
+}

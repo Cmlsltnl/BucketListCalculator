@@ -602,10 +602,17 @@
                         {% if user_has_goal_type_career %}
                             <div role = "tabpanel" class = "tab-pane" id = "career">
                                 <p class = "comparing-goal-types-inner">
-                                    The average users Career Goal costs <span class = "number text-success">${{all_users_career_cost|floatformat:"0"|intcomma}}</span> yours is <span class = "number text-success">${{current_users_career_cost|floatformat:"0"|intcomma}}</span>.
-                                    The average users Career Goal takes {{all_users_career_time|floatformat:"0"}} full days to your {{current_users_career_time|floatformat:"0"}}.
-                                    The average users Career Goal  takes {{all_users_career_hours|floatformat:"0"}} hours while yours takes {{current_users_career_hours|floatformat:"0"}}.
-                                    You currently have <span class = "number">{{users_career_goal_count}}</span> Career Goal items.
+                                    You currently have <span class = "number orange">{{users_career_goal_count}}</span> Career Goal items.
+                                    <br>
+                                    <br>
+                                    The average users Career Goal costs <span class = "number text-success">${{all_users_career_cost|floatformat:"0"|intcomma}}</span> yours is <span class = "number text-success">${{current_users_career_cost|floatformat:"0"|intcomma}}</span>.  Your most costly career goal is <i class = "number"><a href = "/bucketlist/item/{{largest_career_goal_cost.id}}/">{{largest_career_goal_cost}}</a></i> and it comes in at <span class = "number text-success">${{largest_career_goal_cost.cost|floatformat:"0"|intcomma}}</span>.
+                                    <br>
+                                    <br>
+                                    The average users Career Goal takes <span class = "number orange">{{all_users_career_time|floatformat:"0"}}</span> days to your <span class = "number orange">{{current_users_career_time|floatformat:"0"}}</span> days.  With <span class = "number orange">{{largest_career_goal_days.time|floatformat:"0"}}</span> days <i class = "number"><a href = "/bucketlist/item/{{largest_career_goal_days.id}}/">{{largest_career_goal_days}}</a></i> will take the most full days out of all your Career Goals.
+                                    <br>
+                                    <br>
+                                    The average users Career Goal  takes <span class = "number orange">{{all_users_career_hours|floatformat:"0"}} </span> hours while yours takes <span class = "number orange">{{current_users_career_hours|floatformat:"0"}}</span>.  <i class = "number"><a href = "/bucketlist/item/{{largest_career_goal_hours.id}}/">{{largest_career_goal_hours}}</a></i> is Career Goal that will require the most hours dedicated to completing it with <span class = "number orange">{{largest_career_goal_hours.hours|floatformat:"0"}}</span>.
+                                    
                                 </p>
                             </div>
                         {% endif %}
