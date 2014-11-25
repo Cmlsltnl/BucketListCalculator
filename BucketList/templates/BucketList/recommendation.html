@@ -594,7 +594,7 @@
                     <div class = "tab-content">
                     
                         <div role = "tabpanel" class = "tab-pane active" id = "overview">
-                                <p>
+                                <p class = "comparing-goal-types-inner">
                                     In this segment you can view how each of your goal types compares to the average users goal types.  Select different tab to toggle through all of your different goal types.
                                 </p>
                         </div>
@@ -619,155 +619,155 @@
                         
                         {% if user_has_goal_type_purchase %}
                             <div role = "tabpanel" class = "tab-pane" id = "purchase">
-                                <ul>
-                                    <li>The average users Purchase Goal Cost is ${{all_users_purchase_cost|floatformat:"2"|intcomma}} yours is ${{current_users_purchase_cost|floatformat:"2"|intcomma}}.
-                                    </li>
-                                    <li>The average users Purchase Goal takes {{all_users_purchase_time|floatformat:"0"}} full days yours takes {{current_users_purchase_time|floatformat:"0"}}.
-                                    </li>
-                                  <li>The average users Purchase Goal takes {{all_users_purchase_hours|floatformat:"0"}} hours yours takes {{current_users_purchase_hours|floatformat:"0"}}.
-                                  You currently have <span class = "number">{{users_purchase_goal_count}}</span> Purchase Goal items.
-                                    </li>
-                                </ul>
+                                <p class = "comparing-goal-types-inner">
+                                    The average users Purchase Goal Cost is ${{all_users_purchase_cost|floatformat:"2"|intcomma}} yours is ${{current_users_purchase_cost|floatformat:"2"|intcomma}}.
+                                   
+                                    The average users Purchase Goal takes {{all_users_purchase_time|floatformat:"0"}} full days yours takes {{current_users_purchase_time|floatformat:"0"}}.
+                                    
+                                    The average users Purchase Goal takes {{all_users_purchase_hours|floatformat:"0"}} hours yours takes {{current_users_purchase_hours|floatformat:"0"}}.
+                                    You currently have <span class = "number">{{users_purchase_goal_count}}</span> Purchase Goal items.
+                                 
+                                </p>
                             </div>
                         {% endif %}
                         
                         {% if user_has_goal_type_travel %}
                             <div role = "tabpanel" class = "tab-pane" id = "travel">
-                                <ul>
-                                <li>The average users Travel Goal Cost is ${{all_users_travel_cost|floatformat:"2"|intcomma}} yours is ${{current_users_travel_cost|floatformat:"2"|intcomma}}.
-                                </li>
-                                <li>The average users Travel Goal takes {{all_users_travel_time|floatformat:"0"}} full days yours takes {{current_users_travel_time|floatformat:"0"}}.
-                                </li>
-                              <li>The average users Travel Goal takes {{all_users_travel_hours|floatformat:"0"}} hours yours takes {{current_users_travel_hours|floatformat:"0"}}.
-                              You currently have <span class = "number">{{users_travel_goal_count}}</span> Travel Goal items.
-                                </li>
-                            </ul>
+                                <p class = "comparing-goal-types-inner">
+                                    The average users Travel Goal Cost is ${{all_users_travel_cost|floatformat:"2"|intcomma}} yours is ${{current_users_travel_cost|floatformat:"2"|intcomma}}.
+                                    
+                                    The average users Travel Goal takes {{all_users_travel_time|floatformat:"0"}} full days yours takes {{current_users_travel_time|floatformat:"0"}}.
+                                    
+                                  The average users Travel Goal takes {{all_users_travel_hours|floatformat:"0"}} hours yours takes {{current_users_travel_hours|floatformat:"0"}}.
+                                  You currently have <span class = "number">{{users_travel_goal_count}}</span> Travel Goal items.
+                                   
+                            </p>
                             </div>
                         {% endif %}
                         
                         {% if user_has_goal_type_extreme %}
                             <div role = "tabpanel" class = "tab-pane" id = "extreme">
-                                <ul>
-                                    <li>The average users Extreme Sport Goal Cost is ${{all_users_extreme_cost|floatformat:"2"|intcomma}} yours is ${{current_users_extreme_cost|floatformat:"2"|intcomma}}.
-                                    </li>
-                                    <li>The average users Extreme Sport Goal takes {{all_users_extreme_time|floatformat:"0"}} full days yours takes {{current_users_extreme_time|floatformat:"0"}}.
-                                    </li>
-                                  <li>The average users Extreme Sport Goal takes {{all_users_extreme_hours|floatformat:"0"}} hours yours takes {{current_users_extreme_hours|floatformat:"0"}}.
-                                  You currently have <span class = "number">{{users_extreme_goal_count}}</span> Extreme Sport Goal items.
-                                    </li>
-                                </ul>
+                                <p class = "comparing-goal-types-inner">
+                                    The average users Extreme Sport Goal Cost is ${{all_users_extreme_cost|floatformat:"2"|intcomma}} yours is ${{current_users_extreme_cost|floatformat:"2"|intcomma}}.
+                                    
+                                    The average users Extreme Sport Goal takes {{all_users_extreme_time|floatformat:"0"}} full days yours takes {{current_users_extreme_time|floatformat:"0"}}.
+                                    
+                                    The average users Extreme Sport Goal takes {{all_users_extreme_hours|floatformat:"0"}} hours yours takes {{current_users_extreme_hours|floatformat:"0"}}.
+                                    You currently have <span class = "number">{{users_extreme_goal_count}}</span> Extreme Sport Goal items.
+                                   
+                                </p>
                             </div>
                         {% endif %}
                         
                         {% if user_has_goal_type_family %}
                             <div role = "tabpanel" class = "tab-pane" id = "family">
-                                <ul>
-                                    <li>The average users Family/Social Goal Cost is ${{all_users_family_cost|floatformat:"2"|intcomma}} yours is ${{current_users_family_cost|floatformat:"2"|intcomma}}.
-                                    </li>
-                                    <li>The average users Family/Social Goal takes {{all_users_family_time|floatformat:"0"}} full days yours takes {{current_users_family_time|floatformat:"0"}}.
-                                    </li>
-                                  <li>The average users Family/Social Goal takes {{all_users_family_hours|floatformat:"0"}} hours yours takes {{current_users_family_hours|floatformat:"0"}}.
-                                  You currently have <span class = "number">{{users_family_goal_count}}</span> Family/Social Goal items.
-                                    </li>
+                                <p class = "comparing-goal-types-inner">
+                                    The average users Family/Social Goal Cost is ${{all_users_family_cost|floatformat:"2"|intcomma}} yours is ${{current_users_family_cost|floatformat:"2"|intcomma}}.
+                                    
+                                    The average users Family/Social Goal takes {{all_users_family_time|floatformat:"0"}} full days yours takes {{current_users_family_time|floatformat:"0"}}.
+                                    
+                                    The average users Family/Social Goal takes {{all_users_family_hours|floatformat:"0"}} hours yours takes {{current_users_family_hours|floatformat:"0"}}.
+                                    You currently have <span class = "number">{{users_family_goal_count}}</span> Family/Social Goal items.
+                                    
                                 </ul>
                             </div>
                         {% endif %}
                         
                         {% if user_has_goal_type_relationship %}
                             <div role = "tabpanel" class = "tab-pane" id = "relationship">
-                                <ul>
-                                    <li>The average users Relationship Goal Cost is ${{all_users_relationship_cost|floatformat:"2"|intcomma}} yours is ${{current_users_relationship_cost|floatformat:"2"|intcomma}}.
-                                    </li>
-                                    <li>The average users Relationship Goal takes {{all_users_relationship_time|floatformat:"0"}} full days yours takes {{current_users_relationship_time|floatformat:"0"}}.
-                                    </li>
-                                  <li>The average users Relationship Goal takes {{all_users_relationship_hours|floatformat:"0"}} hours yours takes {{current_users_relationship_hours|floatformat:"0"}}.
+                                <p class = "comparing-goal-types-inner">
+                                    The average users Relationship Goal Cost is ${{all_users_relationship_cost|floatformat:"2"|intcomma}} yours is ${{current_users_relationship_cost|floatformat:"2"|intcomma}}.
+                                    
+                                    The average users Relationship Goal takes {{all_users_relationship_time|floatformat:"0"}} full days yours takes {{current_users_relationship_time|floatformat:"0"}}.
+                                    
+                                  The average users Relationship Goal takes {{all_users_relationship_hours|floatformat:"0"}} hours yours takes {{current_users_relationship_hours|floatformat:"0"}}.
                                   You currently have <span class = "number">{{users_relationship_goal_count}}</span> Relationship Goal items.
-                                    </li>
-                            </ul>
+                                   
+                                </p>
                             </div>
                         {% endif %}
                         
                         {% if user_has_goal_type_exercise %}
                             <div role = "tabpanel" class = "tab-pane" id = "exercise">
-                                <ul>
-                                    <li>The average users Exercise/Health Goal Cost is ${{all_users_exercise_cost|floatformat:"2"|intcomma}} yours is ${{current_users_exercise_cost|floatformat:"2"|intcomma}}.
-                                    </li>
-                                    <li>The average users Exercise/Health Goal takes {{all_users_exercise_time|floatformat:"0"}} full days yours takes {{current_users_exercise_time|floatformat:"0"}}.
-                                    </li>
-                                  <li>The average users Exercise/Health Goal takes {{all_users_exercise_hours|floatformat:"0"}} hours yours takes {{current_users_exercise_hours|floatformat:"0"}}.
-                                  You currently have <span class = "number">{{users_exercise_goal_count}}</span> Exercise/Health Goal items.
-                                    </li>
-                                </ul>
+                                <p class = "comparing-goal-types-inner">
+                                    The average users Exercise/Health Goal Cost is ${{all_users_exercise_cost|floatformat:"2"|intcomma}} yours is ${{current_users_exercise_cost|floatformat:"2"|intcomma}}.
+                                   
+                                    The average users Exercise/Health Goal takes {{all_users_exercise_time|floatformat:"0"}} full days yours takes {{current_users_exercise_time|floatformat:"0"}}.
+                                    
+                                    The average users Exercise/Health Goal takes {{all_users_exercise_hours|floatformat:"0"}} hours yours takes {{current_users_exercise_hours|floatformat:"0"}}.
+                                    You currently have <span class = "number">{{users_exercise_goal_count}}</span> Exercise/Health Goal items.
+                                    
+                                </p>
                             </div>
                         {% endif %}
                         
                         {% if user_has_goal_type_skill %}
                             <div role = "tabpanel" class = "tab-pane" id = "skill">
-                                <ul>
-                                    <li>The average users Improving a Skill Goal Cost is ${{all_users_skill_cost|floatformat:"2"|intcomma}} yours is ${{current_users_skill_cost|floatformat:"2"|intcomma}}.
-                                    </li>
-                                    <li>The average users Improving a Skill Goal takes {{all_users_skill_time|floatformat:"0"}} full days yours takes {{current_users_skill_time|floatformat:"0"}}.
-                                    </li>
-                                  <li>The average users Improving a Skill Goal takes {{all_users_skill_hours|floatformat:"0"}} hours yours takes {{current_users_skill_hours|floatformat:"0"}}.
-                                  You currently have <span class = "number">{{users_skill_goal_count}}</span> Improving a Skill Goal items.
-                                    </li>
-                                </ul>
+                                <p class = "comparing-goal-types-inner">
+                                    The average users Improving a Skill Goal Cost is ${{all_users_skill_cost|floatformat:"2"|intcomma}} yours is ${{current_users_skill_cost|floatformat:"2"|intcomma}}.
+                                    
+                                    The average users Improving a Skill Goal takes {{all_users_skill_time|floatformat:"0"}} full days yours takes {{current_users_skill_time|floatformat:"0"}}.
+                                    
+                                    The average users Improving a Skill Goal takes {{all_users_skill_hours|floatformat:"0"}} hours yours takes {{current_users_skill_hours|floatformat:"0"}}.
+                                    You currently have <span class = "number">{{users_skill_goal_count}}</span> Improving a Skill Goal items.
+                                   
+                                </p>
                             </div>
                         {% endif %}
                         
                         {% if user_has_goal_type_hobby %}
                             <div role = "tabpanel" class = "tab-pane" id = "hobby">
-                                <ul>
-                                    <li>The average users Improving a Hobby Goal Cost is ${{all_users_hobby_cost|floatformat:"2"|intcomma}} yours is ${{current_users_hobby_cost|floatformat:"2"|intcomma}}.
-                                    </li>
-                                    <li>The average users Improving a Hobby Goal takes {{all_users_hobby_time|floatformat:"0"}} full days yours takes {{current_users_hobby_time|floatformat:"0"}}.
-                                    </li>
-                                  <li>The average users Improving a Hobby Goal takes {{all_users_hobby_hours|floatformat:"0"}} hours yours takes {{current_users_hobby_hours|floatformat:"0"}}.
-                                  You currently have <span class = "number">{{users_hobby_goal_count}}</span> Hobby Goal items.
-                                    </li>
-                            </ul>
+                                <p class = "comparing-goal-types-inner">
+                                    The average users Improving a Hobby Goal Cost is ${{all_users_hobby_cost|floatformat:"2"|intcomma}} yours is ${{current_users_hobby_cost|floatformat:"2"|intcomma}}.
+                                    
+                                    The average users Improving a Hobby Goal takes {{all_users_hobby_time|floatformat:"0"}} full days yours takes {{current_users_hobby_time|floatformat:"0"}}.
+                                    
+                                    The average users Improving a Hobby Goal takes {{all_users_hobby_hours|floatformat:"0"}} hours yours takes {{current_users_hobby_hours|floatformat:"0"}}.
+                                    You currently have <span class = "number">{{users_hobby_goal_count}}</span> Hobby Goal items.
+                                    
+                                </p>
                             </div>
                         {% endif %}
                         
                         {% if user_has_goal_type_building %}
                             <div role = "tabpanel" class = "tab-pane" id = "building">
-                                <ul>
-                                    <li>The average users Improving a Building/Creating Something Goal Cost is ${{all_users_building_cost|floatformat:"2"|intcomma}} yours is ${{current_users_building_cost|floatformat:"2"|intcomma}}.
-                                    </li>
-                                    <li>The average users Improving a Building/Creating Something Goal takes {{all_users_building_time|floatformat:"0"}} full days yours takes {{current_users_building_time|floatformat:"0"}}.
-                                    </li>
-                                  <li>The average users Improving a Building/Creating Something Goal takes {{all_users_building_hours|floatformat:"0"}} hours yours takes {{current_users_building_hours|floatformat:"0"}}.
-                                  You currently have <span class = "number">{{users_building_goal_count}}</span> Building/Creating Something Goal items.
-                                    </li>
-                                </ul>
+                                <p class = "comparing-goal-types-inner">
+                                    The average users Improving a Building/Creating Something Goal Cost is ${{all_users_building_cost|floatformat:"2"|intcomma}} yours is ${{current_users_building_cost|floatformat:"2"|intcomma}}.
+                                    
+                                    The average users Improving a Building/Creating Something Goal takes {{all_users_building_time|floatformat:"0"}} full days yours takes {{current_users_building_time|floatformat:"0"}}.
+                                    
+                                    The average users Improving a Building/Creating Something Goal takes {{all_users_building_hours|floatformat:"0"}} hours yours takes {{current_users_building_hours|floatformat:"0"}}.
+                                    You currently have <span class = "number">{{users_building_goal_count}}</span> Building/Creating Something Goal items.
+                                    
+                                </p>
                             </div>
                         {% endif %}
                         
                         {% if user_has_goal_type_education %}
                             <div role = "tabpanel" class = "tab-pane" id = "education">
-                                <ul>
-                                    <li>The average users Improving a Education/Self Improvement Goal Cost is ${{all_users_education_cost|floatformat:"2"|intcomma}} yours is ${{current_users_education_cost|floatformat:"2"|intcomma}}.
-                                    </li>
-                                    <li>The average users Improving a Education/Self Improvement Goal takes {{all_users_education_time|floatformat:"0"}} full days yours takes {{current_users_education_time|floatformat:"0"}}.
-                                    </li>
-                                  <li>The average users Improving a Education/Self Improvement takes {{all_users_education_hours|floatformat:"0"}} hours yours takes {{current_users_education_hours|floatformat:"0"}}.
-                                  You currently have <span class = "number">{{users_education_goal_count}}</span> Education/Self Improvement Goal items.
-                                    </li>
-                                </ul>
+                                <p class = "comparing-goal-types-inner">
+                                    The average users Improving a Education/Self Improvement Goal Cost is ${{all_users_education_cost|floatformat:"2"|intcomma}} yours is ${{current_users_education_cost|floatformat:"2"|intcomma}}.
+                                    
+                                    The average users Improving a Education/Self Improvement Goal takes {{all_users_education_time|floatformat:"0"}} full days yours takes {{current_users_education_time|floatformat:"0"}}.
+                                    
+                                    The average users Improving a Education/Self Improvement takes {{all_users_education_hours|floatformat:"0"}} hours yours takes {{current_users_education_hours|floatformat:"0"}}.
+                                    You currently have <span class = "number">{{users_education_goal_count}}</span> Education/Self Improvement Goal items.
+                                  
+                                </p>
                             </div>
                         {% endif %}
                         
                         {% if user_has_goal_type_volunteering %}
                             <div role = "tabpanel" class = "tab-pane" id = "volunteering">
-                                <ul>
-                                    <li>The average users Improving a Volunteering Goal Cost is ${{all_users_volunteering_cost|floatformat:"2"|intcomma}} yours is ${{current_users_volunteering_cost|floatformat:"2"|intcomma}}.
-                                    </li>
-                                    <li>The average users Improving a Volunteering Goal takes {{all_users_volunteering_time|floatformat:"0"}} full days yours takes {{current_users_volunteering_time|floatformat:"0"}}.
-                                    </li>
-                                  <li>The average users Improving a Volunteering takes {{all_users_volunteering_hours|floatformat:"0"}} hours yours takes {{current_users_volunteering_hours|floatformat:"0"}}.
-                                  You currently have <span class = "number">{{users_volunteering_goal_count}}</span> Volunteering Goal items.
-                                    </li>
-                                </ul>
+                                <p class = "comparing-goal-types-inner">
+                                    The average users Improving a Volunteering Goal Cost is ${{all_users_volunteering_cost|floatformat:"2"|intcomma}} yours is ${{current_users_volunteering_cost|floatformat:"2"|intcomma}}.
+                                    
+                                    The average users Improving a Volunteering Goal takes {{all_users_volunteering_time|floatformat:"0"}} full days yours takes {{current_users_volunteering_time|floatformat:"0"}}.
+                                    
+                                    The average users Improving a Volunteering takes {{all_users_volunteering_hours|floatformat:"0"}} hours yours takes {{current_users_volunteering_hours|floatformat:"0"}}.
+                                    You currently have <span class = "number">{{users_volunteering_goal_count}}</span> Volunteering Goal items.
+                                    
+                                </p>
                                 <br>
                             </div>
                         {% endif %}
