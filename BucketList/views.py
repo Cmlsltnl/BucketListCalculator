@@ -802,7 +802,6 @@ def recommendation(request):
     if user_has_goal_type_relationship:
         largest_relationship_goal_cost = BucketListItem.objects.filter(pub_by = user1, goal_type = "Relationship").order_by("-cost")[:1]
         largest_relationship_goal_cost = largest_relationship_goal_cost[0]
-        print largest_relationship_goal_cost.id
         largest_relationship_goal_hours = BucketListItem.objects.filter(pub_by = user1, goal_type = "Relationship").order_by("-hours")[:1]
         largest_relationship_goal_hours = largest_relationship_goal_hours[0]
         largest_relationship_goal_days = BucketListItem.objects.filter(pub_by = user1, goal_type = "Relationship").order_by("-time")[:1]

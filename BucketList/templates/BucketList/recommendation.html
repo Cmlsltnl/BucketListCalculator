@@ -695,7 +695,7 @@
                                     You currently have <span class = "number orange">{{users_relationship_goal_count}}</span> Relationship Goal items.
                                     <br>
                                     <br>
-                                    The average users Relationship Sport Goal costs <span class = "number text-success">${{all_users_relationship_cost|floatformat:"0"|intcomma}}</span> yours is <span class = "number text-success">${{current_users_relationship_cost|floatformat:"0"|intcomma}}</span>.  Your most costly Relationship goal is <i class = "number"><a href =  "/bucketlist/item/{{largest_relationship_goal_cost.id}}/">{{largest_relationship_goal_cost}}</a></i> and it comes in at <span class = "number text-success">${{largest_relationship_goal_cost.cost|floatformat:"0"|intcomma}}</span>.
+                                    The average users Relationship Goal costs <span class = "number text-success">${{all_users_relationship_cost|floatformat:"0"|intcomma}}</span> yours is <span class = "number text-success">${{current_users_relationship_cost|floatformat:"0"|intcomma}}</span>.  Your most costly Relationship Goal is <i class = "number"><a href =  "/bucketlist/item/{{largest_relationship_goal_cost.id}}/">{{largest_relationship_goal_cost}}</a></i> and it comes in at <span class = "number text-success">${{largest_relationship_goal_cost.cost|floatformat:"0"|intcomma}}</span>.
                                     <br>
                                     <br>
                                     The average users Relationship Goal takes <span class = "number orange">{{all_users_relationship_time|floatformat:"0"}}</span> days to your <span class = "number orange">{{current_users_relationship_time|floatformat:"0"}}</span> days.  With <span class = "number orange">{{largest_relationship_goal_days.time|floatformat:"0"}}</span> days <i class = "number"><a href = "/bucketlist/item/{{largest_relationship_goal_days.id}}/">{{largest_relationship_goal_days}}</a></i> will take the most full days out of all your Relationship Goals.
@@ -710,16 +710,16 @@
                         {% if user_has_goal_type_exercise %}
                             <div role = "tabpanel" class = "tab-pane" id = "exercise">
                                 <p class = "comparing-goal-types-inner">
-                                    You currently have <span class = "number orange">{{users_relationship_goal_count}}</span> Exercise/Health Goal items.
+                                    You currently have <span class = "number orange">{{users_exercise_goal_count}}</span> Exercise/Health Goal items.
                                     <br>
                                     <br>
-                                    The average users Exercise/Health Goal costs <span class = "number text-success">${{all_users_relationship_cost|floatformat:"0"|intcomma}}</span> yours is <span class = "number text-success">${{current_users_relationship_cost|floatformat:"0"|intcomma}}</span>.  Your most costly Exercise/Health Goal is <i class = "number"><a href =  "/bucketlist/item/{{largest_relationship_goal_cost.id}}/">{{largest_relationship_goal_cost}}</a></i> and it comes in at <span class = "number text-success">${{largest_relationship_goal_cost.cost|floatformat:"0"|intcomma}}</span>.
+                                    The average users Exercise/Health Goal costs <span class = "number text-success">${{all_users_exercise_cost|floatformat:"0"|intcomma}}</span> yours is <span class = "number text-success">${{current_users_exercise_cost|floatformat:"0"|intcomma}}</span>.  Your most costly Exercise/Health Goal is <i class = "number"><a href =  "/bucketlist/item/{{largest_exercise_goal_cost.id}}/">{{largest_exercise_goal_cost}}</a></i> and it comes in at <span class = "number text-success">${{largest_exercise_goal_cost.cost|floatformat:"0"|intcomma}}</span>.
                                     <br>
                                     <br>
-                                    The average users Exercise/Health Goal takes <span class = "number orange">{{all_users_relationship_time|floatformat:"0"}}</span> days to your <span class = "number orange">{{current_users_relationship_time|floatformat:"0"}}</span> days.  With <span class = "number orange">{{largest_relationship_goal_days.time|floatformat:"0"}}</span> days <i class = "number"><a href = "/bucketlist/item/{{largest_relationship_goal_days.id}}/">{{largest_relationship_goal_days}}</a></i> will take the most full days out of all your Relationship Goals.
+                                    The average users Exercise/Health Goal takes <span class = "number orange">{{all_users_exercise_time|floatformat:"0"}}</span> days to your <span class = "number orange">{{current_users_exercise_time|floatformat:"0"}}</span> days.  With <span class = "number orange">{{largest_exercise_goal_days.time|floatformat:"0"}}</span> days <i class = "number"><a href = "/bucketlist/item/{{largest_exercise_goal_days.id}}/">{{largest_exercise_goal_days}}</a></i> will take the most full days out of all your Exercise/Health Goals.
                                     <br>
                                     <br>
-                                    The average users Relationship Goal  takes <span class = "number orange">{{all_users_relationship_hours|floatformat:"0"}} </span> hours while yours takes <span class = "number orange">{{current_users_relationship_hours|floatformat:"0"}}</span>.  <i class = "number"><a href = "/bucketlist/item/{{largest_relationship_goal_hours.id}}/">{{largest_relationship_goal_hours}}</a></i> is your Relationship Goal that will require the most hours dedicated to completing it with <span class = "number orange">{{largest_relationship_goal_hours.hours|floatformat:"0"}}</span>.
+                                    The average users Exercise/Health Goal takes <span class = "number orange">{{all_users_exercise_hours|floatformat:"0"}} </span> hours while yours takes <span class = "number orange">{{current_users_exercise_hours|floatformat:"0"}}</span>.  <i class = "number"><a href = "/bucketlist/item/{{largest_exercise_goal_hours.id}}/">{{largest_exercise_goal_hours}}</a></i> is your Exercise/Health Goal that will require the most hours dedicated to completing it with <span class = "number orange">{{largest_exercise_goal_hours.hours|floatformat:"0"}}</span>.
                                     
                                 </p>
                             </div>
@@ -728,13 +728,17 @@
                         {% if user_has_goal_type_skill %}
                             <div role = "tabpanel" class = "tab-pane" id = "skill">
                                 <p class = "comparing-goal-types-inner">
-                                    The average users Improving a Skill Goal Cost is ${{all_users_skill_cost|floatformat:"2"|intcomma}} yours is ${{current_users_skill_cost|floatformat:"2"|intcomma}}.
+                                    You currently have <span class = "number orange">{{users_skill_goal_count}}</span> Improving a Skill Goal items.
+                                    <br>
+                                    <br>
+                                    The average users Improving a Skill Goal costs <span class = "number text-success">${{all_users_skill_cost|floatformat:"0"|intcomma}}</span> yours is <span class = "number text-success">${{current_users_skill_cost|floatformat:"0"|intcomma}}</span>.  Your most costly Improving a Skill Goal is <i class = "number"><a href =  "/bucketlist/item/{{largest_skill_goal_cost.id}}/">{{largest_skill_goal_cost}}</a></i> and it comes in at <span class = "number text-success">${{largest_skill_goal_cost.cost|floatformat:"0"|intcomma}}</span>.
+                                    <br>
+                                    <br>
+                                    The average users Improving a Skill Goal takes <span class = "number orange">{{all_users_skill_time|floatformat:"0"}}</span> days to your <span class = "number orange">{{current_users_skill_time|floatformat:"0"}}</span> days.  With <span class = "number orange">{{largest_skill_goal_days.time|floatformat:"0"}}</span> days <i class = "number"><a href = "/bucketlist/item/{{largest_skill_goal_days.id}}/">{{largest_skill_goal_days}}</a></i> will take the most full days out of all your Improving a Skill Goal.
+                                    <br>
+                                    <br>
+                                    The average users Improving a Skill Goal takes <span class = "number orange">{{all_users_skill_hours|floatformat:"0"}} </span> hours while yours takes <span class = "number orange">{{current_users_skill_hours|floatformat:"0"}}</span>.  <i class = "number"><a href = "/bucketlist/item/{{largest_exercise_goal_hours.id}}/">{{largest_skill_goal_hours}}</a></i> is your Improving a Skill Goal that will require the most hours dedicated to completing it with <span class = "number orange">{{largest_skill_goal_hours.hours|floatformat:"0"}}</span>.
                                     
-                                    The average users Improving a Skill Goal takes {{all_users_skill_time|floatformat:"0"}} full days yours takes {{current_users_skill_time|floatformat:"0"}}.
-                                    
-                                    The average users Improving a Skill Goal takes {{all_users_skill_hours|floatformat:"0"}} hours yours takes {{current_users_skill_hours|floatformat:"0"}}.
-                                    You currently have <span class = "number">{{users_skill_goal_count}}</span> Improving a Skill Goal items.
-                                   
                                 </p>
                             </div>
                         {% endif %}
@@ -742,12 +746,16 @@
                         {% if user_has_goal_type_hobby %}
                             <div role = "tabpanel" class = "tab-pane" id = "hobby">
                                 <p class = "comparing-goal-types-inner">
-                                    The average users Improving a Hobby Goal Cost is ${{all_users_hobby_cost|floatformat:"2"|intcomma}} yours is ${{current_users_hobby_cost|floatformat:"2"|intcomma}}.
-                                    
-                                    The average users Improving a Hobby Goal takes {{all_users_hobby_time|floatformat:"0"}} full days yours takes {{current_users_hobby_time|floatformat:"0"}}.
-                                    
-                                    The average users Improving a Hobby Goal takes {{all_users_hobby_hours|floatformat:"0"}} hours yours takes {{current_users_hobby_hours|floatformat:"0"}}.
-                                    You currently have <span class = "number">{{users_hobby_goal_count}}</span> Hobby Goal items.
+                                    You currently have <span class = "number orange">{{users_hobby_goal_count}} </span> Hobby Goal items.
+                                    <br>
+                                    <br>
+                                    The average users Hobby Goal costs <span class = "number text-success">${{all_users_hobby_cost|floatformat:"0"|intcomma}}</span> yours is <span class = "number text-success">${{current_users_hobby_cost|floatformat:"0"|intcomma}}</span>.  Your most costly Hobby Goal is <i class = "number"><a href =  "/bucketlist/item/{{largest_hobby_goal_cost.id}}/">{{largest_hobby_goal_cost}}</a></i> and it comes in at <span class = "number text-success">${{largest_hobby_goal_cost.cost|floatformat:"0"|intcomma}}</span>.
+                                    <br>
+                                    <br>
+                                    The average users Hobby Goal takes <span class = "number orange">{{all_users_hobby_time|floatformat:"0"}}</span> days to your <span class = "number orange">{{current_users_hobby_time|floatformat:"0"}}</span> days.  With <span class = "number orange">{{largest_hobby_goal_days.time|floatformat:"0"}}</span> days <i class = "number"><a href = "/bucketlist/item/{{largest_hobby_goal_days.id}}/">{{largest_hobby_goal_days}}</a></i> will take the most full days out of all your Hobby Goal.
+                                    <br>
+                                    <br>
+                                    The average users Hobby Goal takes <span class = "number orange">{{all_users_hobby_hours|floatformat:"0"}} </span> hours while yours takes <span class = "number orange">{{current_users_hobby_hours|floatformat:"0"}}</span>.  <i class = "number"><a href = "/bucketlist/item/{{largest_exercise_goal_hours.id}}/">{{largest_hobby_goal_hours}}</a></i> is your Hobby Goal that will require the most hours dedicated to completing it with <span class = "number orange">{{largest_hobby_goal_hours.hours|floatformat:"0"}}</span>.
                                     
                                 </p>
                             </div>
