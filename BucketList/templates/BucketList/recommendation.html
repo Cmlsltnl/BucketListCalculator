@@ -764,12 +764,16 @@
                         {% if user_has_goal_type_building %}
                             <div role = "tabpanel" class = "tab-pane" id = "building">
                                 <p class = "comparing-goal-types-inner">
-                                    The average users Improving a Building/Creating Something Goal Cost is ${{all_users_building_cost|floatformat:"2"|intcomma}} yours is ${{current_users_building_cost|floatformat:"2"|intcomma}}.
-                                    
-                                    The average users Improving a Building/Creating Something Goal takes {{all_users_building_time|floatformat:"0"}} full days yours takes {{current_users_building_time|floatformat:"0"}}.
-                                    
-                                    The average users Improving a Building/Creating Something Goal takes {{all_users_building_hours|floatformat:"0"}} hours yours takes {{current_users_building_hours|floatformat:"0"}}.
-                                    You currently have <span class = "number">{{users_building_goal_count}}</span> Building/Creating Something Goal items.
+                                    You currently have <span class = "number orange">{{users_building_goal_count}} </span> Building/Creating Something Goal items.
+                                    <br>
+                                    <br>
+                                    The average users Building/Creating Something Goal costs <span class = "number text-success">${{all_users_building_cost|floatformat:"0"|intcomma}}</span> yours is <span class = "number text-success">${{current_users_building_cost|floatformat:"0"|intcomma}}</span>.  Your most costly Building/Creating Something Goal is <i class = "number"><a href =  "/bucketlist/item/{{largest_building_goal_cost.id}}/">{{largest_building_goal_cost}}</a></i> and it comes in at <span class = "number text-success">${{largest_building_goal_cost.cost|floatformat:"0"|intcomma}}</span>.
+                                    <br>
+                                    <br>
+                                    The average users Building/Creating Something Goal takes <span class = "number orange">{{all_users_building_time|floatformat:"0"}}</span> days to your <span class = "number orange">{{current_users_building_time|floatformat:"0"}}</span> days.  With <span class = "number orange">{{largest_building_goal_days.time|floatformat:"0"}}</span> days <i class = "number"><a href = "/bucketlist/item/{{largest_hobby_goal_days.id}}/">{{largest_building_goal_days}}</a></i> will take the most full days out of all your Building/Creating Something Goal.
+                                    <br>
+                                    <br>
+                                    The average users Building/Creating Something Goal takes <span class = "number orange">{{all_users_building_hours|floatformat:"0"}} </span> hours while yours takes <span class = "number orange">{{current_users_building_hours|floatformat:"0"}}</span>.  <i class = "number"><a href = "/bucketlist/item/{{largest_exercise_goal_hours.id}}/">{{largest_building_goal_hours}}</a></i> is your Building/Creating Something Goal that will require the most hours dedicated to completing it with <span class = "number orange">{{largest_building_goal_hours.hours|floatformat:"0"}}</span>.
                                     
                                 </p>
                             </div>
@@ -778,13 +782,17 @@
                         {% if user_has_goal_type_education %}
                             <div role = "tabpanel" class = "tab-pane" id = "education">
                                 <p class = "comparing-goal-types-inner">
-                                    The average users Improving a Education/Self Improvement Goal Cost is ${{all_users_education_cost|floatformat:"2"|intcomma}} yours is ${{current_users_education_cost|floatformat:"2"|intcomma}}.
+                                    You currently have <span class = "number orange">{{users_education_goal_count}} </span> Education/Self Improvement Goal items.
+                                    <br>
+                                    <br>
+                                    The average users Education/Self Improvement Goal costs <span class = "number text-success">${{all_users_education_cost|floatformat:"0"|intcomma}}</span> yours is <span class = "number text-success">${{current_users_education_cost|floatformat:"0"|intcomma}}</span>.  Your most costly Education/Self Improvement Goal is <i class = "number"><a href =  "/bucketlist/item/{{largest_education_goal_cost.id}}/">{{largest_education_goal_cost}}</a></i> and it comes in at <span class = "number text-success">${{largest_education_goal_cost.cost|floatformat:"0"|intcomma}}</span>.
+                                    <br>
+                                    <br>
+                                    The average users Education/Self Improvement Goal takes <span class = "number orange">{{all_users_education_time|floatformat:"0"}}</span> days to your <span class = "number orange">{{current_users_education_time|floatformat:"0"}}</span> days.  With <span class = "number orange">{{largest_education_goal_days.time|floatformat:"0"}}</span> days <i class = "number"><a href = "/bucketlist/item/{{largest_education_goal_days.id}}/">{{largest_education_goal_days}}</a></i> will take the most full days out of all your Education/Self Improvement Goal.
+                                    <br>
+                                    <br>
+                                    The average users Education/Self Improvement Goal takes <span class = "number orange">{{all_users_education_hours|floatformat:"0"}} </span> hours while yours takes <span class = "number orange">{{current_users_education_hours|floatformat:"0"}}</span>.  <i class = "number"><a href = "/bucketlist/item/{{largest_exercise_goal_hours.id}}/">{{largest_education_goal_hours}}</a></i> is your Education/Self Improvement Goal that will require the most hours dedicated to completing it with <span class = "number orange">{{largest_education_goal_hours.hours|floatformat:"0"}}</span>.
                                     
-                                    The average users Improving a Education/Self Improvement Goal takes {{all_users_education_time|floatformat:"0"}} full days yours takes {{current_users_education_time|floatformat:"0"}}.
-                                    
-                                    The average users Improving a Education/Self Improvement takes {{all_users_education_hours|floatformat:"0"}} hours yours takes {{current_users_education_hours|floatformat:"0"}}.
-                                    You currently have <span class = "number">{{users_education_goal_count}}</span> Education/Self Improvement Goal items.
-                                  
                                 </p>
                             </div>
                         {% endif %}
@@ -792,12 +800,16 @@
                         {% if user_has_goal_type_volunteering %}
                             <div role = "tabpanel" class = "tab-pane" id = "volunteering">
                                 <p class = "comparing-goal-types-inner">
-                                    The average users Improving a Volunteering Goal Cost is ${{all_users_volunteering_cost|floatformat:"2"|intcomma}} yours is ${{current_users_volunteering_cost|floatformat:"2"|intcomma}}.
-                                    
-                                    The average users Improving a Volunteering Goal takes {{all_users_volunteering_time|floatformat:"0"}} full days yours takes {{current_users_volunteering_time|floatformat:"0"}}.
-                                    
-                                    The average users Improving a Volunteering takes {{all_users_volunteering_hours|floatformat:"0"}} hours yours takes {{current_users_volunteering_hours|floatformat:"0"}}.
-                                    You currently have <span class = "number">{{users_volunteering_goal_count}}</span> Volunteering Goal items.
+                                    You currently have <span class = "number orange">{{users_volunteering_goal_count}} </span> Volunteering Goal items.
+                                    <br>
+                                    <br>
+                                    The average users Volunteering Goal costs <span class = "number text-success">${{all_users_volunteering_cost|floatformat:"0"|intcomma}}</span> yours is <span class = "number text-success">${{current_users_volunteering_cost|floatformat:"0"|intcomma}}</span>.  Your most costly Volunteering Goal is <i class = "number"><a href =  "/bucketlist/item/{{largest_volunteering_goal_cost.id}}/">{{largest_volunteering_goal_cost}}</a></i> and it comes in at <span class = "number text-success">${{largest_volunteering_goal_cost.cost|floatformat:"0"|intcomma}}</span>.
+                                    <br>
+                                    <br>
+                                    The average users Volunteering Goal takes <span class = "number orange">{{all_users_volunteering_time|floatformat:"0"}}</span> days to your <span class = "number orange">{{current_users_volunteering_time|floatformat:"0"}}</span> days.  With <span class = "number orange">{{largest_volunteering_goal_days.time|floatformat:"0"}}</span> days <i class = "number"><a href = "/bucketlist/item/{{largest_volunteering_goal_days.id}}/">{{largest_volunteering_goal_days}}</a></i> will take the most full days out of all your Volunteering Goal.
+                                    <br>
+                                    <br>
+                                    The average users Volunteering Goal takes <span class = "number orange">{{all_users_volunteering_hours|floatformat:"0"}} </span> hours while yours takes <span class = "number orange">{{current_users_volunteering_hours|floatformat:"0"}}</span>.  <i class = "number"><a href = "/bucketlist/item/{{largest_exercise_goal_hours.id}}/">{{largest_volunteering_goal_hours}}</a></i> is your Volunteering Goal that will require the most hours dedicated to completing it with <span class = "number orange">{{largest_volunteering_goal_hours.hours|floatformat:"0"}}</span>.
                                     
                                 </p>
                                 <br>
