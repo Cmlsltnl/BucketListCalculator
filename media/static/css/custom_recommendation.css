@@ -210,7 +210,25 @@
   float: left;
   margin-right: 19px;
   border-right: 1px solid #ddd;
+  padding-bottom: 240px;
 }
+
+/*--------------Fixing Nav Tab Length-------------------*/
+
+@media only screen and (min-width : 350px) {
+    .tabs-left > .nav-tabs {
+        padding-bottom: 120px;
+    }
+}
+
+@media only screen and (min-width : 570px) {
+    .tabs-left > .nav-tabs {
+        padding-bottom: 0px;
+    }
+}
+
+/*-------------End Fixing Nav Tab Length--------------*/
+
 
 .tabs-left > .nav-tabs > li > a {
   margin-right: -1px;
