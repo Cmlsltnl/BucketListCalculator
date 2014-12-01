@@ -161,6 +161,15 @@
                 </ul>
                 <hr>
                 <br>
+                {% if user.is_authenticated %}
+                    <p>
+                        Now that you have finished learning how everything works click <a href = "/bucketlist/mylist/">here</a> to go to your profile page and start adding some goals! 
+                    </p>
+                {% else %}
+                    <p>
+                        Now that you have read everything we think its time for you to create an account and get started!  Click <a href="/accounts/register/">here</a> and get started on making your goals.
+                    </p>
+                {% endif %}
             </div><!--end first section-->
             <br>
         </div><!--end col-md-8-->
