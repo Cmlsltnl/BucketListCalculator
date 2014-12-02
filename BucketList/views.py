@@ -1011,6 +1011,23 @@ def recommendation(request):
     days_per_year_minus_twenty = total_time/years_left_minus_twenty
     hours_per_month_minus_twenty = (total_hours/years_left_minus_twenty)/12
     
+    #Count how many tabs needed on Recommendation page
+    your_end_date_tab_count = 4 
+    
+    if years_left_minus_five > 0:
+        your_end_date_tab_count += 1
+        
+    if years_left_minus_ten > 0:
+        your_end_date_tab_count += 1
+        
+    if years_left_minus_fifteen > 0:
+        your_end_date_tab_count += 1
+        
+    if years_left_minus_twenty > 0:
+        your_end_date_tab_count += 1
+        
+
+    
     #Retirement 
     
     yearly_income_at_retirement = InflationCalculator(yearly_earnings, (retirement - age))
@@ -1391,6 +1408,8 @@ def recommendation(request):
                     'days_per_goal_minus_twenty': days_per_goal_minus_twenty,
                     'days_per_year_minus_twenty': days_per_year_minus_twenty,
                     'hours_per_month_minus_twenty': hours_per_month_minus_twenty,
+                    
+                    'your_end_date_tab_count': your_end_date_tab_count,
                     
                     #---------------Retirement-----------------
                     'yearly_income_at_retirement': yearly_income_at_retirement,

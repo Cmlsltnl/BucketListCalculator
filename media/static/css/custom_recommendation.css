@@ -277,6 +277,9 @@
 
 .tabs-left ul li a {
     font-size: 7px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    color: #3D3D3D;
 }
 
 .nav-stacked {
@@ -317,3 +320,102 @@
 .comparing-goal-types-inner i a:hover {
     color: #5cb85c;
 }
+
+/*----------------------Styling Your End Date---------------------*/
+
+.end-date-nav-tabs {
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+
+.end-date-nav-tabs a {
+    color: #3D3D3D;
+}
+
+.end-date-tab-width-4 {
+    width: 24%;
+}
+
+.end-date-tab-width-5 {
+    width: 19%;
+}
+
+.end-date-tab-width-6 {
+    width: 16%;
+}
+
+.end-date-tab-width-7 {
+    width: 14%;
+}
+
+.end-date-tab-width-8 {
+    width: 12%;
+}
+
+/*-----------Responsive End Date Year Display----------------*/
+
+@media only screen and (max-width : 580px) {
+        
+    .end-date-tab-width-8 .your-end-date-years {
+        display: none;
+    }
+}
+
+@media only screen and (max-width : 460px) {
+        
+    .end-date-tab-width-7 .your-end-date-years {
+        display: none;
+    }
+}
+
+@media only screen and (max-width : 410px) {
+        
+    .end-date-tab-width-6 .your-end-date-years {
+        display: none;
+    }
+}
+
+@media only screen and (max-width : 360px) {
+        
+    .end-date-tab-width-5 .your-end-date-years {
+        display: none;
+    }
+}
+
+
+/*--------------Responsive End Date Tabs Font Size--------------*/
+
+
+@media only screen and (max-width : 550px) {
+    .end-date-nav-tabs a {
+        font-size: 10px;
+    }
+}
+
+@media only screen and (max-width : 400px) {
+    .end-date-nav-tabs a {
+        font-size: 9px;
+    }
+}
+
+@media only screen and (max-width : 360px) {
+    .end-date-nav-tabs a {
+        font-size: 8px;
+    }
+}
+
+@media only screen and (max-width : 320px) {
+    .end-date-nav-tabs a {
+        font-size: 7px;
+    }
+}
+
+@media only screen and (max-width : 310px) {
+    .end-date-nav-tabs a {
+        font-size: 6px;
+    }
+}
+

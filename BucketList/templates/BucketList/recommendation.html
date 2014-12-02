@@ -955,36 +955,140 @@
               <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     {% if years_left_minus_twenty > 0 %}
-                        <li role="presentation">
-                            <a href="#minus20" aria-controls="settings" role="tab" data-toggle="tab">{{years_left_minus_twenty|floatformat:"0"}} years</a>
+                        <li role="presentation" class = "
+                            end-date-nav-tabs
+                            {% if your_end_date_tab_count == 8 %}
+                                end-date-tab-width-8
+                            {% elif your_end_date_tab_count == 7 %}
+                                end-date-tab-width-7
+                            {% elif your_end_date_tab_count == 6 %}
+                                end-date-tab-width-6
+                            {% elif your_end_date_tab_count == 5 %}
+                                end-date-tab-width-5
+                            {% elif your_end_date_tab_count == 4 %}
+                                end-date-tab-width-4
+                            {% endif %}
+                        ">
+                            <a href="#minus20" aria-controls="settings" role="tab" data-toggle="tab">{{years_left_minus_twenty|floatformat:"0"}} <span class = "your-end-date-years">Years</span></a>
                         </li>
                     {% endif %}
                     {% if years_left_minus_fifteen > 0 %}
-                        <li role="presentation">
-                            <a href="#minus15" aria-controls="settings" role="tab" data-toggle="tab">{{years_left_minus_fifteen|floatformat:"0"}} years</a>
+                        <li role="presentation" class = "
+                            end-date-nav-tabs
+                            {% if your_end_date_tab_count == 8 %}
+                                end-date-tab-width-8
+                            {% elif your_end_date_tab_count == 7 %}
+                                end-date-tab-width-7
+                            {% elif your_end_date_tab_count == 6 %}
+                                end-date-tab-width-6
+                            {% elif your_end_date_tab_count == 5 %}
+                                end-date-tab-width-5
+                            {% elif your_end_date_tab_count == 4 %}
+                                end-date-tab-width-4
+                            {% endif %}
+                        ">
+                            <a href="#minus15" aria-controls="settings" role="tab" data-toggle="tab">{{years_left_minus_fifteen|floatformat:"0"}} <span class = "your-end-date-years">Years</span></a>
                         </li>
                     {% endif %}
                     {% if years_left_minus_ten > 0 %}
-                        <li role="presentation">
-                            <a href="#minus10" aria-controls="settings" role="tab" data-toggle="tab">{{years_left_minus_ten|floatformat:"0"}} years</a>
+                        <li role="presentation" class = "
+                            end-date-nav-tabs
+                            {% if your_end_date_tab_count == 8 %}
+                                end-date-tab-width-8
+                            {% elif your_end_date_tab_count == 7 %}
+                                end-date-tab-width-7
+                            {% elif your_end_date_tab_count == 6 %}
+                                end-date-tab-width-6
+                            {% elif your_end_date_tab_count == 5 %}
+                                end-date-tab-width-5
+                            {% elif your_end_date_tab_count == 4 %}
+                                end-date-tab-width-4
+                            {% endif %}
+                        ">
+                            <a href="#minus10" aria-controls="settings" role="tab" data-toggle="tab">{{years_left_minus_ten|floatformat:"0"}} <span class = "your-end-date-years">Years</span></a>
                         </li>
                     {% endif %}
                     {% if years_left_minus_five > 0 %}
-                        <li role="presentation">
-                            <a href="#minus5" aria-controls="settings" role="tab" data-toggle="tab">{{years_left_minus_five|floatformat:"0"}} years</a>
+                        <li role="presentation" class = "
+                            end-date-nav-tabs
+                            {% if your_end_date_tab_count == 8 %}
+                                end-date-tab-width-8
+                            {% elif your_end_date_tab_count == 7 %}
+                                end-date-tab-width-7
+                            {% elif your_end_date_tab_count == 6 %}
+                                end-date-tab-width-6
+                            {% elif your_end_date_tab_count == 5 %}
+                                end-date-tab-width-5
+                            {% elif your_end_date_tab_count == 4 %}
+                                end-date-tab-width-4
+                            {% endif %}
+                        ">
+                            <a href="#minus5" aria-controls="settings" role="tab" data-toggle="tab">{{years_left_minus_five|floatformat:"0"}} <span class = "your-end-date-years">Years</span></a>
                         </li>
                     {% endif %}
-                    <li role="presentation" class="active">
-                        <a href="#plus5" aria-controls="home" role="tab" data-toggle="tab">{{years_left_plus_five|floatformat:"0"}} years</a>
+                    <li role="presentation" class="active 
+                        end-date-nav-tabs
+                        {% if your_end_date_tab_count == 8 %}
+                            end-date-tab-width-8
+                        {% elif your_end_date_tab_count == 7 %}
+                            end-date-tab-width-7
+                        {% elif your_end_date_tab_count == 6 %}
+                            end-date-tab-width-6
+                        {% elif your_end_date_tab_count == 5 %}
+                            end-date-tab-width-5
+                        {% elif your_end_date_tab_count == 4 %}
+                            end-date-tab-width-4
+                        {% endif %}
+                    ">
+                        <a href="#plus5" aria-controls="home" role="tab" data-toggle="tab">{{years_left_plus_five|floatformat:"0"}} <span class = "your-end-date-years">Years</span></a>
                     </li>
-                    <li role="presentation">
-                        <a href="#plus10" aria-controls="profile" role="tab" data-toggle="tab">{{years_left_plus_ten|floatformat:"0"}} years</a>
+                    <li role="presentation" class = "
+                        end-date-nav-tabs
+                        {% if your_end_date_tab_count == 8 %}
+                            end-date-tab-width-8
+                        {% elif your_end_date_tab_count == 7 %}
+                            end-date-tab-width-7
+                        {% elif your_end_date_tab_count == 6 %}
+                            end-date-tab-width-6
+                        {% elif your_end_date_tab_count == 5 %}
+                            end-date-tab-width-5
+                        {% elif your_end_date_tab_count == 4 %}
+                            end-date-tab-width-4
+                        {% endif %}
+                    ">
+                        <a href="#plus10" aria-controls="profile" role="tab" data-toggle="tab">{{years_left_plus_ten|floatformat:"0"}} <span class = "your-end-date-years">Years</span></a>
                     </li>
-                    <li role="presentation">
-                        <a href="#plus15" aria-controls="messages" role="tab" data-toggle="tab">{{years_left_plus_fifteen|floatformat:"0"}} years</a>
+                    <li role="presentation" class = "
+                        end-date-nav-tabs
+                        {% if your_end_date_tab_count == 8 %}
+                            end-date-tab-width-8
+                        {% elif your_end_date_tab_count == 7 %}
+                            end-date-tab-width-7
+                        {% elif your_end_date_tab_count == 6 %}
+                            end-date-tab-width-6
+                        {% elif your_end_date_tab_count == 5 %}
+                            end-date-tab-width-5
+                        {% elif your_end_date_tab_count == 4 %}
+                            end-date-tab-width-4
+                        {% endif %}
+                    ">
+                        <a href="#plus15" aria-controls="messages" role="tab" data-toggle="tab">{{years_left_plus_fifteen|floatformat:"0"}} <span class = "your-end-date-years">Years</span></a>
                     </li>
-                    <li role="presentation">
-                        <a href="#plus20" aria-controls="settings" role="tab" data-toggle="tab">{{years_left_plus_twenty|floatformat:"0"}} years</a>
+                    <li role="presentation" class = "
+                        end-date-nav-tabs
+                        {% if your_end_date_tab_count == 8 %}
+                            end-date-tab-width-8
+                        {% elif your_end_date_tab_count == 7 %}
+                            end-date-tab-width-7
+                        {% elif your_end_date_tab_count == 6 %}
+                            end-date-tab-width-6
+                        {% elif your_end_date_tab_count == 5 %}
+                            end-date-tab-width-5
+                        {% elif your_end_date_tab_count == 4 %}
+                            end-date-tab-width-4
+                        {% endif %}
+                    ">
+                        <a href="#plus20" aria-controls="settings" role="tab" data-toggle="tab">{{years_left_plus_twenty|floatformat:"0"}} <span class = "your-end-date-years">Years</span></a>
                     </li>
                 </ul>
 
