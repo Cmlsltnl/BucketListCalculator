@@ -40,6 +40,7 @@
     border-radius: 4px;
     box-shadow: 0 0 1px black;
     margin-bottom: 12px;
+    overflow: hidden;
 }
 
 .mylist-items h4 {

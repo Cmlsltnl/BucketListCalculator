@@ -13,6 +13,7 @@
 h1 {
     font-family: 'Oswald', sans-serif;
     font-weight: 400;
+    overflow: hidden;
 }
 
 
@@ -93,6 +94,7 @@ h2 {
     line-height: 150%;
     padding-left: 10px;
     padding-right: 10px;
+    overflow: hidden;
 }
 
 .comment-div .fa-close {
@@ -146,12 +148,14 @@ h2 {
     margin: auto;
     border-radius: 4px;
     box-shadow: 0 0 1px black;
+    overflow: hidden;
 }
 
 .recently-added-list-item h4 a{
     font-family: 'Oswald', sans-serif;
     font-weight: 300;
     color:black;
+    
 }
 
 .recently-added-list-item .avatar-span {

@@ -62,6 +62,7 @@
     margin: auto;
     border-radius: 4px;
     box-shadow: 0 0 1px black;
+    overflow: hidden;
 }
 
 .recently-added-list-item h4 a{
