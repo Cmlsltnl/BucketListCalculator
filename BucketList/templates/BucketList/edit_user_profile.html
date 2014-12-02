@@ -22,15 +22,15 @@
                         {% if field.label == "Your Birth Date" %}
                             <h5 class = "description">Just insert your age above.</h5>
                         {% elif field.label == "Age You Will Be Done" %}
-                            <h5 class = "description">Use the field above for the age you would like to be done with everything on your Bucket List.</h5>
+                            <h5 class = "description">Use the field above for the age you would like to be done with everything on your Bucket List.  Make sure to enter an age that is greater than your current age or you will be prompted to change this information before you are able to see your results.</h5>
                         {% elif field.label == "Yearly Earnings" %}
-                            <h5 class = "description">How much do you make per year?  Type that number in above.  Be sure to include other streams of income other than just your annual income from your job.  Don't worry we won't share this information with other users.</h5>
+                            <h5 class = "description">How much do you make per year?  Type that number in above.  Be sure to include other streams of income other than just your annual income from your job.  Don't worry we won't share this information with other users.  Zero and negative numbers will not be accepted.</h5>
                         {% elif field.label == "Hourly Wage" %}
-                            <h5 class = "description">How much do you make per hour?  Enter that above.  Make sure to be accurate, these numbers drastically effect the recommendations that you will receive later on the site.  If you do not have a specific amount of money you earn hourly type in a dollar amount that reflects how much you value your time.  Once again we won't share any of this information with our other users. </h5>
+                            <h5 class = "description">How much do you make per hour?  Enter that above.  Make sure to be accurate, these numbers drastically effect the recommendations that you will receive later on the site.  If you do not have a specific amount of money you earn hourly type in a dollar amount that reflects how much you value your time.  Once again we won't share any of this information with our other users.  Zero and negative numbers will not be accepted. </h5>
                         {% elif field.label == "Include Retirement" %}
                             <h5 class = "description">Would you like to retire someday?  If so check the box above and we will factor in your desired retirement age into our calculations.</h5>
                         {% elif field.label == "Retirement Age" %}
-                            <h5 class = "description">At what age would you like to retire?  Enter that here.  You only need to fill this out if you checked the box above.</h5>
+                            <h5 class = "description">At what age would you like to retire?  Enter that here.  You only need to fill this out if you checked the box above.  This number must be greater than your current age.</h5>
                         {% elif field.label == "Retirement Savings" %}
                             <h5 class = "description">How much money do you have saved up for retirement so far?  Type in the dollar amount here.</h5>
                         {% endif %}

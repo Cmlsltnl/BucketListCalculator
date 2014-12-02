@@ -313,7 +313,13 @@ def recommendation(request):
     if user1.age() == 0 or user1.life_expectancy == 0 or user1.yearly_earnings == 0 or user1.hourly_wage == 0:
         return HttpResponseRedirect('/bucketlist/profile/edit/')
         
+    if user1.include_retirement:
+        if 1 > (user1.retirement - user1.age()):
+            return HttpResponseRedirect('/bucketlist/profile/edit/')
 
+    if 1 > (user1.life_expectancy - user1.age()):
+        return HttpResponseRedirect('/bucketlist/profile/edit/')
+        
         
     all_goals = BucketListItem.objects.all().filter(crossed_off = False)
     mylist = BucketListItem.objects.all().filter(pub_by = user1, crossed_off = False)

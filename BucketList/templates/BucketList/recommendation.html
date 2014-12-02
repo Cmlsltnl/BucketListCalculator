@@ -850,23 +850,21 @@
                 
 
             </div><!-- end seventh sections-->
+            {% if total_cost > 50001 %}
             <br>
             <div class = "sections">
             <br>
-
-            {% if total_cost > 50001 %}
-
             <br>
             <h2>What Else Could You Do?</h2>
             <br>
 
-            <p>Now ${{total_cost|floatformat:"2"|intcomma}} is a pretty ridiculous amount of money.  But accomplishing all of your goals is totally worth it!  Lets look at some other things that you could potentially do with that money: </p>
+            <p>Now <span class = "number text-success">${{total_cost|floatformat:"0"|intcomma}}</span> is a pretty ridiculous amount of money.  But thats how much accomplishing all of your goals is going to cost, we think its totally worth it!  Lets look at some other things that you could potentially do with that money: </p>
             <ul>
 
             {% if total_cost > 2000000 %}
 
                 <li>You could afford {{gold_bars|floatformat:"0"}} of those 400 ounce gold bars!</li>
-                <li>You would have enough to fill up a bathtub and go full on Scrooge McDuck!  Then if you for some reason felt like it you could take the rest in quarters stack them all on top of each other and your stack would reach {{height_of_quarters_stacked|floatformat:"1"}} miles high!</li>  
+                <li>You would have enough to fill up a bathtub go for a dip!  Then if you for some reason felt like it you could take the rest in quarters stack them all on top of each other and your stack would reach {{height_of_quarters_stacked|floatformat:"1"}} miles high!</li>  
                 <li>If you wanted to you could spend {{five_star_hotel|floatformat:"0"}} years living in a super fancy five star hotel room.</li>
                 <li>Or you could purchase {{gallardos|floatformat:"0"}} Lamborghini Gallardos!</li>
                 <li>You could buy your own {{orcas|floatformat:"0"}} Orca whales.</li>
@@ -876,18 +874,18 @@
             {% elif total_cost > 1000000 %}
 
                 <li>You could afford {{gold_bars|floatformat:"0"}} of those 400 ounce gold bars!</li>
-                <li>You would have enough to fill up a bathtub and go full on Scrooge McDuck!  Then if you for some reason felt like it you could take the rest in quarters stack them all on top of each other and your stack would reach {{height_of_quarters_stacked|floatformat:"1"}} miles high!</li> 
-                <li>If you wanted to you could spend {{years_in_hotel|floatformat:"0"}} years living in a hotel room.</li>
+                <li>You would have enough to fill up a bathtub go for a dip!  Then if you for some reason felt like it you could take the rest in quarters stack them all on top of each other and your stack would reach {{height_of_quarters_stacked|floatformat:"1"}} miles high!</li> 
+                <li>If you wanted to you could spend {{years_in_hotel|floatformat:"0"}} years living in a fancy hotel room.</li>
                 <li>You could send someone you love two dozen roses every single day for {{roses_every_day|floatformat:"0"}} years.</li>
                 <li>Or you could purchase {{gallardos|floatformat:"0"}} Lamborghini Gallardos!</li>
                 <li>You could buy your own Orca Whale!</li>
-                <li>Or one of those sweet magnetic beds that float</li>
+                <li>Or one of those sweet magnetic beds that float over the ground</li>
                 
             {% elif total_cost > 500000 %}
 
                 <li>You could afford one whole 400 troy ounce gold bar!</li>
-                <li>You would have enough to fill up a bathtub and go full on Scrooge McDuck!  Then if you for some reason felt like it you could take the rest in quarters stack them all on top of each other and your stack would reach {{height_of_quarters_stacked|floatformat:"1"}} miles high!</li>    
-                <li>If you wanted to you could spend {{years_in_hotel|floatformat:"0"}} years living in a hotel room.</li>
+                <li>You would have enough to fill up a bathtub go for a dip!  Then if you for some reason felt like it you could take the rest in quarters stack them all on top of each other and your stack would reach {{height_of_quarters_stacked|floatformat:"1"}} miles high!</li>    
+                <li>If you wanted to you could spend {{years_in_hotel|floatformat:"0"}} years living in a fancy hotel room.</li>
                 {% if total_cost > 750000 %}
                 <li>You would have enough money to buy your own private island!</li>
                 <li>You could even go to outer space.. three times!</li>
@@ -900,8 +898,8 @@
                 
             {% elif total_cost > 300000 %}
 
-                <li>You would have enough to fill up a bathtub and go full on Scrooge McDuck!  Then if you for some reason felt like it you could take the rest in quarters stack them all on top of each other and your stack would reach {{height_of_quarters_stacked|floatformat:"1"}} miles high!</li>
-                <li>If you wanted to you could spend {{years_in_hotel|floatformat:"0"}} years living in a hotel room.</li>
+                <li>You would have enough to fill up a bathtub go for a dip!  Then if you for some reason felt like it you could take the rest in quarters stack them all on top of each other and your stack would reach {{height_of_quarters_stacked|floatformat:"1"}} miles high!</li>
+                <li>If you wanted to you could spend {{years_in_hotel|floatformat:"0"}} years living in a fancy hotel room.</li>
                 <li>You could even take your {{all_inclusive_resort|floatformat:"0"}} closest friends to an all inclusive resort for a week.</li>
                 <li>You could send someone you love two dozen roses every single day for {{roses_every_day|floatformat:"0"}} years.</li>
                 <li>You could even pay for a trip to outer space!  Now that would be pretty awesome.</li>
@@ -909,29 +907,29 @@
             {% elif total_cost > 200000 %}
                 
                 <li>You could easily afford a Lamborghini Gallardo!</li>
-                <li>You would have enough to split some of up into singles, fill up a bath tub and go full on Scrooge McDuck. Then, with the money left over you could still take all of those one dollar bills and line them up in a row and it would stretch {{dollar_bills_in_a_row_miles_after_tub|floatformat:"1"}} miles. </li>
-                <li>If you wanted to you could spend {{years_in_hotel|floatformat:"0"}} years living in a hotel room.</li>
+                <li>You would have enough to split some of up into singles, fill up a bath tub and go for a dip. Then, with the money left over you could still take all of those one dollar bills and line them up in a row and it would stretch {{dollar_bills_in_a_row_miles_after_tub|floatformat:"1"}} miles. </li>
+                <li>If you wanted to you could spend {{years_in_hotel|floatformat:"0"}} years living in a fancy hotel room.</li>
                 <li>You and {{number_of_friends_on_cruise|floatformat:"0"}} of your closest friends could even go on a four day Disney Cruise.</li>
                 <li>You could send someone you love two dozen roses once a week for {{roses_every_week|floatformat:"0"}} years.</li>
                 
             {% elif total_cost > 100000 %}
 
-                <li>You would have enough to split some of it into singles, fill up a bath tub and go full on Scrooge McDuck. Then, with the money left over you could still take all of those one dollar bills and line them up in a row and it would stretch {{dollar_bills_in_a_row_miles_after_tub|floatformat:"1"}} miles. </li>
+                <li>You would have enough to split some of it into singles, fill up a bath tub and go for a dip. Then, with the money left over you could still take all of those one dollar bills and line them up in a row and it would stretch {{dollar_bills_in_a_row_miles_after_tub|floatformat:"1"}} miles. </li>
                 <li>Or you could buy two Albino Ball Pythons, one of the rarest pets in the world!</li>
                 <li>You could easily afford a huge in-ground pool along with custom made water slides, two of those cool levitating hover scooters, and still be able to afford {{how_many_trampolines|floatformat:"0"}} trampolines.  Because who doesn't want {{how_many_trampolines|floatformat:"0"}} trampolines? </li>
-                <li>If you wanted to you could spend {{years_in_hotel|floatformat:"0"}} years living in a hotel room.</li>
+                <li>If you wanted to you could spend {{years_in_hotel|floatformat:"0"}} years living in a fancy hotel room.</li>
                 <li>Or three nights in the Ty Warner Penthouse Suite in the Four Seasons New York.</li>
                 <li>You could send someone you love two dozen roses once a week for {{roses_every_week|floatformat:"0"}} years.</li>
                 <li>You and {{number_of_friends_on_cruise|floatformat:"0"}} of your closest friends could even go on a four day Disney Cruise.</li>
                 
             {% elif total_cost > 50000 %}
 
-                <li>You would have enough to split it all up into singles, fill up a bath tub and go full on Scrooge McDuck. </li>
+                <li>You would have enough to split it all up into singles, fill up a bath tub and go for a dip. </li>
                 <li>If you were really determined, or just really bored you could take all of those one dollar bills and line them up in a row and it would stretch {{dollar_bills_in_a_row_miles|floatformat:"1"}} miles. </li>
                 <li>Or you could buy an Albino Ball Python, one of the rarest pets in the world!</li>
                 <li>You could easily afford a huge in-ground pool along with custom made water slides.</li>
                 <li>Or two Hippos and a miniature Zoo environment for them.</li>
-                <li>If you wanted to you could spend {{years_in_hotel|floatformat:"1"}} years living in a hotel room.</li>
+                <li>If you wanted to you could spend {{years_in_hotel|floatformat:"1"}} years living in a fancy hotel room.</li>
                 <li>Or a single night in the Ty Warner Penthouse Suite in the Four Seasons New York.</li>
                 <li>You could send someone you love two dozen roses once a week for {{roses_every_week|floatformat:"0"}} years.</li>
 
@@ -939,167 +937,226 @@
             </ul>
             <br>
             <br>
+            <br>
+            </div><!--end eighth sections-->
             {% endif %}
             <br>
-            <hr>
+            <div class = "sections">
             <br>
             <h2>Your End Date</h2>
-            <p>Many of the stats on this site change based on the date you would like to have accomplished all of them.  Lets check out what happens if this date changes.</p>
-            <p>You currently have {{years_left|floatformat:"0"}} years left to meet all of your goals.</p>
-            <ul>
-                <li>
-                    How things change with {{years_left_plus_five|floatformat:"0"}} years left:
-                    <br>
-                    <ul>
-                        <li>
-                            If you have five more years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_plus_five|floatformat:"2"|intcomma}} every year.
+            <p>
+                Many of your stats change based on the date you would like to be done with them.  You currently have <span class = "number">{{years_left|floatformat:"0"}} years</span> left to meet all of your goals.  Lets check out what happens if the amount of time you have left changes.
+            </p>
+            <br>
+            
+            
+            <div role="tabpanel">
+
+              <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    {% if years_left_minus_twenty > 0 %}
+                        <li role="presentation">
+                            <a href="#minus20" aria-controls="settings" role="tab" data-toggle="tab">{{years_left_minus_twenty|floatformat:"0"}} years</a>
                         </li>
-                        <li>
-                            With five more years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_plus_five|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
+                    {% endif %}
+                    {% if years_left_minus_fifteen > 0 %}
+                        <li role="presentation">
+                            <a href="#minus15" aria-controls="settings" role="tab" data-toggle="tab">{{years_left_minus_fifteen|floatformat:"0"}} years</a>
                         </li>
-                        <li>
-                            At {{years_left_plus_five|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_plus_five|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
+                    {% endif %}
+                    {% if years_left_minus_ten > 0 %}
+                        <li role="presentation">
+                            <a href="#minus10" aria-controls="settings" role="tab" data-toggle="tab">{{years_left_minus_ten|floatformat:"0"}} years</a>
                         </li>
-                        <li>
-                            Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours down to {{hours_per_month_plus_five|floatformat:"1"}} hours.
+                    {% endif %}
+                    {% if years_left_minus_five > 0 %}
+                        <li role="presentation">
+                            <a href="#minus5" aria-controls="settings" role="tab" data-toggle="tab">{{years_left_minus_five|floatformat:"0"}} years</a>
                         </li>
-                    </ul>
-                    <br>
-                </li>
-                <li>
-                    How things change with {{years_left_plus_ten|floatformat:"0"}} years left:
-                    <ul>
-                        <li>
-                            If you have ten more years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_plus_ten|floatformat:"2"|intcomma}} every year.
-                        </li>
-                        <li>
-                            With ten more years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_plus_ten|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
-                        </li>
-                        <li>
-                            At {{years_left_plus_ten|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_plus_ten|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
-                        </li>
-                        <li>
-                            Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours down to {{hours_per_month_plus_ten|floatformat:"1"}} hours.
-                        </li>
-                    </ul> 
-                    <br>
-                </li>
-                <li>
-                    How things change with {{years_left_plus_fifteen|floatformat:"0"}} years left:
-                    <ul>
-                        <li>
-                            If you have fifteen more years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_plus_fifteen|floatformat:"2"|intcomma}} every year.
-                        </li>
-                        <li>
-                            With fifteen more years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_plus_fifteen|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
-                        </li>
-                        <li>
-                            At {{years_left_plus_fifteen|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_plus_fifteen|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
-                        </li>
-                        <li>
-                            Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours down to {{hours_per_month_plus_fifteen|floatformat:"1"}} hours.
-                        </li>
-                    </ul>
-                    <br>
-                </li>
-                <li>
-                    How things change with {{years_left_plus_twenty|floatformat:"0"}} years left:
-                    <ul>
-                        <li>
-                            If you have twenty more years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_plus_twenty|floatformat:"2"|intcomma}} every year.
-                        </li>
-                        <li>
-                            With twenty more years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_plus_twenty|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
-                        </li>
-                        <li>
-                            At {{years_left_plus_twenty|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_plus_twenty|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
-                        </li>
-                        <li>
-                            Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours down to {{hours_per_month_plus_twenty|floatformat:"1"}} hours.
-                        </li>
-                    </ul>
-                    <br>
-                </li>
-                {% if years_left_minus_five > 0 %}
-                <li>
-                    How things change with {{years_left_minus_five|floatformat:"0"}} years left:
-                    <ul>
-                        <li>
-                            If you have five less years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_minus_five|floatformat:"2"|intcomma}} every year.
-                        </li>
-                        <li>
-                            With five less years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_minus_five|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
-                        </li>
-                        <li>
-                            At {{years_left_minus_five|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_minus_five|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
-                        </li>
-                        <li>
-                            Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours up to {{hours_per_month_minus_five|floatformat:"1"}} hours.
-                        </li>
-                    </ul>
-                    <br>
-                </li>
-                {% endif %}
-                {% if years_left_minus_ten > 0 %}
-                <li>
-                    How things change with {{years_left_minus_ten|floatformat:"0"}} years left:
-                    <ul>
-                        <li>
-                            If you have ten less years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_minus_ten|floatformat:"2"|intcomma}} every year.
-                        </li>
-                        <li>
-                            With ten less years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_minus_ten|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
-                        </li>
-                        <li>
-                            At {{years_left_minus_ten|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_minus_ten|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
-                        </li>
-                        <li>
-                            Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours up to {{hours_per_month_minus_ten|floatformat:"1"}} hours.
-                        </li>
-                    </ul>
-                    <br>
-                </li>
-                {% endif %}
-                {% if years_left_minus_fifteen > 0 %}
-                <li>
-                    How things change with {{years_left_minus_fifteen|floatformat:"0"}} years left:
-                    <ul>
-                        <li>
-                            If you have fifteen less years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_minus_fifteen|floatformat:"2"|intcomma}} every year.
-                        </li>
-                        <li>
-                            With fifteen less years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_minus_fifteen|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
-                        </li>
-                        <li>
-                            At {{years_left_minus_fifteen|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_minus_fifteen|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
-                        </li>
-                        <li>
-                            Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours up to {{hours_per_month_minus_fifteen|floatformat:"1"}} hours.
-                        </li>
-                    </ul>
-                    <br>
-                </li>
-                {% endif %}
-                {% if years_left_minus_twenty > 0 %}
-                <li>
-                    How things change with {{years_left_minus_twenty|floatformat:"0"}} years left:
-                    <ul>
-                        <li>
-                            If you have twenty less years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_minus_twenty|floatformat:"2"|intcomma}} every year.
-                        </li>
-                        <li>
-                            With twenty less years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_minus_twenty|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
-                        </li>
-                        <li>
-                            At {{years_left_minus_twenty|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_minus_twenty|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
-                        </li>
-                        <li>
-                            Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours up to {{hours_per_month_minus_twenty|floatformat:"1"}} hours.
-                        </li>
-                    </ul>
-                </li>
-                {% endif %}
-            </ul>
+                    {% endif %}
+                    <li role="presentation" class="active">
+                        <a href="#plus5" aria-controls="home" role="tab" data-toggle="tab">{{years_left_plus_five|floatformat:"0"}} years</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#plus10" aria-controls="profile" role="tab" data-toggle="tab">{{years_left_plus_ten|floatformat:"0"}} years</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#plus15" aria-controls="messages" role="tab" data-toggle="tab">{{years_left_plus_fifteen|floatformat:"0"}} years</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#plus20" aria-controls="settings" role="tab" data-toggle="tab">{{years_left_plus_twenty|floatformat:"0"}} years</a>
+                    </li>
+                </ul>
+
+              <!-- Tab panes -->
+                <div class="tab-content">
+                    {% if years_left_minus_twenty > 0 %}
+                        <div role="tabpanel" class="tab-pane" id="minus20">
+                            How things change with {{years_left_minus_twenty|floatformat:"0"}} years left:
+                            <br>
+                            <ul>
+                                <li>
+                                    If you have twenty less years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_minus_twenty|floatformat:"2"|intcomma}} every year.
+                                </li>
+                                <li>
+                                    With twenty less years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_minus_twenty|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
+                                </li>
+                                <li>
+                                    At {{years_left_minus_twenty|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_minus_twenty|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
+                                </li>
+                                <li>
+                                    Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours up to {{hours_per_month_minus_twenty|floatformat:"1"}} hours.
+                                </li>
+                            </ul>
+                            <br>
+                        </div>
+                    {% endif %}
+                    
+                    {% if years_left_minus_fifteen > 0 %}
+                        <div role="tabpanel" class="tab-pane" id="minus15">
+                            How things change with {{years_left_minus_fifteen|floatformat:"0"}} years left:
+                            <br>
+                            <ul>
+                                <li>
+                                    If you have fifteen less years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_minus_fifteen|floatformat:"2"|intcomma}} every year.
+                                </li>
+                                <li>
+                                    With fifteen less years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_minus_fifteen|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
+                                </li>
+                                <li>
+                                    At {{years_left_minus_fifteen|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_minus_fifteen|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
+                                </li>
+                                <li>
+                                    Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours up to {{hours_per_month_minus_fifteen|floatformat:"1"}} hours.
+                                </li>
+                            </ul>
+                            <br>
+                        </div>
+                    {% endif %}
+                    
+                    {% if years_left_minus_ten > 0 %}
+                        <div role="tabpanel" class="tab-pane" id="minus10">
+                            How things change with {{years_left_minus_ten|floatformat:"0"}} years left:
+                            <br>
+                            <ul>
+                                <li>
+                                    If you have ten less years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_minus_ten|floatformat:"2"|intcomma}} every year.
+                                </li>
+                                <li>
+                                    With ten less years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_minus_ten|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
+                                </li>
+                                <li>
+                                    At {{years_left_minus_ten|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_minus_ten|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
+                                </li>
+                                <li>
+                                    Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours up to {{hours_per_month_minus_ten|floatformat:"1"}} hours.
+                                </li>
+                            </ul>
+                            <br>
+                        </div>
+                    {% endif %}
+                    
+                    {% if years_left_minus_five > 0 %}
+                        <div role="tabpanel" class="tab-pane" id="minus5">
+                            How things change with {{years_left_minus_five|floatformat:"0"}} years left:
+                            <br>
+                            <ul>
+                                <li>
+                                    If you have five less years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_minus_five|floatformat:"2"|intcomma}} every year.
+                                </li>
+                                <li>
+                                    With five less years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_minus_five|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
+                                </li>
+                                <li>
+                                    At {{years_left_minus_five|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_minus_five|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
+                                </li>
+                                <li>
+                                    Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours up to {{hours_per_month_minus_five|floatformat:"1"}} hours.
+                                </li>
+                            </ul>
+                            <br>
+                        </div>
+                    {% endif %}
+                    
+                    <div role="tabpanel" class="tab-pane active" id="plus5">
+                        How things change with {{years_left_plus_five|floatformat:"0"}} years left:
+                        <br>
+                        <ul>
+                            <li>
+                                If you have five more years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_plus_five|floatformat:"2"|intcomma}} every year.
+                            </li>
+                            <li>
+                                With five more years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_plus_five|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
+                            </li>
+                            <li>
+                                At {{years_left_plus_five|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_plus_five|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
+                            </li>
+                            <li>
+                                Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours down to {{hours_per_month_plus_five|floatformat:"1"}} hours.
+                            </li>
+                        </ul>
+                        <br>                       
+                    </div><!--end plus5-->
+                    <div role="tabpanel" class="tab-pane" id="plus10">
+                        How things change with {{years_left_plus_ten|floatformat:"0"}} years left:
+                        <br>
+                        <ul>
+                            <li>
+                                If you have ten more years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_plus_ten|floatformat:"2"|intcomma}} every year.
+                            </li>
+                            <li>
+                                With ten more years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_plus_ten|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
+                            </li>
+                            <li>
+                                At {{years_left_plus_ten|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_plus_ten|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
+                            </li>
+                            <li>
+                                Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours down to {{hours_per_month_plus_ten|floatformat:"1"}} hours.
+                            </li>
+                        </ul> 
+                        <br>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="plus15">
+                        How things change with {{years_left_plus_fifteen|floatformat:"0"}} years left:
+                        <br>
+                        <ul>
+                            <li>
+                                If you have fifteen more years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_plus_fifteen|floatformat:"2"|intcomma}} every year.
+                            </li>
+                            <li>
+                                With fifteen more years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_plus_fifteen|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
+                            </li>
+                            <li>
+                                At {{years_left_plus_fifteen|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_plus_fifteen|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
+                            </li>
+                            <li>
+                                Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours down to {{hours_per_month_plus_fifteen|floatformat:"1"}} hours.
+                            </li>
+                        </ul>
+                        <br>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="plus20">
+                        How things change with {{years_left_plus_twenty|floatformat:"0"}} years left:
+                        <ul>
+                            <li>
+                                If you have twenty more years to accomplish every goal on your list then instead of the ${{cost_per_year|floatformat:"2"|intcomma}} you normally would have to spend every year to accomplish everything on your list you would now need to spend ${{total_cost_plus_twenty|floatformat:"2"|intcomma}} every year.
+                            </li>
+                            <li>
+                                With twenty more years to accomplish everything on your list then you would need to accomplish a goal every {{days_per_goal_plus_twenty|floatformat:"0"}} days instead of the {{days_per_goal|floatformat:"0"}} days you would if you want to be done by age {{life_expectancy|floatformat:"0"}}.
+                            </li>
+                            <li>
+                                At {{years_left_plus_twenty|floatformat:"0"}} years left to accomplish your goals you would need to dedicate {{days_per_year_plus_twenty|floatformat:"1"}} days every year only to your goals instead of the {{days_per_year|floatformat:"1"}} days you would have had to spend.
+                            </li>
+                            <li>
+                                Along with that your hours per month needed to accomplish all of your list items would go from {{hours_per_month|floatformat:"1"}} hours down to {{hours_per_month_plus_twenty|floatformat:"1"}} hours.
+                            </li>
+                        </ul>
+                        <br>
+                    </div>
+                </div>
+
+            </div><!--end tab panel-->
+            
             <hr>
             <br>
             {% if include_retirement %}
