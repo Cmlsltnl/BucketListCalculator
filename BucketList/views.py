@@ -287,7 +287,7 @@ def recommendation(request):
 
             
     def RetirementCalculator(current_age, retirement_age, savings, retirement_income, rate):
-        #Takes current_age, retirement_age, savings, rate, and retirement_income and outputs the amount user would have to save per year and the total amount of savings.  Uses 3% as APR after inflation
+        #Takes current_age, retirement_age, savings, rate, and retirement_income and outputs the amount user would have to save per year and the total amount of savings. 
         amount_needed = retirement_income*(float(1)/rate)
         years_left = retirement_age-current_age
         current_savings_compounded = savings*((1+rate)**years_left)
@@ -297,8 +297,8 @@ def recommendation(request):
         return amount_needed, save_per_year
         
     def InflationCalculator(amount, years):
-        #Takes a dollar amount, and number of years then outputs how what that dollar amount would cost x years into the future.  Uses historical 1.5% inflation
-        return (1.015**years)*amount
+        #Takes a dollar amount, and number of years then outputs how what that dollar amount would cost x years into the future.  Uses historical 3% inflation
+        return (1.03**years)*amount
        
         
             
@@ -1044,13 +1044,7 @@ def recommendation(request):
         retirement_end_date_difference = life_expectancy - retirement
         under_over_same = 2
         
-    
-    #Retirement at 3% APR
-    retirement_calculated_3 = RetirementCalculator(age, retirement, retirement_savings, yearly_income_at_retirement, .03)
-    total_needed_for_retirement_3 = retirement_calculated_3[0]
-    needed_per_year_for_retirement_3 = retirement_calculated_3[1]
-    percent_yearly_retirement_3 = (needed_per_year_for_retirement_3/yearly_earnings)*100
-    percent_yearly_retirement_3_all = percent_of_yearly_wage + percent_yearly_retirement_3
+ 
     
     #Retirement at 4% APR
     retirement_calculated_4 = RetirementCalculator(age, retirement, retirement_savings, yearly_income_at_retirement, .04)
@@ -1415,11 +1409,6 @@ def recommendation(request):
                     'yearly_income_at_retirement': yearly_income_at_retirement,
                     'under_over_same': under_over_same,
                     'retirement_end_date_difference': retirement_end_date_difference,
-                    
-                    'total_needed_for_retirement_3': total_needed_for_retirement_3,
-                    'needed_per_year_for_retirement_3': needed_per_year_for_retirement_3,
-                    'percent_yearly_retirement_3': percent_yearly_retirement_3,
-                    'percent_yearly_retirement_3_all': percent_yearly_retirement_3_all,
                     
                     
                     'total_needed_for_retirement_4': total_needed_for_retirement_4,

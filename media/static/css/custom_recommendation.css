@@ -419,3 +419,34 @@
     }
 }
 
+/*------------------------Retirement-------------------------*/
+
+.retirement-tabs {
+    width: 16.5%;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.retirement-tabs a {
+    color: #3D3D3D;
+}
+
+@media only screen and (max-width : 375px) {
+    .percentage-tabs {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width : 340px) {
+    .percentage-tabs {
+        font-size: 10px;
+    }
+}
+
+@media only screen and (max-width : 315px) {
+    .percentage-tabs {
+        font-size: 8px;
+    }
+}
