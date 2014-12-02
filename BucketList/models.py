@@ -45,10 +45,10 @@ CHOICES = (
 
 class BucketListItem(models.Model):
     #The Model that defines each Bucket List Item
-    text = models.CharField(max_length = 200)
+    text = models.CharField(max_length = 70)
     pub_by = models.ForeignKey(User,editable = False)
     pub_date = models.DateTimeField(editable=False)
-    goal_type = models.CharField(choices = CHOICES, max_length = 200)
+    goal_type = models.CharField(choices = CHOICES, max_length = 50)
     cost = models.IntegerField(default =0, validators = [validate_positive])
     time = models.IntegerField(default =0, validators = [validate_positive])
     hours = models.IntegerField(default =0, validators = [validate_positive])

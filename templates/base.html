@@ -58,6 +58,7 @@
             
             <ul class = "nav navbar-nav" role = "navigation">
                 {% if user.is_authenticated %}
+                    
                     <li>
                         <a href="/bucketlist/mylist/"> {% avatar user 25 %}   {{user}}</a>
                     </li>
