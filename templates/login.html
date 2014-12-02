@@ -25,8 +25,10 @@
                     <input type="password" name="password" value="" id="password">
                     <br>
                     <br>
-                    <input type="submit" class = "btn btn-warning" value="Log In" />
-                    
+                    <p>
+                        <input type="submit" class = "btn btn-warning" value="Log In" />
+                        <a href = "/accounts/register/" class = "btn btn-default"> Create Account</a>
+                    </p>
                 </form>
                 <br>
                 <h5>Did you forgot your password or username? No problem!  Click <a href= {% url "password_reset_recover" %}>here</a> and we can help you to reset it.</h5>
