@@ -13,6 +13,7 @@ from fuzzywuzzy import fuzz, process
 from chartit import DataPool, Chart
 import operator
 from datetime import date, datetime
+import collections
 
 
 
@@ -51,12 +52,13 @@ def MostSimilarGoals(item, dict):
     
 def RepeatGoalInList(dict):
     #Takes a Dictionary of Goals and outputs a list of any goals that are repeats
-    matching_goals = []
-    for item in dict:
-        same_goal = ExactSameGoal(item, dict)
-        if same_goal[1] > 1:
-            match = same_goal[0]
-            matching_goals.append(match[0])
+    list_of_goal_names = []
+    
+    for goals in dict:
+        list_of_goal_names.append(goals.text)
+     
+    matching_goals = [x for x, y in collections.Counter(list_of_goal_names).items() if y > 1]
+    
     if len(matching_goals) > 0:
         return matching_goals[0]
     else: 
