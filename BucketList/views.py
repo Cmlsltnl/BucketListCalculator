@@ -204,6 +204,7 @@ def my_list(request):
 def recommendation(request):
     #This view takes the users list items and turns it into a convenient display of the stats in a user friendly form, basically this view is the main reason everything else in this web app exists. 
     
+            
     #---------------Important Recommendation Functions------------- 
         
     def BucketListItemListSum(list, field_to_sum):
