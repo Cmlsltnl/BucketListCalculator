@@ -1705,3 +1705,16 @@ def tutorial(request):
     return render(request, 'BucketList/tutorial.html', context)
     
     
+def about_us(request):
+    #View for the About Us page
+    return HttpResponse("words")
+    
+def contact_us(request):
+    #View for Contact Us page
+    return HttpResponse("words")
+    
+def terms_and_conditions(request):
+    #Terms and Conditions View
+    return HttpResponse("words")
+    
+    
