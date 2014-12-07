@@ -17,5 +17,8 @@ urlpatterns = patterns('',
     url(r'^mylist/compare/(?P<id>\w+)/', views.compare_my_list_item, name = 'compare list item'),
     url(r'^profile/edit/$', views.edit_profile, name = 'edit profile'),
     url(r'^tutorial/$', views.tutorial, name = 'tutorial'),
+    url(r'^about/$', views.about_us, name = 'about us'),
+    url(r'^contact/$', views.contact_us, name = 'contact'),
+    url(r'^terms/$', views.terms_and_conditions, name = 'terms and conditions'),
 )
 
