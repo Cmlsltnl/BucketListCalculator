@@ -1707,14 +1707,14 @@ def tutorial(request):
     
 def about_us(request):
     #View for the About Us page
-    return HttpResponse("words")
+    return render(request, 'BucketList/about_us.html')
     
 def contact_us(request):
     #View for Contact Us page
-    return HttpResponse("words")
+    return render(request, 'BucketList/contact_us.html')
     
 def terms_and_conditions(request):
     #Terms and Conditions View
-    return HttpResponse("words")
+    return render(request, 'BucketList/terms_and_conditions.html')
     
     
