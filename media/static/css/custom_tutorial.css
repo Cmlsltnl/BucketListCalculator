@@ -15,6 +15,13 @@
     padding-bottom: 15px;
 }
 
+.sections h2 {
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    padding-bottom: 15px;
+}
+
 .sections h3 {
     text-align: center;
     font-family: 'Oswald', sans-serif;
@@ -146,4 +153,27 @@
     font-size: 12px;
     float: right;
     padding-top: 8px;
+}
+
+/*-----------------Styling for Mock List Items------------------*/
+
+.mock-list-item {
+    background-color: #F0F0F0;
+    padding: 10px 10px 25px 25px;
+    margin: auto;
+    border-radius: 4px;
+    box-shadow: 0 0 1px black;
+    overflow: hidden;
+    width: 65%;
+}
+
+.mock-list-item h4 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    text-align: center;
+    color: #f0ad4e;
+}
+
+.orange {
+    color: #f0ad4e;
 }
