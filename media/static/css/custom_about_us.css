@@ -19,12 +19,124 @@
     font-family: 'Oswald', sans-serif;
     font-weight: 300;
     padding-bottom: 15px;
+    text-decoration: underline;
 }
+
+.sections h4 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    text-align: right;
+    width: 75%;
+}
+
+.sections h5 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+    text-align: right;
+    width: 90%;
+    font-size: 120%;
+}
+
+@media only screen and (max-width : 780px) {
+    .sections h5 {
+        width: 95%;
+        font-size: 120%;
+    }
+}
+
+@media only screen and (max-width : 580px) {
+    .sections h5 {
+        width: 100%;
+        font-size: 120%;
+    }
+}
+
+@media only screen and (max-width : 480px) {
+    .sections h5 {
+        width: 100%;
+        font-size: 110%;
+    }
+}
+
+@media only screen and (max-width : 400px) {
+    .sections h5 {
+        width: 100%;
+        font-size: 100%;
+    }
+}
+
+@media only screen and (max-width : 360px) {
+    .sections h5 {
+        width: 100%;
+        font-size: 90%;
+    }
+}
+
+@media only screen and (max-width : 320px) {
+    .sections h5 {
+        width: 100%;
+        font-size: 80%;
+    }
+}
+
+
+/*----------------------About Styling-------------------*/
 
 .name-description {
     margin: auto;
     width: 90%;
 }
+
+.name-picture {
+    height: 160px;
+    width: 160px;
+    float: right;
+    padding: 12px;
+}
+
+@media only screen and (max-width : 550px) {
+    .name-picture {
+        height: 140px;
+        width: 140px;
+    }
+}
+
+@media only screen and (max-width : 460px) {
+    .name-picture {
+        height: 120px;
+        width: 120px;
+    }
+}
+
+@media only screen and (max-width : 380px) {
+    .name-picture {
+        height: 100px;
+        width: 100px;
+        padding: 9px;
+    }
+}
+
+.grey {
+    color: #545454;
+}
+
+.orange {
+    color: #CD8162;
+}
+
+.fa-quote-left {
+    padding-right: 8px;
+}
+
+.fa-quote-right {
+    padding-left: 8px;
+}
+
+.block-quote {
+    width: 80%;
+    margin: auto;
+}
+
 
 /*-----------------------Recently Added--------------------*/
 
