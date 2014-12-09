@@ -174,6 +174,28 @@
     color: #f0ad4e;
 }
 
-.orange {
-    color: #f0ad4e;
+
+
+.line-through-text {
+    text-decoration: line-through;
+}
+
+/*--------------Media Queries for Mock List Items--------------*/
+
+@media only screen and (max-width : 450px) {
+    .mock-list-item {
+        width: 75%;
+    }
+}
+
+@media only screen and (max-width : 350px) {
+    .mock-list-item {
+        width: 85%;
+    }
+}
+
+@media only screen and (max-width : 310px) {
+    .mock-list-item {
+        width: 90%;
+    }
 }
