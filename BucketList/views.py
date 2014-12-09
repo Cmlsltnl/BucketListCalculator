@@ -1707,11 +1707,23 @@ def tutorial(request):
     
 def about_us(request):
     #View for the About Us page
-    return render(request, 'BucketList/about_us.html')
+    
+    all_list_items = BucketListItem.objects.filter(crossed_off = False).order_by('-pub_date')[:5]
+    
+    context = {'all_list_items': all_list_items,
+    }
+    
+    return render(request, 'BucketList/about_us.html', context)
     
 def contact_us(request):
     #View for Contact Us page
-    return render(request, 'BucketList/contact_us.html')
+    
+    every_comment = Comment.objects.all().order_by('-created')[:4]
+    
+    context = {'every_comment': every_comment,
+    }
+    
+    return render(request, 'BucketList/contact_us.html', context)
     
 def terms_and_conditions(request):
     #Terms and Conditions View

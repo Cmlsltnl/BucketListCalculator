@@ -2,16 +2,56 @@
 
 {% block title %}About Us{% endblock title %}
 {% block content %}
+{% load avatar_tags %}
 
 <link href="/media/static/css/custom_about_us.css" rel="stylesheet" type="text/css"/>
 
 <div class = "container">
     <div class = "row">
-        <div class = "col-md-12">
+        <div class = "col-md-8">
             <div class = "sections">
             
-                <p>Some information about us will go right here.</p>
-                
+                <h1>About Us</h1>
+                <br>
+                <p>
+                    This site was created with only one purpose in mind.  To help you reach your goals!  
+                    <br>
+                    <br>
+                    <a href = "/bucketlist/">BucketListCalculator.com</a> allows users to create/customize their own personal bucket list and observe other users doing the same. It is centred around giving users time lines to reach their goals. Users can then use this information to create a plan of action for accomplishing their life goals.
+                </p>
+                <br>
+                <h3>Michael Sullivan</h3>
+                <p class = "name-description">
+                    Michael is the creator and founder of <a href = "/bucketlist/">BucketListCalculator.com</a>.  After making his own Bucket List and manually calculating the cost of all his goals Michael wanted to create a website that would streamline the process.  What started out as a small side project quickly turned into something much larger.  The site transitioned into something he is extremely passionate about and believes can help people all over the world to accomplish their life goals.
+                    <br>
+                    <br>
+                    Michael currently is a freelance web developer based in Fargo, ND.  He continually works to improve the site while pursuing other interests and crossing items off his own Bucket List.
+                </p>
+                <br>
+                <br>
+            </div>
+            <br>
+        </div>
+        
+        <div class = "col-md-4">
+            <div class = "sections">
+                <h1>Recently Added</h1>
+                <ul class = "recently-added-list">
+                    {% for item in all_list_items %}
+                        <li>
+                            <div class = "recently-added-list-item">
+                                <h4>
+                                    <a href="/bucketlist/item/{{item.id}}/">{{ item.text }}</a>
+                                </h4>
+                                <span class="avatar-span">{% avatar item.pub_by 25%}</span>
+                                <a href = "/bucketlist/userstats/{{item.pub_by}}">{{item.pub_by}}</a>
+                                <span class = "date-added"><span class = "fa fa-plus"></span>{{item.pub_date|timesince}} ago</span>
+                            </div>
+                        </li>
+                        <br>
+                    {% endfor %}
+                </ul>
+                <br>
             </div>
         </div>
     </div>
