@@ -180,6 +180,14 @@
     text-decoration: line-through;
 }
 
+.text-bold {
+    font-weight: bold;
+}
+
+.btn-xs {
+    font-size: 10px;
+}
+
 /*--------------Media Queries for Mock List Items--------------*/
 
 @media only screen and (max-width : 450px) {
