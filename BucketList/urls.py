@@ -20,5 +20,6 @@ urlpatterns = patterns('',
     url(r'^about/$', views.about_us, name = 'about us'),
     url(r'^contact/$', views.contact_us, name = 'contact'),
     url(r'^terms/$', views.terms_and_conditions, name = 'terms and conditions'),
+    url(r'^privacypolicy/$', views.privacy_policy, name = 'privacy policy'),
 )
 

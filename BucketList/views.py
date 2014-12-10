@@ -1727,6 +1727,21 @@ def contact_us(request):
     
 def terms_and_conditions(request):
     #Terms and Conditions View
-    return render(request, 'BucketList/terms_and_conditions.html')
     
+    recently_crossed_off = BucketListItem.objects.filter(crossed_off = True).order_by('-pub_date')[:12]
+    
+    context = {'recently_crossed_off': recently_crossed_off,
+    }
+    
+    return render(request, 'BucketList/terms_and_conditions.html', context)
+    
+def privacy_policy(request):
+    #Terms and Conditions View
+    
+    recently_crossed_off = BucketListItem.objects.filter(crossed_off = True).order_by('-pub_date')[:12]
+    
+    context = {'recently_crossed_off': recently_crossed_off,
+    }
+    
+    return render(request, 'BucketList/privacy_policy.html', context)
     
