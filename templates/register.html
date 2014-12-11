@@ -16,8 +16,12 @@
                     {% for field in form %}
                         <div class = "fieldWrapper">
                             {{field.errors }}
-                            {{field.label_tag}}
-                            {{field}}
+                            {% if field.label == "privacy" %}
+                                <p>{{field}} I have read and agree with the <a href = "/bucketlist/terms/">Terms & Conditions</a> and <a href = "/bucketlist/privacypolicy/">Privacy Policy</a></p>
+                            {% else %}
+                                {{field.label}}:
+                                {{field}}
+                            {% endif %}
                             <br>
                             <br>
                             {% if field.help_text %}

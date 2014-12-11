@@ -84,6 +84,11 @@ body {
   padding-left: 60px;
 }
 
+.footer-section ul {
+    padding-left: 0;
+}
+
+
 #footer h2 {
   font-family: 'Oswald', sans-serif;
   font-weight: 300;

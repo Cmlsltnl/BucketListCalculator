@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 class MyRegistrationForm(UserCreationForm):
     #Form that creates a user account
     email = forms.EmailField(required = True)
+    privacypolicy = forms.BooleanField(required = True, label = 'privacy')
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
