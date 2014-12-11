@@ -86,8 +86,14 @@ body {
 
 /*---------------------How It Works------------------------*/
 
-.how-it-works {
-    margin: auto;
+
+
+.how-it-works-div {
+    display: inline-block;
+    width: 24%;
+}
+
+.how-it-works-div a {
     text-align: center;
 }
 
