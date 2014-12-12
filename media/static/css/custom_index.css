@@ -91,22 +91,33 @@ body {
 .how-it-works-div {
     display: inline-block;
     width: 24%;
+    padding-bottom: 20px;
 }
 
-.how-it-works-div a {
+.how-it-works-div h4 {
     text-align: center;
 }
 
-.how-it-works span{
-    padding-bottom: 15px;
+.how-it-works-div a {
+    width: 100%;
 }
 
 .how-it-works .fa {
     color: #f0ad4e;
+    width: 100%;
+    text-align: center;
 }
 
 .how-it-works .fa:hover {
     color: #3D3D3D;
+}
+
+@media only screen and (max-width : 650px) {
+    .how-it-works-div {
+    display: inline-block;
+    width: 100%;
+    
+    }
 }
 
 /*-----------------------Recently Added--------------------*/
