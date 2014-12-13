@@ -49,15 +49,18 @@ def logout(request):
     
 def register_user(request):
     #The view that allows the user to register
+    args = {}
     if request.method == 'POST':
         form = MyRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/accounts/register_success')
+            
+    else:
+        form = MyRegistrationForm()
         
-    args = {}
+    args['form'] = form
     args.update(csrf(request))
-    args['form'] = MyRegistrationForm()
     return render(request, 'register.html', args)
     
     

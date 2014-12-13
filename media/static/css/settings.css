@@ -42,3 +42,10 @@
     box-shadow: 0 0 1px black;
     width: 85%;
 }
+
+/*-------------------------Register----------------------*/
+
+.register #id_username {
+    width: 100%;
+    height: 32px;
+}

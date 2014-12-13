@@ -6,8 +6,8 @@
 
 <div class = "container">
     <div class = "row">
-        <div class = "col-md-12">
-            <div class = "sections">
+        <div class = "col-md-8 col-md-offset-2">
+            <div class = "sections register">
 
                 <h2>Register</h2>
                 
@@ -15,26 +15,60 @@
                 
                     {% for field in form %}
                         <div class = "fieldWrapper">
-                            {{field.errors }}
+                            {% if field.errors %}
+                                <p class = "text-caution">{{field.errors}}</p>
+                                <div class = "helper-text">
+                                    {{field.help_text}}
+                                </div>
+                                <br>
+                                <br>
+                            {% endif %}
                             {% if field.label == "privacy" %}
                                 <p>{{field}} I have read and agree with the <a href = "/bucketlist/terms/">Terms & Conditions</a> and <a href = "/bucketlist/privacypolicy/">Privacy Policy</a></p>
                             {% else %}
-                                {{field.label}}:
+                                {{field.label}}
+                                <br>
                                 {{field}}
                             {% endif %}
                             <br>
                             <br>
-                            {% if field.help_text %}
-                            <div class = "helper-text">
-                                {{ field.help_text }}
-                            </div>
                             <br>
-                            {% endif %}
+
                         </div>
                   
                     {% endfor %}
+                    <hr>
+                    
+               {% for field in form %}
                <br>
+                    {% if field.label == "username" %}
+                       <input id = "id_username" type = "text" name = "username" maxlength = "30" placeholder = "Username" required/>
+                       <br>
+                       <br>
+                    {% endif %}
+                    {% if field.label == "email" %}
+                       <input id = "id_email" type = "email" name = "username" maxlength = "30" placeholder = "Email" required/>
+                       <br>
+                       <br>
+                    {% endif %}
+               <input id = "id_password1" type = "password" name ="password1" maxlength = "30" placeholder = "Password" required/>
+               <br>
+               <br>
+               <input id = "id_password2" type = "password" name = "password2" maxlength = "30" placeholder = "Confirm Password" required/>
+               <br>
+               <br>
+               <p>
+                    
+                   <input id = "id_privacypolicy" type = "checkbox" name = "privacypolicy" checked/>
+                   I have read and agree with the <a href = "/bucketlist/terms/">Terms & Conditions</a> and <a href = "/bucketlist/privacypolicy/">Privacy Policy</a>
+               </p>
+               <br>
+               <br>
+               
+               {% endfor %}
+               
                 <input type = "submit" value = "Register" class = "btn btn-warning" />
+                
 
                 </form>
                

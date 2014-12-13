@@ -1,11 +1,13 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.forms import ModelForm, Textarea
 
 
 class MyRegistrationForm(UserCreationForm):
     #Form that creates a user account
-    email = forms.EmailField(required = True)
+    email = forms.EmailField(required = True, label = 'email')
+                                                        
     privacypolicy = forms.BooleanField(required = True, label = 'privacy')
     class Meta:
         model = User
