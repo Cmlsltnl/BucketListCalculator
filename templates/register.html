@@ -10,61 +10,68 @@
             <div class = "sections register">
 
                 <h2>Register</h2>
-                
+              
                 <form action = "/accounts/register/" method = "post">{% csrf_token %}
-                
-                    {% for field in form %}
-                        <div class = "fieldWrapper">
-                            {% if field.errors %}
-                                <p class = "text-caution">{{field.errors}}</p>
-                                <div class = "helper-text">
-                                    {{field.help_text}}
-                                </div>
-                                <br>
-                                <br>
-                            {% endif %}
-                            {% if field.label == "privacy" %}
-                                <p>{{field}} I have read and agree with the <a href = "/bucketlist/terms/">Terms & Conditions</a> and <a href = "/bucketlist/privacypolicy/">Privacy Policy</a></p>
-                            {% else %}
-                                {{field.label}}
-                                <br>
-                                {{field}}
-                            {% endif %}
-                            <br>
-                            <br>
-                            <br>
 
-                        </div>
-                  
-                    {% endfor %}
-                    <hr>
-                    
                {% for field in form %}
+                    <div class = "fieldWrapper">
                <br>
-                    {% if field.label == "username" %}
-                       <input id = "id_username" type = "text" name = "username" maxlength = "30" placeholder = "Username" required/>
+                    {% if field.label == "Username" %}
+                        <input id = "id_username" type = "text" name = "Username" maxlength = "30" placeholder = "Username" required/>
+                        {% if field.errors %}
+                                <br>
+                                <br>
+                                {{field.errors}}                               
+                        {% endif %}
+                       
                        <br>
                        <br>
-                    {% endif %}
+                        {% endif %}
                     {% if field.label == "email" %}
-                       <input id = "id_email" type = "email" name = "username" maxlength = "30" placeholder = "Email" required/>
+                        <input id = "id_email" type = "email" name = "username" maxlength = "30" placeholder = "Email" required/>
+                        {% if field.errors %}
+                                <br>
+                                <br>
+                                {{field.errors}}                               
+                        {% endif %}
+                       <br>
+                       <br>
+
+                    {% endif %}
+                    {% if field.label == "Password" %}
+                        <input id = "id_password1" type = "password" name ="password1" maxlength = "30" placeholder = "Password" required/>
+                        {% if field.errors %}
+                                <br>
+                                <br>
+                                {{field.errors}}                               
+                        {% endif %}
                        <br>
                        <br>
                     {% endif %}
-               <input id = "id_password1" type = "password" name ="password1" maxlength = "30" placeholder = "Password" required/>
-               <br>
-               <br>
-               <input id = "id_password2" type = "password" name = "password2" maxlength = "30" placeholder = "Confirm Password" required/>
-               <br>
-               <br>
-               <p>
-                    
-                   <input id = "id_privacypolicy" type = "checkbox" name = "privacypolicy" checked/>
-                   I have read and agree with the <a href = "/bucketlist/terms/">Terms & Conditions</a> and <a href = "/bucketlist/privacypolicy/">Privacy Policy</a>
-               </p>
-               <br>
-               <br>
-               
+                    {% if field.label == "Password confirmation" %}
+                        <input id = "id_password2" type = "password" name = "password2" maxlength = "30" placeholder = "Confirm Password" required/>
+                        {% if field.errors %}
+                                <br>
+                                <br>
+                                {{field.errors}}                               
+                        {% endif %}
+                       <br>
+                       <br>
+                    {% endif %}
+                    {% if field.label == "privacy" %}
+                       <p>         
+                           <input id = "id_privacypolicy" type = "checkbox" name = "privacypolicy" required/>
+                           I have read and agree with the <a href = "/bucketlist/terms/">Terms & Conditions</a> and <a href = "/bucketlist/privacypolicy/">Privacy Policy</a>
+                       </p>
+                        {% if field.errors %}
+                                <br>
+                                <br>
+                                {{field.errors}}                               
+                        {% endif %}
+                        <br>
+                       <br>
+                    {% endif %}
+                    </div>
                {% endfor %}
                
                 <input type = "submit" value = "Register" class = "btn btn-warning" />

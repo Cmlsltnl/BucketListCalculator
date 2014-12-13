@@ -22,7 +22,7 @@
 }
 
 .text-danger {
-    padding-left: 25px;
+    color: #d9534f;
 }
 
 .fieldWrapper {
@@ -49,3 +49,22 @@
     width: 100%;
     height: 32px;
 }
+
+.register #id_email {
+    width: 100%;
+    height: 32px;
+}
+
+.register #id_password1 {
+    width: 100%;
+    height: 32px;
+}
+
+.register #id_password2 {
+    width: 100%;
+    height: 32px;
+}
+
+.register .errorlist li {
+ color: #d9534f;
+ }
