@@ -332,6 +332,8 @@ def recommendation(request):
     if len(mylist) == 0:
         return HttpResponseRedirect('/bucketlist/create/')
         
+    list_of_list_items = BucketListItem.objects.filter(pub_by = user1, crossed_off = False)[:30]
+    
     total_cost = BucketListItemListSum(mylist, 'cost')
     total_hours = BucketListItemListSum(mylist, 'hours')
     total_time = BucketListItemListSum(mylist, 'time')
@@ -1112,6 +1114,7 @@ def recommendation(request):
                      'yearly_earnings': yearly_earnings,
                      'hourly_wage': hourly_wage,
                      'work_hours_per_week': work_hours_per_week,
+                     'list_of_list_items':list_of_list_items,
                      
                      'accomplish_per_year': accomplish_per_year,
                      'days_per_goal': days_per_goal,

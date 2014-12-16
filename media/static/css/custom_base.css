@@ -6,6 +6,11 @@
 
 /*------------------------Navbar---------------------------*/
 
+.navbar-inverse {
+    background-color: #333333;
+}
+
+
 .glyphicon-envelope {
   font-size: 1.4em;
 }
