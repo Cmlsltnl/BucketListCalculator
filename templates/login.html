@@ -6,23 +6,20 @@
 
 <div class = "container">
     <div class = "row">
-        <div class = "col-md-12">
-            <div class = "sections">
+        <div class = "col-md-8 col-md-offset-2">
+            <div class = "sections login">
                 
                 <h1>Log In</h1>
+                <br>
                 <br>
                 {% if form.errors %}
                     <p class = "error">Sorry, that's not a valid username or password</p>
                 {% endif %}
                 
                 <form action ="/accounts/auth/" method ="post">{% csrf_token %}
-                    <label for="username">User name: </label>
-                    <input type="text" name="username" value="" id="username">
+                    <input type="text" name="username" value="" id="username" placeholder = "Username">                 
+                    <input type="password" name="password" value="" id="password" placeholder= "Password">
                     <br>
-                    <br>
-                    <label for="password">Password: </label>
-                    
-                    <input type="password" name="password" value="" id="password">
                     <br>
                     <br>
                     <p>
