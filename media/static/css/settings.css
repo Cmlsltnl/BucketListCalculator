@@ -45,28 +45,29 @@
 
 /*-------------------------Register----------------------*/
 
-.register input {
-    border-radius: 2px;
-}
 
 .register #id_username {
-    width: 100%;
+    width: 49%;
     height: 32px;
+    display: block;
 }
 
 .register #id_email {
-    width: 100%;
+    width: 49%;
     height: 32px;
+    display: block;
 }
 
 .register #id_password1 {
-    width: 100%;
+    width: 49%;
     height: 32px;
+    display: block;
 }
 
 .register #id_password2 {
-    width: 100%;
+    width: 49%;
     height: 32px;
+    display: block;
 }
 
 .register .errorlist li {
