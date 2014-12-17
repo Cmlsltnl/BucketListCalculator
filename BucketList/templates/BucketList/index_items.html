@@ -47,7 +47,7 @@
                             <h5 class ="timesince">{{ comment.created|timesince}} ago.</h3>
                             <br>
                             <br>
-                            <p>{{comment.body}}</p>
+                            <p>{{comment.body|urlize}}</p>
                             {% if comment.author == current_user %}
                                 <a href="/bucketlist/item/{{comment.id}}/delete-comment/"><span class = "fa fa-close"></span></a>
                             {% endif %}

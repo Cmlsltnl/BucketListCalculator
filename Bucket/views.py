@@ -104,7 +104,7 @@ def edit(request):
                             change_email = True
                     else:
                         args['no_email_match'] = True
-                        return render(reqeust, 'edit_success.html', args)
+                        return render(request, 'edit_success.html', args)
             
                 if new_password1 and new_password1 == new_password2:
                     user1.set_password(new_password1)

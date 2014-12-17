@@ -7,23 +7,49 @@
 
 <div class = "container">
     <div class = "row">
-        <div class = "col-md-12">
-            <div class = "sections">
+        <div class = "col-md-8 col-md-offset-2">
+            <div class = "sections edit-account">
                 <h1>Edit Your Account Settings</h1>
+                <br>
                 <br>
                 <form action = "/accounts/edit/" method = "post">{% csrf_token %}
                 {% for field in form %}
                     <div class = "fieldWrapper">
-                        {{field.errors}}
-                            <label>{{field.label}}</label>
-                            {{field}}
                             {% if field.label == 'Password' %}
-                                <h5 class = "text-danger">*Your password is required the rest are optional.</h5>
+                                {{field.errors}}
+                                <input id = "id_password" type = "password" name = "password" maxlength = "30" placeholder = "Password" required/>
+                                <h5 class = "text-danger"><b>*Your password is required the rest are optional*</b></h5>
+                                <br>
+                                <br>
                             {% endif %}
-                            <br>
-                            <br>
+                            {% if field.label == "Current Email Address" %}
+                                {{field.errors}}
+                                <input id = "id_email" type = "email" name = "email" maxlength = "30" placeholder = "Current Email"/>
+                                <br>
+                                <br>
+                            {% endif %}
+                            {% if field.label == "New Email Address" %}
+                                {{field.errors}}
+                                <input id = "id_new_email" type = "email" name = "new_email" maxlength = "30" placeholder = "New Email"/>
+                                <br>
+                                <br>
+                            {% endif %}
+                            {% if field.label == "New Password" %}
+                                {{field.errors}}
+                                <input id = "id_new_password1" type = "password" name = "new_password1" maxlength = "30" placeholder = "New Password"/>
+                                <br>
+                                <br>
+                            {% endif %}
+                            {% if field.label == "Confirm New Password" %}
+                                {{field.errors}}
+                                <input id = "id_new_password2" type = "password" name = "new_password2" maxlength = "30" placeholder = "Confirm New Password"/>
+                                <br>
+                                <br>
+                            {% endif %}
+                            
                     </div>
                 {% endfor %}
+                <br>
                 <br>
                 <input class = "btn btn-warning" type = "submit" value = "Edit" />
 
