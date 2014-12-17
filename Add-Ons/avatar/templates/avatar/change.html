@@ -30,12 +30,13 @@
                         <ul>
                             {{ primary_avatar_form.as_ul }}
                         </ul>
-                        <p>{% csrf_token %}<input type="submit" value="{% trans "Choose new Default" %}" class= "btn btn-warning btn-sm" /></p>
+                        <p>{% csrf_token %}<input type="submit" value="{% trans "Choose New Default" %}" class= "btn btn-warning btn-sm" /></p>
                     </form>
                 {% endif %}
+                <br>
                 <form enctype="multipart/form-data" method="POST" action="{% url 'avatar_add' %}">
                     {{ upload_avatar_form.as_p }}
-                    <p>{% csrf_token %}<br><input type="submit" value="{% trans "Upload New Image" %}" class = "btn btn-success" /></p>
+                    <p>{% csrf_token %}<br><input type="submit" value="{% trans "Upload New Image" %}" class = "btn btn-success" /> <a href = "/bucketlist/profile/edit/" class = "btn btn-default">Back to Edit Profile</a></p>
                 </form>
             
 

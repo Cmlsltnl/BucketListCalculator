@@ -26,9 +26,11 @@
                             <ul>
                                 {{ delete_avatar_form.as_ul }}
                             </ul>
-                            <p>{% csrf_token %}<input type="submit" value="{% trans "Delete These" %}" /></p>
+                            <br>
+                            <p>{% csrf_token %}<input type="submit" class = "btn" value="{% trans "Delete These" %}" />  <a href = "/avatar/change/" class = "btn btn-warning">Back</a></p>
                         </form>
                     {% endif %}
+                        
     
             </div>
         </div>

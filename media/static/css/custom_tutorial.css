@@ -164,7 +164,7 @@
     border-radius: 4px;
     box-shadow: 0 0 1px black;
     overflow: hidden;
-    width: 65%;
+    width: 45%;
 }
 
 .mock-list-item h4 {
@@ -190,19 +190,19 @@
 
 /*--------------Media Queries for Mock List Items--------------*/
 
-@media only screen and (max-width : 450px) {
+@media only screen and (max-width : 480px) {
     .mock-list-item {
-        width: 75%;
+        width: 60%;
     }
 }
 
-@media only screen and (max-width : 350px) {
+@media only screen and (max-width : 390px) {
     .mock-list-item {
-        width: 85%;
+        width: 70%;
     }
 }
 
-@media only screen and (max-width : 310px) {
+@media only screen and (max-width : 330px) {
     .mock-list-item {
         width: 90%;
     }

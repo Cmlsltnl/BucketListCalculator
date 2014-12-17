@@ -19,7 +19,8 @@
                 {% endif %}
                 <form enctype="multipart/form-data" method="POST" action="{% url 'avatar_add' %}">
                     {{ upload_avatar_form.as_p }}
-                    <p>{% csrf_token %}<input type="submit" value="{% trans "Upload New Image" %}" class = "btn btn-success" /></p>
+                    <br>
+                    <p>{% csrf_token %}<input type="submit" value="{% trans "Upload New Image" %}" class = "btn btn-success" /> <a href = "/avatar/change/" class = "btn btn-warning">Back</a></p>
                 </form>
     
             </div>
