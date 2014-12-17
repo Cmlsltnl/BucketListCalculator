@@ -29,7 +29,7 @@
                     {% for comment in every_comment %}
                         <h4 class = "talked-about-title"><a href= "/bucketlist/item/{{comment.item.id}}/">{{comment.item}}</a></h4>
                         <div class = "talked-about-div">
-                            <p><i><q>{{comment.body|truncatewords:30}}</q></i></p>
+                            <p><i><q>{{comment.body|truncatewords:30|urlize}}</q></i></p>
                             <h6><a href="/bucketlist/userstats/{{comment.author}}">-{{comment.author}}</a></h6>
                         </div>
                         <br>
