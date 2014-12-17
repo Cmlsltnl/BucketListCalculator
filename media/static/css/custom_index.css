@@ -12,10 +12,8 @@ body {
     height: 100%;
     width: 100%;
     background-repeat: no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
+
 
 }
 
@@ -49,6 +47,7 @@ body {
     font-family: 'Oswald', sans-serif;
     font-weight: 300;
     font-size: 13px;
+
 }
 
 .pattern-divide {
@@ -56,6 +55,9 @@ body {
     width: 100%;
     height: 5px;
     margin-bottom: 40px;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
 }
 
 
@@ -69,6 +71,10 @@ body {
    text-shadow: 0 0 3px black;
 }
 
+.container-fluid {
+    margin: 0;
+    padding: 0;
+}
 /*------------------------Site Content-------------------------*/
 .sections {
     background-color: white;
@@ -391,3 +397,396 @@ body {
         }
     }
 
+
+
+body {
+    padding-top: 0;
+}
+
+/*----------------------Banner-----------------------*/
+#banner {
+    background: url(/media/static/images/index_background2.jpg) no-repeat center center;
+    position: relative;
+    min-height: 700px;
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+
+#slogan1 {
+    padding-top: 130px;
+    padding-left: 20px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+    font-size: 25px;
+    color: white;
+    text-shadow: 0 0 5px black;
+    
+}
+
+#slogan2 {
+    padding-left: 65px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+    font-size: 25px;
+    color: white;
+    text-shadow: 0 0 5px black;
+}
+
+#site-purpose {
+    padding-top: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+}
+
+.pattern-divide {
+    background: url(/media/static/images/tweed.png) repeat;
+    width: 100%;
+    height: 5px;
+    margin-bottom: 40px;
+}
+
+
+.text-shadow {
+    text-shadow: 0 0 5px black;
+}
+
+
+.glyphicon-chevron-right {
+   color: #f0ad4e;
+   text-shadow: 0 0 3px black;
+}
+
+.container-fluid {
+    margin: 0;
+    padding: 0;
+}
+/*------------------------Site Content-------------------------*/
+.sections {
+    background-color: white;
+    padding: 25px;
+    border-radius: 4px;
+    box-shadow: 0 0 1px black;
+}
+
+.sections h1 {
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    padding-bottom: 15px;
+}
+
+/*---------------------How It Works------------------------*/
+
+
+
+.how-it-works-div {
+    display: inline-block;
+    width: 24%;
+    padding-bottom: 20px;
+}
+
+.how-it-works-div h4 {
+    text-align: center;
+}
+
+.how-it-works-div a {
+    width: 100%;
+}
+
+.how-it-works .fa {
+    color: #f0ad4e;
+    width: 100%;
+    text-align: center;
+}
+
+.how-it-works .fa:hover {
+    color: #3D3D3D;
+}
+
+@media only screen and (max-width : 650px) {
+    .how-it-works-div {
+    display: inline-block;
+    width: 100%;
+    
+    }
+}
+
+/*-----------------------Recently Added--------------------*/
+
+.recently-added-list {
+    list-style-type: none;
+    margin: auto;
+    padding: 0;
+}
+
+.recently-added-list-item {
+    background-color: #F0F0F0;
+    padding: 10px 10px 25px 25px;
+    margin: auto;
+    border-radius: 4px;
+    box-shadow: 0 0 1px black;
+    overflow: hidden;
+}
+
+.recently-added-list-item h5 a{
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    color: #3D3D3D;
+}
+
+.recently-added-list-item .avatar-span {
+    padding-left: 20px;
+    padding-right: 5px;
+}
+
+.recently-added-list-item > a {
+    color: #5cb85c;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.recently-added-list-item > a:hover {
+    color: #3D3D3D;
+}
+
+.recently-added-list-item .fa-plus {
+    padding-left: 10px;
+    padding-right: 5px;
+    font-size: 10px;
+}
+
+.recently-added-list-item .date-added {
+    font-size: 12px;
+    float: right;
+    padding-top: 8px;
+}
+
+/*------------------Talked About------------------*/
+
+.talked-about-title {
+    overflow: hidden;
+}
+
+.talked-about-title a {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    color: #f0ad4e;
+    padding-bottom: 85px;
+}
+
+.talked-about-title a:hover {
+    color: #3D3D3D;
+}
+
+.talked-about-div {
+    background-color: #F0F0F0;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 0 1px black;
+    overflow: hidden;
+}
+
+.talked-about-div h6 a {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    padding-left: 40px;
+    color: #5cb85c;
+}
+
+.talked-about-div h6 a:hover {
+    color: #3D3D3D;
+    text-decoration: none;
+}
+
+/*------------------Featured User-----------------*/
+
+.featured-user-div {
+    display: inline-block;
+    width: 48%;
+    margin-bottom: 4px;
+    border-radius: 2px;
+    position: relative;
+    box-shadow: 0 0 1px black;
+}
+
+.featured-user-div a {
+    width: 100%;
+    height: 100%;
+    border-radius: 2px;
+}
+.featured-user-div a img{
+    width: 100%;
+    height: 100%;
+    border-radius: 2px;
+}
+
+.featured-user-div p {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    margin: 0;
+    display: none;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    padding: 7px;
+    padding-left: 15px;
+    font-family: 'Oswald', sans-serif;
+    background: url(/media/static/images/trans-background.png) repeat;
+    color: #D9D9D9;
+}
+
+.featured-user-div:hover p {
+    display: inline;
+}
+
+/*---------------------Recently Completed------------------*/
+
+.recently-completed ul {
+    width: 100%;
+}
+
+.recently-completed ul li {
+    font-family: 'Oswald', sans-serif;
+    display:inline-block;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 10px;
+    overflow: hidden;
+}
+
+.recently-completed ul li a{
+    color: #3D3D3D;
+}
+
+.recently-completed ul li span {
+    color: #5cb85c;
+
+}
+
+/*--------------------------Responsive CSS----------------------------*/
+
+@media only screen and (min-width : 320px) {
+        #slogan1 {
+            font-size: 35px;
+            padding-top: 140px;
+            padding-left: 40px;
+        }
+        #slogan2 {
+            font-size: 35px;
+            padding-left: 85px;
+        }
+        #site-purpose {
+            padding-top: 220px;
+            font-size: 16px;
+        }
+        .pattern-divide {
+            height: 6px;
+        }
+        .featured-user-div {
+            width: 32%;
+        }
+        .recently-completed ul li {
+            width: 100%;
+        }
+    }
+
+    /* Extra Small Devices, Phones */ 
+@media only screen and (min-width : 480px) {
+        #slogan1 {
+            font-size: 55px;
+            padding-top: 130px;
+            padding-left: 60px;
+        }
+        #slogan2 {
+            font-size: 55px;
+            padding-left: 125px;
+        }
+        #site-purpose {
+            padding-top: 240px;
+            font-size: 24px;
+        }
+        .pattern-divide {
+            height: 7px;
+        }
+        .featured-user-div {
+            width: 24%;
+        }
+        .recently-completed ul li {
+            width: 49%;
+        }
+    }
+
+    
+    /* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+        #slogan1 {
+            font-size: 60px;
+            padding-top: 120px;
+            padding-left: 80px;
+        }
+        #slogan2 {
+            font-size: 60px;
+            padding-left: 155px;
+        }
+        #site-purpose {
+            padding-top: 240px;
+            font-size: 36px;
+        }
+        .pattern-divide {
+            height: 8px;
+        }
+        .featured-user-div {
+            width: 32%;
+        }
+        
+    }
+
+    /* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+        #slogan1 {
+            font-size: 70px;
+            padding-top: 130px;
+            padding-left: 100px;
+        }
+        #slogan2 {
+            font-size: 70px;
+            padding-left: 180px;
+        }
+        #site-purpose {
+            padding-top: 220px;
+            font-size: 36px;
+        }
+        .pattern-divide {
+            height: 9px;
+        }
+        .featured-user-div {
+            width: 24%;
+        }
+    }
+
+    /* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+        #slogan1 {
+            font-size: 80px;
+            padding-top: 140px;
+            padding-left: 100px;
+        }
+        #slogan2 {
+            font-size: 80px;
+            padding-left: 190px;
+        }
+        .featured-user-div {
+            width: 24%;
+        }
+    }

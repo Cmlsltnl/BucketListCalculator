@@ -22,16 +22,6 @@
 .navbar-right {
   border-top: 1px solid transparent;
   border-color: #101010;
-  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  -ms-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  -o-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  -ms-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  -o-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .navbar-btn {
@@ -47,38 +37,33 @@ body {
 /*-------------------Responsive Sticky Footer--------------------*/
 
 .Site {
-  min-height: 100vh;
+  display: -webkit-box;
   display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flex;
-  display: -o-flex;
+  display: -ms-flexbox;
   display: flex;
+  min-height: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
   -webkit-flex-direction: column;
-  -moz-flex-direction: column;
-  -ms-flex-direction: column;
-  -o-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
 }
 
-.Site-content {
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -ms-box-flex: 1;
-  -o-box-flex: 1;
+main {
   box-flex: 1;
-  -webkit-flex: 1;
-  -moz-flex: 1;
-  -ms-flex: 1;
-  -o-flex: 1;
-  flex: 1;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 0 auto;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
+
 
 }
 
 /*---------------------------------Footer---------------------------*/
 
-#footer {
+footer {
   margin-top: 15px;
-  bottom: 0;
   color: white;
   background-color: #3D3D3D;
   width: 100%;
@@ -94,49 +79,41 @@ body {
 }
 
 
-#footer h2 {
+footer h2 {
   font-family: 'Oswald', sans-serif;
   font-weight: 300;
-  -webkit-text-decoration: underline;
-  -moz-text-decoration: underline;
-  -ms-text-decoration: underline;
-  -o-text-decoration: underline;
   text-decoration: underline;
 }
 
-#footer ul {
+footer ul {
   list-style-type: none;
 }
 
-#footer li a {
+footer li a {
   color: white;
 }
 
-#footer a:hover {
+footer a:hover {
   color: white;
 }
 
-#footer span {
+footer span {
   color: white;
   padding: 8px;
 }
 
-#footer h5 {
+footer h5 {
   text-align: center;
 }
 
-#footer h5 a {
+footer h5 a {
   color: #f0ad4e;
 }
 
-#footer .social-media span:hover {
+footer .social-media span:hover {
   color: #f0ad4e;
 }
 
-#footer .social-media a:hover {
-  -webkit-text-decoration: none;
-  -moz-text-decoration: none;
-  -ms-text-decoration: none;
-  -o-text-decoration: none;
+footer .social-media a:hover {
   text-decoration: none;
 }

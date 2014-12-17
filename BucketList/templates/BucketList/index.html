@@ -5,26 +5,34 @@
 {% load avatar_tags %}
 {% block content %}
 
+<script type = "text/javascript">
+    $(document).ready(function(){
+      if($.browser.msie == true)
+      {
+        console.log("stuff")
+      }
+    }); 
+</script>
 
 <link href="/media/static/css/custom_index.css" rel="stylesheet" type="text/css"/>
 
 <!------------------------Banner------------------------->
+<div class = "container-fluid">
+    <div id = "banner">
+        <h1 id = "slogan1">Don't Just <b>Dream</b></h1>
+        <h1 id = "slogan2">About Your <b >Goals</b></h1>
+        <div id = "site-purpose">
+            <p class = "text-shadow">
+                Make a List
+                    <span class = "glyphicon glyphicon-chevron-right text-warning"></span>
+                Make a Plan
+                    <span class = "glyphicon glyphicon-chevron-right text-warning"></span>
+                <span style = "text-decoration: underline;">Make it Happen!</span>
+            </p>
+        </div><!--end site purpose-->
+    </div><!--end banner-->
 
-<div id = "banner">
-    <h1 id = "slogan1">Don't Just <b>Dream</b></h1>
-    <h1 id = "slogan2">About Your <b >Goals</b></h1>
-    <div id = "site-purpose">
-        <p class = "text-shadow">
-            Make a List
-                <span class = "glyphicon glyphicon-chevron-right text-warning"></span>
-            Make a Plan
-                <span class = "glyphicon glyphicon-chevron-right text-warning"></span>
-            <span style = "text-decoration: underline;">Make it Happen!</span>
-        </p>
-    </div><!--end site purpose-->
-</div><!--end banner-->
-
-<div class = "pattern-divide">
+    <div class = "pattern-divide"></div>
 </div>
 
 <!-----------------------Site Content------------------------>
@@ -151,14 +159,12 @@
                 <!--Talked About-->
 
             </div><!--end col-sm-4-->
-            
-            
+                   
         </div><!--end row-->
-        
-       
-          
+    </div><!--end main container -->
+    
 
 
-
-</div><!--end main container -->
 {% endblock content%}
+
+
