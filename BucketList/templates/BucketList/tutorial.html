@@ -321,9 +321,9 @@
                             {% for item in all_list_items %}
                                 <li>
                                     <div class = "recently-added-list-item">
-                                        <h4>
+                                        <h5>
                                             <a href="/bucketlist/item/{{item.id}}/">{{ item.text }}</a>
-                                        </h4>
+                                        </h5>
                                         <span class="avatar-span">{% avatar item.pub_by 25%}</span>
                                         <a href = "/bucketlist/userstats/{{item.pub_by}}">{{item.pub_by}}</a>
                                         <span class = "date-added"><span class = "fa fa-plus"></span>{{item.pub_date|timesince}} ago</span>

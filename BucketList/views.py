@@ -89,7 +89,7 @@ def UsersActivity(User):
 
 def index(request):
     #The main Bucket List Page View, sorted by pubdate so the most recent are at the top
-    all_list_items = BucketListItem.objects.filter(crossed_off = False).order_by('-pub_date')[:5]
+    all_list_items = BucketListItem.objects.filter(crossed_off = False).order_by('-pub_date')[:11]
     recently_crossed_off = BucketListItem.objects.filter(crossed_off = True).order_by('-pub_date')[:12]
     all_users = User.objects.all()
     
@@ -332,7 +332,7 @@ def recommendation(request):
     if len(mylist) == 0:
         return HttpResponseRedirect('/bucketlist/create/')
         
-    list_of_list_items = BucketListItem.objects.filter(pub_by = user1, crossed_off = False)[:30]
+    list_of_list_items = BucketListItem.objects.filter(pub_by = user1, crossed_off = False)[:40]
     
     total_cost = BucketListItemListSum(mylist, 'cost')
     total_hours = BucketListItemListSum(mylist, 'hours')
@@ -1695,11 +1695,11 @@ def delete_comment(request, id):
 def tutorial(request):
     #View for the user tutorial page
     
-    every_comment = Comment.objects.all().order_by('-created')[:4]
+    every_comment = Comment.objects.all().order_by('-created')[:8]
     
     recently_crossed_off = BucketListItem.objects.filter(crossed_off = True).order_by('-pub_date')[:12]
     
-    all_list_items = BucketListItem.objects.filter(crossed_off = False).order_by('-pub_date')[:5]
+    all_list_items = BucketListItem.objects.filter(crossed_off = False).order_by('-pub_date')[:12]
     
     context = {'every_comment': every_comment,
                       'recently_crossed_off': recently_crossed_off,

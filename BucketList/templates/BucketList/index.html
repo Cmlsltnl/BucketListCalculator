@@ -108,33 +108,6 @@
                         </ul>
                 </div><!--end Recently Completed-->
                 <br>
-            </div><!--end col-sm-8-->
-
-            <!-------------Start Sidebar---------------------->
-            <div class = "col-md-4">
-            
-                <!--Recently Added-->
-                <div class = "sections">
-                    <h1>Recently Added</h1>
-                        <ul class = "recently-added-list">
-                            {% for item in all_list_items %}
-                                <li>
-                                    <div class = "recently-added-list-item">
-                                        <h4>
-                                            <a href="/bucketlist/item/{{item.id}}/">{{ item.text }}</a>
-                                        </h4>
-                                        <span class="avatar-span">{% avatar item.pub_by 25%}</span>
-                                        <a href = "/bucketlist/userstats/{{item.pub_by}}">{{item.pub_by}}</a>
-                                        <span class = "date-added"><span class = "fa fa-plus"></span>{{item.pub_date|timesince}} ago</span>
-                                    </div>
-                                </li>
-                                <br>
-                            {% endfor %}
-                        </ul>
-                        <br>
-                </div><!--end Recently Added -->
-                <br>
-                <!--Talked About-->
                 <div class = "sections">
                     <h1>Talked About</h1>
                     <br>
@@ -148,6 +121,34 @@
                     {% endfor %}
                 </div><!--end Talked About-->
                 <br>
+            </div><!--end col-sm-8-->
+
+            <!-------------Start Sidebar---------------------->
+            <div class = "col-md-4">
+            
+                <!--Recently Added-->
+                <div class = "sections">
+                    <h1>Recently Added</h1>
+                        <ul class = "recently-added-list">
+                            {% for item in all_list_items %}
+                                <li>
+                                    <div class = "recently-added-list-item">
+                                        <h5>
+                                            <a href="/bucketlist/item/{{item.id}}/">{{ item.text }}</a>
+                                        </h5>
+                                        <span class="avatar-span">{% avatar item.pub_by 25%}</span>
+                                        <a href = "/bucketlist/userstats/{{item.pub_by}}">{{item.pub_by}}</a>
+                                        <span class = "date-added"><span class = "fa fa-plus"></span>{{item.pub_date|timesince}} ago</span>
+                                    </div>
+                                </li>
+                                <br>
+                            {% endfor %}
+                        </ul>
+                        <br>
+                </div><!--end Recently Added -->
+                <br>
+                <!--Talked About-->
+
             </div><!--end col-sm-4-->
             
             
