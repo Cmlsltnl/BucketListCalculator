@@ -1,7 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from BucketList.models import BucketListItem, UserProfile, Comment
-from django.contrib import auth
 from forms import BucketListItemForm, UserProfileForm, UserProfileEditForm, BucketListItemEditForm, CommentForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
@@ -1676,7 +1674,7 @@ def compare_my_list_item(request, id):
         
 @login_required
 def delete_comment(request, id):
-    #View used to delete a users comment on someones bucket list item
+    #View used to delete a users comment on a bucket list item
     comment = Comment.objects.get(pk = id)
     is_comment = 0
     item_id = comment.item.id
@@ -1693,7 +1691,7 @@ def delete_comment(request, id):
     
     
 def tutorial(request):
-    #View for the user tutorial page
+    #View for the user tutorial page, or 'How It Works' page
     
     every_comment = Comment.objects.all().order_by('-created')[:8]
     
@@ -1729,7 +1727,7 @@ def contact_us(request):
     return render(request, 'BucketList/contact_us.html', context)
     
 def terms_and_conditions(request):
-    #Terms and Conditions View
+    #Terms and Conditions View, Users are prompted to view this page before creating an account
     
     recently_crossed_off = BucketListItem.objects.filter(crossed_off = True).order_by('-pub_date')[:12]
     
@@ -1739,7 +1737,7 @@ def terms_and_conditions(request):
     return render(request, 'BucketList/terms_and_conditions.html', context)
     
 def privacy_policy(request):
-    #Terms and Conditions View
+    #Terms and Conditions View, Users are prompted to view this page before creating an account
     
     recently_crossed_off = BucketListItem.objects.filter(crossed_off = True).order_by('-pub_date')[:12]
     

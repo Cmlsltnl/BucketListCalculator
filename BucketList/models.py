@@ -1,8 +1,6 @@
 from django.db import models
 from django.utils import timezone
-from datetime import datetime
-from datetime import date
-from datetime import timedelta
+from datetime import timedelta, date, datetime
 from django.contrib.auth.models import User
 from django.core.signals import request_finished
 from django.db.models.signals import post_save, pre_save
