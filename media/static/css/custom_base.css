@@ -6,6 +6,30 @@
 
 /*------------------------Navbar---------------------------*/
 
+.nav-logo {
+    padding: 4px;
+    padding-left: 20px;
+}
+
+.nav-logo img {
+}
+
+.navbar-right {
+    padding-right: 20px;
+}
+
+.navbar-nav {
+    padding-left: 16px;
+}
+
+
+@media only screen and (min-width : 767px) {
+    .navbar-nav {
+        padding-left: 80px;
+    }
+}
+
+
 .navbar-inverse {
     background-color: #333333;
 }
