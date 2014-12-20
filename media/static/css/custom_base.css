@@ -22,14 +22,18 @@
 
 @media only screen and (min-width : 767px) {
     .navbar-nav {
-        padding-left: 55px;
+        padding-left: 80px;
+    }
+    
+    #how-it-works {
+        display: none;
     }
 }
 
 
 @media only screen and (max-width : 350px) {
     .nav-logo {
-        width: 230px;
+        width: 220px;
     }
     .nav-logo img {
         width: 100%;
@@ -38,11 +42,22 @@
 
 @media only screen and (max-width : 310px) {
     .nav-logo {
-        width: 190px;
+        width: 180px;
     }
     .nav-logo img {
         width: 100%;
     }
+}
+
+@media only screen and (max-width : 300px) {
+    .nav-logo {
+        width: 165px;
+    }
+    
+    .nav-logo img {
+        width: 100%;
+    }
+}
 }
 
 @media only screen and (min-width : 767px) {
@@ -63,7 +78,15 @@
     }
 }
 
-
+@media only screen and (min-width : 840px) {
+    .navbar-nav {
+        padding-left: 55px;
+    }
+    
+    #how-it-works {
+        display: inline-block;
+    }
+}
 
 .navbar-inverse {
     background-color: #333333;
