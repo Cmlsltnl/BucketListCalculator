@@ -58,23 +58,68 @@
         width: 100%;
     }
 }
-}
 
 @media only screen and (min-width : 767px) {
     #calculate {
         display: none;
+        visability: collapse;
     }
+    
     #add-goal {
         display: none;
+        visability: collapse;
     }
+    
+    #calculate-p {
+        display: none;
+        visability: collapse;
+    }
+    
+    #add-goal-p {
+        display: none;
+        visability: collapse;
+    }  
+    
+    #calculate-li {
+        display: none;
+        visability: collapse;
+    }
+    
+    #add-goal-li {
+        display: none;
+        visability: collapse;
+    }
+    
 }
 
 @media only screen and (min-width : 1050px) {
     #calculate {
         display: inline-block;
+        visability: visable;
     }
     #add-goal {
         display: inline-block;
+        visability: visable;
+    }
+    
+    #calculate-p {
+        display: inline-block;
+        visability: visable;
+    }
+    
+    #add-goal-p {
+        display: inline-block;
+        visability: visable;
+    }  
+    
+    #calculate-li {
+        display: inline-block;
+        visability: visable;
+    }
+    
+    #add-goal-li {
+        display: inline-block;
+        visability: visable;
     }
 }
 
