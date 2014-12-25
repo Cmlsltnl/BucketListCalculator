@@ -21,5 +21,6 @@ urlpatterns = patterns('',
     url(r'^contact/$', views.contact_us, name = 'contact'),
     url(r'^terms/$', views.terms_and_conditions, name = 'terms and conditions'),
     url(r'^privacypolicy/$', views.privacy_policy, name = 'privacy policy'),
+    url(r'^search/(?P<id>\w+)/', views.search, name = 'search'),
 )
 

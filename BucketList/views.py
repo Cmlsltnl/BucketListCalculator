@@ -1741,8 +1741,13 @@ def privacy_policy(request):
     
     recently_crossed_off = BucketListItem.objects.filter(crossed_off = True).order_by('-pub_date')[:12]
     
-    context = {'recently_crossed_off': recently_crossed_off,
-    }
+    context = {'recently_crossed_off': recently_crossed_off,}
     
     return render(request, 'BucketList/privacy_policy.html', context)
+    
+    
+def search(request, id):
+    context = {'id': id,}
+    return render(request, 'BucketList/search.html', context)
+    
     
