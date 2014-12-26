@@ -20,13 +20,24 @@
                                 {% avatar item.username 35 %}
                                 <a href = "/bucketlist/userstats/{{item.username}}/">    {{item.username}}</a>
                             </h4>
-                            <p><b>Type:</b> <i>User</i>
+                            <p>
+                                <b>Type:</b> <i>User</i>
+                                <br>
+                                <b>Email:</b> <i>{{item.email}}</i>
+                            </p>
                         </div>
                     {% else %}
                         <div class = "goal">
                             <h4>
                                 <a href = "/bucketlist/item/{{item.id}}/">{{item.text}}</a>
                             </h4>
+                            <p>
+                                <b>Type:</b> <i>Bucket List Goal</i>
+                                <br>
+                                <b>Goal Type:</b> <i>{{item.goal_type}}</i>
+                                <br>
+                                <b>Added:</b> <i>{{item.pub_date|date:"M d, Y"}}</i>
+                            </p>
                         </div>
                     {% endif %}
                 {% endfor %}
