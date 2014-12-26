@@ -1746,8 +1746,14 @@ def privacy_policy(request):
     return render(request, 'BucketList/privacy_policy.html', context)
     
     
-def search(request, id):
-    context = {'id': id,}
+def search(request):
+    query = request.GET.get('searchbar')
+    if query:
+        results = BucketListItem.objects.filter(text = query)
+    else:
+        results = BucketListItem.objects.all()
+        
+    context = {'results': results,}
     return render(request, 'BucketList/search.html', context)
     
     

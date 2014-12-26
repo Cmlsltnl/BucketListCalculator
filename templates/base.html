@@ -68,6 +68,11 @@
                     <li id = "how-it-works">
                         <a href="/bucketlist/tutorial/">How It Works</a>
                     </li>
+                    <li>
+                        <form method="GET" action="{% url 'search' %}">
+                            <input type="text" placeholder = "Search " name="searchbar" />
+                        </form>
+                    </li>
                     {% if mail_count %}
                         <li>
                             <a href="/messages/inbox/"> <span class="glyphicon glyphicon-envelope"></span><span class="badge alert-danger"> {{mail_count}} </span></a>
