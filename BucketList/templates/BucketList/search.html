@@ -4,7 +4,7 @@
 {% block content %}
 {% load avatar_tags %}
 
-<link href="/media/static/css/custom_about_us.css" rel="stylesheet" type="text/css"/>
+<link href="/media/static/css/custom_search.css" rel="stylesheet" type="text/css"/>
 
 <div class = "container">
     <div class = "row">
@@ -13,11 +13,23 @@
             
                 <h1>Search Results</h1>
                 <br>
-
-                {{results}}
-                
-                
-                
+                {% for item in results %}
+                    {% if item.username %}
+                        <div class = "user">                         
+                            <h4>
+                                {% avatar item.username 35 %}
+                                <a href = "/bucketlist/userstats/{{item.username}}/">    {{item.username}}</a>
+                            </h4>
+                            <p><b>Type:</b> <i>User</i>
+                        </div>
+                    {% else %}
+                        <div class = "goal">
+                            <h4>
+                                <a href = "/bucketlist/item/{{item.id}}/">{{item.text}}</a>
+                            </h4>
+                        </div>
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>

@@ -15,11 +15,27 @@
     padding-bottom: 15px;
 }
 
+/*-----------------------------Results---------------------------*/
 
+.sections h4 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+}
+.user {
+    padding: 12px;
+}
 
+.user p {
+    padding-left: 20px;
+}
 
+.goal {
+    padding: 12px;
+}
 
-
+.goal p {
+    padding-left: 20px;
+}
 
 
 

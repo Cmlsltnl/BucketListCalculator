@@ -48,7 +48,7 @@ def MostSimilarGoals(item, dict):
     return list_of_goals, highest_accuracy
     
 def SearchResults(text):
-    #Takes text and returns.....
+    #Takes text and returns BucketListItems and Users that are the most similar to the text entered.  Uses FuzzyWuzzy string comparison.
     list_of_results = []
     items = BucketListItem.objects.all()
     users = User.objects.all()
@@ -59,7 +59,10 @@ def SearchResults(text):
         user_similarity = fuzz.token_set_ratio(text, user.username)
         list_of_results.append((user_similarity, user))
     sorted_list = sorted(list_of_results, key=lambda tup: tup[0], reverse = True)
-    print sorted_list
+    new_sorted_list = []
+    for tuple in sorted_list[:20]:
+        new_sorted_list.append(tuple[1])
+    return new_sorted_list
     
 def RepeatGoalInList(dict):
     #Takes a Dictionary of Goals and outputs a list of any goals that are repeats
@@ -91,7 +94,6 @@ def UsersActivity(User):
     score += len(all_list_items) * 1
     score += len(crossed_off) * 1
     score += len(users_comments) * 2
-    
     return score 
     
     
@@ -103,7 +105,6 @@ def index(request):
     all_list_items = BucketListItem.objects.filter(crossed_off = False).order_by('-pub_date')[:11]
     recently_crossed_off = BucketListItem.objects.filter(crossed_off = True).order_by('-pub_date')[:12]
     all_users = User.objects.all()
-    SearchResults('See Rome')
     every_comment = Comment.objects.all().order_by('-created')[:4]
     
     users_by_activity = {}
@@ -1762,9 +1763,9 @@ def privacy_policy(request):
 def search(request):
     query = request.GET.get('searchbar')
     if query:
-        results = BucketListItem.objects.filter(text = query)
+        results = SearchResults(query)
     else:
-        results = BucketListItem.objects.all()
+        results = SearchResults(' ')
         
     context = {'results': results,}
     return render(request, 'BucketList/search.html', context)
