@@ -47,6 +47,19 @@ def MostSimilarGoals(item, dict):
                 break
     return list_of_goals, highest_accuracy
     
+def SearchResults(text):
+    #Takes text and returns.....
+    list_of_results = []
+    items = BucketListItem.objects.all()
+    users = User.objects.all()
+    for goal in items:
+        item_similarity = fuzz.token_set_ratio(text, goal.text)
+        list_of_results.append((item_similarity, goal))
+    for user in users:
+        user_similarity = fuzz.token_set_ratio(text, user.username)
+        list_of_results.append((user_similarity, user))
+    sorted_list = sorted(list_of_results, key=lambda tup: tup[0], reverse = True)
+    print sorted_list
     
 def RepeatGoalInList(dict):
     #Takes a Dictionary of Goals and outputs a list of any goals that are repeats
@@ -90,7 +103,7 @@ def index(request):
     all_list_items = BucketListItem.objects.filter(crossed_off = False).order_by('-pub_date')[:11]
     recently_crossed_off = BucketListItem.objects.filter(crossed_off = True).order_by('-pub_date')[:12]
     all_users = User.objects.all()
-    
+    SearchResults('See Rome')
     every_comment = Comment.objects.all().order_by('-created')[:4]
     
     users_by_activity = {}
