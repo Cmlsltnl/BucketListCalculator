@@ -155,6 +155,12 @@
   padding-left: 3px;
 }
 
+/*-------------------Navbar Form-----------------*/
+
+.search-form {
+    height: 32px;
+}
+
 /*-----------------------Body----------------------------*/
 
 body {
@@ -244,3 +250,4 @@ footer .social-media span:hover {
 footer .social-media a:hover {
   text-decoration: none;
 }
+
