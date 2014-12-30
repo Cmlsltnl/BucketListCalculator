@@ -19,11 +19,31 @@
     padding-left: 16px;
 }
 
+.not-logged-in-nav {
+    padding-left: 70px;
+}
+
+
+@media only screen and (max-width : 865px) {
+    .not-logged-in-nav {
+        display: none;
+    }
+}
+
+@media only screen and (max-width : 767px) {
+    .not-logged-in-nav {
+        display: inline-block;
+    } 
+    .not-logged-in-nav {
+        padding-left: 10px;
+    }
+}
 
 @media only screen and (min-width : 767px) {
     .navbar-nav {
-        padding-left: 40px;
+        padding-left: 20px;
     }
+
     
     #how-it-works {
         display: none;
@@ -92,7 +112,7 @@
     
 }
 
-@media only screen and (min-width : 1050px) {
+@media only screen and (min-width : 1095px) {
     #calculate {
         display: inline-block;
         visability: visable;
@@ -123,7 +143,7 @@
     }
 }
 
-@media only screen and (min-width : 840px) {
+@media only screen and (min-width : 880px) {
     .navbar-nav {
         padding-left: 20px;
     }

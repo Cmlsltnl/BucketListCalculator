@@ -58,10 +58,10 @@
         </div><!-- End Navbar Header-->
         
         <div class = "collapse navbar-collapse" id = "dropdown">
+        
+            {% if user.is_authenticated %}
             
-            <ul class = "nav navbar-nav" role = "navigation">
-                {% if user.is_authenticated %}
-                    
+            <ul class = "nav navbar-nav" role = "navigation">      
                     <li>
                         <a href="/bucketlist/mylist/"> {% avatar user 25 %}   {{user}}</a>
                     </li>
@@ -80,7 +80,7 @@
                     {% endif %}
             </ul>
 
-            <ul class = "nav navbar-nav navbar-right" role = "navigation">
+            <ul class = "nav navbar-nav navbar-right logged-in-nav-right" role = "navigation">
                         <li id = "search-input">
                             <form method="GET" action="{% url 'search' %}" class = "navbar-form">
                                  <input type="text" placeholder = "Search " name="searchbar" class = "search-form"/>
@@ -107,8 +107,9 @@
                             </ul>
                         </li>
             </ul>
-                {% else %}
-                <li>
+            {% else %}
+            <ul class = "nav navbar-nav not-logged-in-nav" role = "navigation">
+                <li class = "how-it-works-not-logged-in">
                     <a href="/bucketlist/tutorial/">How It Works</a>
                 </li>
             </ul>     
