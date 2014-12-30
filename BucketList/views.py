@@ -12,9 +12,8 @@ from chartit import DataPool, Chart
 import operator
 from datetime import date, datetime
 import collections
-
-
-
+from django_messages.models import Message
+from django_messages.forms import ComposeForm
 
 
 #-------------Functions Used Throughout Views--------------
@@ -141,6 +140,13 @@ def index_items(request, id):
             my_model.body = body
             my_model.save()
             form = CommentForm()
+            #Send user a message upon making comment
+            new_message = Message()
+            new_message.subject = "Comment on %s Goal" % item.text
+            new_message.body = "%s commented on your %s goal. ---  %s" % (request.user, item, my_model.body)
+            new_message.sender = request.user
+            new_message.recipient = item.pub_by
+            new_message.save()
     else:
         form = CommentForm()
       
