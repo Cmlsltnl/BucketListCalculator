@@ -10,22 +10,33 @@
 
 <div class = "container">
     <div class = "row">
-        <div class = "col-sm-8">
+        <div class = "col-sm-8 col-sm-offset-2">
+        
+            <div class = "sections">
+                <h1>{% trans "View Message" %}</h1>
+                <br>
+                <ul class="subnavilist">
+                    <li><a href="{% url 'messages_inbox' %} ">{% trans "Inbox" %}</a></li>
+                    <li><a href="{% url 'messages_outbox' %} ">{% trans "Sent Messages" %}</a></li>
+                    <li><a href="{% url 'messages_compose' %} ">{% trans "New Message" %}</a></li>
+                    <li><a href="{% url 'messages_trash' %} ">{% trans "Trash" %}</a></li>
+                </ul>
+            </div>
+            <br>
             <div class = "sections">
             
-                <h1>{% trans "View Message" %}</h1>
+
                 <dl class="message-headers">
-                    <dt class = "padding oswald">{% trans "Subject" %}</dt>
-                    <dd class = "padding-left"><strong>{{ message.subject }}</strong></dd>
                     <dt class = "padding oswald">{% trans "Sender" %}</dt>
                     <dd class = "padding-left"><a href="/bucketlist/userstats/{{message.sender}}/">{{ message.sender }}</a></dd>
+                    <dt class = "padding oswald">{% trans "Subject" %}</dt>
+                    <dd class = "padding-left"><i>{{ message.subject }}</i></dd>
+
                     <dt class = "padding oswald">{% trans "Date" %} </dt>
                     <dd class = "padding-left">{{ message.sent_at|date:_("DATETIME_FORMAT")}}</dd>
-                    <dt class = "padding oswald">{% trans "Recipient" %}</dt>
-                    <dd class = "padding-left"><a href="/bucketlist/userstats/{{ message.recipient }}/">{{ message.recipient }}</a></dd>
                 </dl>
                 <div class = "message-body">
-                    {{ message.body|linebreaksbr }}<br /><br />
+                    {{ message.body|linebreaksbr }}<br/><br/>
                 </div>
                 <br>
                 {% ifequal message.recipient.pk user.pk %}
@@ -49,16 +60,9 @@
             </div>
             <br>
         </div>
-        <div class = "col-sm-4">
-            <div class = "sections">
-                <ul class="subnavilist">
-                    <li><a href="{% url 'messages_inbox' %} ">&raquo;&nbsp;{% trans "Inbox" %}</a></li>
-                    <li><a href="{% url 'messages_outbox' %} ">&raquo;&nbsp;{% trans "Sent Messages" %}</a></li>
-                    <li><a href="{% url 'messages_compose' %} ">&raquo;&nbsp;{% trans "New Message" %}</a></li>
-                    <li><a href="{% url 'messages_trash' %} ">&raquo;&nbsp;{% trans "Trash" %}</a></li>
-                </ul>
-            </div>
-        </div>
+
+
+
     </div>
 </div>
 

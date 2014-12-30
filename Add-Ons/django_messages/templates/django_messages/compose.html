@@ -9,19 +9,54 @@
 
 <div class = "container">
     <div class = "row">
-        <div class = "col-sm-8">
+        <div class = "col-sm-8 col-sm-offset-2">
             <div class = "sections">
-            
                 <h1>{% trans "Compose Message"%}</h1>
+                <br>
+                <ul class="subnavilist">
+                    <li><a href="{% url 'messages_inbox' %} ">{% trans "Inbox" %}</a></li>
+                    <li><a href="{% url 'messages_outbox' %} ">{% trans "Sent Messages" %}</a></li>
+                    <li><a href="{% url 'messages_compose' %} ">{% trans "New Message" %}</a></li>
+                    <li><a href="{% url 'messages_trash' %} ">{% trans "Trash" %}</a></li>
+                </ul>
+            </div>
+            <br>
+            <div class = "sections">        
+                <br>
                 <form action="" method="post" id = "compose-message-form">
                 {% csrf_token %} 
                 {% for field in form %}
                     <div class = "fieldWrapper">
-                        {{field.errors}}
-                            <label>{{field.label}}</label>
-                            {{field}}
+                        {% if field.label == "Recipient" %}
+                            <input id = "id_recipient" type = "text" name = "recipient" maxlength = "20" placeholder = "Recipient's Username" required/>
+                            {% if field.errors %}
+                                <br>
+                                <br>
+                                {{field.errors}}                               
+                            {% endif %}
+                        {% endif %}
+                        
+                        {% if field.label == "Subject" %}
+                            <input id = "id_subject" type = "text" name = "subject" maxlength = "50" placeholder = "Subject" required/>
+                            {% if field.errors %}
+                                <br>
+                                <br>
+                                {{field.errors}}                               
+                            {% endif %}
+                        {% endif %}
+                        
+                        {% if field.label == "Body" %}
+                            <br>
+                            <textarea id = "id_body" name = "body" placeholder = "Type your message here..." required></textarea>
+                            {% if field.errors %}
+                                <br>
+                                <br>
+                                {{field.errors}}                               
+                            {% endif %}
+                        {% endif %}
                     </div>
                 {% endfor %}
+                <br>
                 <br>
                 <input type="submit" value="{% trans "Send" %}" class = "btn btn-success"/>
                 </form>
@@ -29,16 +64,9 @@
             </div>
             <br>
         </div>
-        <div class = "col-sm-4">
-            <div class = "sections">
-                <ul class="subnavilist">
-                    <li><a href="{% url 'messages_inbox' %} ">&raquo;&nbsp;{% trans "Inbox" %}</a></li>
-                    <li><a href="{% url 'messages_outbox' %} ">&raquo;&nbsp;{% trans "Sent Messages" %}</a></li>
-                    <li><a href="{% url 'messages_compose' %} ">&raquo;&nbsp;{% trans "New Message" %}</a></li>
-                    <li><a href="{% url 'messages_trash' %} ">&raquo;&nbsp;{% trans "Trash" %}</a></li>
-                </ul>
-            </div>
-        </div>
+
+
+
     </div>
 </div>
 
