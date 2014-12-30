@@ -71,7 +71,7 @@ body {
    text-shadow: 0 0 3px black;
 }
 
-.container-fluid {
+.index-container-fluid {
     margin: 0;
     padding: 0;
 }
@@ -398,7 +398,6 @@ body {
     }
 
 
-
 body {
     padding-top: 0;
 }
@@ -465,7 +464,7 @@ body {
    text-shadow: 0 0 3px black;
 }
 
-.container-fluid {
+.index-container-fluid {
     margin: 0;
     padding: 0;
 }

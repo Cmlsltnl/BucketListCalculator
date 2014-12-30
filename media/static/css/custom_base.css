@@ -4,6 +4,7 @@
 @import url(http://fonts.googleapis.com/css?family=Oswald:300,400,700);
     
 
+
 /*------------------------Navbar---------------------------*/
 
 .nav-logo {
@@ -183,9 +184,19 @@
 
 /*-----------------------Body----------------------------*/
 
+html {
+  height: 100%;
+}
+
 body {
   background-color: #E8E8E8;
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+
 }
+
+
 
 /*-------------------Responsive Sticky Footer--------------------*/
 
@@ -194,23 +205,19 @@ body {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  min-height: 100%;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
-  height: 100%;
 }
 
 main {
-  box-flex: 1;
+  flex: 1 0 auto;
   -webkit-box-flex: 1;
   -webkit-flex: 1 0 auto;
       -ms-flex: 1 0 auto;
           flex: 1 0 auto;
-
-
 }
 
 /*---------------------------------Footer---------------------------*/
