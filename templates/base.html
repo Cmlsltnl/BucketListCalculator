@@ -78,18 +78,17 @@
                             <a href="/messages/inbox/"><span class="glyphicon glyphicon-envelope"></span></a>
                         </li>
                     {% endif %}
-                    <li>
-                        <form method="GET" action="{% url 'search' %}" class = "navbar-form">
-                             <input type="text" placeholder = "Search " name="searchbar" class = "search-form"/>
-                        </form>
-                </li>
             </ul>
 
             <ul class = "nav navbar-nav navbar-right" role = "navigation">
+                        <li id = "search-input">
+                            <form method="GET" action="{% url 'search' %}" class = "navbar-form">
+                                 <input type="text" placeholder = "Search " name="searchbar" class = "search-form"/>
+                            </form>
+                        </li>
                         <li id = "calculate-li">
                             <p class = "navbar-btn" id ="calculate-p">
-                                <a href="/bucketlist/mylist/recommendation/"  class = "btn btn-success" id = "calculate"> <span class = "fa fa-calculator"> </span> Calculate!</a>
-                                
+                                <a href="/bucketlist/mylist/recommendation/"  class = "btn btn-success" id = "calculate"> <span class = "fa fa-calculator"> </span> Calculate!</a>     
                             </p>
                         </li>
                         <li id = "add-goal-li">
@@ -114,6 +113,11 @@
                 </li>
             </ul>     
             <ul class = "nav navbar-nav navbar-right" role = "navigation">
+                    <li id = "search-input">
+                        <form method="GET" action="{% url 'search' %}" class = "navbar-form">
+                             <input type="text" placeholder = "Search " name="searchbar" class = "search-form"/>
+                        </form>
+                    </li>
                     <li>
                         <p class = "navbar-btn">
                             <a href="/accounts/register/"  class = "btn btn-warning">Sign Up</a>
