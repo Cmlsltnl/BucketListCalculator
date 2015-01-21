@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
-
+{% load staticfiles %}
 {% block title %}About Us{% endblock title %}
 {% block content %}
 {% load avatar_tags %}
 
-<link href="/media/static/css/custom_about_us.css" rel="stylesheet" type="text/css"/>
+<link href="{% static "css/custom_about_us.css" %}" rel="stylesheet" type="text/css"/>
 
 <div class = "container">
     <div class = "row">
@@ -25,7 +25,7 @@
                 <p class = "name-description">
                     
                     Michael is the creator and founder of <a href = "/bucketlist/">BucketListCalculator.com</a>.  
-                    <img src = "/media/static/images/mike.jpg" alt = "Mike" class = "name-picture"/>
+                    <img src = "{% static "images/mike.jpg" %}" alt = "Mike" class = "name-picture"/>
                     After making his own Bucket List
                     and manually calculating the cost of all his goals Michael wanted to create a website that would streamline the process.  What started out as a small side project quickly turned into something much larger.  The site transitioned into something he is extremely passionate about and believes can help people all over the world to accomplish their life goals.
                     <br>

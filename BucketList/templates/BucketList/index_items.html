@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
-
+{% load staticfiles %}
 {% block title %}{{item.text}}{% endblock title %}
 
 {% block content %}
 {% load humanize %}
 {% load avatar_tags %}
 
-<link href="/media/static/css/custom_index_items.css" rel="stylesheet" type="text/css"/>
+<link href="{% static "css/custom_index_items.css" %}" rel="stylesheet" type="text/css"/>
 
 <div class = "container">
     <div class = "row">
@@ -33,7 +33,8 @@
                         <a href = "/bucketlist/mylist/uncross/{{item.id}}/" class = "btn btn-default btn-sm"><span class = "fa fa-square-o"> </span>Uncheck Item</a>
                     {% else %}
                         <a href = "/bucketlist/mylist/crossoff/{{item.id}}/" class = "btn btn-sm btn-success"><span class = "fa fa-check-square-o"> </span>Check It Off</a>
-                    {% endif %}          
+                    {% endif %}    {% else %}
+                    <a href = "/bucketlist/mylist/addsame/{{item.id}}/" class = "btn btn-sm btn-warning"><span class = "fa fa-plus"> </span> Add to Your List</a>         
                 {% endif %}
                 <hr>
                 <br>

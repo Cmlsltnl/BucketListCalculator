@@ -113,7 +113,7 @@
     background-color: #F0F0F0;
     padding: 10px;
     border-radius: 4px;
-    box-shadow: 0 0 1px black
+    box-shadow: 0 0 1px black;    overflow: hidden;    
 }
 
 .talked-about-div h6 a {

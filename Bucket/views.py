@@ -10,6 +10,10 @@ from django.contrib.auth.models import User
 import operator
 
 
+def home(request):
+    #Redirects from start url to the main page
+    return HttpResponseRedirect('/bucketlist/')
+
 def login(request):
     #The user login page
     c = {}

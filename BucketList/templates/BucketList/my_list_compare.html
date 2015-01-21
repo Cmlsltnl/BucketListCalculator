@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
-
+{% load staticfiles %}
 {% block title %}Item Created{% endblock title %}
 
 {% block content %}
 {% load humanize %}
 {% load avatar_tags %}
 
-<link href="/media/static/css/custom_my_list_compare.css" rel="stylesheet" type="text/css"/>
+<link href="{% static "css/custom_my_list_compare.css" %}" rel="stylesheet" type="text/css"/>
 
 <div class = "container">
     <div class = "row">
-        <div class = "col-md-6">
+        <div class = "col-md-8">
             <div class = "sections">
                 
                 <h1>{{item}}</h1>
@@ -83,7 +83,7 @@
             </div><!--end sections-->
             <br>
         </div><!--end col-md-8-->
-        <div class ="col-md-6">
+        <div class ="col-md-4">
             <div class ="sections">
                     <h1>Recently Added</h1>
                         <ul class = "recently-added-list">

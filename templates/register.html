@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% block title %}Register{% endblock title %}
 {% block content %}
 
-<link href="/media/static/css/settings.css" rel="stylesheet" type="text/css"/>
+<link href="{% static "css/settings.css" %}" rel="stylesheet" type="text/css"/>
 
 <div class = "container">
     <div class = "row">
@@ -17,7 +18,7 @@
                     <div class = "fieldWrapper">
                <br>
                     {% if field.label == "Username" %}
-                        <input id = "id_username" type = "text" name = "username" maxlength = "19" placeholder = "Username" required/>
+                        <input id = "id_username" type = "text" name = "username" maxlength = "19" pattern="[a-zA-Z0-9]+" placeholder = "Username (Letters and Numbers only)" required/>
                         {% if field.errors %}
                                 <br>
                                 <br>
@@ -28,7 +29,7 @@
                        <br>
                         {% endif %}
                     {% if field.label == "email" %}
-                        <input id = "id_email" type = "email" name = "email" maxlength = "30" placeholder = "Email" required/>
+                        <input id = "id_email" type = "email" name = "email" maxlength = "50" placeholder = "Email" required/>
                         {% if field.errors %}
                                 <br>
                                 <br>

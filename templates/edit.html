@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-
+{% load staticfiles %}
 {% block title %}Edit Your Account Settings{% endblock title %}
 {% block content %}
 
-<link href="/media/static/css/settings.css" rel="stylesheet" type="text/css"/>
+<link href="{% static "css/settings.css" %}" rel="stylesheet" type="text/css"/>
 
 <div class = "container">
     <div class = "row">
@@ -24,13 +24,13 @@
                             {% endif %}
                             {% if field.label == "Current Email Address" %}
                                 {{field.errors}}
-                                <input id = "id_email" type = "email" name = "email" maxlength = "30" placeholder = "Current Email"/>
+                                <input id = "id_email" type = "email" name = "email" maxlength = "50" placeholder = "Current Email"/>
                                 <br>
                                 <br>
                             {% endif %}
                             {% if field.label == "New Email Address" %}
                                 {{field.errors}}
-                                <input id = "id_new_email" type = "email" name = "new_email" maxlength = "30" placeholder = "New Email"/>
+                                <input id = "id_new_email" type = "email" name = "new_email" maxlength = "50" placeholder = "New Email"/>
                                 <br>
                                 <br>
                             {% endif %}

@@ -22,5 +22,6 @@ urlpatterns = patterns('',
     url(r'^terms/$', views.terms_and_conditions, name = 'terms and conditions'),
     url(r'^privacypolicy/$', views.privacy_policy, name = 'privacy policy'),
     url(r'^search/$', views.search, name = 'search'),
+    url(r'^mylist/addsame/(?P<id>\w+)/', views.add_same, name = 'add same' ),
 )
 

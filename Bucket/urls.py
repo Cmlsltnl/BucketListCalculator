@@ -6,6 +6,7 @@ from django.conf import settings
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^$', 'Bucket.views.home', name = 'home'),
     url(r'^bucketlist/', include('BucketList.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/login/$', 'Bucket.views.login'),

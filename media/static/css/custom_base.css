@@ -1,7 +1,7 @@
 
 /*------------------------Imports---------------------------*/
 
-@import url(http://fonts.googleapis.com/css?family=Oswald:300,400,700);
+@import url(https://fonts.googleapis.com/css?family=Oswald:300,400,700);
     
 
 
@@ -14,10 +14,11 @@
 
 .navbar-right {
     padding-right: 20px;
+    padding-left: 10px;
 }
 
 .navbar-nav {
-    padding-left: 16px;
+    padding-left: 10px;
 }
 
 .not-logged-in-nav {
@@ -113,7 +114,7 @@
     
 }
 
-@media only screen and (min-width : 1095px) {
+@media only screen and (min-width : 1115px) {
     #calculate {
         display: inline-block;
         visability: visable;
@@ -160,11 +161,13 @@
 
 
 .glyphicon-envelope {
-  font-size: 1.4em;
+  font-size: 1.3em;
+  padding-right: 0px;
 }
 
 .badge {
-  font-size: 0.5em;
+  font-size: 0.4em;
+  padding: 4px;
 }
 
 .navbar-right {

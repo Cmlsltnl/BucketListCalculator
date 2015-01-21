@@ -12,18 +12,16 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-from settings_secret import SECRET_KEY
+from settings_secret import *
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = []
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
@@ -45,6 +43,8 @@ INSTALLED_APPS = (
     'chartit',
     'password_reset',
     'django.contrib.humanize',
+    'djangosecure',
+     'sendgrid',
     
 )
 
@@ -55,7 +55,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'djangosecure.middleware.SecurityMiddleware',
+    'django.middleware.common.BrokenLinkEmailsMiddleware',
 )
+
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
@@ -91,15 +94,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'https://bucketlistcalculator.com/static/'
 
-MEDIA_ROOT = '/BucketListCalculator/media/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'media/static')]
 
-MEDIA_URL = '/media/'
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+MEDIA_URL = 'https://bucketlistcalculator.com/media/'
 
 AVATAR_GRAVATAR_BACKUP = False
 
-AVATAR_DEFAULT_URL = 'https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-xpf1/v/t1.0-9/10527879_10204280570037417_1204777598584659545_n.jpg?oh=a6e4f74facdf737a29e047dfcf91e3fa&oe=5546FC50&__gda__=1426119983_aefc1ab2f26ecf0aa8567f9832c684b1'
+AVATAR_DEFAULT_URL = 'https://bucketlistcalculator.com/static/images/default-avatar.png'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+if DEBUG:
+    try : 
+        from dev_settings import *
+    except ImportError as e:
+        pass
 

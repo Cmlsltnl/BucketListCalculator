@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
-
+{% load staticfiles %}
 {% block title %}Your Recommendations{% endblock title %}
 {% load humanize %}
 {% block content %}
 
-<link href="/media/static/css/custom_recommendation.css" rel="stylesheet" type="text/css"/>
+<link href="{% static "css/custom_recommendation.css" %}" rel="stylesheet" type="text/css"/>
 
-<script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+<script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
 
 
 {% load chartit %}

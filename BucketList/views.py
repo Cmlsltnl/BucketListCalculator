@@ -165,7 +165,6 @@ def index_items(request, id):
     return render(request, 'BucketList/index_items.html', context)
     
     
-@login_required
 def user_stats(request, id):
     #A public stats/profile page that displays their basic profile information as well as their bucket list
     item = User.objects.all().get(username = id)
@@ -391,6 +390,12 @@ def recommendation(request):
     #Total Difficulty of all list items    
     total_difficulty = sum(dict_with_difficulty.values())
     average_goal_difficulty = total_difficulty/total_number_of_items
+    
+    if total_difficulty == 0:
+        total_difficulty = 1
+    
+    if average_goal_difficulty == 0:
+        average_goal_difficulty = 1
     
     #Most Difficult Goal, That Goals Difficulty, Percentage of Total Difficulty, and Number of Times Harder Than The Average Goal
     most_difficult_goal = max(dict_with_difficulty, key=dict_with_difficulty.get)
@@ -1776,4 +1781,14 @@ def search(request):
     context = {'results': results,}
     return render(request, 'BucketList/search.html', context)
     
+    
+@login_required
+def add_same(request, id):
+    #Add same goal as other user
+    item = BucketListItem.objects.get(pk =id)
+    
+    my_model = BucketListItem(text = item.text, pub_by = request.user, goal_type = item.goal_type, cost = item.cost, time = item.time, hours = item.hours)
+    my_model.save()
+    
+    return HttpResponseRedirect('/bucketlist/mylist/compare/%s' % my_model.id)
     
