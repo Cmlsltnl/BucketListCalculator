@@ -9,10 +9,6 @@ from .utils import get_user_model
 class PasswordRecoveryForm(forms.Form):
     username_or_email = forms.CharField()
 
-    error_messages = {
-        'not_found': _("Sorry, this user doesn't exist."),
-    }
-
     def __init__(self, *args, **kwargs):
         self.case_sensitive = kwargs.pop('case_sensitive', True)
         search_fields = kwargs.pop('search_fields', ('username', 'email'))
@@ -52,8 +48,7 @@ class PasswordRecoveryForm(forms.Form):
         try:
             user = User._default_manager.get(**{key: username})
         except User.DoesNotExist:
-            raise forms.ValidationError(self.error_messages['not_found'],
-                                        code='not_found')
+            raise forms.ValidationError(_("Sorry, this user doesn't exist."))
         return user
 
     def get_user_by_email(self, email):
@@ -63,8 +58,7 @@ class PasswordRecoveryForm(forms.Form):
         try:
             user = User._default_manager.get(**{key: email})
         except User.DoesNotExist:
-            raise forms.ValidationError(self.error_messages['not_found'],
-                                        code='not_found')
+            raise forms.ValidationError(_("Sorry, this user doesn't exist."))
         return user
 
     def get_user_by_both(self, username):
@@ -76,8 +70,7 @@ class PasswordRecoveryForm(forms.Form):
         try:
             user = User._default_manager.get(filters)
         except User.DoesNotExist:
-            raise forms.ValidationError(self.error_messages['not_found'],
-                                        code='not_found')
+            raise forms.ValidationError(_("Sorry, this user doesn't exist."))
         except User.MultipleObjectsReturned:
             raise forms.ValidationError(_("Unable to find user."))
         return user
@@ -93,10 +86,6 @@ class PasswordResetForm(forms.Form):
         widget=forms.PasswordInput,
     )
 
-    error_messages = {
-        'password_mismatch': _("The two passwords didn't match."),
-    }
-
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user')
         super(PasswordResetForm, self).__init__(*args, **kwargs)
@@ -105,9 +94,7 @@ class PasswordResetForm(forms.Form):
         password1 = self.cleaned_data.get('password1', '')
         password2 = self.cleaned_data['password2']
         if not password1 == password2:
-            raise forms.ValidationError(
-                self.error_messages['password_mismatch'],
-                code='password_mismatch')
+            raise forms.ValidationError(_("The two passwords didn't match."))
         return password2
 
     def save(self, commit=True):

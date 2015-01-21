@@ -1,10 +1,11 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% load i18n %}
 {% load url from future %}
 {% block title %}Password Recovery{% endblock %}
 {% block content %}
 
-<link href="/media/static/css/custom_password_reset.css" rel="stylesheet" type="text/css"/>
+<link href="{% static "css/custom_password_reset.css" %}" rel="stylesheet" type="text/css"/>
 
 <div class = "container">
     <div class = "row">

@@ -1,14 +1,15 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% load i18n avatar_tags %}
 {% load url from future %}
 {% block title %}Add Profile Picture{% endblock %}
 {% block content %}
 
-<link href="/media/static/css/custom_avatar.css" rel="stylesheet" type="text/css"/>
+<link href="{% static "css/custom_avatar.css" %}" rel="stylesheet" type="text/css"/>
 
 <div class = "container">
     <div class = "row">
-        <div class = "col-md-12">
+        <div class = "col-md-8 col-md-offset-2">
             <div class = "sections">
             
                 <h1>Change Your Profile Picture</h1>
@@ -22,7 +23,7 @@
                     <br>
                     <p>{% csrf_token %}<input type="submit" value="{% trans "Upload New Image" %}" class = "btn btn-success" /> <a href = "/avatar/change/" class = "btn btn-warning">Back</a></p>
                 </form>
-    
+    		<p class = "update">*Your profile picture may take a short while to update*</p>
             </div>
         </div>
     </div>

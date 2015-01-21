@@ -1,11 +1,11 @@
 {% extends "base.html" %} 
 {% load i18n %} 
-
+{% load staticfiles %}
 {% block title %}Compose Message{% endblock %}
 
 {% block content %} 
 
-<link href="/media/static/css/custom_messages.css" rel="stylesheet" type="text/css"/>
+<link href="{% static "css/custom_messages.css" %}" rel="stylesheet" type="text/css"/>
 
 <div class = "container">
     <div class = "row">
@@ -28,7 +28,11 @@
                 {% for field in form %}
                     <div class = "fieldWrapper">
                         {% if field.label == "Recipient" %}
-                            <input id = "id_recipient" type = "text" name = "recipient" maxlength = "20" placeholder = "Recipient's Username" required/>
+                            {% if message_to %}
+                                <input id = "id_recipient" type = "text" name = "recipient" maxlength = "20" value = "{{message_to}}" required/>
+                            {% else %}
+                                <input id = "id_recipient" type = "text" name = "recipient" maxlength = "20" placeholder = "Recipient's Username" required/>
+                            {% endif %}
                             {% if field.errors %}
                                 <br>
                                 <br>

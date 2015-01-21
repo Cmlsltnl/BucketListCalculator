@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% load i18n %}
 {% load url from future %}
 {% block title %}Delete Profile Picture{% endblock %}
@@ -6,13 +7,13 @@
 
 
 
-<link href="/media/static/css/custom_avatar.css" rel="stylesheet" type="text/css"/>
+<link href="{% static "css/custom_avatar.css" %}" rel="stylesheet" type="text/css"/>
 
 
 
 <div class = "container">
     <div class = "row">
-        <div class = "col-md-12">
+        <div class = "col-md-8 col-md-offset-2">
             <div class = "sections">
 
                 <div class = "container">
@@ -31,7 +32,7 @@
                         </form>
                     {% endif %}
                         
-    
+    		<p class = "update">*Your profile picture may take a short while to update*</p>
             </div>
         </div>
     </div>
